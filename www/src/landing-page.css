@@ -23,6 +23,10 @@ body, h1, h2, h3, h4, h5, h6 {
 	text-align: center;
 }
 
+.intro-header p a {
+	color: #4C9ED9;
+}
+
 .intro-mask {
 	padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
 }
