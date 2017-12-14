@@ -33,3 +33,24 @@ RedirectPermanent /2018/introducing-ndjson-reactphp     /2018/introducing-reactp
 # reject direct access with 403 (Forbidden)
 RewriteCond "%{THE_REQUEST}" "^[A-Z]+ /notablog.php(\?|/| )"
 RewriteRule ^ - [F]
+
+RedirectPermanent /graph-composer/graph-composer.phar /graph-composer-latest.phar
+RedirectPermanent /phar-composer/phar-composer.phar /phar-composer-latest.phar
+RedirectPermanent /psocksd/psocksd.phar /psocksd-latest.phar
+
+Redirect /graph-composer-latest.phar /graph-composer-1.0.0.phar
+Redirect /graph-composer-1.0.0.phar https://github.com/clue/graph-composer/releases/download/v1.0.0/graph-composer.phar
+Redirect /graph-composer-0.1.1.phar https://github.com/clue/graph-composer/releases/download/v0.1.1/graph-composer.phar
+
+Redirect /phar-composer-latest.phar /phar-composer-1.0.0.phar
+Redirect /phar-composer-1.0.0.phar https://github.com/clue/phar-composer/releases/download/v1.0.0/phar-composer.phar
+Redirect /phar-composer-0.5.0.phar https://github.com/clue/phar-composer/releases/download/v0.5.0/phar-composer.phar
+Redirect /phar-composer-0.4.0.phar https://github.com/clue/phar-composer/releases/download/v0.4.0/phar-composer.phar
+
+Redirect /psocksd-latest.phar /psocksd-0.4.0.phar
+Redirect /psocksd-0.4.0.phar https://github.com/clue/psocksd/releases/download/v0.4.0/psocksd.phar
+Redirect /psocksd-0.3.5.phar https://github.com/clue/psocksd/releases/download/v0.3.5/psocksd.phar
+Redirect /psocksd-0.3.4.phar https://github.com/clue/psocksd/releases/download/v0.3.4/psocksd.phar
+Redirect /psocksd-0.3.3.phar https://github.com/clue/psocksd/releases/download/v0.3.3/psocksd.phar
+Redirect /psocksd-0.3.2.phar https://github.com/clue/psocksd/releases/download/v0.3.2/psocksd.phar
+Redirect /psocksd-0.3.1.phar https://github.com/clue/psocksd/releases/download/v0.3.1/psocksd.phar
