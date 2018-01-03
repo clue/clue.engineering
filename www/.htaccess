@@ -7,3 +7,6 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 RewriteRule ^(css|img|js|auth)(/.*)?$ https://gistlog.co/$1$2 [R]
 RewriteRule ^2018/hello-world$ notablog.php
 
+# reject direct access with 403 (Forbidden)
+RewriteCond "%{THE_REQUEST}" "^[A-Z]+ /notablog.php(\?|/| )"
+RewriteRule ^ - [F]

@@ -1,7 +1,13 @@
 <?php
 
 // notablog.php (C) 2018 by @clue
-//
+
+// reject direct access with 403 (Forbidden)
+if (strpos($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']) !== false) {
+    header(' ', false, 403);
+    exit('bad request.');
+}
+
 // thank you Gistlog, you're awesome! <3
 $url = 'https://gistlog.co/clue/8698d44e489927f9988b2a27e53d9189';
 $ret = @file_get_contents($url);
