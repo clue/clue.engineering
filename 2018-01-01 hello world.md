@@ -18,7 +18,7 @@ If you stumble upon this blog post, there's a fair chance you may be among them 
 
 Hello, my name is Christian "[@another_clue](https://twitter.com/another_clue)" Lück. Nowadays, people mostly recognize me as a maintainer of [ReactPHP](https://reactphp.org), public speaker and Freelance Software Engineering Consultant.
 
-This means that I'm involved with open source software developenment both in my professional and personal life. And while I've been involved with open source software development for more than a decade and a half, so far, I haven't put much effort into publicizing my open source involvement. This very blog post is proof to my New Year's resolution and the effort to shed some light into what is happening behind the scenes.
+This means that I'm involved with open source software development both in my professional and personal life. And while I've been involved with open source software development for more than a decade and a half, so far, I haven't put much effort into publicizing my open source involvement. This very blog post is proof to my New Year's resolution and the effort to shed some light into what is happening behind the scenes.
 
 ## Looking forward
 
