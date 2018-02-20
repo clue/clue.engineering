@@ -10,7 +10,7 @@ In case you haven't already seen this talk, here's the latest teaser description
 
 > It's 2018 and times have changed – yet PHP is still most often associated with your average product catalog or blogging platform. In this talk you will learn that PHP's huge ecosystem has way more to offer and PHP is not inferior at all to its evil cousin Node.js.
 >
-> *You will learn about the core concepts of async PHP and why you too should care about ReactPHP being a real thing. The talk has a strong focus on sparking the idea that PHP can be way faster and more versatile than you probably thought. Bring along an open mind and through lots of examples and demos learn why what sounds crazy at first might soon be a valuable addition in your toolbox.*
+> You will learn about the core concepts of async PHP and why you too should care about ReactPHP being a real thing. The talk has a strong focus on sparking the idea that PHP can be way faster and more versatile than you probably thought. Bring along an open mind and through lots of examples and demos learn why what sounds crazy at first might soon be a valuable addition in your toolbox.
 
 As you can see, the talk intentionally has less focus on describing *how* things work, but a rather strong focus on getting a certain point across: PHP is a very powerful and useful tool even for todays requirements and todays projects! PHP may not be perfect, but it gets the job done for a large number of use cases – and probably for way more use cases than you may have thought at first. The landscape that PHP is used in has changed significantly in the last ~20 years or so – and so has PHP.
 
