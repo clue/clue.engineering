@@ -7,6 +7,7 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 RewriteRule ^(css|img|js|auth)(/.*)?$ https://gistlog.co/$1$2 [R]
 RewriteRule ^2018/hello-world$ notablog.php?gist=https://gist.github.com/clue/8698d44e489927f9988b2a27e53d9189
 RewriteRule ^2018/pushing-the-limits-with-reactphp$ notablog.php?gist=https://gist.github.com/clue/f8a8c0236c6ce10e183c1dddbc996947
+RewriteRule ^2018/introducing-mq-react$ notablog.php?gist=https://gist.github.com/clue/621ac905f031b2d9ecc6af73c8aa141a
 
 # reject direct access with 403 (Forbidden)
 RewriteCond "%{THE_REQUEST}" "^[A-Z]+ /notablog.php(\?|/| )"
