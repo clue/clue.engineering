@@ -102,7 +102,7 @@ This library provides a simple API that is easy to use in order to manage any ki
 For this to work, we'll install the [clue/mq-react](https://github.com/clue/php-mq-react) like this:
 
 ```bash
-$ composer require clue/mq-react:^1.0
+$ composer require clue/mq-react
 ```
 
 The full code to load the list of URLs to fetch and then (with limited concurrency) send a request to each URL could look something like:
@@ -169,7 +169,7 @@ As seen above, this library provides you a powerful, async API by default. If, h
 For this to work, we'll install [clue/block-react](https://github.com/clue/php-block-react) like this:
 
 ```bash
-$ composer require clue/block-react:^1.0
+$ composer require clue/block-react
 ```
 
 The full code to load the list of URLs to fetch and then await sending a request to each URL could look something like:
@@ -189,16 +189,12 @@ function download(array $urls)
     $loop = React\EventLoop\Factory::create();
     $browser = new Clue\React\Buzz\Browser($loop);
 
-    $q = new Queue(10, null, function ($url) use ($browser) {
+    $urls = array_combine($urls, $urls);
+    $promise = Queue::all(10, $urls, function ($url) use ($browser) {
         return $browser->get($url);
     });
 
-    $promises = array();
-    foreach ($urls as $url) {
-        $promises[$url] = $q($url);
-    }
-
-    return Clue\React\Block\awaitAll($promises, $loop);
+    return Clue\React\Block\await($promise, $loop);
 }
 
 foreach (download($urls) as $url => $response) {
