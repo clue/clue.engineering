@@ -1,4 +1,4 @@
-I'm happy to announce the very first stable release of [clue/mq-react](https://github.com/clue/php-mq-react) 🎉
+I'm happy to announce the very first stable release of [clue/reactphp-mq](https://github.com/clue/reactphp-mq) 🎉
 
 > Mini Queue, the lightweight in-memory message queue to concurrently do many (but not too many) things at once, built on top of [ReactPHP](https://reactphp.org/).
 
@@ -6,7 +6,7 @@ Now that v1.0.0 has been tagged and released today, let's look into why this is 
 
 ## Doing many things
 
-Many people use PHP and have an idea what it can be used for. Doing many things *at once* is not one of the things PHP is usually associated with, so let's first see what problem [clue/mq-react](https://github.com/clue/php-mq-react) is trying to solve.
+Many people use PHP and have an idea what it can be used for. Doing many things *at once* is not one of the things PHP is usually associated with, so let's first see what problem [clue/reactphp-mq](https://github.com/clue/reactphp-mq) is trying to solve.
 
 Nowadays, PHP is often used in different kind of backend systems. Whether it's processing some data that came in through an HTTP request, through some backend queuing system (job worker) or some CLI (cron) script that periodically processes data from a database or filesystem. While these may be solving some entirely different problems, what's common to these is that they often need to process a larger number of uniform operations (batch processing).
 
@@ -52,7 +52,7 @@ In fact, if you monitor your CPU usage while this script is running (or trace it
 
 [ReactPHP](https://reactphp.org) is a low-level library for event-driven programming in PHP. In a nutshell, it allows you to run multiple I/O operations concurrently.
 
-Applying this to our above example, this means that we can use it to concurrently request all our pages at the same time and then simply *react* to when one of the responses comes in. The following example uses kriswallsmith/buzz as a lightweight HTTP client library for brevity, but again you can use any library you want: For this to work, we'll install the async HTTP client [clue/buzz-react](https://github.com/clue/php-buzz-react) like this:
+Applying this to our above example, this means that we can use it to concurrently request all our pages at the same time and then simply *react* to when one of the responses comes in. The following example uses kriswallsmith/buzz as a lightweight HTTP client library for brevity, but again you can use any library you want: For this to work, we'll install the async HTTP client [clue/reactphp-buzz](https://github.com/clue/reactphp-buzz) like this:
 
 ```bash
 $ composer require clue/buzz-react:^2.0
@@ -95,11 +95,11 @@ This means that while async processing allows you to get some very impressive sp
 
 ## Limiting concurrency
 
-This is where [clue/mq-react](https://github.com/clue/php-mq-react) comes into play: You can use this library to limit the number of concurrent operations. This allows you to effectively rate limit your operations and queue excessives ones so that not too many operations are processed at once.
+This is where [clue/reactphp-mq](https://github.com/clue/reactphp-mq) comes into play: You can use this library to limit the number of concurrent operations. This allows you to effectively rate limit your operations and queue excessives ones so that not too many operations are processed at once.
 
 This library provides a simple API that is easy to use in order to manage any kind of async operation without having to mess with most of the low-level details. You can use this to easily throttle multiple HTTP requests as in this example, database queries or pretty much any API that already uses Promises.
 
-For this to work, we'll install the [clue/mq-react](https://github.com/clue/php-mq-react) like this:
+For this to work, we'll install the [clue/reactphp-mq](https://github.com/clue/reactphp-mq) like this:
 
 ```bash
 $ composer require clue/mq-react
@@ -166,7 +166,7 @@ In our example, we assume that the `Queue` should send an HTTP request. But by p
 
 As seen above, this library provides you a powerful, async API by default. If, however, this looks strange to you and you want to integrate this into your traditional, blocking environment, you can also use the more traditional blocking API. This allows you to take advantage of an event driven application to do multiple things at once within your existing, blocking controller functions or any other place.
 
-For this to work, we'll install [clue/block-react](https://github.com/clue/php-block-react) like this:
+For this to work, we'll install [clue/reactphp-block](https://github.com/clue/reactphp-block) like this:
 
 ```bash
 $ composer require clue/block-react
@@ -218,7 +218,7 @@ Does that mean everybody should uninstall their RabbitMQ cluster? It goes withou
 
 For instance, this project can also be used within your existing RabbitMQ worker: When you receive a single persistent RabbitMQ job message, you may start sending a request to a number of HTTP endpoints. This allows you to synchronously process a single job by asynchronously processing its subtasks.
 
-If you want to learn more about this project, make sure to check out [clue/mq-react](https://github.com/clue/php-mq-react). If you like this project, spreading the word is much appreciated! If you have an feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
+If you want to learn more about this project, make sure to check out [clue/reactphp-mq](https://github.com/clue/reactphp-mq). If you like this project, spreading the word is much appreciated! If you have an feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
 
 <blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">Introducing clue/mq-react v1.0.0, the lightweight in-memory message queue to concurrently do many (but not too many) things at once with <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a>. <a href="https://twitter.com/hashtag/async?src=hash&amp;ref_src=twsrc%5Etfw">#async</a> <a href="https://twitter.com/hashtag/php?src=hash&amp;ref_src=twsrc%5Etfw">#php</a> <a href="https://twitter.com/hashtag/concurrency?src=hash&amp;ref_src=twsrc%5Etfw">#concurrency</a> <a href="https://t.co/qUqr8yLfcH">https://t.co/qUqr8yLfcH</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/968087258682351617?ref_src=twsrc%5Etfw">Feb 26, 2018</a></blockquote>
 
