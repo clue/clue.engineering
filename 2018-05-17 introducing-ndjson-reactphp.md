@@ -36,7 +36,7 @@ The newline character at the end of each line allows for some really simple *fra
 
 NDJSON files are great for transporting (uniform) records such as users or products or even structured log message events. You can edit NDJSON files in any text editor or use them in a streaming context where individual records should be processed. Unlike normal JSON files, adding a new log entry to this NDJSON file does not require modification of this files' structure (note there's no "outer array" to be modified). This makes it a perfect fit for a streaming context or a logging context where you want to append records at a later time.
 
-For more details about the NDJSON specification, refer to its project page on https://github.com/ndjson/ndjson-spec.  There's hope this will eventually become on [official RFC](https://github.com/ndjson/ndjson-spec/issues/21), but at the time of writing this it is not.
+For more details about the NDJSON specification, refer to its [project page](https://github.com/ndjson/ndjson-spec). There's hope this will become an [official RFC](https://github.com/ndjson/ndjson-spec/issues/21) eventually, but at the time of writing this it's not.
 
 ### NDJSON vs. CSV
 
@@ -228,4 +228,4 @@ Streaming JSON-based records or messages is a really powerful approach for a lar
 
 There are some valid criticisms against JSON and if human readability is not an issue for your use case, then there are some more efficient alternatives. Obviously, this also applies to NDJSON likewise. For many use cases this does not apply and JSON is a perfectly reasonable choice in this case. If you're processing multiple independent JSON objects, then NDJSON may be a good candidate.
 
-If you want to learn more about this project, make sure to check out [clue/reactphp-ndjson](https://github.com/clue/reactphp-ndjson). If you like this project, spreading the word is much appreciated! If you have an feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
+If you want to learn more about this project, make sure to check out [clue/reactphp-ndjson](https://github.com/clue/reactphp-ndjson). If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
