@@ -94,6 +94,7 @@ What follows is a hopefully complete listing of all talk dates and details that 
   * Conference talk
   * [Info](https://conference.scotlandphp.co.uk/speakers#luck)
   * [Slides](https://speakerdeck.com/clue/pushing-the-limits-with-reactphp-scotlandphp17)
+  * [Recording](https://www.youtube.com/watch?v=tRxnwK_oJu0)
   * [Rating](https://joind.in/event/scotlandphp-2017/pushing-the-limits-of-php-with-reactphp)
 * 2018-01-24 **@phpugmunich** (München)
   * Usergroup talk + hands-on workshop ("getting started with ReactPHP")
