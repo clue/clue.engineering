@@ -206,9 +206,9 @@ foreach (download($urls) as $url => $response) {
 }
 ```
 
-This is code should be pretty self-explanatory; it simply dumps the size of each response after a request completes and the continue to send the next request.
+This is code should be pretty self-explanatory; it simply dumps the size of each response after all requests complete.
 
-The major difference to the previous example is that we wrap all async code within a single blocking `download()` function. This function is now used to hide all the async details and provide a normal blocking API. Other than that, this code still uses a [Promise](https://github.com/reactphp/promise) which is *fulfilled* with a response object.
+The major difference to the previous example is that we wrap all async code within a single blocking `download()` function. This function is now used to hide all the async details and provide a normal blocking API. Other than that, this code still uses a [Promise](https://github.com/reactphp/promise) internally which is *fulfilled* with a response object. The blocking API ensures that consumers of this API only see an array of response objects in return.
 
 Note that because this function now returns with an array of all response messages, so we can easily iterate over this array. However, keep in mind that this means the whole response body has to be kept in memory. This should work just fine for our example where we request 100 HTML pages, but may easily take up all your memory for bigger responses, such as file downloads.
 
@@ -218,7 +218,7 @@ Does that mean everybody should uninstall their RabbitMQ cluster? It goes withou
 
 For instance, this project can also be used within your existing RabbitMQ worker: When you receive a single persistent RabbitMQ job message, you may start sending a request to a number of HTTP endpoints. This allows you to synchronously process a single job by asynchronously processing its subtasks.
 
-If you want to learn more about this project, make sure to check out [clue/reactphp-mq](https://github.com/clue/reactphp-mq). If you like this project, spreading the word is much appreciated! If you have an feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
+If you want to learn more about this project, make sure to check out [clue/reactphp-mq](https://github.com/clue/reactphp-mq). If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
 
 <blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">Introducing clue/mq-react v1.0.0, the lightweight in-memory message queue to concurrently do many (but not too many) things at once with <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a>. <a href="https://twitter.com/hashtag/async?src=hash&amp;ref_src=twsrc%5Etfw">#async</a> <a href="https://twitter.com/hashtag/php?src=hash&amp;ref_src=twsrc%5Etfw">#php</a> <a href="https://twitter.com/hashtag/concurrency?src=hash&amp;ref_src=twsrc%5Etfw">#concurrency</a> <a href="https://t.co/qUqr8yLfcH">https://t.co/qUqr8yLfcH</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/968087258682351617?ref_src=twsrc%5Etfw">Feb 26, 2018</a></blockquote>
 
