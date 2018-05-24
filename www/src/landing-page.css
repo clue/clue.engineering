@@ -98,6 +98,10 @@ section#posts time {
     display: block;
 }
 
+section#contact {
+    background-color: #f7f7f7;
+}
+
 section#contact address {
     font-style: normal;
 }
