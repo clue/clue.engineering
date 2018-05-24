@@ -77,6 +77,10 @@ section#main a {
 section#main a:hover {
     background-color: #f7f7f7;
 }
+section#main svg {
+    height: 0.8em;
+    fill: #164257;
+}
 
 section#about {
     background-color: #f8f8f8;
@@ -101,9 +105,12 @@ section#posts time {
 section#contact {
     background-color: #f7f7f7;
 }
-
 section#contact address {
     font-style: normal;
+}
+section#contact svg {
+    height: 0.8em;
+    fill: #4C9ED9;
 }
 
 @media (max-width: 720px) {
