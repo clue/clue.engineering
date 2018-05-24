@@ -10,7 +10,7 @@ body, html {
 a {
     color: #4C9ED9;
 }
-h1,h2,h3,strong {
+h1,h2,h3,h4,strong {
     font-weight: normal;
     line-height: 1.25;
     color: #777;

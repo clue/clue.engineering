@@ -10,6 +10,8 @@ RewriteRule ^2018/pushing-the-limits-with-reactphp$ notablog.php?gist=https://gi
 RewriteRule ^2018/introducing-reactphp-mini-queue$  notablog.php?gist=https://gist.github.com/clue/621ac905f031b2d9ecc6af73c8aa141a
 RewriteRule ^2018/introducing-ndjson-reactphp$      notablog.php?gist=https://gist.github.com/clue/c3e9090798cc583e9fa3b7a5f68757ee
 
+RewriteRule ^privacy$                               notablog.php?gist=https://gist.github.com/clue/7888e3d1c1f32f1b595c95f3d84045ae
+
 # redirect legacy blog post URLS
 RedirectPermanent /2018/introducing-mq-react /2018/introducing-reactphp-mini-queue
 
