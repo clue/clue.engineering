@@ -15,6 +15,9 @@ h1,h2,h3,h4,strong {
     line-height: 1.25;
     color: #777;
 }
+svg {
+    height: 0.8em;
+}
 
 /* default section layout */
 section {
@@ -78,7 +81,6 @@ section#main a:hover {
     background-color: #f7f7f7;
 }
 section#main svg {
-    height: 0.8em;
     fill: #164257;
 }
 
@@ -89,6 +91,9 @@ section#about {
 section#posts {
     background-color: #eee;
     background: repeating-linear-gradient( -55deg, #eee, #edecec 10px );
+}
+section#posts svg {
+    fill: #4C9ED9;
 }
 section#posts ul {
     list-style: none;
@@ -109,7 +114,6 @@ section#contact address {
     font-style: normal;
 }
 section#contact svg {
-    height: 0.8em;
     fill: #4C9ED9;
 }
 
