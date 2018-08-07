@@ -20,7 +20,7 @@ To give you an idea of what NDJSON looks like, let's start with a really simple,
 
 This example uses an array of user objects where each user has a some arbitrary properties. This can easily be adjusted for many different use cases, such as storing for example products instead of users, assigning additional properties or having a significantly larger number of records.
 
-In contract, let's look at the exact same example expressed as a simple NDJSON file, let's call this `users.ndjson`:
+In contrast, let's look at the exact same example expressed as a simple NDJSON file, let's call this `users.ndjson`:
 
 ```JSON
 {"id":1,"name":"Alice"}
@@ -230,4 +230,4 @@ There are some valid criticisms against JSON and if human readability is not an 
 
 If you want to learn more about this project, make sure to check out [clue/reactphp-ndjson](https://github.com/clue/reactphp-ndjson). If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
 
-<blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">Introducing streaming newline-delimited JSON (NDJSON) parser and encoder v1.0.0 for <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a>! Efficient persistence for JSON-based log messages and streaming for simple IPC and RPC protocols 💪 <a href="https://twitter.com/hashtag/streaming?src=hash&amp;ref_src=twsrc%5Etfw">#streaming</a> <a href="https://twitter.com/hashtag/json?src=hash&amp;ref_src=twsrc%5Etfw">#json</a> <a href="https://twitter.com/hashtag/ndjson?src=hash&amp;ref_src=twsrc%5Etfw">#ndjson</a><a href="https://t.co/B9FT3VPvQ2">https://t.co/B9FT3VPvQ2</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/997142697067601920?ref_src=twsrc%5Etfw">17. Mai 2018</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">Introducing streaming newline-delimited JSON (NDJSON) parser and encoder v1.0.0 for <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a>! Efficient persistence for JSON-based log messages and streaming for simple IPC and RPC protocols 💪 <a href="https://twitter.com/hashtag/streaming?src=hash&amp;ref_src=twsrc%5Etfw">#streaming</a> <a href="https://twitter.com/hashtag/json?src=hash&amp;ref_src=twsrc%5Etfw">#json</a> <a href="https://twitter.com/hashtag/ndjson?src=hash&amp;ref_src=twsrc%5Etfw">#ndjson</a> <a href="https://t.co/B9FT3VPvQ2">https://t.co/B9FT3VPvQ2</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/997142697067601920?ref_src=twsrc%5Etfw">17. Mai 2018</a></blockquote>
