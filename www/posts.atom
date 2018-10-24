@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>Christian Lück's recent posts</title>
-    <updated>2018-09-21T00:00:00Z</updated>
+    <updated>2018-10-24T00:00:00Z</updated>
     <author>
         <name>Christian Lück</name>
     </author>
     <link href="https://www.lueck.tv/posts.atom" rel="self" />
     <id>https://www.lueck.tv/</id>
-        <entry>
-        <title>Introducing MySQL streaming with ReactPHP </title>
+    <entry>
+        <title>Introducing async HTTP requests with ReactPHP</title>
+        <link href="https://www.lueck.tv/2018/introducing-reactphp-buzz" />
+        <id>https://www.lueck.tv/2018/introducing-reactphp-buzz</id>
+        <updated>2018-10-24T00:00:00Z</updated>
+    </entry>
+    <entry>
+        <title>Introducing MySQL streaming with ReactPHP</title>
         <link href="https://www.lueck.tv/2018/introducing-reactphp-mysql" />
         <id>https://www.lueck.tv/2018/introducing-reactphp-mysql</id>
         <updated>2018-09-21T00:00:00Z</updated>
