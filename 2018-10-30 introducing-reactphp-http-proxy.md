@@ -19,7 +19,7 @@ HTTP CONNECT proxy servers (also commonly known as "HTTPS proxy" or "SSL proxy")
 With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap, let's first take a look at how to send an HTTP request with @ReactPHP, again from the [previous blog post](https://www.lueck.tv/2018/introducing-reactphp-buzz):
 
 ```php
-$loop = new \React\EventLoop\Factory::create();
+$loop = \React\EventLoop\Factory::create();
 $client = new \Clue\React\Buzz\Browser($loop);
 
 $client->get('https://api.example.com/')->then(function (ResponseInterface $response) {
@@ -32,7 +32,7 @@ $loop->run();
 This example makes no mention of any proxy setup and thus sends a `GET` request over a direct connection to the destination host. If you want to proxy the same HTTP request through an HTTP CONNECT proxy server, you only have to add a few extra lines of code. After installing the HTTP CONNECT proxy support with `composer require clue/http-proxy-react:^1.4`, the same example could look something like this:
 
 ```php
-$loop = new \React\EventLoop\Factory::create();
+$loop = \React\EventLoop\Factory::create();
 
 $proxy = new ProxyConnector('http://127.0.0.1:8080', new Connector($loop));
 $connector = new Connector($loop, array(
