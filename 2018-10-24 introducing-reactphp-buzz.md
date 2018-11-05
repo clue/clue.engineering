@@ -11,7 +11,7 @@ I'm probably not telling you something new when I say the web is built on top of
 With HTTP being so ubiquitous, I'm happy to let you know that using it with @ReactPHP is just a few lines of code away:
 
 ```php
-$loop = new \React\EventLoop\Factory::create();
+$loop = \React\EventLoop\Factory::create();
 $client = new \Clue\React\Buzz\Browser($loop);
 
 $client->get('https://api.example.com/')->then(function (ResponseInterface $response) {
@@ -37,7 +37,7 @@ var_dump($response->getHeaders(), (string)$response->getBody());
 If we only ever send a single HTTP request, both examples above will do pretty much the same thing and it would be hard to argue that either example is "better". Now again with HTTP being so ubiquitous, there's a fair chance we will have to issue more than one request in our application, so let's take a look at that:
 
 ```php
-$loop = new \React\EventLoop\Factory::create();
+$loop = \React\EventLoop\Factory::create();
 $client = new \Clue\React\Buzz\Browser($loop);
 
 $client->get('https://api.example.com/users/alice')->then(function (ResponseInterface $response) {
