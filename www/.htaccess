@@ -15,6 +15,7 @@ RewriteRule ^2018/introducing-reactphp-csv$         notablog.php?gist=https://gi
 RewriteRule ^2018/introducing-reactphp-mysql$       notablog.php?gist=https://gist.github.com/clue/06eb82a9aef33295670f14e65fc715de
 RewriteRule ^2018/introducing-reactphp-buzz$        notablog.php?gist=https://gist.github.com/clue/4f606abd92d363dcbc9a0b4d4e147177
 RewriteRule ^2018/introducing-reactphp-http-proxy$  notablog.php?gist=https://gist.github.com/clue/1fd9b1721fbea64e6fc9d7544380f80a
+RewriteRule ^2018/introducing-reactphp-soap$        notablog.php?gist=https://gist.github.com/clue/c3dca4a20913713b94927b83d8627a66
 
 RewriteRule ^privacy$                               notablog.php?gist=https://gist.github.com/clue/7888e3d1c1f32f1b595c95f3d84045ae
 
