@@ -167,7 +167,7 @@ In our example, we assume that the `Transformer` should send an HTTP request. Bu
 
 ## Conclusions
 
-Stream processing is a really powerful approach when it comes to processing a large number of records and by now I hope I could show you how concurrently processing streams with the help of Flux is really powerful addition to this toolset. Managing flux is a critical aspect of many async applications. Using this prorject, you can easily control the concurrency limit and thus process streams significantly faster than processing each operation sequentially.
+Stream processing is a really powerful approach when it comes to processing a large number of records and by now I hope I could show you how concurrently processing streams with the help of Flux is a really powerful addition to this toolset. Managing flux is a critical aspect of many async applications. Using this project, you can easily control the concurrency limit and thus process streams significantly faster than processing each operation sequentially.
 
 In one of the previous posts, we've looked into using an in-memory queue to [do many (but not too many) things concurrently with ReactPHP](https://www.lueck.tv/2018/introducing-reactphp-mini-queue). Arguably, this may be simpler to integrate if you want to handle a few dozens or hundreds of operations. However, unlike that project, stream processing does not require you to keep the whole list in memory and thus does not limit you in how many entries you can process.
 
