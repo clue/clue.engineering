@@ -7,8 +7,8 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 RewriteRule ^(css|img|js|auth)(/.*)?$ https://gistlog.co/$1$2 [R]
 RewriteRule ^2018/hello-world$ notablog.php?gist=https://gist.github.com/clue/8698d44e489927f9988b2a27e53d9189
 RewriteRule ^2018/pushing-the-limits-with-reactphp$ notablog.php?gist=https://gist.github.com/clue/f8a8c0236c6ce10e183c1dddbc996947
-RewriteRule ^2018/introducing-reactphp-mini-queue$  notablog.php?gist=https://gist.github.com/clue/621ac905f031b2d9ecc6af73c8aa141a
-RewriteRule ^2018/introducing-ndjson-reactphp$      notablog.php?gist=https://gist.github.com/clue/c3e9090798cc583e9fa3b7a5f68757ee
+RewriteRule ^2018/introducing-reactphp-mq$          notablog.php?gist=https://gist.github.com/clue/621ac905f031b2d9ecc6af73c8aa141a
+RewriteRule ^2018/introducing-reactphp-ndjson$      notablog.php?gist=https://gist.github.com/clue/c3e9090798cc583e9fa3b7a5f68757ee
 RewriteRule ^2018/introducing-reactphp-flux$        notablog.php?gist=https://gist.github.com/clue/bdc5343c6f377a880ec319591e18bce5
 RewriteRule ^2018/announcing-reactphp-lts$          notablog.php?gist=https://gist.github.com/clue/edee51d51f12f96b85cde333c581dac5
 RewriteRule ^2018/introducing-reactphp-csv$         notablog.php?gist=https://gist.github.com/clue/f4f357901cc793bd5fe10f43cd916479
@@ -21,7 +21,11 @@ RewriteRule ^2018/introducing-reactphp-socks$       notablog.php?gist=https://gi
 RewriteRule ^privacy$                               notablog.php?gist=https://gist.github.com/clue/7888e3d1c1f32f1b595c95f3d84045ae
 
 # redirect legacy blog post URLS
-RedirectPermanent /2018/introducing-mq-react /2018/introducing-reactphp-mini-queue
+# 2018-05-13
+RedirectPermanent /2018/introducing-mq-react            /2018/introducing-reactphp-mq
+# 2018-11-27
+RedirectPermanent /2018/introducing-reactphp-mini-queue /2018/introducing-reactphp-mq
+RedirectPermanent /2018/introducing-ndjson-reactphp     /2018/introducing-reactphp-ndjson
 
 # reject direct access with 403 (Forbidden)
 RewriteCond "%{THE_REQUEST}" "^[A-Z]+ /notablog.php(\?|/| )"

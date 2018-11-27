@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>Christian Lück's recent posts</title>
-    <updated>2018-11-20T00:00:00Z</updated>
+    <updated>2018-11-27T00:00:00Z</updated>
     <author>
         <name>Christian Lück</name>
     </author>
@@ -57,14 +57,14 @@
     </entry>
     <entry>
         <title>Introducing streaming newline-delimited JSON (NDJSON) with ReactPHP</title>
-        <link href="https://www.lueck.tv/2018/introducing-ndjson-reactphp" />
-        <id>https://www.lueck.tv/2018/introducing-ndjson-reactphp</id>
+        <link href="https://www.lueck.tv/2018/introducing-reactphp-ndjson" />
+        <id>https://www.lueck.tv/2018/introducing-ndjson-reactphp</id><!-- legacy id  -->
         <updated>2018-05-17T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing clue/reactphp-mq v1.0.0</title>
-        <link href="https://www.lueck.tv/2018/introducing-reactphp-mini-queue" />
-        <id>https://www.lueck.tv/2018/introducing-reactphp-mini-queue</id>
+        <link href="https://www.lueck.tv/2018/introducing-reactphp-mq" />
+        <id>https://www.lueck.tv/2018/introducing-reactphp-mini-queue</id><!-- legacy id  -->
         <updated>2018-02-26T00:00:00Z</updated>
     </entry>
     <entry>
