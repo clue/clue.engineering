@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>Christian Lück's recent posts</title>
-    <updated>2018-11-27T00:00:00Z</updated>
+    <updated>2018-11-28T00:00:00Z</updated>
     <author>
         <name>Christian Lück</name>
     </author>
     <link href="https://www.lueck.tv/posts.atom" rel="self" />
     <id>https://www.lueck.tv/</id>
+    <entry>
+        <title>Introducing lazy MySQL connections with ReactPHP</title>
+        <link href="https://www.lueck.tv/2018/introducing-reactphp-mysql-lazy-connections" />
+        <id>https://www.lueck.tv/2018/introducing-reactphp-mysql-lazy-connections</id>
+        <updated>2018-11-28T00:00:00Z</updated>
+    </entry>
     <entry>
         <title>Introducing SOCKS proxy connector for ReactPHP</title>
         <link href="https://www.lueck.tv/2018/introducing-reactphp-socks" />
