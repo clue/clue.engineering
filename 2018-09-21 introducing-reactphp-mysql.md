@@ -1,4 +1,4 @@
-Today, we're very happy to annouce the immediate availabbility of the next major beta release of [friends-of-reactphp/mysql](https://github.com/friends-of-reactphp/mysql), the async MySQL database client for [ReactPHP](https://reactphp.org/). 🎉
+Today, we're very happy to announce the immediate availability of the next major beta release of [friends-of-reactphp/mysql](https://github.com/friends-of-reactphp/mysql), the async MySQL database client for [ReactPHP](https://reactphp.org/). 🎉
 
 Now that v0.4.0 has been tagged and released today, let's look into why I think this is not only a major milestone for this project, but could also possibly be a game changer in how people use databases with ReactPHP and eventually maybe with PHP in general.
 
