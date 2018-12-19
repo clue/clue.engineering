@@ -18,6 +18,7 @@ RewriteRule ^2018/introducing-reactphp-http-proxy$  notablog.php?gist=https://gi
 RewriteRule ^2018/introducing-reactphp-soap$        notablog.php?gist=https://gist.github.com/clue/c3dca4a20913713b94927b83d8627a66
 RewriteRule ^2018/introducing-reactphp-socks$       notablog.php?gist=https://gist.github.com/clue/2d479064c39ef4eb2584a388a98d566b
 RewriteRule ^2018/introducing-reactphp-mysql-lazy-connections$  notablog.php?gist=https://gist.github.com/clue/2ee08da9b0b4774423ab665bff875fb6
+RewriteRule ^2018/introducing-reactphp-ssh-proxy$   notablog.php?gist=https://gist.github.com/clue/f972803ce79aea7e0915e3f9c515d945
 
 RewriteRule ^privacy$                               notablog.php?gist=https://gist.github.com/clue/7888e3d1c1f32f1b595c95f3d84045ae
 
