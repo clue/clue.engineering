@@ -20,6 +20,7 @@ RewriteRule ^2018/introducing-reactphp-socks$       notablog.php?gist=https://gi
 RewriteRule ^2018/introducing-reactphp-mysql-lazy-connections$  notablog.php?gist=https://gist.github.com/clue/2ee08da9b0b4774423ab665bff875fb6
 RewriteRule ^2018/introducing-reactphp-ssh-proxy$   notablog.php?gist=https://gist.github.com/clue/f972803ce79aea7e0915e3f9c515d945
 RewriteRule ^2019/2018-in-review$                   notablog.php?gist=https://gist.github.com/clue/56902c6c90db3efbb467177dc8103f99
+RewriteRule ^2019/introducing-tls-1-3-for-reactphp$ notablog.php?gist=https://gist.github.com/clue/eef6b2297f8992ddbafbb11b9e703d10
 
 RewriteRule ^privacy$                               notablog.php?gist=https://gist.github.com/clue/7888e3d1c1f32f1b595c95f3d84045ae
 
