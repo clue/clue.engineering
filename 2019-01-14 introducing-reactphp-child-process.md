@@ -2,8 +2,7 @@ Today, we're very happy to announce the immediate availability of the next major
 
 **ReactPHP ❤️ Windows**
 
-As the main feature of this `v0.6.0` release, this library now has limited Windows support and supports passing custom pipes
-and file descriptors to the child process. Let's look into why we think this is a major milestone for this project and how this can be used to spawn a child process to offload a blocking process in a non-blocking way with ReactPHP.
+As the main feature of this `v0.6.0` release, this library now has limited Windows support and supports passing custom pipes and file descriptors to the child process. Let's look into why we think this is a major milestone for this project and how this can be used to spawn a child process to offload a blocking process in a non-blocking way with ReactPHP.
 
 This post aims more for the "why" instead of "what" has changed. This release involves a few minor BC breaks, but we expect that most consumers of this package will actually not be affected. If you're upgrading from a previous version of this project, you may want to take a look at the [changelog](https://github.com/reactphp/child-process/releases/tag/v0.6.0) describing all the changes in greater detail. Alright, so let's dive right in.
 
