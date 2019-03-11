@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>Christian Lück's recent posts</title>
-    <updated>2019-01-14T00:00:00Z</updated>
+    <updated>2019-03-11T00:00:00Z</updated>
     <author>
         <name>Christian Lück</name>
     </author>
     <link href="https://www.lueck.tv/posts.atom" rel="self" />
     <id>https://www.lueck.tv/</id>
+    <entry>
+        <title>Introducing async Redis database client for ReactPHP</title>
+        <link href="https://www.lueck.tv/2018/introducing-reactphp-redis" />
+        <id>https://www.lueck.tv/2019/introducing-reactphp-redis</id>
+        <updated>2019-03-11T00:00:00Z</updated>
+    </entry>
     <entry>
         <title>Introducing event-driven child process for ReactPHP</title>
         <link href="2019/introducing-reactphp-child-process" />
@@ -90,23 +96,5 @@
         <link href="https://www.lueck.tv/2018/introducing-reactphp-ndjson" />
         <id>https://www.lueck.tv/2018/introducing-ndjson-reactphp</id><!-- legacy id  -->
         <updated>2018-05-17T00:00:00Z</updated>
-    </entry>
-    <entry>
-        <title>Introducing clue/reactphp-mq v1.0.0</title>
-        <link href="https://www.lueck.tv/2018/introducing-reactphp-mq" />
-        <id>https://www.lueck.tv/2018/introducing-reactphp-mini-queue</id><!-- legacy id  -->
-        <updated>2018-02-26T00:00:00Z</updated>
-    </entry>
-    <entry>
-        <title>Pushing the limits with ReactPHP</title>
-        <link href="https://www.lueck.tv/2018/pushing-the-limits-with-reactphp" />
-        <id>https://www.lueck.tv/2018/pushing-the-limits-with-reactphp</id>
-        <updated>2018-02-18T00:00:00Z</updated>
-    </entry>
-    <entry>
-        <title>Hello World!</title>
-        <link href="https://www.lueck.tv/2018/hello-world" />
-        <id>https://www.lueck.tv/2018/hello-world</id>
-        <updated>2018-01-01T00:00:00Z</updated>
     </entry>
 </feed>
