@@ -34,7 +34,7 @@ While each individual line is valid JSON, the complete file as a whole is techni
 
 The newline character at the end of each line allows for some really simple *framing* (detecting individual records). This can easily be used with line-oriented CLI tools, such as `grep` and others. What's important to note here is that because each line is a complete, valid JSON text, this implies that using "pretty printing" JSON (`JSON_PRETTY_PRINT`) is no longer possible. On the other hand, values containing newline characters (such as a description property) do not cause issues because each newline within a JSON string will be represented by a `\n` instead.
 
-NDJSON files are great for transporting (uniform) records such as users or products or even structured log message events. You can edit NDJSON files in any text editor or use them in a streaming context where individual records should be processed. Unlike normal JSON files, adding a new log entry to this NDJSON file does not require modification of this files' structure (note there's no "outer array" to be modified). This makes it a perfect fit for a streaming context or a logging context where you want to append records at a later time.
+NDJSON files are great for transporting (uniform) records such as users or products or even structured log message events. You can edit NDJSON files in any text editor or use them in a streaming context where individual records should be processed. Unlike normal JSON files, adding a new log entry to this NDJSON file does not require modification of this file's structure (note there's no "outer array" to be modified). This makes it a perfect fit for a streaming context or a logging context where you want to append records at a later time.
 
 For more details about the NDJSON specification, refer to its [project page](https://github.com/ndjson/ndjson-spec). There's hope this will become an [official RFC](https://github.com/ndjson/ndjson-spec/issues/21) eventually, but at the time of writing this it's not.
 
@@ -87,11 +87,11 @@ This article uses `<RS>` as a placeholder for the non-printable binary `RS` ASCI
 
 At this point you may wonder why this format exists when NDJSON exists (or the other way around). JSON text sequences are specifically designed for a streaming context. In particular, while its specification registers the new MIME media type `application/json-seq`, interestingly it does not define a file extension. In fact, you will probably not want to store and edit this format on a disk as the non-printable `RS` character may easily be garbled in common text editors.
 
-If you use JSON text sequences in a streaming context, this will probably not be an issue and a single byte of overhead between each record is unlikely to be an issue either. Once you want to view this stream in a plaintext viewer or want to store this on disk, you may to consider using NDJSON as an alternative. At this point, one might argue that JSON text sequences provide little value over NDJSON and you may as well use NDJSON consistently.
+If you use JSON text sequences in a streaming context, this will probably not be an issue and a single byte of overhead between each record is unlikely to be an issue either. Once you want to view this stream in a plaintext viewer or want to store this on disk, you may want to consider using NDJSON as an alternative. At this point, one might argue that JSON text sequences provide little value over NDJSON and you may as well use NDJSON consistently.
 
 ### NDJSON vs. Concatenated JSON
 
-One of the less commonly used alternatives to NDJSON is concatenated JSON, where each JSON text simply immediately follows without any separators at all. The same example expressed as a concatenated JSONe file could look like this, let's call this `users.cjson`: 
+One of the less commonly used alternatives to NDJSON is concatenated JSON, where each JSON text simply immediately follows without any separators at all. The same example expressed as a concatenated JSON file could look like this, let's call this `users.cjson`: 
 
 ```JSON
 {"id":1,"name":"Alice"}{"id":2,"name":"Bob"}{"id":3,"name":"Carol"}
