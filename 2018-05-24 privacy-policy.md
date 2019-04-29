@@ -51,7 +51,7 @@
 </p>
 
 <p>clue·engineering (Christian Lück)</p>
-<p>Wilhelmshöhe 6</p>
+<p>Langerweher Str. 88</p>
 <p>52249 Eschweiler</p>
 <p>Deutschland</p>
 <p>Phone: +49 2403 9772927</p>
