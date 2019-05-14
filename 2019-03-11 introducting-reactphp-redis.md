@@ -37,7 +37,7 @@ One of the major new features in this version of this library is the support for
 
 If you've ever worked with Redis or ReactPHP's async APIs before, you may appreciate how each method call on the client matches exactly one Redis command. Its Promise-based API allows you to easily invoke any number of commands that will be pipelined to your Redis database automatically and you can react to the commands results you care about. One of the nice properties of Redis is the fact that it provides some very simple commands to work with its in-memory data structures. Combined with ReactPHP's event-driven architecture and this library's efficient network protocol implementation, this can be used to process thousands of requests per second.
 
-#### PubSub
+## PubSub
 
 Perhaps more importantly than accessing Redis' data structures, this library is commonly used to efficiently transport messages using Redis' [Pub/Sub](https://redis.io/topics/pubsub) (Publish/Subscribe) channels. For instance, this can be used to distribute single messages to a larger number of subscribers (think horizontal scaling for chat-like applications) or as an efficient message transport in distributed systems (microservice architecture).
 
