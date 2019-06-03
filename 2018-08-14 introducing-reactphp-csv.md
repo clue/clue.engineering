@@ -48,7 +48,7 @@ Bob;Turn 22,5 degree clockwise
 
 CSV files are often limited to only ASCII characters for best interoperability. However, many legacy CSV files often use ISO 8859-1 encoding or some other variant. Newer CSV files are usually best saved as UTF-8 and may thus also contain special characters from the Unicode range. The text-encoding is usually application-dependant, so your best bet would be to convert to (or assume) UTF-8 consistently.
 
-Despite its shortcomings CSV is widely used and this is unlikely to change any time soon. In particular, CSV is a very common export format for a lot of tools to interface with spreadsheet processors (such as Exel, Calc etc.). This means that CSV is often used for historial reasons and using CSV to store structured application data is usually not a good idea nowadays – but exporting to CSV for known applications is a very reasonable approach.
+Despite its shortcomings, CSV is widely used and this is unlikely to change any time soon. In particular, CSV is a very common export format for a lot of tools to interface with spreadsheet processors (such as Exel, Calc etc.). This means that CSV is often used for historical reasons and using CSV to store structured application data is usually not a good idea nowadays – but exporting to CSV for known applications continues to be a very reasonable approach.
 
 ## CSV vs. NDJSON
 
