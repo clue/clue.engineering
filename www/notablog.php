@@ -26,6 +26,14 @@ $ret = preg_replace('#<a href="?/[^>]*>(.*?)</a>#is', '$1', $ret);
 // simplify title attribute
 $ret = preg_replace('#<title.*?>([^\|]+).*?</title>#i', '<title>$1</title>', $ret);
 
+// gistlog comment form is broken, so replace with simple link instead
+// replace textarea[placeholder] with "<a href>{placeholder}</a>"
+$ret = preg_replace(
+    '#<form.*?<textarea.*?placeholder="(.*?)".*?>.*?</form>#is',
+    '<a href="https://gist.github.com/' . $gist . '#comments" class="block w-full p-4 mb-8 border-solid border border-grey">$1</a>',
+    $ret
+);
+
 // rewrite og:url to canonical target
 $ret = str_replace(
     $url,
