@@ -3,7 +3,7 @@
 Exactly seven years ago, 11th July 2012, the very first [v0.1.0 release](https://reactphp.org/changelog.html#eventloop-010-2012-07-11) of ReactPHP was tagged. On [last year's anniversary](https://www.lueck.tv/2018/announcing-reactphp-lts) we took the chance to releases the first set of stable components for ReactPHP's main components. Today, we're thrilled to announce the immediate availability of the very first stable v1.0.0 release of the remaining main components of any ReactPHP application:
 
 * [react/cache v1.0.0](https://reactphp.org/changelog.html#cache-100-2019-07-11)
-* [react/dns v1.0.0](https://reactphp.org/changelog.html#cache-100-2019-07-11)
+* [react/dns v1.0.0](https://reactphp.org/changelog.html#dns-100-2019-07-11)
 
 ReactPHP consists of a set of individual [components](https://reactphp.org/#core-components). This means that instead of installing something like a "ReactPHP framework", you actually can pick only the components that you need. With the above release announcement, this now means that when installing ReactPHP's main components, you now get full longer-term support (LTS) releases for all main components!
 
