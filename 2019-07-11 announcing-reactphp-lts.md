@@ -13,7 +13,7 @@ ReactPHP consists of a set of individual [components](https://reactphp.org/#core
 
 > For some time already, ReactPHP has been production ready and is battle-tested with millions of installations from all kinds of projects around the world. With these new stable LTS releases now following [SemVer](https://semver.org/), we'd like to emphasize just this. We plan to support all long-term support (LTS) releases for at least 24 months, so you have a rock-solid foundation to build on top of. – [Last year's release announcement](https://www.lueck.tv/2018/announcing-reactphp-lts).
 
-We're extending this LTS promise (no pun intended) for at least another 24 months for all main components as described above. This means that these LTS releases continue being a stable base for you build on top of. The release series will be supported for at least 24 months, so you can safely update these main components, getting all the upcoming features without having to worry about BC breaks.
+We're extending this LTS promise (no pun intended) for at least another 24 months for all main components as described above. This means that these LTS releases continue being a stable base for you to build on top of. The release series will be supported for at least 24 months, so you can safely update these main components, getting all the upcoming features without having to worry about BC breaks.
 
 ## Stable meta package
 
