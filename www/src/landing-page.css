@@ -50,7 +50,6 @@ section#main {
     min-height: 100vh;
     padding: 0;
     width: 100%;
-    overflow: auto;
 
     background: #0b3e51 no-repeat center center;
     background-image: linear-gradient(to right, #10394b 0%, #113a4e 50%, #0c273b 75%, #060d1b 100%);
@@ -71,6 +70,26 @@ section#main h1 {
 
     display: inline-block;
     border-bottom: 2px solid #40647b80;
+
+    /* position text on top of following img */
+    position: relative;
+    z-index: 1;
+}
+section#main div {
+    height: 0;
+}
+section#main img {
+    /* round image with proportional size of 200px max */
+    border-radius: 50%;
+    max-width: 200px;
+    width: 200px;
+    width: 28vw;
+
+    margin-top: -100%;
+    margin-bottom: 30px;
+
+    filter: grayscale(20%);
+    box-shadow: 0 0 75px -10px rgb(0, 9, 27);
 }
 section#main h2 {
     font-size: 20px;
