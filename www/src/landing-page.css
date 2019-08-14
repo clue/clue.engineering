@@ -3,7 +3,7 @@ body, html {
     margin: 0;
 
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #aaa;
+    color: #64737d;
     font-size: 20px;
     line-height: 1.5;
 }
@@ -13,7 +13,7 @@ a {
 h1,h2,h3,h4,strong {
     font-weight: normal;
     line-height: 1.25;
-    color: #777;
+    color: #29586a;
 }
 
 /* show empty link anchors with "#" only when hovering parent heading */
@@ -37,12 +37,11 @@ svg {
 /* default section layout */
 section {
     width: 100%;
-    padding: 100px 0;
     overflow: auto;
 }
 section .container {
     width: 600px;
-    margin: 0 auto;
+    margin: 50px auto;
 }
 
 section#main {
@@ -122,10 +121,6 @@ section#about {
     background-color: #f8f8f8;
 }
 
-section#posts {
-    background-color: #eee;
-    background: repeating-linear-gradient( -55deg, #eee, #edecec 10px );
-}
 section#posts svg {
     fill: #4C9ED9;
 }
@@ -141,9 +136,10 @@ section#posts time {
     display: block;
 }
 
-section#contact {
-    background-color: #f7f7f7;
+section#projects {
+    background-color: #f8f8f8;
 }
+
 section#contact address {
     font-style: normal;
 }
@@ -155,7 +151,7 @@ section#contact svg {
     section .container {
         width: auto;
         max-width: 600px;
-        margin: 0 50px;
+        margin: 50px 50px;
     }
     section#main h1 {
         font-size: 42px;
