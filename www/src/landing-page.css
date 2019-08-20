@@ -82,7 +82,7 @@ section#main img {
     border-radius: 50%;
     max-width: 200px;
     width: 200px;
-    width: 28vw;
+    width: 36.5vw;
 
     margin-top: -100%;
     margin-bottom: 30px;
@@ -167,24 +167,31 @@ section#contact svg {
     fill: #4C9ED9;
 }
 
+/* section container fills complete width minus margin on small devices */
 @media (max-width: 720px) {
     section .container {
         width: auto;
         max-width: 600px;
         margin: 50px 50px;
     }
+}
+
+/* fill #main section to screen width */
+@media (max-width: 540px) {
     section#main h1 {
         font-size: 42px;
-        font-size: 9vw;
+        font-size: 12vw;
     }
     section#main h2 {
-        font-size: 14px;
-        font-size: 2.8vw;
+        font-size: 13px;
+        font-size: 3.7vw;
     }
     section#main a{
-        font-size: 2.2vw;
+        font-size: 2.9vw;
     }
 }
+
+/* remove #about rounded corners when box size equals screen width */
 @media (max-width: 800px) {
     section#about{
         border-radius: 0;
