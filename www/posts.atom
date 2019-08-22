@@ -5,29 +5,29 @@
     <author>
         <name>Christian Lück</name>
     </author>
-    <link href="https://www.lueck.tv/posts.atom" rel="self" />
-    <id>https://www.lueck.tv/</id>
+    <link href="https://clue.engineering/posts.atom" rel="self" />
+    <id>https://clue.engineering/</id>
     <entry>
         <title>Announcing full stable ReactPHP LTS release</title>
-        <link href="https://www.lueck.tv/2018/announcing-reactphp-lts" />
-        <id>https://www.lueck.tv/2019/announcing-reactphp-lts</id>
+        <link href="https://clue.engineering/2018/announcing-reactphp-lts" />
+        <id>https://www.lueck.tv/2019/announcing-reactphp-lts</id> <!-- old ID references below here -->
         <updated>2019-07-11T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing async cache for ReactPHP</title>
-        <link href="https://www.lueck.tv/2019/introducing-reactphp-cache" />
+        <link href="https://clue.engineering/2019/introducing-reactphp-cache" />
         <id>https://www.lueck.tv/2019/introducing-reactphp-cache</id>
         <updated>2019-07-04T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing async SQLite database for ReactPHP</title>
-        <link href="https://www.lueck.tv/2019/introducing-reactphp-sqlite" />
+        <link href="https://clue.engineering/2019/introducing-reactphp-sqlite" />
         <id>https://www.lueck.tv/2019/introducing-reactphp-sqlite</id>
         <updated>2019-05-14T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing async Redis database client for ReactPHP</title>
-        <link href="https://www.lueck.tv/2019/introducing-reactphp-redis" />
+        <link href="https://clue.engineering/2019/introducing-reactphp-redis" />
         <id>https://www.lueck.tv/2019/introducing-reactphp-redis</id>
         <updated>2019-03-11T00:00:00Z</updated>
     </entry>
@@ -45,55 +45,55 @@
     </entry>
     <entry>
         <title>2018 - A Year In Review</title>
-        <link href="https://www.lueck.tv/2019/2018-in-review" />
+        <link href="https://clue.engineering/2019/2018-in-review" />
         <id>https://www.lueck.tv/2019/2018-in-review</id>
         <updated>2019-01-01T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing SSH proxy connector for ReactPHP</title>
-        <link href="https://www.lueck.tv/2018/introducing-reactphp-ssh-proxy" />
+        <link href="https://clue.engineering/2018/introducing-reactphp-ssh-proxy" />
         <id>https://www.lueck.tv/2018/introducing-reactphp-ssh-proxy</id>
         <updated>2018-12-19T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing lazy MySQL connections with ReactPHP</title>
-        <link href="https://www.lueck.tv/2018/introducing-reactphp-mysql-lazy-connections" />
+        <link href="https://clue.engineering/2018/introducing-reactphp-mysql-lazy-connections" />
         <id>https://www.lueck.tv/2018/introducing-reactphp-mysql-lazy-connections</id>
         <updated>2018-11-28T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing SOCKS proxy connector for ReactPHP</title>
-        <link href="https://www.lueck.tv/2018/introducing-reactphp-socks" />
+        <link href="https://clue.engineering/2018/introducing-reactphp-socks" />
         <id>https://www.lueck.tv/2018/introducing-reactphp-socks</id>
         <updated>2018-11-20T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing async SOAP requests with ReactPHP</title>
-        <link href="https://www.lueck.tv/2018/introducing-reactphp-soap" />
+        <link href="https://clue.engineering/2018/introducing-reactphp-soap" />
         <id>https://www.lueck.tv/2018/introducing-reactphp-soap</id>
         <updated>2018-11-07T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing HTTP CONNECT proxy connector for ReactPHP</title>
-        <link href="https://www.lueck.tv/2018/introducing-reactphp-http-proxy" />
+        <link href="https://clue.engineering/2018/introducing-reactphp-http-proxy" />
         <id>https://www.lueck.tv/2018/introducing-reactphp-http-proxy</id>
         <updated>2018-10-30T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing async HTTP requests with ReactPHP</title>
-        <link href="https://www.lueck.tv/2018/introducing-reactphp-buzz" />
+        <link href="https://clue.engineering/2018/introducing-reactphp-buzz" />
         <id>https://www.lueck.tv/2018/introducing-reactphp-buzz</id>
         <updated>2018-10-24T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing MySQL streaming with ReactPHP</title>
-        <link href="https://www.lueck.tv/2018/introducing-reactphp-mysql" />
+        <link href="https://clue.engineering/2018/introducing-reactphp-mysql" />
         <id>https://www.lueck.tv/2018/introducing-reactphp-mysql</id>
         <updated>2018-09-21T00:00:00Z</updated>
     </entry>
     <entry>
         <title>Introducing streaming CSV (Comma-Separated Values) with ReactPHP</title>
-        <link href="https://www.lueck.tv/2018/introducing-reactphp-csv" />
+        <link href="https://clue.engineering/2018/introducing-reactphp-csv" />
         <id>https://www.lueck.tv/2018/introducing-reactphp-csv</id>
         <updated>2018-08-14T00:00:00Z</updated>
     </entry>
