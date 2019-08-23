@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>Christian Lück's recent posts</title>
-    <updated>2019-07-11T00:00:00Z</updated>
+    <updated>2019-08-23T00:00:00Z</updated>
     <author>
         <name>Christian Lück</name>
     </author>
     <link href="https://clue.engineering/posts.atom" rel="self" />
     <id>https://clue.engineering/</id>
     <entry>
+        <title>Brief note: New domain</title>
+        <link href="https://clue.engineering/2019/new-domain" />
+        <id>https://www.lueck.tv/2019/announcing-reactphp-lts</id>
+        <updated>2019-08-23T00:00:00Z</updated>
+    </entry>
+    <entry>
         <title>Announcing full stable ReactPHP LTS release</title>
-        <link href="https://clue.engineering/2018/announcing-reactphp-lts" />
+        <link href="https://clue.engineering/2019/announcing-reactphp-lts" />
         <id>https://www.lueck.tv/2019/announcing-reactphp-lts</id> <!-- old ID references below here -->
         <updated>2019-07-11T00:00:00Z</updated>
     </entry>
@@ -90,11 +96,5 @@
         <link href="https://clue.engineering/2018/introducing-reactphp-mysql" />
         <id>https://www.lueck.tv/2018/introducing-reactphp-mysql</id>
         <updated>2018-09-21T00:00:00Z</updated>
-    </entry>
-    <entry>
-        <title>Introducing streaming CSV (Comma-Separated Values) with ReactPHP</title>
-        <link href="https://clue.engineering/2018/introducing-reactphp-csv" />
-        <id>https://www.lueck.tv/2018/introducing-reactphp-csv</id>
-        <updated>2018-08-14T00:00:00Z</updated>
     </entry>
 </feed>
