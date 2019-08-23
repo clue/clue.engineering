@@ -57,7 +57,7 @@ It should be no surprise that this example will send two independent `GET` reque
 
 What this means, in a gist, is that if a single request takes 1 second to complete, then two requests will also take just 1 second (assuming ideal network conditions). By leveraging non-blocking I/O, actually sending the HTTP request over the wire and receiving the HTTP response takes close to zero seconds. Most of the time will only be spend *waiting* for the remote server to actually serve the request. This is not just some theoretical construct, but something that bears some very real real-world performance improvements.
 
-Depending mostly on what kind of load the receiving side is willing to accept, this approach scales very well to around a dozen or so concurrent requests. If you want to send a larger number of requests, you may want to take a look at one of the previous blog posts introducing an [in-memory queue](https://www.lueck.tv/2018/introducing-reactphp-mini-queue) or [managing flux](https://www.lueck.tv/2018/introducing-reactphp-flux) to throttle your sending side to limit concurrency to whatever limit works best for your specific use case.
+Depending mostly on what kind of load the receiving side is willing to accept, this approach scales very well to around a dozen or so concurrent requests. If you want to send a larger number of requests, you may want to take a look at one of the previous blog posts introducing an [in-memory queue](https://clue.engineering/2018/introducing-reactphp-mini-queue) or [managing flux](https://clue.engineering/2018/introducing-reactphp-flux) to throttle your sending side to limit concurrency to whatever limit works best for your specific use case.
 
 ## Conclusions
 
