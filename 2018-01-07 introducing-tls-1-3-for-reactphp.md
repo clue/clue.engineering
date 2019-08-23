@@ -31,7 +31,7 @@ Note that TLS 1.3 is an official standard as of August 2018. TLS 1.3 is only sup
 
 If you're using an older version of OpenSSL, then this component and the above example will continue to use TLS 1.2 by default. Likewise, if the remote server side has not been updated to support TLS 1.3, this example will automatically fall back to TLS 1.2 by default. In other news, *now* is a good time to upgrade to the latest versions.
 
-Thanks to ReactPHP's component-based design, we only have to update this one component and can support TLS 1.3 for any existing higher-level implementation with ease, whether it's a common [HTTP(S) client](https://www.lueck.tv/2018/introducing-reactphp-buzz) implementation or some obscure binary protocol. Now, first make sure to update your libraries, head over to [reactphp/socket](https://github.com/reactphp/socket) and let's celebrate this release 🎉
+Thanks to ReactPHP's component-based design, we only have to update this one component and can support TLS 1.3 for any existing higher-level implementation with ease, whether it's a common [HTTP(S) client](https://clue.engineering/2018/introducing-reactphp-buzz) implementation or some obscure binary protocol. Now, first make sure to update your libraries, head over to [reactphp/socket](https://github.com/reactphp/socket) and let's celebrate this release 🎉
 
 If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
 
