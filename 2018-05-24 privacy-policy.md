@@ -55,8 +55,8 @@
 <p>52249 Eschweiler</p>
 <p>Deutschland</p>
 <p>Phone: +49 2403 9772927</p>
-<p>Email: christian@lueck.tv</p>
-<p>Website: lueck.tv</p>
+<p>Email: christian@clue.engineering</p>
+<p>Website: clue.engineering</p>
 
 <h4>3. Collection of general data and information</h4>
 <p>The website of the clue·engineering (Christian Lück) collects a series of general data and information when a data subject or automated system calls up the website. This general data and information are stored in the server log files. Collected may be (1) the browser types and versions used, (2) the operating system used by the accessing system, (3) the website from which an accessing system reaches our website (so-called referrers), (4) the sub-websites, (5) the date and time of access to the Internet site, (6) an Internet protocol address (IP address), (7) the Internet service provider of the accessing system, and (8) any other similar data and information that may be used in the event of attacks on our information technology systems.</p>
