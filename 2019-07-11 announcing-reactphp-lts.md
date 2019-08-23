@@ -1,6 +1,6 @@
 ![ReactPHP – 7 years](https://user-images.githubusercontent.com/776829/61060544-39dd7400-a3ea-11e9-8184-50a680564518.png)
 
-Exactly seven years ago, 11th July 2012, the very first [v0.1.0 release](https://reactphp.org/changelog.html#eventloop-010-2012-07-11) of ReactPHP was tagged. On [last year's anniversary](https://www.lueck.tv/2018/announcing-reactphp-lts) we took the chance to releases the first set of stable components for ReactPHP's main components. Today, we're thrilled to announce the immediate availability of the very first stable v1.0.0 release of the remaining main components of any ReactPHP application:
+Exactly seven years ago, 11th July 2012, the very first [v0.1.0 release](https://reactphp.org/changelog.html#eventloop-010-2012-07-11) of ReactPHP was tagged. On [last year's anniversary](https://clue.engineering/2018/announcing-reactphp-lts) we took the chance to releases the first set of stable components for ReactPHP's main components. Today, we're thrilled to announce the immediate availability of the very first stable v1.0.0 release of the remaining main components of any ReactPHP application:
 
 * [react/cache v1.0.0](https://reactphp.org/changelog.html#cache-100-2019-07-11)
 * [react/dns v1.0.0](https://reactphp.org/changelog.html#dns-100-2019-07-11)
@@ -11,7 +11,7 @@ ReactPHP consists of a set of individual [components](https://reactphp.org/#core
 
 ## LTS
 
-> For some time already, ReactPHP has been production ready and is battle-tested with millions of installations from all kinds of projects around the world. With these new stable LTS releases now following [SemVer](https://semver.org/), we'd like to emphasize just this. We plan to support all long-term support (LTS) releases for at least 24 months, so you have a rock-solid foundation to build on top of. – [Last year's release announcement](https://www.lueck.tv/2018/announcing-reactphp-lts).
+> For some time already, ReactPHP has been production ready and is battle-tested with millions of installations from all kinds of projects around the world. With these new stable LTS releases now following [SemVer](https://semver.org/), we'd like to emphasize just this. We plan to support all long-term support (LTS) releases for at least 24 months, so you have a rock-solid foundation to build on top of. – [Last year's release announcement](https://clue.engineering/2018/announcing-reactphp-lts).
 
 We're extending this LTS promise (no pun intended) for at least another 24 months for all main components as described above. This means that these LTS releases continue being a stable base for you to build on top of. The release series will be supported for at least 24 months, so you can safely update these main components, getting all the upcoming features without having to worry about BC breaks.
 
