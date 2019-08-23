@@ -14,9 +14,9 @@ Now that v1.0.0 has been tagged and released today, let's take a look at how we 
 
 > I'm probably not telling you something new when I say the web is built on top of HTTP. This blog post is served over HTTP. Your YouTube videos are served over HTTP. Your downloads are served over HTTP. RESTful backend APIs are served over HTTP. GraphQL APIs are served over HTTP. SOAP APIs are served over HTTP. Yes, I may be oversimplifying things a bit here, but I think you get the point.
 >
-> – From my recent blog post [introducing async HTTP requests with ReactPHP](https://www.lueck.tv/2018/introducing-reactphp-buzz).
+> – From my recent blog post [introducing async HTTP requests with ReactPHP](https://clue.engineering/2018/introducing-reactphp-buzz).
 
-Yes, I've [mentioned this before](https://www.lueck.tv/2018/introducing-reactphp-http-proxy) [multiple times](https://www.lueck.tv/2018/introducing-reactphp-socks) and I will mention it again: With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap once again, let's first take a look at how to send an HTTP request with @ReactPHP, again from the [recent blog post](https://www.lueck.tv/2018/introducing-reactphp-buzz):
+Yes, I've [mentioned this before](https://clue.engineering/2018/introducing-reactphp-http-proxy) [multiple times](https://clue.engineering/2018/introducing-reactphp-socks) and I will mention it again: With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap once again, let's first take a look at how to send an HTTP request with @ReactPHP, again from the [recent blog post](https://clue.engineering/2018/introducing-reactphp-buzz):
 
 ```php
 $loop = React\EventLoop\Factory::create();
@@ -29,7 +29,7 @@ $client->get('https://api.example.com/')->then(function (ResponseInterface $resp
 $loop->run();
 ```
 
-This example makes no mention of any proxy setup and thus sends a `GET` request over a direct connection to the destination host. If you want to proxy the same HTTP request through an SSH proxy server, you only have to add a few extra lines of code. If you remember the recent blog post [introducing HTTP CONNECT proxy support](https://www.lueck.tv/2018/introducing-reactphp-http-proxy) or [introducing SOCKS proxy support](https://www.lueck.tv/2018/introducing-reactphp-socks), the following should be no surprise. After installing the SSH proxy support with `composer require clue/reactphp-ssh-proxy:^1.0`, the same example could look something like this:
+This example makes no mention of any proxy setup and thus sends a `GET` request over a direct connection to the destination host. If you want to proxy the same HTTP request through an SSH proxy server, you only have to add a few extra lines of code. If you remember the recent blog post [introducing HTTP CONNECT proxy support](https://clue.engineering/2018/introducing-reactphp-http-proxy) or [introducing SOCKS proxy support](https://clue.engineering/2018/introducing-reactphp-socks), the following should be no surprise. After installing the SSH proxy support with `composer require clue/reactphp-ssh-proxy:^1.0`, the same example could look something like this:
 
 ```php
 $loop = React\EventLoop\Factory::create();
@@ -57,7 +57,7 @@ Now what does this code actually do? The few extra lines of code added near the 
 
 ## Tunnel any protocol!
 
-In the previous chapter we've seen how this project can be used to send HTTP requests through an SSH proxy server. Likewise, we can use this to tunnel any tool/protocol that builds on top of HTTP over an SSH proxy server, whether it's your favorite RESTful HTTP API, GraphQL API or even [SOAP](https://www.lueck.tv/2018/introducing-reactphp-soap).
+In the previous chapter we've seen how this project can be used to send HTTP requests through an SSH proxy server. Likewise, we can use this to tunnel any tool/protocol that builds on top of HTTP over an SSH proxy server, whether it's your favorite RESTful HTTP API, GraphQL API or even [SOAP](https://clue.engineering/2018/introducing-reactphp-soap).
 
 But what about other protocols? If you look closely at the previous example, you'll see that nothing of what we've discussed so far is really limited to HTTP at all. In fact, if you look a bit closer at the previous example, you'll see that it already uses HTTPS (secure HTTP over TLS) instead of plain HTTP. What this means is that SSH proxy servers do not really care what kind of (payload) protocol you send over this tunneled connection, so this can be used to tunnel any TCP/IP-based protocol (HTTP, SMTP, IMAP etc.).
 
@@ -67,7 +67,7 @@ But what about other protocols? If you look closely at the previous example, you
 
 We should now have a basic understanding of how we can tunnel any TCP/IP-based protocol over an SSH proxy server. Besides using this to access "external" services, this is also particularly useful because it allows you to access network services otherwise only local to this SSH server from the outside, such as a firewalled database server.
 
-For example, taking the [lazy MySQL database connections](https://www.lueck.tv/2018/introducing-reactphp-mysql-lazy-connections) from a previous blog post and combining it with the above SSH proxy server setup, you can access a firewalled MySQL database server through an SSH tunnel. Here's the gist:
+For example, taking the [lazy MySQL database connections](https://clue.engineering/2018/introducing-reactphp-mysql-lazy-connections) from a previous blog post and combining it with the above SSH proxy server setup, you can access a firewalled MySQL database server through an SSH tunnel. Here's the gist:
 
 ```php
 $loop = React\EventLoop\Factory::create();
