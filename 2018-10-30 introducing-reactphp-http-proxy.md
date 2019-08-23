@@ -14,9 +14,9 @@ HTTP CONNECT proxy servers (also commonly known as "HTTPS proxy" or "SSL proxy")
 
 > I'm probably not telling you something new when I say the web is built on top of HTTP. This blog post is served over HTTP. Your YouTube videos are served over HTTP. Your downloads are served over HTTP. RESTful backend APIs are served over HTTP. GraphQL APIs are served over HTTP. SOAP APIs are served over HTTP. Yes, I may be oversimplifying things a bit here, but I think you get the point.
 >
-> – From my last week's blog post [introducing async HTTP requests with ReactPHP](https://www.lueck.tv/2018/introducing-reactphp-buzz).
+> – From my last week's blog post [introducing async HTTP requests with ReactPHP](https://clue.engineering/2018/introducing-reactphp-buzz).
 
-With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap, let's first take a look at how to send an HTTP request with @ReactPHP, again from the [previous blog post](https://www.lueck.tv/2018/introducing-reactphp-buzz):
+With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap, let's first take a look at how to send an HTTP request with @ReactPHP, again from the [previous blog post](https://clue.engineering/2018/introducing-reactphp-buzz):
 
 ```php
 $loop = \React\EventLoop\Factory::create();
