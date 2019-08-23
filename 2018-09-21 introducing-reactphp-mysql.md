@@ -105,11 +105,11 @@ Transfer-Encoding: chunked
 …
 ```
 
-If you want to learn more about NDJSON, you may want to check out one of the [previous blog posts](https://www.lueck.tv/2018/introducing-ndjson-reactphp). Similarly, you can also use [streaming CSV output](https://www.lueck.tv/2018/introducing-reactphp-csv) or pretty much any other format you prefer.
+If you want to learn more about NDJSON, you may want to check out one of the [previous blog posts](https://clue.engineering/2018/introducing-ndjson-reactphp). Similarly, you can also use [streaming CSV output](https://clue.engineering/2018/introducing-reactphp-csv) or pretty much any other format you prefer.
 
 ## Looking forward
 
-By using standard promise-based and streaming interfaces, this project can now be integrated much easier with the existing ecosystem and some of the exciting tech I've introduced in the last blog posts. For example, imagine [concurrent stream processing](https://www.lueck.tv/2018/introducing-reactphp-flux) and [concurrent CSV processing](https://www.lueck.tv/2018/introducing-reactphp-csv) with a MySQL query as an input stream instead…
+By using standard promise-based and streaming interfaces, this project can now be integrated much easier with the existing ecosystem and some of the exciting tech I've introduced in the last blog posts. For example, imagine [concurrent stream processing](https://clue.engineering/2018/introducing-reactphp-flux) and [concurrent CSV processing](https://clue.engineering/2018/introducing-reactphp-csv) with a MySQL query as an input stream instead…
 
 You see, this blog post is barely touching the surface of why I think this release is a major milestone. I want to keep this blog post short(er), so I'll leave this up for another post soon-ish. But first, make sure to head over to [friends-of-reactphp/mysql](https://github.com/friends-of-reactphp/mysql) and let's celebrate this release 🎉
 
