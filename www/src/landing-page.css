@@ -34,6 +34,32 @@ svg {
     height: 0.8em;
 }
 
+nav {
+    height: 0;
+    position: relative;
+    z-index: 2;
+}
+nav ul {
+    margin: 0;
+    padding: 10px;
+    text-align: right;
+}
+nav li {
+    display: inline-block;
+}
+nav li a {
+    text-decoration: none;
+    color: #9aa9b5;
+    padding: 0 .3em;
+}
+nav li a:hover, nav li:last-child a:hover {
+    border-bottom: 4px solid #bfcfd794;
+    transition: border-bottom .06s ease-in;
+}
+nav li:last-child a {
+    border-bottom: 4px solid #6296ae94;
+}
+
 /* default section layout */
 section {
     width: 100%;
@@ -135,7 +161,7 @@ section#about h3{
     color: #648797;
 }
 section#about p{
-    color: #97a0ac;
+    color: #9aa9b5;
 }
 section#about a{
     color: #6296ae;
