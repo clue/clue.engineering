@@ -28,6 +28,7 @@ RewriteRule ^2019/introducing-reactphp-sqlite$      notablog.php?gist=https://gi
 RewriteRule ^2019/introducing-reactphp-cache$       notablog.php?gist=https://gist.github.com/clue/b60878ee2a6d99b0fff27cacea9ea75b
 RewriteRule ^2019/announcing-reactphp-lts$          notablog.php?gist=https://gist.github.com/clue/58f150a3d65ef267938ec838a31150fc
 RewriteRule ^2019/new-domain$                       notablog.php?gist=https://gist.github.com/clue/3441023122844ebd60fddd8ebc03b251
+RewriteRule ^2019/introducing-reactphp-stdio$       notablog.php?gist=https://gist.github.com/clue/05c0f7ac0ba47d8874c5a98d8a05f01b
 
 RewriteRule ^privacy$                               notablog.php?gist=https://gist.github.com/clue/7888e3d1c1f32f1b595c95f3d84045ae
 

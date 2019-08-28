@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>Christian Lück's recent posts</title>
-    <updated>2019-08-23T00:00:00Z</updated>
+    <updated>2019-08-28T00:00:00Z</updated>
     <author>
         <name>Christian Lück</name>
     </author>
     <link href="https://clue.engineering/posts.atom" rel="self" />
     <id>https://clue.engineering/</id>
     <entry>
+        <title>Introducing event-driven console I/O with ReactPHP</title>
+        <link href="https://clue.engineering/2019/introducing-reactphp-stdio" />
+        <id>https://clue.engineering/2019/introducing-reactphp-stdio</id>
+        <updated>2019-08-28T00:00:00Z</updated>
+    </entry>
+    <entry>
         <title>Brief note: New domain</title>
         <link href="https://clue.engineering/2019/new-domain" />
-        <id>https://www.lueck.tv/2019/announcing-reactphp-lts</id>
+        <id>https://clue.engineering/2019/new-domain</id>
         <updated>2019-08-23T00:00:00Z</updated>
     </entry>
     <entry>
