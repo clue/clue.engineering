@@ -3,6 +3,8 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+RewriteRule ^talks$ talks.html
+
 # notablog.php is powered by gistlog.co
 RewriteRule ^(css|img|js)(/.*)?$ https://gistlog.co/$1$2 [R]
 RewriteRule ^(\S+/\S+)/comments\.json$ notablog-comments.php?gist=$1

@@ -10,10 +10,16 @@ body, html {
 a {
     color: #4C9ED9;
 }
+a:not([href]) {
+    text-decoration: line-through underline;
+}
 h1,h2,h3,h4,strong {
     font-weight: normal;
     line-height: 1.25;
     color: #29586a;
+}
+#talks h2 {
+    border-bottom: 1px solid aliceblue;
 }
 
 /* show empty link anchors with "#" only when hovering parent heading */
@@ -38,6 +44,11 @@ nav {
     height: 0;
     position: relative;
     z-index: 2;
+}
+#talks nav {
+    height: auto;
+    background: #0b3e51 no-repeat center center;
+    background-image: linear-gradient(to right, #10394b 0%, #113a4e 50%, #0c273b 75%, #060d1b 100%);
 }
 nav ul {
     margin: 0;
@@ -181,8 +192,11 @@ section#posts time {
     font-size: small;
     display: block;
 }
+section#posts li p {
+    margin: 0; /* description for talks */
+}
 
-section#projects {
+section#projects, section#invite {
     background-color: #f8f8f8;
 }
 
