@@ -4,6 +4,7 @@ RewriteCond %{HTTPS} !=on
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 RewriteRule ^talks$ talks.html
+RewriteRule ^contact$ contact.html
 
 # notablog.php is powered by gistlog.co
 RewriteRule ^(css|img|js)(/.*)?$ https://gistlog.co/$1$2 [R]

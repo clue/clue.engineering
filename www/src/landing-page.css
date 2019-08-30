@@ -18,8 +18,11 @@ h1,h2,h3,h4,strong {
     line-height: 1.25;
     color: #29586a;
 }
-#talks h2 {
+h2 {
     border-bottom: 1px solid aliceblue;
+}
+#home h2 {
+    border: 0;
 }
 
 /* show empty link anchors with "#" only when hovering parent heading */
@@ -41,14 +44,14 @@ svg {
 }
 
 nav {
-    height: 0;
-    position: relative;
-    z-index: 2;
-}
-#talks nav {
     height: auto;
     background: #0b3e51 no-repeat center center;
     background-image: linear-gradient(to right, #10394b 0%, #113a4e 50%, #0c273b 75%, #060d1b 100%);
+}
+#home nav {
+    height: 0;
+    position: relative;
+    z-index: 2;
 }
 nav ul {
     margin: 0;
@@ -205,6 +208,45 @@ section#contact address {
 }
 section#contact svg {
     fill: #4C9ED9;
+}
+section#contact input, section#contact textarea, section#contact span {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    font-size: inherit;
+    font-family: inherit;
+    padding: 8px 12px;
+    border: 0;
+    background-color: #fff;
+    color: #444;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06);
+    margin-bottom: 1em;
+
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+section#contact input:focus, section#contact textarea:focus {
+    box-shadow: 0 0 0 3px rgba(66,153,225,.5);
+}
+section#contact input::placeholder, section#contact textarea::placeholder {
+    color: #aaa;
+}
+section#contact label:nth-child(3) { /* spammenot */
+    display: none;
+}
+section#contact textarea {
+    min-height: 8em;
+    max-height: 20em;
+    resize: vertical;
+}
+section#contact button {
+    background-color: #4c9ed9;
+    color: #fff;
+    border: 0;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: inherit;
 }
 
 /* section container fills complete width minus margin on small devices */
