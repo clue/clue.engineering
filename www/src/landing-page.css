@@ -249,6 +249,29 @@ section#contact button {
     font-size: inherit;
 }
 
+section#thanks {
+    display: none;
+}
+section#thanks:target {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+
+    background-color: #0008;
+}
+section#thanks div.container {
+    margin-top: 200px;
+    margin-top: 20vh;
+
+    padding: 50px;
+    background-color: #fff;
+}
+section#thanks div.container h2 {
+    margin-top: 0;
+}
+
 /* section container fills complete width minus margin on small devices */
 @media (max-width: 720px) {
     section .container {
