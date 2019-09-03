@@ -1,0 +1,5 @@
+{
+    "require-dev": {
+        "sculpin/sculpin": "^3.0"
+    }
+}
