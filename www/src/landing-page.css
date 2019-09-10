@@ -199,6 +199,60 @@ section#posts li p {
     margin: 0; /* description for talks */
 }
 
+section#post h1 {
+    margin-left: -40px;
+    margin-right: -40px;
+    font-size: 2em;
+    text-align: center;
+    letter-spacing: 2px;
+}
+section#post h1 ~ div {
+    color: #9aa9b5;
+    font-size: .8em;
+    margin-bottom: 3em;
+    text-align: center;
+}
+section#post h1 ~ div address {
+    display: inline;
+}
+section#post h1 ~ div img {
+    border-radius: 100%;
+    width: 2em;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+section#post pre {
+    background-color: #fafafa;
+    padding: 1em;
+    border-left: 8px solid #f1f1f1;
+    overflow: auto;
+    margin-left: -50px;
+    margin-right: -50px;
+}
+section#post p > code {
+    background-color: #f1f1f1;
+    padding: 0 4px;
+    font-family: monospace;
+}
+section#post p > kbd {
+    background-color: #fafafa;
+    padding: 0 6px;
+    border-radius: 3px;
+    border: 1px solid #f1f1f1;
+    border-bottom: 3px solid #e3e3e3;
+    font-family: monospace;
+}
+section#post blockquote {
+    margin: 0;
+    padding: 0 1em;
+    border-left: 5px solid #f1f1f1;
+}
+section#post blockquote.twitter-tweet {
+    border: 1px solid #9aa9b5;
+    border-radius: 4px;
+    padding: 1em 2em 2em;
+}
+
 section#projects, section#invite {
     background-color: #f8f8f8;
 }

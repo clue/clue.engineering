@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default('Post') }}</title>
+    <link href="../src/landing-page.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="../">Home</a></li>
+            <li><a href="../talks">Talks</a></li>
+            <li><a href="../contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="post">
+        <div class="container">
+            <article>
+                <h1>{{ page.title }}</h1>
+                <div>
+                    <address>
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <a href="../">Christian Lück</a>
+                    </address>
+                    on <time datetime="{{ page.date | date("Y-m-d") }}">{{ page.date | date("Y-m-d") }}</time>
+                </div>
+
+{% block content %}{% endblock %}
+
+            </article>
+        </div>
+    </section>
+</body>
+</html>
