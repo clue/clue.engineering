@@ -1,10 +1,23 @@
+{% set description = page.excerpt | default(page.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|split(' ')|slice(0,50)|join(' ') ~ "…") %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title | default('Post') }}</title>
+    <title>{{ page.title }}</title>
+    <meta name="description" content="{{ description }}">
     <link href="../src/landing-page.css" rel="stylesheet">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ description }}">
+{% if page.social_image %}
+    <meta property="og:image" content="{{ site.url }}{{ page.social_image }}">
+{% endif %}
+    <meta property="og:url" content="https://clue.engineering{{ page.url | replace({'.html':''}) }}">
+    <meta property="og:site_name" content="clue·engineering">
+    <meta name="twitter:site" content="@another_clue">
+    <meta name="twitter:creator" content="@another_clue">
 </head>
 
 <body>
