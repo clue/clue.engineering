@@ -1,3 +1,6 @@
+sculpin:
+    permalink: none # no pretty permalink (keep talks.html instead of talks/index.html)
+
 sculpin_content_types:
     posts:
         enabled: false
