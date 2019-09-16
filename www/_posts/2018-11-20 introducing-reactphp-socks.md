@@ -6,7 +6,7 @@ Today, I'm happy to announce the `v1.0.0` release of [clue/reactphp-socks](https
 
 > Async SOCKS proxy connector client and server implementation, tunnel any TCP/IP-based protocol through a SOCKS5 or SOCKS4(a) proxy server, built on top of [ReactPHP](https://reactphp.org/).
 
-Don't be fooled by the version number: Its [release history](https://github.com/clue/reactphp-socks/releases) suggests this is not exactly a new project. In fact, this is the first project that got me started with @ReactPHP around six years ago (*time flies by*) and has been used in production in a number of projects ever since. So I guess it's about time to write an introductory blog post about this project, what SOCKS proxy servers can be used for and why I think @ReactPHP's design makes it a perfect fit.
+Don't be fooled by the version number: Its [release history](https://github.com/clue/reactphp-socks/releases) suggests this is not exactly a new project. In fact, this is the first project that got me started with ReactPHP around six years ago (*time flies by*) and has been used in production in a number of projects ever since. So I guess it's about time to write an introductory blog post about this project, what SOCKS proxy servers can be used for and why I think ReactPHP's design makes it a perfect fit.
 
 ## Pull your SOCKS up
 
@@ -20,7 +20,7 @@ The SOCKS proxy protocol family (SOCKS5, SOCKS4 and SOCKS4a) is commonly used to
 >
 > – From my recent blog post [introducing async HTTP requests with ReactPHP](https://clue.engineering/2018/introducing-reactphp-buzz).
 
-Yes, I've [mentioned this before](https://clue.engineering/2018/introducing-reactphp-http-proxy) and I will mention it again: With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap once again, let's first take a look at how to send an HTTP request with @ReactPHP, again from the [recent blog post](https://clue.engineering/2018/introducing-reactphp-buzz):
+Yes, I've [mentioned this before](https://clue.engineering/2018/introducing-reactphp-http-proxy) and I will mention it again: With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap once again, let's first take a look at how to send an HTTP request with ReactPHP, again from the [recent blog post](https://clue.engineering/2018/introducing-reactphp-buzz):
 
 ```php
 $loop = React\EventLoop\Factory::create();

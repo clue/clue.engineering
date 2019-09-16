@@ -6,7 +6,7 @@ Today, I'm happy to announce the `v1.4.0` release of [clue/reactphp-http-proxy](
 
 > Async HTTP proxy connector, use any TCP/IP-based protocol through an HTTP CONNECT proxy server, built on top of [ReactPHP](https://reactphp.org/).
 
-Once again, the version number and its [release history](https://github.com/clue/reactphp-http-proxy/releases) suggests this is not exactly a new project. In fact, this has been used in production in a number of projects for a couple of years already. So I guess it's about time to write an introductory blog post about this project, what HTTP CONNECT proxy servers can be used for and why I think @ReactPHP's design makes it a perfect fit.
+Once again, the version number and its [release history](https://github.com/clue/reactphp-http-proxy/releases) suggests this is not exactly a new project. In fact, this has been used in production in a number of projects for a couple of years already. So I guess it's about time to write an introductory blog post about this project, what HTTP CONNECT proxy servers can be used for and why I think ReactPHP's design makes it a perfect fit.
 
 ## HTTP CONNECT
 
@@ -20,7 +20,7 @@ HTTP CONNECT proxy servers (also commonly known as "HTTPS proxy" or "SSL proxy")
 >
 > – From my last week's blog post [introducing async HTTP requests with ReactPHP](https://clue.engineering/2018/introducing-reactphp-buzz).
 
-With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap, let's first take a look at how to send an HTTP request with @ReactPHP, again from the [previous blog post](https://clue.engineering/2018/introducing-reactphp-buzz):
+With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap, let's first take a look at how to send an HTTP request with ReactPHP, again from the [previous blog post](https://clue.engineering/2018/introducing-reactphp-buzz):
 
 ```php
 $loop = \React\EventLoop\Factory::create();

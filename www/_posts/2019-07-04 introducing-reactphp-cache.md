@@ -36,12 +36,12 @@ This project already contains a simple [`ArrayCache`](https://github.com/reactph
 
 > Note that at the time of writing this, the last tag is just over an hour old and these projects may still require an update to support the added APIs. I will update this post in the future once they've had a chance to catch up.
 
-Do you feel some implementation for your favorite cache system is missing? Check out @zhukserega's excellent [blog series](https://sergeyzhuk.me/2017/10/09/memcached-reactphp-p1/) to build your own cache implementation and make sure to share it with the world!
+Do you feel some implementation for your favorite cache system is missing? Check out [@zhukserega](https://twitter.com/zhukserega)'s excellent [blog series](https://sergeyzhuk.me/2017/10/09/memcached-reactphp-p1/) to build your own cache implementation and make sure to share it with the world!
 
 ## Conclusions
 
 Caching is a common way to improve the performance of any project. The Cache component allows you to easily add async caching support to any higher level implementation taking advantage of it. On top of this, even if your higher-level domain use case does not require caching, you will probably appreciate that the Cache component can be used to avoid many of the lower-level network operations, like avoiding HTTP requests or DNS lookups. In fact, the Cache component already has [4+ Mio installations](https://packagist.org/packages/react/cache/stats) because if you've ever installed any ReactPHP component, you will most likely already use the Cache component under the hood and can avoid many repetitive [DNS lookups](https://github.com/reactphp/dns#caching).
 
-We're looking forward to ensuring this API is useful for as many projects as possible. That's why we're planning to make sure this API will get a stable, LTS release very soon. If you want to learn more about this project, make sure to head over to [reactphp/cache](https://github.com/reactphp/cache) and make sure to let us know what you think about this! ❤️ Let's celebrate this release :tada:
+We're looking forward to ensuring this API is useful for as many projects as possible. That's why we're planning to make sure this API will get a stable, LTS release very soon. If you want to learn more about this project, make sure to head over to [reactphp/cache](https://github.com/reactphp/cache) and make sure to let us know what you think about this! ❤️ Let's celebrate this release 🎉
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">We&#39;re happy to announce the next major v0.6.0 release of react/cache, the async cache library for <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a>! 🎉 Stable LTS following very soon! 😉💪<a href="https://t.co/XKSkvpHreM">https://t.co/XKSkvpHreM</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/1146835031974907904?ref_src=twsrc%5Etfw">July 4, 2019</a></blockquote>

@@ -4,7 +4,7 @@ title: Introducing event-driven console I/O with ReactPHP
 
 Today, I'm happy to announce the stable `v2.3.0` release of [clue/reactphp-stdio](https://github.com/clue/reactphp-stdio), the event-driven and UTF-8 aware console input & output (STDIN, STDOUT) library for truly interactive CLI applications, built on top of [ReactPHP](https://reactphp.org/) 🎉
 
-Once again, the version number and its [release history](https://github.com/clue/reactphp-stdio/releases) suggests this is not exactly a new project. In fact, this has been used in production for some projects for a few years already. So I guess it's about time to write an introductory blog post about this project and why I think @ReactPHP's design makes it a perfect fit.
+Once again, the version number and its [release history](https://github.com/clue/reactphp-stdio/releases) suggests this is not exactly a new project. In fact, this has been used in production for some projects for a few years already. So I guess it's about time to write an introductory blog post about this project and why I think ReactPHP's design makes it a perfect fit.
 
 ## PHP is not only for the web
 

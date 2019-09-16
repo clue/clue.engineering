@@ -6,7 +6,7 @@ Today, I'm happy to announce the `v1.0.0` release of [clue/reactphp-soap](https:
 
 > Simple, async [SOAP](https://en.wikipedia.org/wiki/SOAP) web service client library, built on top of [ReactPHP](https://reactphp.org/).
 
-To answer the first thing you may be wondering: *Yes, it is 2018* and indeed, this project has been used in production in a number of projects for a few of years already. So I guess it's about time to write an introductory blog post about this project, how SOAP requests can be used and why I think @ReactPHP's design makes it a perfect fit. Warning, terrible puns ahead.
+To answer the first thing you may be wondering: *Yes, it is 2018* and indeed, this project has been used in production in a number of projects for a few of years already. So I guess it's about time to write an introductory blog post about this project, how SOAP requests can be used and why I think ReactPHP's design makes it a perfect fit. Warning, terrible puns ahead.
 
 ## SOAP shouldn't make you feel dirty
 
@@ -40,7 +40,7 @@ $proxy->demo(3, 4)->then(function ($result) {
 $loop->run();
 ```
 
-Now what does all of this code mean? If you remember one of the [previous blog posts](https://clue.engineering/2018/introducing-reactphp-buzz) you'll see some familiar boilerplate. Admittedly, if you've never worked with @reactphp and async APIs in PHP before, the `$loop` boilerplate near the top may look a bit confusing at first, so let's ignore this for a moment.
+Now what does all of this code mean? If you remember one of the [previous blog posts](https://clue.engineering/2018/introducing-reactphp-buzz) you'll see some familiar boilerplate. Admittedly, if you've never worked with ReactPHP and async APIs in PHP before, the `$loop` boilerplate near the top may look a bit confusing at first, so let's ignore this for a moment.
 
 If we focus on the `$proxy` part, we can see that this example will execute two method calls. These are our RPCs that will transparently be sent to the remote web service and allow us to react to the results of these calls, in this case dumping their results. What is worth noting, however, is how this is executed. Being entirely async, this piece of code will actually send two requests *concurrently*.
 
@@ -54,7 +54,7 @@ If we focus on the `$proxy` part, we can see that this example will execute two 
 
 ## Conclusions
 
-I think we can all agree that soap exists for good reasons (*sorry*). SOAP may not be new and may not be pretty, but it's far from being dead and continues to be a common protocol when connecting to existing third-party APIs. This makes [clue/reactphp-soap](https://github.com/clue/reactphp-soap) an important piece of the puzzle of bringing @ReactPHP to the masses, in particular when it comes to some of the more *enterprisey* APIs that offer very real business value. Thanks to ReactPHP's component-based design and its existing ecosystem, we can leverage its efficient network protocols to concurrently process a large number of requests, [throttle concurrency](https://clue.engineering/2018/introducing-reactphp-mini-queue), [use HTTP proxy servers](https://clue.engineering/2018/introducing-reactphp-http-proxy) and much more.
+I think we can all agree that soap exists for good reasons (*sorry*). SOAP may not be new and may not be pretty, but it's far from being dead and continues to be a common protocol when connecting to existing third-party APIs. This makes [clue/reactphp-soap](https://github.com/clue/reactphp-soap) an important piece of the puzzle of bringing ReactPHP to the masses, in particular when it comes to some of the more *enterprisey* APIs that offer very real business value. Thanks to ReactPHP's component-based design and its existing ecosystem, we can leverage its efficient network protocols to concurrently process a large number of requests, [throttle concurrency](https://clue.engineering/2018/introducing-reactphp-mini-queue), [use HTTP proxy servers](https://clue.engineering/2018/introducing-reactphp-http-proxy) and much more.
 
 If you want to learn more about this project, make sure to check out the project homepage of [clue/reactphp-soap](https://github.com/clue/reactphp-soap). Its documentation describes common usage patterns as well as all the nifty details. It is considered stable and feature complete and has been used in production for a few years already, so you're invited to also give it a try! If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
 

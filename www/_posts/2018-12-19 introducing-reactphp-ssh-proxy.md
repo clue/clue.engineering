@@ -7,7 +7,7 @@ Today, I'm happy to announce the very first stable `v1.0.0` release of [clue/rea
 
 > Async SSH proxy connector and forwarder, tunnel any TCP/IP-based protocol through an SSH server, built on top of [ReactPHP](https://reactphp.org/).
 
-Now that v1.0.0 has been tagged and released today, let's take a look at how we can use SSH tunnels as a powerful feature for many different use cases, how it compares to other proxy protocols and why I think @ReactPHP's design makes it a perfect fit.
+Now that v1.0.0 has been tagged and released today, let's take a look at how we can use SSH tunnels as a powerful feature for many different use cases, how it compares to other proxy protocols and why I think ReactPHP's design makes it a perfect fit.
 
 ## SSH proxy a.k.a. SSH tunnel
 
@@ -21,7 +21,7 @@ Now that v1.0.0 has been tagged and released today, let's take a look at how we 
 >
 > – From my recent blog post [introducing async HTTP requests with ReactPHP](https://clue.engineering/2018/introducing-reactphp-buzz).
 
-Yes, I've [mentioned this before](https://clue.engineering/2018/introducing-reactphp-http-proxy) [multiple times](https://clue.engineering/2018/introducing-reactphp-socks) and I will mention it again: With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap once again, let's first take a look at how to send an HTTP request with @ReactPHP, again from the [recent blog post](https://clue.engineering/2018/introducing-reactphp-buzz):
+Yes, I've [mentioned this before](https://clue.engineering/2018/introducing-reactphp-http-proxy) [multiple times](https://clue.engineering/2018/introducing-reactphp-socks) and I will mention it again: With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap once again, let's first take a look at how to send an HTTP request with ReactPHP, again from the [recent blog post](https://clue.engineering/2018/introducing-reactphp-buzz):
 
 ```php
 $loop = React\EventLoop\Factory::create();

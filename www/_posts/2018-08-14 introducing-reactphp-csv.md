@@ -6,7 +6,7 @@ I'm happy to announce the very first stable release of [clue/reactphp-csv](https
 
 > Streaming CSV (Comma-Separated Values or Character-Separated Values) parser and encoder for [ReactPHP](https://reactphp.org/).
 
-Now that v1.0.0 has been tagged and released today, let's look into what CSV is, how it compares to other formats such as NDJSON and how CSV can be used in PHP and @ReactPHP.
+Now that v1.0.0 has been tagged and released today, let's look into what CSV is, how it compares to other formats such as NDJSON and how CSV can be used in PHP and ReactPHP.
 
 ## CSV format
 

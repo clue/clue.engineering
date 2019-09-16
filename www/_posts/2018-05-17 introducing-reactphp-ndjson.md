@@ -6,7 +6,7 @@ I'm happy to announce the very first stable release of [clue/reactphp-ndjson](ht
 
 > Streaming newline-delimited JSON ([NDJSON](http://ndjson.org)) parser and encoder for [ReactPHP](https://reactphp.org/).
 
-Now that v1.0.0 has been tagged and released today, let's look into what NDJSON is, how it compares to other formats such as JSON, CSV etc. and how NDJSON can be used in PHP and @ReactPHP.
+Now that v1.0.0 has been tagged and released today, let's look into what NDJSON is, how it compares to other formats such as JSON, CSV etc. and how NDJSON can be used in PHP and ReactPHP.
 
 ## Introduction to NDJSON
 

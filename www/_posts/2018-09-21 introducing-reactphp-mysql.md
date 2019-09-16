@@ -12,7 +12,7 @@ This post aims more for the "why" instead of "what" has changed. If you're upgra
 
 Originally, this project was maintained by [Jin Hu](https://github.com/bixuehujin) who did an excellent job figuring out all the protocol details and building an API that can be consumed with ReactPHP. All this with just plain PHP, without requiring any custom extensions. Again, thank you!
 
-Around 6 months ago, he handed over this project to @friends-of-reactphp to take over maintenance and to address a number of outstanding feature requests and issues. In the meantime, we've used this as a base to successfully address some of these minor issues and released a number of minor maintenance releases. In the last months, we have prepared some major changes that we are now releasing with the v0.4.0 version.
+Around 6 months ago, he handed over this project to [@friends-of-reactphp](https://github.com/friends-of-reactphp) to take over maintenance and to address a number of outstanding feature requests and issues. In the meantime, we've used this as a base to successfully address some of these minor issues and released a number of minor maintenance releases. In the last months, we have prepared some major changes that we are now releasing with the v0.4.0 version.
 
 One of the major changes is that its APIs now use [promises](https://github.com/reactphp/promise) consistently as return values instead of accepting callback functions. While we understand that BC breaks may be frustrating when updating and usually try to avoid these as a consequence, we believe that it's very well worth it in this instance. To get a better understanding, let's take a look at what an average query looks like with the old API vs. the new promise-based API:
 

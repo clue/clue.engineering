@@ -6,7 +6,7 @@ I'm happy to announce the very first stable release of [clue/reactphp-mq](https:
 
 > Mini Queue, the lightweight in-memory message queue to concurrently do many (but not too many) things at once, built on top of [ReactPHP](https://reactphp.org/).
 
-Now that v1.0.0 has been tagged and released today, let's look into why this is useful, how this can be used and whether this means everybody should uninstall their RabbitMQ cluster? What follows is a short introduction into async PHP with @ReactPHP and how a message queue can help doing many things at once. 
+Now that v1.0.0 has been tagged and released today, let's look into why this is useful, how this can be used and whether this means everybody should uninstall their RabbitMQ cluster? What follows is a short introduction into async PHP with ReactPHP and how a message queue can help doing many things at once. 
 
 ## Doing many things
 
@@ -14,7 +14,7 @@ Many people use PHP and have an idea what it can be used for. Doing many things 
 
 Nowadays, PHP is often used in different kind of backend systems. Whether it's processing some data that came in through an HTTP request, through some backend queuing system (job worker) or some CLI (cron) script that periodically processes data from a database or filesystem. While these may be solving some entirely different problems, what's common to these is that they often need to process a larger number of uniform operations (batch processing).
 
-For example, this post assumes you've crawled an HTML page and find that you now need to send 100 requests to collect information from the following pages. If you want to learn more about this use case, see also [fast webscraping with ReactPHP](http://sergeyzhuk.me/2018/02/12/fast-webscraping-with-reactphp/) by @seregazhuk for a good introduction. HTTP is used as an example here because it's common to a lot of problem, but of course, this can be easily substituted with any other remote API or database system. To further simplify our example let's say we're also done parsing this initial page and have dumped the following 100 URLs into a simple `urls.txt` file, which can now be read like this:
+For example, this post assumes you've crawled an HTML page and find that you now need to send 100 requests to collect information from the following pages. If you want to learn more about this use case, see also [fast webscraping with ReactPHP](http://sergeyzhuk.me/2018/02/12/fast-webscraping-with-reactphp/) by [@zhukserega](https://twitter.com/zhukserega) for a good introduction. HTTP is used as an example here because it's common to a lot of problem, but of course, this can be easily substituted with any other remote API or database system. To further simplify our example let's say we're also done parsing this initial page and have dumped the following 100 URLs into a simple `urls.txt` file, which can now be read like this:
 
 ```php
 $urls = file('urls.txt', FILE_IGNORE_NEW_LINES);
