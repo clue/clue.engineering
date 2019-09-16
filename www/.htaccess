@@ -12,43 +12,12 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.+)$ $1\.html [L]
 
-# notablog.php is powered by gistlog.co
-RewriteRule ^(css|img|js)(/.*)?$ https://gistlog.co/$1$2 [R]
-RewriteRule ^(\S+/\S+)/comments\.json$ notablog-comments.php?gist=$1
-RewriteRule ^2018/hello-world$                      notablog.php?gist=https://gist.github.com/clue/8698d44e489927f9988b2a27e53d9189
-RewriteRule ^2018/pushing-the-limits-with-reactphp$ notablog.php?gist=https://gist.github.com/clue/f8a8c0236c6ce10e183c1dddbc996947
-RewriteRule ^2018/introducing-reactphp-mq$          notablog.php?gist=https://gist.github.com/clue/621ac905f031b2d9ecc6af73c8aa141a
-RewriteRule ^2018/introducing-reactphp-ndjson$      notablog.php?gist=https://gist.github.com/clue/c3e9090798cc583e9fa3b7a5f68757ee
-RewriteRule ^2018/introducing-reactphp-flux$        notablog.php?gist=https://gist.github.com/clue/bdc5343c6f377a880ec319591e18bce5
-RewriteRule ^2018/announcing-reactphp-lts$          notablog.php?gist=https://gist.github.com/clue/edee51d51f12f96b85cde333c581dac5
-RewriteRule ^2018/introducing-reactphp-csv$         notablog.php?gist=https://gist.github.com/clue/f4f357901cc793bd5fe10f43cd916479
-RewriteRule ^2018/introducing-reactphp-mysql$       notablog.php?gist=https://gist.github.com/clue/06eb82a9aef33295670f14e65fc715de
-RewriteRule ^2018/introducing-reactphp-buzz$        notablog.php?gist=https://gist.github.com/clue/4f606abd92d363dcbc9a0b4d4e147177
-RewriteRule ^2018/introducing-reactphp-http-proxy$  notablog.php?gist=https://gist.github.com/clue/1fd9b1721fbea64e6fc9d7544380f80a
-RewriteRule ^2018/introducing-reactphp-soap$        notablog.php?gist=https://gist.github.com/clue/c3dca4a20913713b94927b83d8627a66
-RewriteRule ^2018/introducing-reactphp-socks$       notablog.php?gist=https://gist.github.com/clue/2d479064c39ef4eb2584a388a98d566b
-RewriteRule ^2018/introducing-reactphp-mysql-lazy-connections$  notablog.php?gist=https://gist.github.com/clue/2ee08da9b0b4774423ab665bff875fb6
-RewriteRule ^2018/introducing-reactphp-ssh-proxy$   notablog.php?gist=https://gist.github.com/clue/f972803ce79aea7e0915e3f9c515d945
-RewriteRule ^2019/2018-in-review$                   notablog.php?gist=https://gist.github.com/clue/56902c6c90db3efbb467177dc8103f99
-RewriteRule ^2019/introducing-tls-1-3-for-reactphp$ notablog.php?gist=https://gist.github.com/clue/eef6b2297f8992ddbafbb11b9e703d10
-RewriteRule ^2019/introducing-reactphp-child-process$ notablog.php?gist=https://gist.github.com/clue/82b47991d5d178218d7ec4fa9db31d4d
-RewriteRule ^2019/introducing-reactphp-redis$       notablog.php?gist=https://gist.github.com/clue/e83dcffae4a589a098ee0033d3ae000a
-RewriteRule ^2019/introducing-reactphp-sqlite$      notablog.php?gist=https://gist.github.com/clue/cd97c5384a30a5d45d6bf3fb68f65d39
-RewriteRule ^2019/introducing-reactphp-cache$       notablog.php?gist=https://gist.github.com/clue/b60878ee2a6d99b0fff27cacea9ea75b
-RewriteRule ^2019/announcing-reactphp-lts$          notablog.php?gist=https://gist.github.com/clue/58f150a3d65ef267938ec838a31150fc
-RewriteRule ^2019/new-domain$                       notablog.php?gist=https://gist.github.com/clue/3441023122844ebd60fddd8ebc03b251
-RewriteRule ^2019/introducing-reactphp-stdio$       notablog.php?gist=https://gist.github.com/clue/05c0f7ac0ba47d8874c5a98d8a05f01b
-
 # redirect legacy blog post URLS
 # 2018-05-13
 RedirectPermanent /2018/introducing-mq-react            /2018/introducing-reactphp-mq
 # 2018-11-27
 RedirectPermanent /2018/introducing-reactphp-mini-queue /2018/introducing-reactphp-mq
 RedirectPermanent /2018/introducing-ndjson-reactphp     /2018/introducing-reactphp-ndjson
-
-# reject direct access with 403 (Forbidden)
-RewriteCond "%{THE_REQUEST}" "^[A-Z]+ /notablog.php(\?|/| )"
-RewriteRule ^ - [F]
 
 RedirectPermanent /graph-composer/graph-composer.phar /graph-composer-latest.phar
 RedirectPermanent /phar-composer/phar-composer.phar /phar-composer-latest.phar

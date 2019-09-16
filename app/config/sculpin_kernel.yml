@@ -3,4 +3,4 @@ sculpin:
 
 sculpin_content_types:
     posts:
-        enabled: false
+        permalink: :year/:slug_filename.html
