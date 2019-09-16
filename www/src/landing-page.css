@@ -252,6 +252,9 @@ section#post blockquote.twitter-tweet {
     border-radius: 4px;
     padding: 1em 2em 2em;
 }
+section#post img {
+    max-width: 100%;
+}
 
 section#projects, section#invite {
     background-color: #f8f8f8;

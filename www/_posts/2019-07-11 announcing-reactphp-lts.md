@@ -1,5 +1,6 @@
 ---
 title: Announcing full stable ReactPHP LTS release
+social_image: https://user-images.githubusercontent.com/776829/61060544-39dd7400-a3ea-11e9-8184-50a680564518.png
 ---
 
 ![ReactPHP – 7 years](https://user-images.githubusercontent.com/776829/61060544-39dd7400-a3ea-11e9-8184-50a680564518.png)
