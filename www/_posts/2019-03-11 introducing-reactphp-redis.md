@@ -1,5 +1,6 @@
 ---
 title: Introducing async Redis database client for ReactPHP
+legacy_id: https://www.lueck.tv/2019/introducing-reactphp-redis
 ---
 
 Today, I'm happy to announce the `v2.3.0` release of [clue/reactphp-redis](https://github.com/clue/reactphp-redis), the async [Redis](https://redis.io/) database client built on top of [ReactPHP](https://reactphp.org/) 🎉

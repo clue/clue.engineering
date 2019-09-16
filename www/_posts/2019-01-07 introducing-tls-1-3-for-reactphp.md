@@ -1,5 +1,6 @@
 ---
 title: Introducing TLS 1.3 for ReactPHP
+legacy_id: 2019/introducing-tls-1-3-for-reactphp
 ---
 
 Today, we're very happy to announce the immediate availability of the next `v1.2.0` feature release of [reactphp/socket](https://github.com/reactphp/socket), the async, streaming plaintext TCP/IP and secure TLS socket server and client for [ReactPHP](https://reactphp.org/). 🎉

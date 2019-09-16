@@ -1,3 +1,7 @@
+---
+use:
+  - posts
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,98 +78,12 @@
                 <a href="https://twitter.com/another_clue">Twitter</a>.
             </p>
             <ul>
+{% for post in data.posts %}
                 <li>
-                    <time>2019-08-28</time>
-                    <a href="2019/introducing-reactphp-stdio">Introducing event-driven console I/O with ReactPHP</a>
+                    <time>{{ post.date | date("Y-m-d") }}</time>
+                    <a href=".{{ post.url | replace({'.html':''}) }}">{{ post.title }}</a>
                 </li>
-                <li>
-                    <time>2019-08-23</time>
-                    <a href="2019/new-domain">Brief note: New domain</a>
-                </li>
-                <li>
-                    <time>2019-07-11</time>
-                    <a href="2019/announcing-reactphp-lts">Announcing full stable ReactPHP LTS release</a>
-                </li>
-                <li>
-                    <time>2019-07-04</time>
-                    <a href="2019/introducing-reactphp-cache">Introducing async cache for ReactPHP</a>
-                </li>
-                <li>
-                    <time>2019-05-14</time>
-                    <a href="2019/introducing-reactphp-sqlite">Introducing async SQLite database for ReactPHP</a>
-                </li>
-                <li>
-                    <time>2019-03-11</time>
-                    <a href="2019/introducing-reactphp-redis">Introducing async Redis database client for ReactPHP</a>
-                </li>
-                <li>
-                    <time>2019-01-14</time>
-                    <a href="2019/introducing-reactphp-child-process">Introducing event-driven child process for ReactPHP</a>
-                </li>
-                <li>
-                    <time>2019-01-07</time>
-                    <a href="2019/introducing-tls-1-3-for-reactphp">Introducing TLS 1.3 for ReactPHP</a>
-                </li>
-                <li>
-                    <time>2019-01-01</time>
-                    <a href="2019/2018-in-review">2018 - A Year In Review</a>
-                </li>
-                <li>
-                    <time>2018-12-19</time>
-                    <a href="2018/introducing-reactphp-ssh-proxy">Introducing SSH proxy connector for ReactPHP</a>
-                </li>
-                <li>
-                    <time>2018-11-28</time>
-                    <a href="2018/introducing-reactphp-mysql-lazy-connections">Introducing lazy MySQL connections with ReactPHP</a>
-                </li>
-                <li>
-                    <time>2018-11-20</time>
-                    <a href="2018/introducing-reactphp-socks">Introducing SOCKS proxy connector for ReactPHP</a>
-                </li>
-                <li>
-                    <time>2018-11-07</time>
-                    <a href="2018/introducing-reactphp-soap">Introducing async SOAP requests with ReactPHP</a>
-                </li>
-                <li>
-                    <time>2018-10-30</time>
-                    <a href="2018/introducing-reactphp-http-proxy">Introducing HTTP CONNECT proxy connector for ReactPHP</a>
-                </li>
-                <li>
-                    <time>2018-10-24</time>
-                    <a href="2018/introducing-reactphp-buzz">Introducing async HTTP requests with ReactPHP</a>
-                </li>
-                <li>
-                    <time>2018-09-21</time>
-                    <a href="2018/introducing-reactphp-mysql">Introducing MySQL streaming with ReactPHP</a>
-                </li>
-                <li>
-                    <time>2018-08-14</time>
-                    <a href="2018/introducing-reactphp-csv">Introducing streaming CSV (Comma-Separated Values) with ReactPHP</a>
-                </li>
-                <li>
-                    <time>2018-07-11</time>
-                    <a href="2018/announcing-reactphp-lts">Announcing stable ReactPHP LTS release</a>
-                </li>
-                <li>
-                    <time>2018-05-25</time>
-                    <a href="2018/introducing-reactphp-flux">Introducing concurrent stream processing with ReactPHP and Flux</a>
-                </li>
-                <li>
-                    <time>2018-05-17</time>
-                    <a href="2018/introducing-reactphp-ndjson">Introducing streaming newline-delimited JSON (NDJSON) with ReactPHP</a>
-                </li>
-                <li>
-                    <time>2018-02-26</time>
-                    <a href="2018/introducing-reactphp-mq">Introducing clue/reactphp-mq v1.0.0</a>
-                </li>
-                <li>
-                    <time>2018-02-18</time>
-                    <a href="2018/pushing-the-limits-with-reactphp">Pushing the limits with ReactPHP</a>
-                </li>
-                <li>
-                    <time>2018-01-01</time>
-                    <a href="2018/hello-world">Hello World!</a>
-                </li>
+{% endfor %}
             </ul>
         </div>
     </section>
