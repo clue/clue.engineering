@@ -12,20 +12,12 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.+)$ $1\.html [L]
 
-# notablog.php is powered by gistlog.co
-RewriteRule ^(css|img|js)(/.*)?$ https://gistlog.co/$1$2 [R]
-RewriteRule ^(\S+/\S+)/comments\.json$ notablog-comments.php?gist=$1
-
 # redirect legacy blog post URLS
 # 2018-05-13
 RedirectPermanent /2018/introducing-mq-react            /2018/introducing-reactphp-mq
 # 2018-11-27
 RedirectPermanent /2018/introducing-reactphp-mini-queue /2018/introducing-reactphp-mq
 RedirectPermanent /2018/introducing-ndjson-reactphp     /2018/introducing-reactphp-ndjson
-
-# reject direct access with 403 (Forbidden)
-RewriteCond "%{THE_REQUEST}" "^[A-Z]+ /notablog.php(\?|/| )"
-RewriteRule ^ - [F]
 
 RedirectPermanent /graph-composer/graph-composer.phar /graph-composer-latest.phar
 RedirectPermanent /phar-composer/phar-composer.phar /phar-composer-latest.phar
