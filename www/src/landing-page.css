@@ -256,7 +256,7 @@ section#post img {
     max-width: 100%;
 }
 
-section#projects, section#invite {
+section#projects, section#invite, section#comments {
     background-color: #f8f8f8;
 }
 
