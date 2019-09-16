@@ -15,7 +15,6 @@ RewriteRule ^(.+)$ $1\.html [L]
 # notablog.php is powered by gistlog.co
 RewriteRule ^(css|img|js)(/.*)?$ https://gistlog.co/$1$2 [R]
 RewriteRule ^(\S+/\S+)/comments\.json$ notablog-comments.php?gist=$1
-RewriteRule ^2018/introducing-reactphp-mysql-lazy-connections$  notablog.php?gist=https://gist.github.com/clue/2ee08da9b0b4774423ab665bff875fb6
 RewriteRule ^2018/introducing-reactphp-ssh-proxy$   notablog.php?gist=https://gist.github.com/clue/f972803ce79aea7e0915e3f9c515d945
 RewriteRule ^2019/2018-in-review$                   notablog.php?gist=https://gist.github.com/clue/56902c6c90db3efbb467177dc8103f99
 RewriteRule ^2019/introducing-tls-1-3-for-reactphp$ notablog.php?gist=https://gist.github.com/clue/eef6b2297f8992ddbafbb11b9e703d10
