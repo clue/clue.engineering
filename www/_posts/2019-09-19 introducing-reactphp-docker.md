@@ -1,6 +1,10 @@
 ---
 title: Introducing event-driven Docker Engine API client for ReactPHP
+social_image: https://user-images.githubusercontent.com/776829/65258290-efbbf180-db02-11e9-90c7-4f3ee532e2df.jpg
 ---
+
+![animal-animal-photography-blue-water-831084](https://user-images.githubusercontent.com/776829/65258290-efbbf180-db02-11e9-90c7-4f3ee532e2df.jpg)
+<!-- https://www.pexels.com/photo/photography-of-whale-tail-on-water-surface-831084/ -->
 
 Today, I'm happy to announce the first stable `v1.0.0` release of [clue/reactphp-docker](https://github.com/clue/reactphp-docker), the async client library for event-driven access to the [Docker Engine API](https://docs.docker.com/develop/sdk/), built on top of [ReactPHP](https://reactphp.org/) 🎉
 
