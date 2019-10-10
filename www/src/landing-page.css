@@ -189,7 +189,7 @@ section#posts ul {
     padding: 0;
 }
 section#posts li {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
 }
 section#posts time {
     font-size: small;
@@ -197,6 +197,27 @@ section#posts time {
 }
 section#posts li p {
     margin: 0; /* description for talks */
+}
+section#posts li > ul > li {
+    display: inline;
+    margin-right: 4px;
+    font-size: .9em;
+    white-space: nowrap;
+}
+section#posts li > ul > li:before {
+    content: "🛈 ";
+}
+section#posts li > ul > li.slides:before {
+    content: "👁\00FE0E  ";
+}
+section#posts li > ul > li.recording:before {
+    content: "🎥\00FE0E  "; /* force text and double trailing space */
+}
+section#posts li > ul > li.rating:before {
+    content: "★ ";
+}
+section#posts li > ul > li.location:before {
+    content: "🖈 ";
 }
 
 section#post h1 {
