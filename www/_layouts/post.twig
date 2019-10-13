@@ -1,16 +1,16 @@
-{% set description = page.excerpt | default(page.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|split(' ')|slice(0,50)|join(' ') ~ "…") %}
+{% set description = page.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-    <meta name="description" content="{{ description }}">
+    <meta name="description" content="{{ description }}…">
     <link href="../src/landing-page.css" rel="stylesheet">
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ page.title }}">
-    <meta property="og:description" content="{{ description }}">
+    <meta property="og:description" content="{{ description }}…">
 {% if page.social_image %}
     <meta property="og:image" content="{{ site.url }}{{ page.social_image }}">
 {% endif %}

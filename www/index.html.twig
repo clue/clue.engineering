@@ -82,6 +82,7 @@ use:
                 <li>
                     <time>{{ post.date | date("Y-m-d") }}</time>
                     <a href=".{{ post.url | replace({'.html':''}) }}">{{ post.title }}</a>
+                    <p>{{ post.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw }}…</p>
                 </li>
 {% endfor %}
             </ul>
