@@ -13,7 +13,7 @@ a {
 a:not([href]) {
     text-decoration: line-through underline;
 }
-h1,h2,h3,h4,strong {
+h1,h2,h3,h4 {
     font-weight: normal;
     line-height: 1.25;
     color: #29586a;
@@ -190,6 +190,9 @@ section#posts ul {
 }
 section#posts li {
     margin-bottom: 1.5em;
+}
+section#posts li > h4 {
+    margin-bottom: 0;
 }
 section#posts time {
     font-size: small;
