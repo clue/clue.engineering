@@ -1,0 +1,69 @@
+---
+title: Christian Lück's Blog Posts
+layout: default
+use:
+  - posts
+---
+<section id="posts">
+    <div class="container">
+        <h1>
+            Recent blog posts, articles and thoughts
+            <a href="posts.atom" title="Atom feed with recent blog posts">
+                <!-- Thanks! https://fontawesome.com/ -->
+                <svg viewBox="0 0 448 512"><path d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"/></svg>
+            </a>
+        </h1>
+        <p>
+            Here's a list of my recent blog posts and random ramblings.
+            Note that I started writing these blog posts only recently. See also
+            the other pages if you want to learn more about some of my
+            <a href="./#projects">projects</a>. You may also find more on my
+            <a href="https://twitter.com/another_clue">Twitter</a>.
+        </p>
+{% set year = 0 %}
+{% for post in data.posts %}
+{%     if post.date | date("Y") != year %}
+{%         if year != 0 %}
+        </ul>
+{%         endif %}
+{%         set year = post.date | date("Y") %}
+
+        <h2 id="{{ year }}"><a href="#{{ year }}"></a>{{ year }}</h2>
+
+        <ul>
+{%     endif %}
+            <li>
+                <h4><a href=".{{ post.url | replace({'.html':''}) }}">{{ post.title }}</a></h4>
+                <time>{{ post.date | date("Y-m-d") }}</time>
+                <p>{{ post.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw }}…</p>
+                <a href=".{{ post.url | replace({'.html':''}) }}"><em>Read more</em></a>
+            </li>
+{% endfor %}
+
+{%         if year != 0 %}
+        </ul>
+{%         endif %}
+    </div>
+</section>
+
+<section id="share">
+    <div class="container">
+        <h3>
+            <a href="#share"></a>
+            Say Hello!
+        </h3>
+        <p>
+            Like the things I like to write about or have anything to add?
+            Leave a comment in the comment section for the respective blog post.
+            Also consider sharing the blog posts with friends and colleagues.
+            Unless otherwise noted, all blog posts can be shared freely under
+            the permissive <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+            license.
+        </p>
+        <p>
+            <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+            <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+            <a href="contact">Email me</a> if you think we should be working together on interesting projects.
+        </p>
+    </div>
+</section>

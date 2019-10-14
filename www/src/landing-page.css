@@ -299,14 +299,14 @@ section#post img {
     max-width: 100%;
 }
 
-section#projects, section#invite, section#comments {
+section#projects, section#invite, section#comments, section#share {
     background-color: #f8f8f8;
 }
 
 section#contact address {
     font-style: normal;
 }
-section#contact svg {
+section#contact svg, section#share svg {
     fill: #4C9ED9;
 }
 section#contact input, section#contact textarea, section#contact span {
