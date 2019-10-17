@@ -94,7 +94,7 @@ section#main {
     background-image: linear-gradient(to right, #10394b 0%, #113a4e 50%, #0c273b 75%, #060d1b 100%);
     background-image: url(bg.jpg);
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: scroll;
 
     color: #f8f8f8;
     text-align: center;
