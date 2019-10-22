@@ -313,7 +313,7 @@ section#post img {
     max-width: 100%;
 }
 
-section#projects, section#invite, section#comments, section#share {
+section#projects, section#invite, section#comments, section#share, section#open-source, section#consulting {
     background-color: #f8f8f8;
 }
 
@@ -384,6 +384,41 @@ section#thanks div.container {
 }
 section#thanks div.container h2 {
     margin-top: 0;
+}
+
+section#open-source svg, section#sponsor svg {
+    filter: invert(42%) sepia(26%) saturate(257%) hue-rotate(161deg) brightness(97%) contrast(83%);
+    height: 120px;
+    margin-left: -20px;
+    float: left;
+}
+section#open-source svg + p, section#sponsor svg + p {
+    margin-left: 120px;
+}
+section#open-source ul, section#sponsor ul, section#open-source ul, section#consulting ul {
+    background-color: #fff;
+    box-shadow: 0 0 75px -10px rgba(0, 9, 27, 0.11);
+    margin: 40px 0;
+    list-style: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border-top: 5px solid #c1d8e8;
+}
+section#open-source li:before, section#sponsor li:before, section#consulting li:before {
+    content: "»";
+    color: #719ed9;
+    font-weight: bold;
+    margin-left: -20px;
+    width: 20px;
+    display: inline-block;
+}
+section#open-source li, section#sponsor li, section#consulting li {
+    border-bottom: 1px solid #f6f8f9;
+    padding: 4px 8px;
+    margin-left: 20px;
+}
+section#open-source li:last-child, section#sponsor li:last-child, section#consulting li:last-child {
+    border-bottom: none;
 }
 
 /* section container fills complete width minus margin on small devices */
