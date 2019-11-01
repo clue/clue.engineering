@@ -56,17 +56,17 @@ nav {
 nav ul {
     margin: 0 auto;
     max-width: 700px;
-    padding: 10px;
+    padding: .5em;
     text-align: right;
+    font-size: .9em;
 }
 nav li {
     display: inline-block;
 }
 nav li a {
-    font-size: .9em;
     text-decoration: none;
     color: #b5c6d5;
-    padding: 4px 4px;
+    padding: .2em .2em;
 }
 nav li a:hover {
     color: #5899C8;
@@ -82,7 +82,7 @@ nav li:first-child a {
     display: none;
 }
 nav li:last-child a {
-    border-bottom: 4px solid #3072A2;
+    border-bottom: .25em solid #3072A2;
     padding-bottom: 0px;
 }
 
@@ -421,6 +421,13 @@ section#open-source li:last-child, section#sponsor li:last-child, section#consul
     border-bottom: none;
 }
 
+/* reduce navigation item size on smaller screens */
+@media (max-width: 450px) {
+    nav ul {
+        font-size: .68em;
+        font-size: 4vw;
+    }
+}
 /* section container fills complete width minus margin on small devices */
 @media (max-width: 760px) {
     section#main {
