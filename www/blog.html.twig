@@ -23,26 +23,18 @@ use:
 {% set year = 0 %}
 {% for post in data.posts %}
 {%     if post.date | date("Y") != year %}
-{%         if year != 0 %}
-        </ul>
-{%         endif %}
 {%         set year = post.date | date("Y") %}
 
         <h2 id="{{ year }}"><a href="#{{ year }}"></a>{{ year }}</h2>
-
-        <ul>
 {%     endif %}
-            <li>
-                <h4><a href=".{{ post.url | replace({'.html':''}) }}">{{ post.title }}</a></h4>
-                <time>{{ post.date | date("Y-m-d") }}</time>
-                <p>{{ post.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw }}…</p>
-                <a href=".{{ post.url | replace({'.html':''}) }}"><em>Read more</em></a>
-            </li>
-{% endfor %}
 
-{%         if year != 0 %}
-        </ul>
-{%         endif %}
+        <article>
+            <h4><a href=".{{ post.url | replace({'.html':''}) }}">{{ post.title }}</a></h4>
+            <time>{{ post.date | date("Y-m-d") }}</time>
+            <p>{{ post.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw }}…</p>
+            <a href=".{{ post.url | replace({'.html':''}) }}"><em>Read more</em></a>
+        </article>
+{% endfor %}
     </div>
 </section>
 
