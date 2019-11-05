@@ -376,6 +376,9 @@ section#thanks div.container h2 {
 
 /* section container fills complete width minus margin on small devices */
 @media (max-width: 720px) {
+    section#main {
+        background-attachment: scroll; /* iOS doesn't like fixed attachment, scroll is *good enough*… */
+    }
     section .container {
         width: auto;
         max-width: 600px;
