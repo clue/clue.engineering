@@ -7,6 +7,11 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 RewriteCond %{REQUEST_METHOD} POST
 RewriteRule ^contact$ contact.php [END]
 
+# URLs should never end with trailing slash when file exists with .html extension, redirect to location without slash
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+)/$ https://%{HTTP_HOST}/$1 [R,END]
+
 # all URLs should rewrite to append .html extension internally if this file exists (exclude index.html)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}\.html -f

@@ -18,7 +18,7 @@ out=$(curl -v $base/index 2>&1) &&      match "HTTP/.* 404"
 
 out=$(curl -v $base/blog 2>&1) &&       match "HTTP/.* 200"
 out=$(curl -v $base/blog.html 2>&1) &&  match -i "Location: $redir/blog"
-#out=$(curl -v $base/blog/ 2>&1) &&     match -i "Location: $redir/blog"
+out=$(curl -v $base/blog/ 2>&1) &&      match -i "Location: $redir/blog"
 
 out=$(curl -v $base/2019 2>&1) &&   match -i "Location: $redir/blog#2019"
 out=$(curl -v $base/2019/ 2>&1) &&  match -i "Location: $redir/blog#2019"
@@ -26,12 +26,12 @@ out=$(curl -v $base/2000 2>&1) &&   match "HTTP/.* 404"
 out=$(curl -v $base/2000/ 2>&1) &&  match "HTTP/.* 404"
 
 out=$(curl -v $base/2018/hello-world 2>&1) &&   match "HTTP/.* 200"
-#out=$(curl -v $base/2018/hello-world/ 2>&1) && match -i "Location: $redir/2018/hello-world"
+out=$(curl -v $base/2018/hello-world/ 2>&1) &&  match -i "Location: $redir/2018/hello-world"
 
 out=$(curl -v $base/contact 2>&1) &&            match "HTTP/.* 200"
 out=$(curl -v $base/contact -X POST 2>&1) &&    match "HTTP/.* 400"
 out=$(curl -v $base/contact.html 2>&1) &&       match -i "Location: $redir/contact"
 out=$(curl -v $base/contact.php 2>&1) &&        match -i "Location: $redir/contact"
-#out=$(curl -v $base/contact/ 2>&1) &&          match "Location: $redir/contact"
+out=$(curl -v $base/contact/ 2>&1) &&           match -i "Location: $redir/contact"
 
 echo "OK ($n)"
