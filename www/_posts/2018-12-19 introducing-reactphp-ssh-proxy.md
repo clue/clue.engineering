@@ -1,6 +1,12 @@
 ---
 title: Introducing SSH proxy connector for ReactPHP
 legacy_id: https://www.lueck.tv/2018/introducing-reactphp-ssh-proxy
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - ssh
+  - proxy
 ---
 
 Today, I'm happy to announce the very first stable `v1.0.0` release of [clue/reactphp-ssh-proxy](https://github.com/clue/reactphp-ssh-proxy) 🎉

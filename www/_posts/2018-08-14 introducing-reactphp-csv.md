@@ -1,5 +1,11 @@
 ---
 title: Introducing streaming CSV (Comma-Separated Values) with ReactPHP
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - csv
+  - streaming
 ---
 
 I'm happy to announce the very first stable release of [clue/reactphp-csv](https://github.com/clue/reactphp-csv) 🎉

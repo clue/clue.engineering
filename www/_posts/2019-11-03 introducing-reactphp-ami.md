@@ -1,6 +1,12 @@
 ---
 title: Introducing event-driven Asterisk Manager Interface (AMI) for ReactPHP
 social_image: https://user-images.githubusercontent.com/776829/67948024-23e7ff00-fbe5-11e9-9662-fb8f0ca16edc.jpg
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - asterisk
+  - telephony
 ---
 
 ![black-and-white-black-and-white-chairs-315638](https://user-images.githubusercontent.com/776829/67948024-23e7ff00-fbe5-11e9-9662-fb8f0ca16edc.jpg)

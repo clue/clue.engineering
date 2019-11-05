@@ -1,5 +1,12 @@
 ---
 title: Introducing concurrent stream processing with ReactPHP and Flux
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - flux
+  - streaming
+  - concurrency
 ---
 
 I'm happy to announce the very first stable release of [clue/reactphp-flux](https://github.com/clue/reactphp-flux) 🎉

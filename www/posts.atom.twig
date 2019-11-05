@@ -20,6 +20,9 @@ permalink: posts.atom
         <id>{{ post.legacy_id | default("https://clue.engineering" ~ post.url | replace({'.html':''})) }}</id>
         <updated>{{ post.date | date("Y-m-d\\T00:00:00\\Z") }}</updated>
         <summary>{{ post.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw }}…</summary>
+{%     for tag in post.tags %}
+        <category term="{{ tag }}" />
+{%     endfor %}
     </entry>
 {% endfor %}
 </feed>

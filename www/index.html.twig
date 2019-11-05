@@ -1,6 +1,7 @@
 ---
 use:
   - posts
+  - posts_tags
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -78,16 +79,19 @@ use:
                 <a href="#projects">projects</a>. You may also find more on my
                 <a href="https://twitter.com/another_clue">Twitter</a>.
             </p>
-            <ul>
 {% for post in data.posts[:3] %}
-                <li>
-                    <h4><a href=".{{ post.url | replace({'.html':''}) }}">{{ post.title }}</a></h4>
-                    <time>{{ post.date | date("Y-m-d") }}</time>
-                    <p>{{ post.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw }}…</p>
-                    <a href=".{{ post.url | replace({'.html':''}) }}"><em>Read more</em></a>
-                </li>
+            <article>
+                <h4><a href=".{{ post.url | replace({'.html':''}) }}">{{ post.title }}</a></h4>
+                <ul>
+                    <li><time>{{ post.date | date("Y-m-d") }}</time></li>
+{%     for tag in post.tags %}
+                    <li><a href="blog#{{ tag }}" title="Show all blog posts tagged #{{ tag }} ({{ data.posts_tags[tag]|length }})" rel="tag">#{{ tag }}</a></li>
+{%     endfor %}
+                </ul>
+                <p>{{ post.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw }}…</p>
+                <a href=".{{ post.url | replace({'.html':''}) }}"><em>Read more</em></a>
+            </article>
 {% endfor %}
-            </ul>
             <p>
                 <em>For more blog posts, see also the full <a href="blog">blog posts</a> archive.</em>
             </p>

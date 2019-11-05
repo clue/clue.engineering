@@ -1,6 +1,11 @@
 ---
 title: Introducing async cache for ReactPHP
 legacy_id: https://www.lueck.tv/2019/introducing-reactphp-cache
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - cache
 ---
 
 Today, we're very happy to announce the immediate availability of the next major beta release of [reactphp/cache](https://github.com/reactphp/cache), the async cache library for [ReactPHP](https://reactphp.org/). 🎉

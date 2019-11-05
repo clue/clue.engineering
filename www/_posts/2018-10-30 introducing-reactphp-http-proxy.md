@@ -1,5 +1,11 @@
 ---
 title: Introducing HTTP CONNECT proxy connector for ReactPHP
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - http
+  - proxy
 ---
 
 Today, I'm happy to announce the `v1.4.0` release of [clue/reactphp-http-proxy](https://github.com/clue/reactphp-http-proxy) 🎉

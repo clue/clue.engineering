@@ -1,6 +1,11 @@
 ---
 title: Introducing event-driven child process for ReactPHP
 legacy_id: 2019/introducing-reactphp-child-process
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - process
 ---
 
 Today, we're very happy to announce the immediate availability of the next major beta release of [reactphp/child-process](https://github.com/reactphp/child-process), the event-driven library for executing child processes with [ReactPHP](https://reactphp.org/). 🎉
