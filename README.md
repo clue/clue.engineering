@@ -14,4 +14,11 @@ Build website:
 $ vendor/bin/sculpin generate --source-dir=www --output-dir=build
 ```
 
-Then deploy `build/` behind your favorite webserver.
+Then deploy `build/` behind your favorite webserver (Apache + PHP-FPM etc.).
+
+You can run some simple acceptance tests to verify the deployed website works
+as expected by running:
+
+```bash
+$ tests/acceptance.sh https://clue.test
+```

@@ -5,12 +5,22 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 # POST /contacts should target contacts.php
 RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^contact$ contact.php [L]
+RewriteRule ^contact$ contact.php [END]
 
-# all URLs should append .html if this file exists
+# all URLs should rewrite to append .html extension internally if this file exists (exclude index.html)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.+)$ $1\.html [L]
+RewriteCond %{REQUEST_FILENAME} !^.*index$
+RewriteRule ^(.+)$ $1\.html [END]
+
+# URLs should never include .html extension, redirect to location without extension (exclude index.html)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_FILENAME} !^.*index\.html$
+RewriteRule ^(.+)\.(html|php)$ https://%{HTTP_HOST}/$1 [R,END]
+
+# URLs should never include index.html, redirect to location without file
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.*)index\.(html|php)$ https://%{HTTP_HOST}/$1 [R,END]
 
 # redirect 20xx/ to blog#20xx only when directory exists
 RewriteCond %{REQUEST_FILENAME} -d
