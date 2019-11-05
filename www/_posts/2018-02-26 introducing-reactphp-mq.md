@@ -1,5 +1,11 @@
 ---
 title: Introducing clue/reactphp-mq v1.0.0
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - queue
+  - concurrency
 ---
 
 I'm happy to announce the very first stable release of [clue/reactphp-mq](https://github.com/clue/reactphp-mq) 🎉

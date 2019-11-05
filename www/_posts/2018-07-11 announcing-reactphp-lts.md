@@ -1,5 +1,8 @@
 ---
 title: Announcing stable ReactPHP LTS release
+tags:
+  - reactphp
+  - release
 ---
 
 Exactly six years ago, 11th July 2012, the very first [v0.1.0 release](https://reactphp.org/changelog.html#eventloop-010-2012-07-11) of ReactPHP was tagged. Today, six years later, we're thrilled to announce the immediate availability of the very first stable v1.0.0 release of ReactPHP's main components:

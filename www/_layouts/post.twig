@@ -41,6 +41,14 @@
                         <a href="../">Christian Lück</a>
                     </address>
                     on <time datetime="{{ page.date | date("Y-m-d") }}">{{ page.date | date("Y-m-d") }}</time>
+{% if page.tags %}
+<div>
+  tagged
+{%     for tag in page.tags %}
+  <a href="../blog#{{ tag }}" title="Show all blog posts tagged #{{ tag }}" rel="tag">#{{ tag }}</a>
+{%     endfor %}
+</div>
+{% endif %}
                 </div>
 
 {% block content %}{% endblock %}

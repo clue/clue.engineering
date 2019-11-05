@@ -1,5 +1,7 @@
 ---
 title: Hello World!
+tags:
+  - meta
 ---
 
 Without further ado, let me start with saying:

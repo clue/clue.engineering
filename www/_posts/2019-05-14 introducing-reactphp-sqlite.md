@@ -1,6 +1,13 @@
 ---
 title: Introducing async SQLite database for ReactPHP
 legacy_id: https://www.lueck.tv/2019/introducing-reactphp-sqlite
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - sqlite
+  - database
+  - process
 ---
 
 Today, I'm happy to announce the very first stable `v1.0.0` release of [clue/reactphp-sqlite](https://github.com/clue/reactphp-sqlite), the async [SQLite](https://www.sqlite.org/) database for [ReactPHP](https://reactphp.org/) 🎉

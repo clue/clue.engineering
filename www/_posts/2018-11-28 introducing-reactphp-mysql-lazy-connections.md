@@ -1,5 +1,11 @@
 ---
 title: Introducing lazy MySQL connections with ReactPHP
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - mysql
+  - database
 ---
 
 Today, we're very happy to announce the immediate availability of the next major beta release of [friends-of-reactphp/mysql](https://github.com/friends-of-reactphp/mysql), the async MySQL database client for [ReactPHP](https://reactphp.org/). 🎉

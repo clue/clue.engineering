@@ -1,5 +1,11 @@
 ---
 title: Introducing SOCKS proxy connector for ReactPHP
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - socks
+  - proxy
 ---
 
 Today, I'm happy to announce the `v1.0.0` release of [clue/reactphp-socks](https://github.com/clue/reactphp-socks) 🎉

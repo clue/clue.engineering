@@ -3,6 +3,7 @@ title: Christian Lück's Blog Posts
 layout: default
 use:
   - posts
+  - posts_tags
 ---
 <section id="posts">
     <div class="container">
@@ -20,6 +21,43 @@ use:
             <a href="./#projects">projects</a>. You may also find more on my
             <a href="https://twitter.com/another_clue">Twitter</a>.
         </p>
+
+<style scoped>
+/* show only tagged elements when URL includes tag, show all otherwise. Thanks to https://stackoverflow.com/a/38062486 */
+.tag-anchor:target ~ .tagged {
+    display: none;
+}
+{% for tag,posts in data.posts_tags %}
+#{{ tag }}:target ~ .tagged-{{ tag }} {
+    display: block;
+}
+{% endfor %}
+
+/* tag anchors are invisible, but attached to top of page to force scroll reset */
+.tag-anchor {
+    position: absolute;
+    top: 0;
+}
+
+/* hide all tag descriptions */
+.tag-anchor + *{
+    display: none;
+    padding: 10px;
+    background-color: #eefbff;
+    border: 1px solid #cbe1e8;
+    border-radius: 4px;
+}
+
+</style>
+
+{% for tag,posts in data.posts_tags %}
+<div class="tag-anchor" id="{{ tag }}"></div>
+<div class="tagged-{{ tag }}">
+    Showing all blog posts tagged #{{ tag }} ({{ posts|length }}). <br/>
+    <a href="blog" onclick="window.location.hash='';history.replaceState({}, document.title, window.location.pathname);return false;">Show all blog posts.</a>
+</div>
+{% endfor %}
+
 {% set year = 0 %}
 {% for post in data.posts %}
 {%     if post.date | date("Y") != year %}
@@ -28,9 +66,14 @@ use:
         <h2 id="{{ year }}"><a href="#{{ year }}"></a>{{ year }}</h2>
 {%     endif %}
 
-        <article>
+        <article class="tagged{% for tag in post.tags %} tagged-{{ tag }}{% endfor %}">
             <h4><a href=".{{ post.url | replace({'.html':''}) }}">{{ post.title }}</a></h4>
-            <time>{{ post.date | date("Y-m-d") }}</time>
+            <ul>
+                <li><time>{{ post.date | date("Y-m-d") }}</time></li>
+{%     for tag in post.tags %}
+                <li><a href="#{{ tag }}" title="Show only blog posts tagged #{{ tag }} ({{ data.posts_tags[tag]|length }})" rel="tag">#{{ tag }}</a></li>
+{%     endfor %}
+            </ul>
             <p>{{ post.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw }}…</p>
             <a href=".{{ post.url | replace({'.html':''}) }}"><em>Read more</em></a>
         </article>

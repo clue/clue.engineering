@@ -1,5 +1,11 @@
 ---
 title: Introducing async HTTP requests with ReactPHP
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - http
+  - concurrency
 ---
 
 Today, I'm happy to announce the `v2.5.0` release of [clue/reactphp-buzz](https://github.com/clue/reactphp-buzz) 🎉

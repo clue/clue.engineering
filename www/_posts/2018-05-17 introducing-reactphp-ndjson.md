@@ -1,5 +1,12 @@
 ---
 title: Introducing streaming newline-delimited JSON (NDJSON) with ReactPHP
+tags:
+  - introducing-reactphp
+  - reactphp
+  - release
+  - ndjson
+  - streaming
+  - rpc
 ---
 
 I'm happy to announce the very first stable release of [clue/reactphp-ndjson](https://github.com/clue/reactphp-ndjson) 🎉
