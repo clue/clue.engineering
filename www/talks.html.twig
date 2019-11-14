@@ -1,0 +1,134 @@
+---
+title: Christian Lück's Talks
+layout: default
+use:
+  - talks
+  - talks_tags
+---
+
+<section id="posts">
+    <div class="container">
+        <h1>
+            Past and upcoming conference and usergroup talks
+        </h1>
+        <p>
+            I'm a public speaker, I love pushing the limits and helping others building awesome things.
+            Here's a list of my past and upcoming conference and usergroup talks,
+            including links to each event with event information, slides download and video recordings when available.
+            If you like the things I like to talk about, you may also like
+            my <a href="blog">blog posts</a>.
+        </p>
+        <p>
+            See below if you would like to <a href="#invite">invite me</a>
+            to speak at a conference or usergroup near you.
+            Finally, make sure to spread the word and see you around!
+        </p>
+
+<style scoped>
+/* show only tagged elements when URL includes tag, show all otherwise. Thanks to https://stackoverflow.com/a/38062486 */
+.tag-anchor:target ~ .tagged {
+    display: none;
+}
+{% for tag,talks in data.talks_tags %}{% if not loop.first %}, {% endif%}#{{ tag }}:target ~ .tagged-{{ tag }}{% endfor %} {
+    display: block;
+}
+
+/* tag anchors are invisible, but attached to top of page to force scroll reset */
+.tag-anchor {
+    position: absolute;
+    top: 0;
+}
+
+/* hide all tag descriptions */
+.tag-anchor + *{
+    display: none;
+    padding: 10px;
+    background-color: #eefbff;
+    border: 1px solid #cbe1e8;
+    border-radius: 4px;
+}
+</style>
+
+{% for tag,talks in data.talks_tags %}
+<div class="tag-anchor" id="{{ tag }}"></div>
+<div class="tagged-{{ tag }}">
+    Showing all talks tagged #{{ tag }} ({{ talks|length }}). <br/>
+    <a href="talks" onclick="window.location.hash='';history.replaceState({}, document.title, window.location.pathname);return false;">Show all talks.</a>
+</div>
+{% endfor %}
+
+{% set year = 0 %}
+{% for talk in data.talks %}
+{%     if talk.date | date("Y") != year %}
+{%         set year = talk.date | date("Y") %}
+{%         set tags = [] %} {# filter all unique tags mentioned in this year #}
+{%         for talk in data.talks if talk.date | date("Y") == year %}
+{%             for tag in talk.tags if tag not in tags %}
+{%                 set tags = tags|merge([tag]) %}
+{%             endfor %}
+{%         endfor %}
+
+        <h2 id="{{ year }}" class="tagged tagged-{{ tags|join(" tagged-") }}"><a href="#{{ year }}"></a>{{ year }}</h2>
+{%     endif %}
+
+        <article class="tagged{% for tag in talk.tags %} tagged-{{ tag }}{% endfor %}">
+            <h4>{{ talk.title }}</h4>
+            <ul>
+                <li><time>{{ talk.date | date("Y-m-d") }}</time></li>
+{%     for tag in talk.tags %}
+                <li><a href="#{{ tag }}" title="Show only talks tagged #{{ tag }} ({{ data.talks_tags[tag]|length }})" rel="tag">#{{ tag }}</a></li>
+{%     endfor %}
+            </ul>
+            {{ talk.content|raw }}{# embed talk description, already escaped and wrapped in paragraph #}
+            <ul>
+{%     if talk.info or talk.info_dead %}
+                <li><a {% if talk.info %}href="{{ talk.info }}"{% else %}title="Dead link: {{ talk.info_dead }}"{% endif %}>Info</a></li>
+{%     endif %}
+{%     if talk.slides %}
+                <li class="slides"><a href="{{ talk.slides }}">Slides</a></li>
+{%     endif %}
+{%     if talk.recording %}
+                <li class="recording"><a href="{{ talk.recording }}">Recording</a></li>
+{%     endif %}
+{%     if talk.rating or talk.ratings %}
+                <li class="rating"><a {% if talk.rating %}href="{{ talk.rating }}"{% else %}title="No link available"{%endif%}>Rating{% if talk.ratings %} ({{ talk.ratings }}){% endif %}</a></li>
+{%     endif %}
+{%     if talk.location %}
+                <li class="location">{{ talk.location }}</li>
+{%     endif %}
+            </ul>
+        </article>
+{% endfor %}
+    </div>
+</section>
+
+<section id="invite">
+    <div class="container">
+        <h1>
+            <a href="#invite"></a>
+            Invite me to a conference or usergroup near you
+        </h1>
+        <p>
+            You like the things I like to talk about and would love to learn more about this?
+            As a first step, see the above list to check if I'm in your area any time soon, I love to meet in person and have a chat!
+            Many of these events are <a href="#usergroup" title="Show only talks tagged #usergroup ({{ data.talks_tags.usergroup|length }})">for free</a>,
+            so consider signing up and just say hello when we get a chance to meet.
+        </p>
+        <p>
+            If you're a conference or usergroup organizer and would like to have me at your event,
+            <a href="contact">let's get in touch</a>!
+            I love visiting new places and meeting new people and would love to speak at your event.
+            If you're a non-profit organization and you're hosting a free community event
+            that aligns with my values, I usually do not charge a speaker's fee.
+            If your event location is near Aachen, Germany, I may come over without charging travel expenses.
+            Otherwise, let's talk about who's covering train or flight ticket and accommodation.
+        </p>
+        <p>
+            You're not hosting an event, but would love to hear me speak near you?
+            Let's start with spreading the word, perhaps anybody in your area happens to be
+            interested in inviting me. Also, regularly check the list above
+            and follow me on <a href="https://twitter.com/another_clue">Twitter</a>,
+            so you don't miss any new event announcements.
+        </p>
+    </div>
+</section>
