@@ -1,0 +1,87 @@
+---
+title: Christian Lück's Talks
+layout: default
+use:
+  - talks
+---
+
+<section id="posts">
+    <div class="container">
+        <h1>
+            Past and upcoming conference and usergroup talks
+        </h1>
+        <p>
+            I'm a public speaker, I love pushing the limits and helping others building awesome things.
+            Here's a list of my past and upcoming conference and usergroup talks,
+            including links to each event with event information, slides download and video recordings when available.
+            If you like the things I like to talk about, you may also like
+            my <a href="blog">blog posts</a>.
+        </p>
+        <p>
+            See below if you would like to <a href="#invite">invite me</a>
+            to speak at a conference or usergroup near you.
+            Finally, make sure to spread the word and see you around!
+        </p>
+{% set year = 0 %}
+{% for talk in data.talks %}
+{%     if talk.date | date("Y") != year %}
+{%         set year = talk.date | date("Y") %}
+
+        <h2 id="{{ year }}"><a href="#{{ year }}"></a>{{ year }}</h2>
+{%     endif %}
+
+        <article>
+            <h4>{{ talk.title }}</h4>
+            <time>{{ talk.date | date("Y-m-d") }}</time>
+            {{ talk.content|raw }}{# embed talk description, already escaped and wrapped in paragraph #}
+            <ul>
+{%     if talk.info or talk.info_dead %}
+                <li><a {% if talk.info %}href="{{ talk.info }}"{% else %}title="Dead link: {{ talk.info_dead }}"{% endif %}>Info</a></li>
+{%     endif %}
+{%     if talk.slides %}
+                <li class="slides"><a href="{{ talk.slides }}">Slides</a></li>
+{%     endif %}
+{%     if talk.recording %}
+                <li class="recording"><a href="{{ talk.recording }}">Recording</a></li>
+{%     endif %}
+{%     if talk.rating or talk.ratings %}
+                <li class="rating"><a {% if talk.rating %}href="{{ talk.rating }}"{% else %}title="No link available"{%endif%}>Rating{% if talk.ratings %} ({{ talk.ratings }}){% endif %}</a></li>
+{%     endif %}
+{%     if talk.location %}
+                <li class="location">{{ talk.location }}</li>
+{%     endif %}
+            </ul>
+        </article>
+{% endfor %}
+    </div>
+</section>
+
+<section id="invite">
+    <div class="container">
+        <h1>
+            <a href="#invite"></a>
+            Invite me to a conference or usergroup near you
+        </h1>
+        <p>
+            You like the things I like to talk about and would love to learn more about this?
+            As a first step, see the above list to check if I'm in your area any time soon, I love to meet in person and have a chat!
+            Many of these events are for free, so consider signing up and just say hello when we get a chance to meet.
+        </p>
+        <p>
+            If you're a conference or usergroup organizer and would like to have me at your event,
+            <a href="contact">let's get in touch</a>!
+            I love visiting new places and meeting new people and would love to speak at your event.
+            If you're a non-profit organization and you're hosting a free community event
+            that aligns with my values, I usually do not charge a speaker's fee.
+            If your event location is near Aachen, Germany, I may come over without charging travel expenses.
+            Otherwise, let's talk about who's covering train or flight ticket and accommodation.
+        </p>
+        <p>
+            You're not hosting an event, but would love to hear me speak near you?
+            Let's start with spreading the word, perhaps anybody in your area happens to be
+            interested in inviting me. Also, regularly check the list above
+            and follow me on <a href="https://twitter.com/another_clue">Twitter</a>,
+            so you don't miss any new event announcements.
+        </p>
+    </div>
+</section>
