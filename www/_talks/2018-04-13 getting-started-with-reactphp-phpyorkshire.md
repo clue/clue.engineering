@@ -5,5 +5,10 @@ slides: https://speakerdeck.com/clue/getting-started-with-reactphp-pushing-real-
 rating: https://joind.in/event/php-yorkshire-2018/getting-started-with-reactphp--pushing-real-time-data-to-the-browser
 ratings: 5/5
 location: Yorkshire, UK
+tags:
+  - getting-started-with-reactphp
+  - reactphp
+  - conference
+  - workshop
 ---
 Hands-on workshop hosted by <a href="https://www.phpyorkshire.co.uk/">PHP Yorkshire (@phpyorkshire)</a>

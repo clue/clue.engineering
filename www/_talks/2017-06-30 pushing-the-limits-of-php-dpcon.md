@@ -6,5 +6,9 @@ recording: https://www.youtube.com/watch?v=fQxxm4vD8Ok
 rating: https://joind.in/event/dutch-php-conference-2017/pushing-the-limits-of-php-with-react-php---why-react-php-is-awesome-and-why-you-should-care
 ratings: 4/5
 location: Amsterdam, NL
+tags:
+  - pushing-the-limits-with-reactphp
+  - reactphp
+  - conference
 ---
 Conference talk hosted by <a href="https://www.phpconference.nl/">Dutch PHP conference (@dpcon)</a>

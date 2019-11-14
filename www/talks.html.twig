@@ -3,6 +3,7 @@ title: Christian Lück's Talks
 layout: default
 use:
   - talks
+  - talks_tags
 ---
 
 <section id="posts">
@@ -22,17 +23,62 @@ use:
             to speak at a conference or usergroup near you.
             Finally, make sure to spread the word and see you around!
         </p>
+
+<style scoped>
+/* show only tagged elements when URL includes tag, show all otherwise. Thanks to https://stackoverflow.com/a/38062486 */
+.tag-anchor:target ~ .tagged {
+    display: none;
+}
+{% for tag,talks in data.talks_tags %}{% if not loop.first %}, {% endif%}#{{ tag }}:target ~ .tagged-{{ tag }}{% endfor %} {
+    display: block;
+}
+
+/* tag anchors are invisible, but attached to top of page to force scroll reset */
+.tag-anchor {
+    position: absolute;
+    top: 0;
+}
+
+/* hide all tag descriptions */
+.tag-anchor + *{
+    display: none;
+    padding: 10px;
+    background-color: #eefbff;
+    border: 1px solid #cbe1e8;
+    border-radius: 4px;
+}
+</style>
+
+{% for tag,talks in data.talks_tags %}
+<div class="tag-anchor" id="{{ tag }}"></div>
+<div class="tagged-{{ tag }}">
+    Showing all talks tagged #{{ tag }} ({{ talks|length }}). <br/>
+    <a href="talks" onclick="window.location.hash='';history.replaceState({}, document.title, window.location.pathname);return false;">Show all talks.</a>
+</div>
+{% endfor %}
+
 {% set year = 0 %}
 {% for talk in data.talks %}
 {%     if talk.date | date("Y") != year %}
 {%         set year = talk.date | date("Y") %}
+{%         set tags = [] %} {# filter all unique tags mentioned in this year #}
+{%         for talk in data.talks if talk.date | date("Y") == year %}
+{%             for tag in talk.tags if tag not in tags %}
+{%                 set tags = tags|merge([tag]) %}
+{%             endfor %}
+{%         endfor %}
 
-        <h2 id="{{ year }}"><a href="#{{ year }}"></a>{{ year }}</h2>
+        <h2 id="{{ year }}" class="tagged tagged-{{ tags|join(" tagged-") }}"><a href="#{{ year }}"></a>{{ year }}</h2>
 {%     endif %}
 
-        <article>
+        <article class="tagged{% for tag in talk.tags %} tagged-{{ tag }}{% endfor %}">
             <h4>{{ talk.title }}</h4>
-            <time>{{ talk.date | date("Y-m-d") }}</time>
+            <ul>
+                <li><time>{{ talk.date | date("Y-m-d") }}</time></li>
+{%     for tag in talk.tags %}
+                <li><a href="#{{ tag }}" title="Show only talks tagged #{{ tag }} ({{ data.talks_tags[tag]|length }})" rel="tag">#{{ tag }}</a></li>
+{%     endfor %}
+            </ul>
             {{ talk.content|raw }}{# embed talk description, already escaped and wrapped in paragraph #}
             <ul>
 {%     if talk.info or talk.info_dead %}
@@ -65,7 +111,8 @@ use:
         <p>
             You like the things I like to talk about and would love to learn more about this?
             As a first step, see the above list to check if I'm in your area any time soon, I love to meet in person and have a chat!
-            Many of these events are for free, so consider signing up and just say hello when we get a chance to meet.
+            Many of these events are <a href="#usergroup" title="Show only talks tagged #usergroup ({{ data.talks_tags.usergroup|length }})">for free</a>,
+            so consider signing up and just say hello when we get a chance to meet.
         </p>
         <p>
             If you're a conference or usergroup organizer and would like to have me at your event,

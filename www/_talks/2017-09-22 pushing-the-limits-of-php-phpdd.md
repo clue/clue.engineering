@@ -6,5 +6,9 @@ recording: https://www.youtube.com/watch?v=L9W8aqWgL3M
 rating: https://joind.in/event/php-developer-day-2017/pushing-the-limits-with-reactphp
 ratings: 5/5
 location: Dresden, DE
+tags:
+  - pushing-the-limits-with-reactphp
+  - reactphp
+  - conference
 ---
 Conference talk hosted by <a title="Dead link">PHP Dev Days (@phpdd)</a>

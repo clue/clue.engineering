@@ -6,5 +6,9 @@ recording: https://www.youtube.com/watch?v=tRxnwK_oJu0
 rating: https://joind.in/event/scotlandphp-2017/pushing-the-limits-of-php-with-reactphp
 ratings: 5/5
 location: Edinburgh, UK
+tags:
+  - pushing-the-limits-with-reactphp
+  - reactphp
+  - conference
 ---
 Conference talk hosted by <a href="https://conference.scotlandphp.co.uk/">ScotlandPHP (@scotlandphp)</a>

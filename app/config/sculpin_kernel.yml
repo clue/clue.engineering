@@ -9,3 +9,5 @@ sculpin_content_types:
     talks:
         permalink: .ignoreme.html # (over)write all talks to dummy file
         layout: default # use simple dummy template
+        taxonomies:
+            - tags
