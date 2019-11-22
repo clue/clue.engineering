@@ -54,7 +54,8 @@ nav {
     z-index: 2;
 }
 nav ul {
-    margin: 0;
+    margin: 0 auto;
+    max-width: 700px;
     padding: 10px;
     text-align: right;
 }
@@ -80,7 +81,7 @@ section {
     overflow: auto;
 }
 section .container {
-    width: 600px;
+    max-width: 700px;
     margin: 50px auto;
 }
 
@@ -169,7 +170,7 @@ section#about {
 }
 section#about .container{
     margin: 20px 25px;
-    width: auto;
+    max-width: none;
 }
 section#about h3{
     color: #648797;
@@ -245,8 +246,8 @@ section#posts article > p + ul > li.location:before {
 }
 
 section#post h1 {
-    margin-left: -40px;
-    margin-right: -40px;
+    margin-left: -10px;
+    margin-right: -10px;
     font-size: 2em;
     text-align: center;
     letter-spacing: 2px;
@@ -271,8 +272,8 @@ section#post pre {
     padding: 1em;
     border-left: 8px solid #f1f1f1;
     overflow: auto;
-    margin-left: -50px;
-    margin-right: -50px;
+    margin-left: -20px;
+    margin-right: -20px;
 }
 section#post p > code {
     background-color: #f1f1f1;
@@ -375,14 +376,12 @@ section#thanks div.container h2 {
 }
 
 /* section container fills complete width minus margin on small devices */
-@media (max-width: 720px) {
+@media (max-width: 760px) {
     section#main {
         background-attachment: scroll; /* iOS doesn't like fixed attachment, scroll is *good enough*… */
     }
     section .container {
-        width: auto;
-        max-width: 600px;
-        margin: 50px 50px;
+        margin: 50px 20px;
     }
 }
 
