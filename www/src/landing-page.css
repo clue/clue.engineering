@@ -46,7 +46,7 @@ svg {
 nav {
     height: auto;
     background: #0b3e51 no-repeat center center;
-    background-image: linear-gradient(to right, #10394b 0%, #113a4e 50%, #0c273b 75%, #060d1b 100%);
+    background-image: linear-gradient(to right, #091f29 0%, #113a4e 50%, #0c273b 75%, #060d1b 100%)
 }
 #home nav {
     height: 0;
@@ -63,16 +63,27 @@ nav li {
     display: inline-block;
 }
 nav li a {
+    font-size: .9em;
     text-decoration: none;
-    color: #9aa9b5;
-    padding: 0 .3em;
+    color: #b5c6d5;
+    padding: 4px 4px;
 }
-nav li a:hover, nav li:last-child a:hover {
-    border-bottom: 4px solid #bfcfd794;
-    transition: border-bottom .06s ease-in;
+nav li a:hover {
+    color: #5899C8;
+}
+nav li:first-child {
+    float: left;
+}
+nav li:first-child a {
+    color: #fff;
+    margin-left: -3px;
+}
+#home nav li:first-child {
+    display: none;
 }
 nav li:last-child a {
-    border-bottom: 4px solid #6296ae94;
+    border-bottom: 4px solid #3072A2;
+    padding-bottom: 0px;
 }
 
 /* default section layout */
