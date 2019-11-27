@@ -40,7 +40,7 @@ Once this is done, you may consider adding a simple build script so that buildin
 
 ## Looking forward
 
-One of the most exciting features of phar-composer is how it's incredibly boring: It just works. And in fact, it hasn't changed much in 5+ years. It takes your project directory and turns it into a single phar file that can be distributed easily.
+One of the most exciting features of phar-composer is how it's incredibly boring: It just works. And in fact, it hasn't changed much in 6+ years. It takes your project directory and turns it into a single phar file that can be distributed easily.
 
 In the future, I'm planning to bring in some features to provide better, more opinionated defaults out-of-the-box.
 For instance, excluding any `dev` dependencies currently requires an explicit build script to run a `composer install --no-dev` in a temporary project directory.
@@ -48,3 +48,5 @@ Among other changes, we're planning to make this the default.
 
 If you want to learn more about the project and see how it could be useful for your project, check out its [project homepage](https://github.com/clue/phar-composer).
 Its documentation covers all the details and if you still have any questions or remarks, make sure to let me know: Send a tweet or comment this blog post. Cheers 🍻
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Released v1.1.0 of clue/phar-composer: simple phar (php archive) creation for every PHP project managed via <a href="https://twitter.com/hashtag/ComposerPHP?src=hash&amp;ref_src=twsrc%5Etfw">#ComposerPHP</a>. Significant performance improvements, <a href="https://twitter.com/symfony?ref_src=twsrc%5Etfw">@symfony</a> 5 support and more 🐘📦📈 <a href="https://twitter.com/hashtag/php?src=hash&amp;ref_src=twsrc%5Etfw">#php</a> <a href="https://twitter.com/hashtag/archive?src=hash&amp;ref_src=twsrc%5Etfw">#archive</a> <a href="https://twitter.com/hashtag/bundle?src=hash&amp;ref_src=twsrc%5Etfw">#bundle</a> <a href="https://t.co/aIhffnOfAx">https://t.co/aIhffnOfAx</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/1199727438718259200?ref_src=twsrc%5Etfw">November 27, 2019</a></blockquote>
