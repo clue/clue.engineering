@@ -45,40 +45,41 @@ svg {
 
 nav {
     height: auto;
-    background: #0b3e51 no-repeat center center;
-    background-image: linear-gradient(to right, #091f29 0%, #113a4e 50%, #0c273b 75%, #060d1b 100%)
+    background-color: #4C9ED9;
 }
 #home nav {
     height: 0;
     position: relative;
     z-index: 2;
 }
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+}
 nav ul {
     margin: 0 auto;
     max-width: 700px;
     padding: 10px;
-    text-align: right;
+
 }
 nav li {
-    display: inline-block;
+    list-style: none;
 }
-nav li a {
+nav a {
     font-size: .9em;
     text-decoration: none;
-    color: #b5c6d5;
+    color: #ffffff;
     padding: 4px 4px;
 }
-nav li a:hover {
-    color: #5899C8;
+nav a:hover {
+    color: #F7DD72;
 }
-nav li:first-child {
-    float: left;
+.logo {
+    flex: 1;
 }
-nav li:first-child a {
-    color: #fff;
-    margin-left: -3px;
-}
-#home nav li:first-child {
+
+#home .logo {
     display: none;
 }
 nav li:last-child a {
