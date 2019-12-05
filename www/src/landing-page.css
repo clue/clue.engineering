@@ -27,6 +27,11 @@ h2 {
 #home h2 {
     border: 0;
 }
+.centering {
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* show empty link anchors with "#" only when hovering parent heading */
 a:empty {
@@ -64,9 +69,6 @@ nav {
     justify-content: space-between;
     align-items: center;
     
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
     padding: .75rem 0;
 
 }
