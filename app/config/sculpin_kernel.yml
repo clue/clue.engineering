@@ -1,4 +1,6 @@
 sculpin:
+    source_dir: www/
+    output_dir: build/
     permalink: none # no pretty permalink (keep talks.html instead of talks/index.html)
 
 sculpin_content_types:

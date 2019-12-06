@@ -11,7 +11,7 @@ $ composer install
 Build website:
 
 ```bash
-$ vendor/bin/sculpin generate --source-dir=www --output-dir=build
+$ vendor/bin/sculpin generate
 ```
 
 Then deploy `build/` behind your favorite webserver (Apache + PHP-FPM etc.).
