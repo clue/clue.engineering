@@ -9,6 +9,8 @@ body, html {
     color: #64737d;
     font-size: 20px;
     line-height: 1.5;
+    
+    scroll-behavior: smooth;
 }
 a {
     color: #4C9ED9;
@@ -28,7 +30,8 @@ h2 {
     border: 0;
 }
 .centering {
-    max-width: 70ch;
+    max-width: 90vw;
+    width: 70ch;
     margin-left: auto;
     margin-right: auto;
 }
@@ -81,16 +84,16 @@ nav li {
     list-style: none;
     margin-right: .5rem;
 }
-nav li:last-child {
+.site-header nav li:last-child {
     margin-right: 0;
 }
-nav a {
+.site-header nav a {
     font-size: .9rem;
     text-decoration: none;
     color: #ffffff;
     padding: 4px 4px;
 }
-nav a:hover {
+.site-header nav a:hover {
     color: #F7DD72;
 }
 .logo {
@@ -100,13 +103,51 @@ nav a:hover {
 #home .logo {
     display: none;
 }
-nav li:last-child a {
+.site-header nav li:last-child a {
     border-bottom: 4px solid #3072A2;
     padding-bottom: 0px;
 }
 
+.toc {
+    justify-content: flex-start;
+    transition: .1s ease-out;
+}
+.toc a {
+    transition: .1s ease-out;
+}
+.toc.stick {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(233, 114, 76, .95);
+    z-index: 100;
+    box-shadow: 0 0 2px rgba(50, 50, 50, .7);
+}
+.toc.stick a {
+    color: white;
+}
+.toc ul {
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.toc li {
+    font-size: .9rem;
+}
+.toc a {
+    display: block; 
+    padding: .35em 0;   
+}
+.first-stripe {
+    padding: 0;
+}
+.intro p {
+    margin-bottom: 0;
+}
+
 @media (max-width: 640px) {
-    nav {
+    .site-header nav {
         flex-direction: column;
     }
     .logo {
@@ -114,9 +155,25 @@ nav li:last-child a {
         flex: 1;
         margin-bottom: .5rem;
     }
-    nav ul {
+    .site-header nav ul {
         justify-content: center;
         flex-wrap: wrap;
+    }
+    .toc ul {
+        display: block;
+        justify-content: center;
+        font-size: .85rem;
+    }
+    .toc.stick {
+        position: static;
+        box-shadow: none;
+        background-color: transparent;
+    }
+    .toc.stick a {
+        color: #4C9ED9;
+    }
+    .intro {
+        margin-bottom: 0 !important;
     }
 }
 
@@ -124,6 +181,8 @@ nav li:last-child a {
 section {
     width: 100%;
     overflow: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 section .container {
     max-width: 700px;
