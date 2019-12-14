@@ -30,13 +30,8 @@ h2 {
     border: 0;
 }
 .centering {
-<<<<<<< HEAD
-    max-width: 90vw;
-    width: 70ch;
-=======
     width: 90vw;
     max-width: 70ch;
->>>>>>> price-grid
     margin-left: auto;
     margin-right: auto;
 }
