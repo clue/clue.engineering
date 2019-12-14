@@ -30,8 +30,13 @@ h2 {
     border: 0;
 }
 .centering {
+<<<<<<< HEAD
     max-width: 90vw;
     width: 70ch;
+=======
+    width: 90vw;
+    max-width: 70ch;
+>>>>>>> price-grid
     margin-left: auto;
     margin-right: auto;
 }
@@ -539,16 +544,18 @@ ul.pricing {
     margin: 10px -15px;
     overflow: auto;
     white-space: nowrap;
+    display: flex;
 }
 ul.pricing > li {
-    display: inline-block;
-    width: 150px;
+    min-width: 150px;
     margin-right: 10px;
     margin-bottom: 10px;
     vertical-align: top;
+    white-space: normal;
+}
+ul.pricing > li + li {
     border-left: 4px solid #eee;
     padding-left: 10px;
-    white-space: normal; 
 }
 ul.pricing > li > div > strong > span {
     font-size: 2em;
