@@ -393,8 +393,8 @@ section#open-source h2::before, section#sponsor h2::before, section#consulting h
     display: block;
     margin: 0 auto;
 
-    /* filter black to current text color #64737d: thank you! https://stackoverflow.com/a/43960991 */
-    filter: invert(42%) sepia(26%) saturate(257%) hue-rotate(161deg) brightness(97%) contrast(83%);
+    /* filter black to current link color #4c9ed9: thank you! https://stackoverflow.com/a/43960991 + less saturation and drop shadow */
+    filter: invert(59%) sepia(60%) saturate(746%) hue-rotate(178deg) brightness(89%) contrast(90%) saturate(40%) drop-shadow(8px 4px 4px #4442);
 
     /* thank you! https://iconmonstr.com/code-2-svg/ */
     content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.935v2.131l-8 3.947v-2.23l5.64-2.783-5.64-2.79v-2.223l8 3.948zm-16 3.848l-5.64-2.783 5.64-2.79v-2.223l-8 3.948v2.131l8 3.947v-2.23zm7.047-10.783h-2.078l-4.011 16h2.073l4.016-16z"/></svg>');
@@ -416,7 +416,7 @@ section#open-source > div > ul, section#sponsor > div > ul, section#consulting >
     border-radius: 4px;
     border-top: 5px solid #799ed9;
 }
-section#open-source > div > ul > li:before, section#sponsor > div > ul > li:before, section#consulting > div > ul > li:before {
+section#open-source > div > ul > li::before, section#sponsor > div > ul > li::before, section#consulting > div > ul > li::before {
     content: "»";
     color: #719ed9;
     font-weight: bold;
@@ -434,11 +434,19 @@ section#open-source li:last-child, section#sponsor li:last-child, section#consul
 }
 section#sponsor > div > ul > li em {
     text-transform: uppercase;
-    font-size: .6em;
+    font-size: .4em;
+    vertical-align: super;
     display: inline-block;
     background-color: #eee;
     padding: 0 4px;
     border-radius: 4px;
+}
+section#consulting img {
+    max-width: 45%;
+    float: right;
+    border-radius: 8px;
+    margin-left: 10px;
+    box-shadow: 0 0 75px -10px rgba(0, 9, 27, .2);
 }
 ul.pricing {
     list-style: none;
@@ -449,7 +457,7 @@ ul.pricing {
 }
 ul.pricing > li {
     display: inline-block;
-    width: 150px;
+    width: 135px;
     margin-right: 10px;
     margin-bottom: 10px;
     vertical-align: top;
@@ -459,6 +467,12 @@ ul.pricing > li {
 }
 ul.pricing > li > div > strong > span {
     font-size: 2em;
+}
+section#consulting ul.pricing > li:last-child {
+    width: 200px;
+}
+section#consulting ul.pricing > li:last-child ul {
+    padding: 0 0 0 20px;
 }
 
 /* reduce navigation item size on smaller screens */
