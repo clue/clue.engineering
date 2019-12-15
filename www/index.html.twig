@@ -82,7 +82,7 @@ use:
             </p>
 {% for post in data.posts[:3] %}
             <article>
-                <h4><a href=".{{ post.url | replace({'.html':''}) }}">{{ post.title }}</a></h4>
+                <h4><a href="{{ post.external_url | default("." ~ (post.url | replace({'.html':''}))) }}">{{ post.title }}</a></h4>
                 <ul>
                     <li><time>{{ post.date | date("Y-m-d") }}</time></li>
 {%     for tag in post.tags %}
@@ -90,7 +90,7 @@ use:
 {%     endfor %}
                 </ul>
                 <p>{{ post.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw }}…</p>
-                <a href=".{{ post.url | replace({'.html':''}) }}"><em>Read more</em></a>
+                <a href="{{ post.external_url | default("." ~ (post.url | replace({'.html':''}))) }}"><em>Read more</em></a>
             </article>
 {% endfor %}
             <p>
