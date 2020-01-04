@@ -11,7 +11,7 @@ if (!is_string($email) || !is_string($message) || preg_match('/[\x00-\x08\x0b\x0
 
 $subject = 'Contact Christian Lück';
 $id = '<' . gmdate('YmdHis') . '.' . mt_rand() . '@clue.engineering>';
-$ret = mail('hello@clue.engineering', '=?UTF-8?B?' . base64_encode($subject) . '?=', $message, "From: hello@clue.engineering\r\nReply-To: $email\r\nMessage-ID: $id\r\nContent-Type: text/plain; charset=utf-8");
+$ret = mail('hello@clue.engineering', '=?UTF-8?B?' . base64_encode($subject) . '?=', $message, "From: $email\r\nSender: hello@clue.engineering\r\nMessage-ID: $id\r\nContent-Type: text/plain; charset=utf-8");
 assert($ret);
 
 $message = 'Thanks for reaching out!
