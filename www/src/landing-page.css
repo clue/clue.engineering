@@ -356,14 +356,26 @@ section.contact textarea {
     max-height: 20em;
     resize: vertical;
 }
-section.contact button {
+section.contact button, a.button {
     background-color: #4c9ed9;
     color: #fff;
     border: 0;
-    padding: 4px 10px;
+    padding: 6px 16px;
     border-radius: 4px;
     font-size: inherit;
+    box-shadow: 0 0 20px 0px rgba(0, 9, 27, .2);
+
+    margin: 2px 0;
+    display: inline-block;
     cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+}
+a.button[href="https://github.com/sponsors/clue"] {
+    background-color: #d97a64; /* red-ish, similar to GitHub sponsors */
+}
+a.button[href="https://github.com/clue"] {
+    background-color: #4a5d6a; /* gray-ish, slightly darker than GitHub */
 }
 
 section.overlay {
@@ -422,6 +434,9 @@ section#open-source > div > ul, section#sponsor > div > ul, section#consulting >
     border-radius: 4px;
     border-top: 5px solid #799ed9;
 }
+section#open-source > div > ul {
+    border-color: #64737d;
+}
 section#open-source > div > ul > li::before, section#sponsor > div > ul > li::before, section#consulting > div > ul > li::before {
     content: "»";
     color: #719ed9;
@@ -429,6 +444,12 @@ section#open-source > div > ul > li::before, section#sponsor > div > ul > li::be
     margin-left: -20px;
     width: 20px;
     display: inline-block;
+}
+section#open-source > div > ul > li:last-child, section#sponsor > div > ul > li:last-child, section#consulting > div > ul > li:last-child {
+    margin-top: .5em;
+}
+section#open-source > div > ul > li:last-child::before, section#sponsor > div > ul > li:last-child::before, section#consulting > div > ul > li:last-child::before {
+    content: " ";
 }
 section#open-source > div > ul > li, section#sponsor > div > ul > li, section#consulting > div > ul > li {
     border-bottom: 1px solid #f6f8f9;
