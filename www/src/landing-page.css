@@ -18,6 +18,9 @@ h1,h2,h3,h4 {
     line-height: 1.25;
     color: #29586a;
 }
+h2 small {
+    font-size: .5em;
+}
 h2 {
     border-bottom: 1px solid aliceblue;
 }

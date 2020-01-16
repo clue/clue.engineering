@@ -26,7 +26,7 @@ use:
 
 <style scoped>
 /* show only tagged elements when URL includes tag, show all otherwise. Thanks to https://stackoverflow.com/a/38062486 */
-.tag-anchor:target ~ .tagged {
+.tag-anchor:target ~ .tagged, .tag-anchor:target ~ .tagged small {
     display: none;
 }
 {% for tag,talks in data.talks_tags %}{% if not loop.first %}, {% endif%}#{{ tag }}:target ~ .tagged-{{ tag }}{% endfor %} {
@@ -61,14 +61,16 @@ use:
 {% for talk in data.talks %}
 {%     if talk.date | date("Y") != year %}
 {%         set year = talk.date | date("Y") %}
+{%         set talks = 0 %} {# count number of talks in this year #}
 {%         set tags = [] %} {# filter all unique tags mentioned in this year #}
 {%         for talk in data.talks if talk.date | date("Y") == year %}
+{%             set talks = talks + 1 %}
 {%             for tag in talk.tags if tag not in tags %}
 {%                 set tags = tags|merge([tag]) %}
 {%             endfor %}
 {%         endfor %}
 
-        <h2 id="{{ year }}" class="tagged tagged-{{ tags|join(" tagged-") }}"><a href="#{{ year }}"></a>{{ year }}</h2>
+        <h2 id="{{ year }}" class="tagged tagged-{{ tags|join(" tagged-") }}"><a href="#{{ year }}"></a>{{ year }} <small>({{ talks }} {{ talks == 1 ? "talk" : "talks" }})</small></h2>
 {%     endif %}
 
         <article class="tagged{% for tag in talk.tags %} tagged-{{ tag }}{% endfor %}">
