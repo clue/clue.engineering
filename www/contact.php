@@ -9,6 +9,12 @@ if (!is_string($email) || !is_string($message) || preg_match('/[\x00-\x08\x0b\x0
     exit(1);
 }
 
+if (!preg_match('/clue|christian|lueck|lück/i', $message) && preg_match('/http(?:s?):\/\//i', $message)) {
+    header(' ', true, 403);
+    echo 'We\'re sorry, but our spam detection triggered on your message text. To avoid this, please go back and include my name in your message or send an email instead' . PHP_EOL;
+    exit(1);
+}
+
 $subject = 'Contact Christian Lück';
 $id = '<' . gmdate('YmdHis') . '.' . mt_rand() . '@clue.engineering>';
 $ret = mail('hello@clue.engineering', '=?UTF-8?B?' . base64_encode($subject) . '?=', $message, "From: $email\r\nSender: hello@clue.engineering\r\nMessage-ID: $id\r\nContent-Type: text/plain; charset=utf-8");

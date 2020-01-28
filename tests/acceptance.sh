@@ -30,6 +30,9 @@ out=$(curl -v $base/2018/hello-world/ 2>&1) &&  match -i "Location: $redir/2018/
 
 out=$(curl -v $base/contact 2>&1) &&            match "HTTP/.* 200"
 out=$(curl -v $base/contact -X POST 2>&1) &&    match "HTTP/.* 400"
+out=$(curl -v $base/contact --data email=foo@example.com --data message="hello http://example.com" 2>&1) &&  match "HTTP/.* 403"
+out=$(curl -v $base/contact --data email=foo@example.com --data message="hello https://example.com" 2>&1) && match "HTTP/.* 403"
+# out=$(curl -v $base/contact --data email=foo@example.com --data message="For Christian: http://example.com" 2>&1) && match "HTTP/.* 302"
 out=$(curl -v $base/contact.html 2>&1) &&       match -i "Location: $redir/contact"
 out=$(curl -v $base/contact.php 2>&1) &&        match -i "Location: $redir/contact"
 out=$(curl -v $base/contact/ 2>&1) &&           match -i "Location: $redir/contact"
