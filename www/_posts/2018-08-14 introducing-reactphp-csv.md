@@ -6,6 +6,7 @@ tags:
   - release
   - csv
   - streaming
+  - concurrency
 ---
 
 I'm happy to announce the very first stable release of [clue/reactphp-csv](https://github.com/clue/reactphp-csv) 🎉
@@ -58,7 +59,7 @@ Bob;Turn 22,5 degree clockwise
 
 CSV files are often limited to only ASCII characters for best interoperability. However, many legacy CSV files often use ISO 8859-1 encoding or some other variant. Newer CSV files are usually best saved as UTF-8 and may thus also contain special characters from the Unicode range. The text-encoding is usually application-dependant, so your best bet would be to convert to (or assume) UTF-8 consistently.
 
-Despite its shortcomings, CSV is widely used and this is unlikely to change any time soon. In particular, CSV is a very common export format for a lot of tools to interface with spreadsheet processors (such as Exel, Calc etc.). This means that CSV is often used for historical reasons and using CSV to store structured application data is usually not a good idea nowadays – but exporting to CSV for known applications continues to be a very reasonable approach.
+Despite its shortcomings, CSV is widely used and this is unlikely to change any time soon. In particular, CSV is a very common export format for a lot of tools to interface with spreadsheet processors (such as Excel, Calc etc.). This means that CSV is often used for historical reasons and using CSV to store structured application data is usually not a good idea nowadays – but exporting to CSV for known applications continues to be a very reasonable approach.
 
 ## CSV vs. NDJSON
 
@@ -71,11 +72,11 @@ As an alternative, if you want to process structured data in a more modern JSON-
 
 If you understand JSON and you're now looking at this newline-delimited JSON for the first time, you should already know everything you need to know to understand NDJSON: As the name implies, this format essentially consists of individual lines where each individual line is any valid JSON text and each line is delimited with a newline character.
 
-While NDJSON helps avoiding some of CVS's shortcomings, it is still a (relatively) young format while CSV files have been used in production systems for decades. This means that if you want to interface with an existing system, CSV is more likely to be supported as is in fact often the *lowest common denominator* for many interactions, even in today's systems. The following sections thus assume CSV as the format of choice, but otherwise this can equally be applied to NDJSON or other structured formats. If you want to learn more about NDJSON, you may want to check out one of the [previous blog posts](https://clue.engineering/2018/introducing-ndjson-reactphp).
+While NDJSON helps avoiding some of CVS's shortcomings, it is still a (relatively) young format while CSV files have been used in production systems for decades. This means that if you want to interface with an existing system, CSV is more likely to be supported as is in fact often the *lowest common denominator* for many interactions, even in today's systems. The following sections thus assume CSV as the format of choice, but otherwise this can equally be applied to NDJSON or other structured formats. If you want to learn more about NDJSON, you may want to check out one of the [previous blog posts](https://clue.engineering/2018/introducing-reactphp-ndjson).
 
 ## Parsing CSV with PHP
 
-Now that we have an idea of what CSV looks like, let's look into how we can process our `users.csv` file in PHP. Fortunately, PHP provides native CSV support through the built-in [`fgetcsv()`](http://php.net/fgetcsv) and [`str_getcsv()`](http://php.net/str_getcsv) functions. This makes parsing CSV files somewhat trivial in PHP:
+Now that we have an idea of what CSV looks like, let's look into how we can process our `users.csv` file in PHP. Fortunately, PHP provides native CSV support through the built-in [`fgetcsv()`](https://www.php.net/manual/en/function.fgetcsv.php) and [`str_getcsv()`](https://www.php.net/manual/en/function.str-getcsv.php) functions. This makes parsing CSV files somewhat trivial in PHP:
 
 ```php
 $stream = fopen('users.csv', 'r');

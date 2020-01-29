@@ -6,5 +6,6 @@ tags:
   - pushing-the-limits-with-reactphp
   - reactphp
   - conference
+  - workshop
 ---
-Conference talk + spontanious hands-on workshop hosted by <a href="https://php.ruhr/">PHP.RUHR (@phpruhr)</a>
+Conference talk + spontaneous hands-on workshop hosted by <a href="https://php.ruhr/">PHP.RUHR (@phpruhr)</a>

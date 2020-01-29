@@ -22,7 +22,7 @@ In case you haven't already seen this talk, here's the latest teaser description
 
 As you can see, the talk intentionally has less focus on describing *how* things work, but a rather strong focus on getting a certain point across: PHP is a very powerful and useful tool even for todays requirements and todays projects! PHP may not be perfect, but it gets the job done for a large number of use cases – and probably for way more use cases than you may have thought at first. The landscape that PHP is used in has changed significantly in the last ~20 years or so – and so has PHP.
 
-If this sounds interesting to you (maybe because you feel that you've somehow reached PHP limits) or if you feel that I'm completely [wrong](https://xkcd.com/386/) (maybe because you still think PHP is one huge pile of [`U+1F4A9`](http://graphemica.com/%F0%9F%92%A9)), I either *encourage* or *challenge* you to check out my talk below.
+If this sounds interesting to you (maybe because you feel that you've somehow reached PHP limits) or if you feel that I'm completely [wrong](https://xkcd.com/386/) (maybe because you still think PHP is one huge pile of [`U+1F4A9`](https://graphemica.com/%F0%9F%92%A9)), I either *encourage* or *challenge* you to check out my talk below.
 
 ## Background
 

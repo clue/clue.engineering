@@ -115,7 +115,7 @@ Transfer-Encoding: chunked
 …
 ```
 
-If you want to learn more about NDJSON, you may want to check out one of the [previous blog posts](https://clue.engineering/2018/introducing-ndjson-reactphp). Similarly, you can also use [streaming CSV output](https://clue.engineering/2018/introducing-reactphp-csv) or pretty much any other format you prefer.
+If you want to learn more about NDJSON, you may want to check out one of the [previous blog posts](https://clue.engineering/2018/introducing-reactphp-ndjson). Similarly, you can also use [streaming CSV output](https://clue.engineering/2018/introducing-reactphp-csv) or pretty much any other format you prefer.
 
 ## Looking forward
 

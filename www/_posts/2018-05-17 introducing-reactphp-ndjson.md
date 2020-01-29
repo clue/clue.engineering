@@ -66,7 +66,7 @@ Despite its shortcomings CSV is widely used and this is unlikely to change any t
 
 ### NDJSON vs. JSON text sequences
 
-A format somewhat similar to NDJSON is "JSON text sequences" as defined in [RFC 7464](https://tools.ietf.org/html/rfc7464). Among others, this is also used for "[GeoJSON](http://geojson.org/) Text Sequences" as defined in [RFC 8142](https://tools.ietf.org/html/rfc8142). The format differs mostly in that it uses the binary `RS` (*record separator*) binary ASCII/C0 code `\x1E` as a start indicator before each record.
+A format somewhat similar to NDJSON is "JSON text sequences" as defined in [RFC 7464](https://tools.ietf.org/html/rfc7464). Among others, this is also used for "[GeoJSON](https://geojson.org/) Text Sequences" as defined in [RFC 8142](https://tools.ietf.org/html/rfc8142). The format differs mostly in that it uses the binary `RS` (*record separator*) binary ASCII/C0 code `\x1E` as a start indicator before each record.
 
 The same example expressed as a JSON-sequence file could look like this, let's call this `users.json-seq`: 
 

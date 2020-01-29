@@ -17,7 +17,7 @@ Now that v1.0.0 has been tagged and released today, let's look into why streamin
 
 ## Concurrency with ReactPHP
 
-In one of the previous posts, we've looked into [doing many (but not too many) things concurrently with ReactPHP](https://clue.engineering/2018/introducing-reactphp-mini-queue). If you're new to the concept of concurrently processing multipe things at once with ReactPHP, go check out that post, I'll wait.
+In one of the previous posts, we've looked into [doing many (but not too many) things concurrently with ReactPHP](https://clue.engineering/2018/introducing-reactphp-mq). If you're new to the concept of concurrently processing multipe things at once with ReactPHP, go check out that post, I'll wait.
 
 The gist of this previous post is that [ReactPHP](https://reactphp.org/) allows you to do multiple things concurrently. For instance, if you want to process a list of 100 (RESTful) HTTP API requests, you no longer have to wait for them to be completed sequentially, but can start multiple operations at once. By using [clue/reactphp-mq](https://github.com/clue/reactphp-mq), you can control this process to use for example 10 requests concurrently and thus make this process around 10 times faster.
 
@@ -40,7 +40,7 @@ Let's look at how this list of user objects could look like, for example, let's 
 …
 ```
 
-This example uses the NDJSON format to store a list of user objects in a file, but you may use any streaming format you prefer. If you want to learn more about NDJSON and how this compares to CSV and other formats, see also the previous post [introducing streaming newline-delimited JSON (NDJSON)](https://clue.engineering/2018/introducing-ndjson-reactphp).
+This example uses the NDJSON format to store a list of user objects in a file, but you may use any streaming format you prefer. If you want to learn more about NDJSON and how this compares to CSV and other formats, see also the previous post [introducing streaming newline-delimited JSON (NDJSON)](https://clue.engineering/2018/introducing-reactphp-ndjson).
 
 To recap, [ReactPHP](https://reactphp.org) is a low-level library for event-driven programming in PHP. In a nutshell, it allows you to run multiple I/O operations concurrently and "react" to incoming events. Applying this to our above example, this means that we can use it to process our NDJSON file as a stream we can read from and then "react" to each record. For this to work, we'll install the streaming NDJSON parser [clue/ndjson-reactphp](https://github.com/clue/reactphp-ndjson) like this:
 
@@ -180,7 +180,7 @@ In our example, we assume that the `Transformer` should send an HTTP request. Bu
 
 Stream processing is a really powerful approach when it comes to processing a large number of records and by now I hope I could show you how concurrently processing streams with the help of Flux is a really powerful addition to this toolset. Managing flux is a critical aspect of many async applications. Using this project, you can easily control the concurrency limit and thus process streams significantly faster than processing each operation sequentially.
 
-In one of the previous posts, we've looked into using an in-memory queue to [do many (but not too many) things concurrently with ReactPHP](https://clue.engineering/2018/introducing-reactphp-mini-queue). Arguably, this may be simpler to integrate if you want to handle a few dozens or hundreds of operations. However, unlike that project, stream processing does not require you to keep the whole list in memory and thus does not limit you in how many entries you can process.
+In one of the previous posts, we've looked into using an in-memory queue to [do many (but not too many) things concurrently with ReactPHP](https://clue.engineering/2018/introducing-reactphp-mq). Arguably, this may be simpler to integrate if you want to handle a few dozens or hundreds of operations. However, unlike that project, stream processing does not require you to keep the whole list in memory and thus does not limit you in how many entries you can process.
 
 It goes without saying that this project does not aim to replace RabbitMQ or other projects that offers a large number of features that are not provided by this library. If you *need* a message queue with strict guarantees about message delivery, persistence and high availability, RabbitMQ is a very good choice! However, I've been involved in a number of projects where these features may be *overkill* when all your really need is a lightweight way to do *many* (but not *too many*) things at once.
 
