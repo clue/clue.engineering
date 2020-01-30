@@ -23,6 +23,14 @@ permalink: posts.atom
 {%     for tag in post.tags %}
         <category term="{{ tag }}" />
 {%     endfor %}
+{% if "degra" in post.author %}
+       <author>
+           <name>Christian Lück</name>
+       </author>
+       <author>
+           <name>Dennis Graßnick</name>
+       </author>
+{% endif %}
     </entry>
 {% endfor %}
 </feed>

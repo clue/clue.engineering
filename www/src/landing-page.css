@@ -279,7 +279,12 @@ section#post h1 ~ div img {
     border-radius: 100%;
     width: 2em;
     vertical-align: middle;
-    margin-right: 4px;
+    border: 3px solid #fff;
+    position: relative;
+}
+section#post h1 ~ div img + img {
+    margin-left: -14px;
+    position: initial;
 }
 section#post pre {
     background-color: #fafafa;

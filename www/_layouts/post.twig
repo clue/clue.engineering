@@ -38,8 +38,14 @@
                 <h1>{{ page.title }}</h1>
                 <div>
                     <address>
+{% if "degra" in page.author %}
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <img src="../src/dennis.jpg" alt="Dennis Graßnick Portrait Photo">
+                        <a href="../">Christian Lück</a> &amp; <a href="../">Dennis Graßnick</a>
+{% else %}
                         <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
                         <a href="../">Christian Lück</a>
+{% endif %}
                     </address>
                     on <time datetime="{{ page.date | date("Y-m-d") }}">{{ page.date | date("Y-m-d") }}</time>
 {% if page.tags %}
