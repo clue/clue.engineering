@@ -53,7 +53,7 @@ use:
 <div class="tag-anchor" id="{{ tag }}"></div>
 <div class="tagged-{{ tag }}">
     Showing all talks tagged #{{ tag }} ({{ talks|length }}). <br/>
-    <a href="talks">Show all talks.</a>
+    <a href="talks">Show all talks ({{data.talks|length }}).</a>
 </div>
 {% endfor %}
 

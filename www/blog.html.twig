@@ -51,7 +51,7 @@ use:
 <div class="tag-anchor" id="{{ tag }}"></div>
 <div class="tagged-{{ tag }}">
     Showing all blog posts tagged #{{ tag }} ({{ posts|length }}). <br/>
-    <a href="blog">Show all blog posts.</a>
+    <a href="blog">Show all blog posts ({{data.posts|length }}).</a>
 </div>
 {% endfor %}
 
