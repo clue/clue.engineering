@@ -1,5 +1,6 @@
 ---
 title: Building the next generation of web applications – with PHP!? + getting started with ReactPHP
+info: https://loop-run.io/#talks
 location: Barcelona, ES
 tags:
   - nextgen-web-with-php
