@@ -9,9 +9,8 @@ tags:
   - concurrency
 ---
 
-I'm happy to announce the very first stable release of [clue/reactphp-csv](https://github.com/clue/reactphp-csv) 🎉
-
-> Streaming CSV (Comma-Separated Values or Character-Separated Values) parser and encoder for [ReactPHP](https://reactphp.org/).
+I'm happy to announce the very first stable release of [clue/reactphp-csv](https://github.com/clue/reactphp-csv),
+the streaming CSV (Comma-Separated Values or Character-Separated Values) parser and encoder for [ReactPHP](https://reactphp.org/). 🎉
 
 Now that v1.0.0 has been tagged and released today, let's look into what CSV is, how it compares to other formats such as NDJSON and how CSV can be used in PHP and ReactPHP.
 

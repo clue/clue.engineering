@@ -8,9 +8,8 @@ tags:
   - proxy
 ---
 
-Today, I'm happy to announce the `v1.4.0` release of [clue/reactphp-http-proxy](https://github.com/clue/reactphp-http-proxy) 🎉
-
-> Async HTTP proxy connector, use any TCP/IP-based protocol through an HTTP CONNECT proxy server, built on top of [ReactPHP](https://reactphp.org/).
+Today, I'm happy to announce the `v1.4.0` release of [clue/reactphp-http-proxy](https://github.com/clue/reactphp-http-proxy),
+the async HTTP proxy connector, use any TCP/IP-based protocol through an HTTP CONNECT proxy server, built on top of [ReactPHP](https://reactphp.org/). 🎉
 
 Once again, the version number and its [release history](https://github.com/clue/reactphp-http-proxy/releases) suggests this is not exactly a new project. In fact, this has been used in production in a number of projects for a couple of years already. So I guess it's about time to write an introductory blog post about this project, what HTTP CONNECT proxy servers can be used for and why I think ReactPHP's design makes it a perfect fit.
 

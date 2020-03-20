@@ -9,9 +9,8 @@ tags:
   - concurrency
 ---
 
-I'm happy to announce the very first stable release of [clue/reactphp-flux](https://github.com/clue/reactphp-flux) 🎉
-
-> Flux, the lightweight stream processor to concurrently do many (but not too many) things at once, built on top of [ReactPHP](https://reactphp.org/).
+I'm happy to announce the very first stable release of [clue/reactphp-flux](https://github.com/clue/reactphp-flux),
+the lightweight stream processor to concurrently do many (but not too many) things at once, built on top of [ReactPHP](https://reactphp.org/). 🎉
 
 Now that v1.0.0 has been tagged and released today, let's look into why streaming processing is useful, how this compares to keeping many operations in memory and how this can be used to process a large number of operations with ReactPHP.
 

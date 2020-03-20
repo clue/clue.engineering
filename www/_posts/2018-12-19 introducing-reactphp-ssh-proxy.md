@@ -9,9 +9,8 @@ tags:
   - proxy
 ---
 
-Today, I'm happy to announce the very first stable `v1.0.0` release of [clue/reactphp-ssh-proxy](https://github.com/clue/reactphp-ssh-proxy) 🎉
-
-> Async SSH proxy connector and forwarder, tunnel any TCP/IP-based protocol through an SSH server, built on top of [ReactPHP](https://reactphp.org/).
+Today, I'm happy to announce the very first stable `v1.0.0` release of [clue/reactphp-ssh-proxy](https://github.com/clue/reactphp-ssh-proxy),
+the async SSH proxy connector and forwarder, tunnel any TCP/IP-based protocol through an SSH server, built on top of [ReactPHP](https://reactphp.org/). 🎉
 
 Now that v1.0.0 has been tagged and released today, let's take a look at how we can use SSH tunnels as a powerful feature for many different use cases, how it compares to other proxy protocols and why I think ReactPHP's design makes it a perfect fit.
 

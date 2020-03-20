@@ -9,9 +9,8 @@ tags:
   - http
 ---
 
-Today, I'm happy to announce the `v1.0.0` release of [clue/reactphp-soap](https://github.com/clue/reactphp-soap) 🎉
-
-> Simple, async [SOAP](https://en.wikipedia.org/wiki/SOAP) web service client library, built on top of [ReactPHP](https://reactphp.org/).
+Today, I'm happy to announce the `v1.0.0` release of [clue/reactphp-soap](https://github.com/clue/reactphp-soap),
+the simple, async [SOAP](https://en.wikipedia.org/wiki/SOAP) web service client library, built on top of [ReactPHP](https://reactphp.org/). 🎉
 
 To answer the first thing you may be wondering: *Yes, it is 2018* and indeed, this project has been used in production in a number of projects for a few of years already. So I guess it's about time to write an introductory blog post about this project, how SOAP requests can be used and why I think ReactPHP's design makes it a perfect fit. Warning, terrible puns ahead.
 

@@ -8,9 +8,8 @@ tags:
   - concurrency
 ---
 
-Today, I'm happy to announce the `v2.5.0` release of [clue/reactphp-buzz](https://github.com/clue/reactphp-buzz) 🎉
-
-> Simple, async PSR-7 HTTP client for concurrently processing any number of HTTP requests, built on top of [ReactPHP](https://reactphp.org/).
+Today, I'm happy to announce the `v2.5.0` release of [clue/reactphp-buzz](https://github.com/clue/reactphp-buzz),
+the simple, async PSR-7 HTTP client for concurrently processing any number of HTTP requests, built on top of [ReactPHP](https://reactphp.org/). 🎉
 
 As the version number suggests, this is not exactly a new project. In fact, this has been used in production in a larger number of projects for a few years already. So I guess it's about time to write an introductory blog post about this project, why async HTTP requests are such a powerful feature and also a bit about the motivation for this project and why I think ReactPHP is a perfect fit for sending HTTP requests.
 

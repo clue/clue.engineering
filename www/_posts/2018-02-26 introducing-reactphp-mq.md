@@ -8,9 +8,8 @@ tags:
   - concurrency
 ---
 
-I'm happy to announce the very first stable release of [clue/reactphp-mq](https://github.com/clue/reactphp-mq) 🎉
-
-> Mini Queue, the lightweight in-memory message queue to concurrently do many (but not too many) things at once, built on top of [ReactPHP](https://reactphp.org/).
+I'm happy to announce the very first stable release of [clue/reactphp-mq](https://github.com/clue/reactphp-mq),
+the lightweight in-memory message queue to concurrently do many (but not too many) things at once, built on top of [ReactPHP](https://reactphp.org/). 🎉
 
 Now that v1.0.0 has been tagged and released today, let's look into why this is useful, how this can be used and whether this means everybody should uninstall their RabbitMQ cluster? What follows is a short introduction into async PHP with ReactPHP and how a message queue can help doing many things at once. 
 

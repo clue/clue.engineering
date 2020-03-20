@@ -8,9 +8,8 @@ tags:
   - proxy
 ---
 
-Today, I'm happy to announce the `v1.0.0` release of [clue/reactphp-socks](https://github.com/clue/reactphp-socks) 🎉
-
-> Async SOCKS proxy connector client and server implementation, tunnel any TCP/IP-based protocol through a SOCKS5 or SOCKS4(a) proxy server, built on top of [ReactPHP](https://reactphp.org/).
+Today, I'm happy to announce the `v1.0.0` release of [clue/reactphp-socks](https://github.com/clue/reactphp-socks),
+the async SOCKS proxy connector client and server implementation, tunnel any TCP/IP-based protocol through a SOCKS5 or SOCKS4(a) proxy server, built on top of [ReactPHP](https://reactphp.org/). 🎉
 
 Don't be fooled by the version number: Its [release history](https://github.com/clue/reactphp-socks/releases) suggests this is not exactly a new project. In fact, this is the first project that got me started with ReactPHP around six years ago (*time flies by*) and has been used in production in a number of projects ever since. So I guess it's about time to write an introductory blog post about this project, what SOCKS proxy servers can be used for and why I think ReactPHP's design makes it a perfect fit.
 
