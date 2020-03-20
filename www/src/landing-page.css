@@ -286,6 +286,20 @@ section#post h1 ~ div img + img {
     margin-left: -14px;
     position: initial;
 }
+section#post article p:first-of-type {
+    font-style: italic;
+}
+section#post article > p:first-of-type:after { /* first paragraph gets bottom border */
+    content: " ";
+    border-bottom: 2px solid #f7f7f7;
+    border-bottom-color: #dbdbdb;
+    display: block;
+    width: 80%;
+    margin: 40px auto;
+}
+section#post article > p:first-of-type img { /* first paragraph is an image: overlap/hide border */
+    margin-bottom: -60px;
+}
 section#post pre {
     background-color: #fafafa;
     padding: 1em;
