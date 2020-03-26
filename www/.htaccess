@@ -42,7 +42,8 @@ RedirectPermanent /graph-composer/graph-composer.phar /graph-composer-latest.pha
 RedirectPermanent /phar-composer/phar-composer.phar /phar-composer-latest.phar
 RedirectPermanent /psocksd/psocksd.phar /psocksd-latest.phar
 
-Redirect /graph-composer-latest.phar /graph-composer-1.0.0.phar
+Redirect /graph-composer-latest.phar /graph-composer-1.1.0.phar
+Redirect /graph-composer-1.1.0.phar https://github.com/clue/graph-composer/releases/download/v1.1.0/graph-composer-1.1.0.phar
 Redirect /graph-composer-1.0.0.phar https://github.com/clue/graph-composer/releases/download/v1.0.0/graph-composer.phar
 Redirect /graph-composer-0.1.1.phar https://github.com/clue/graph-composer/releases/download/v0.1.1/graph-composer.phar
 
