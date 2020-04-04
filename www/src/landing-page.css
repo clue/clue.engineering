@@ -592,6 +592,38 @@ section#consulting ul.pricing > li:last-child ul {
     padding: 0 0 0 20px;
 }
 
+section#faq h3 {
+    font-size: 1em;
+}
+section#faq h3 a {
+    display: block;
+}
+section#faq h3 a:before {
+    display: inline-block;
+    content: "▶";
+    font-size: .8em;
+    margin: 0 .3em;
+    transition: transform .1s ease;
+}
+section#faq section:target h3 a:before {
+    transform: rotate(90deg);
+}
+section#faq section {
+    overflow: hidden;
+}
+section#faq section:not(:target) p {
+    height: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+}
+section#faq section:target p {
+    height: auto;
+    max-height: 800px;
+    margin: 1em 20px;
+    transition: max-height .5s ease;
+}
+
 /* reduce navigation item size on smaller screens */
 @media (max-width: 450px) {
     nav ul {
