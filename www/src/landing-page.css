@@ -475,7 +475,9 @@ section#intro li a span {
     font-size: .8em;
 }
 section#intro li a:after {
-    content: "⯆";
+    content: "\fe40";
+    line-height: .4em;
+    padding-top: .7em;
     display: block;
     background-color: #0003;
     color: #fffe;
