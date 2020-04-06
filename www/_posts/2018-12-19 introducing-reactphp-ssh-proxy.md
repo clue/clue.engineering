@@ -7,6 +7,8 @@ tags:
   - release
   - ssh
   - proxy
+author:
+  - Christian Lück
 ---
 
 Today, I'm happy to announce the very first stable `v1.0.0` release of [clue/reactphp-ssh-proxy](https://github.com/clue/reactphp-ssh-proxy),

@@ -7,6 +7,8 @@ tags:
   - flux
   - streaming
   - concurrency
+author:
+  - Christian Lück
 ---
 
 I'm happy to announce the very first stable release of [clue/reactphp-flux](https://github.com/clue/reactphp-flux),

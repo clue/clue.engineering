@@ -4,6 +4,8 @@ social_image: https://speakerd.s3.amazonaws.com/presentations/168db7d59e8e467e85
 tags:
   - talk
   - reactphp
+author:
+  - Christian Lück
 ---
 
 "Pushing the limits with [ReactPHP](https://reactphp.org) – why ReactPHP is awesome and why you should care" has by now become what one could consider  my signature talk. In this post I'm trying to give a short overview what this talk is all about, why I think this is a very relevant topic and how I got into all of this.

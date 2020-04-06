@@ -6,8 +6,8 @@ tags:
   - sustainability
   - year-in-review
 author:
-  - clue
-  - degra
+  - Christian Lück
+  - Dennis Graßnick
 ---
 
 As announced in my [previous blog post](2019-in-review), I would like to use this post to clearly explain the aspect of [sustainability](https://24daysindecember.net/2019/12/15/open-source-sustainability/) for [my open-source projects](../#projects).

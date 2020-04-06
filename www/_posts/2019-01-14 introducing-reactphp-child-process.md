@@ -6,6 +6,8 @@ tags:
   - reactphp
   - release
   - process
+author:
+  - Christian Lück
 ---
 
 Today, we're very happy to announce the immediate availability of the next major beta release of [reactphp/child-process](https://github.com/reactphp/child-process), the event-driven library for executing child processes with [ReactPHP](https://reactphp.org/). 🎉

@@ -7,6 +7,8 @@ tags:
   - release
   - asterisk
   - telephony
+author:
+  - Christian Lück
 ---
 
 ![black-and-white-black-and-white-chairs-315638](https://user-images.githubusercontent.com/776829/67948024-23e7ff00-fbe5-11e9-9662-fb8f0ca16edc.jpg)

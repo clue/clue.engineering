@@ -6,6 +6,8 @@ tags:
   - release
   - http
   - proxy
+author:
+  - Christian Lück
 ---
 
 Today, I'm happy to announce the `v1.4.0` release of [clue/reactphp-http-proxy](https://github.com/clue/reactphp-http-proxy),

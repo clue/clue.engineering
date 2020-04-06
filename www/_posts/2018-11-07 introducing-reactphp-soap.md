@@ -7,6 +7,8 @@ tags:
   - soap
   - rpc
   - http
+author:
+  - Christian Lück
 ---
 
 Today, I'm happy to announce the `v1.0.0` release of [clue/reactphp-soap](https://github.com/clue/reactphp-soap),

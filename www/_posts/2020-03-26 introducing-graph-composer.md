@@ -8,8 +8,8 @@ tags:
   - php
   - release
 author:
-  - clue
-  - degra
+  - Christian Lück
+  - Dennis Graßnick
 ---
 
 I am happy to inform you that version 1.1 of [clue/graph-composer](https://github.com/clue/graph-composer) is now available.

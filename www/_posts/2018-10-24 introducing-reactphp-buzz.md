@@ -6,6 +6,8 @@ tags:
   - release
   - http
   - concurrency
+author:
+  - Christian Lück
 ---
 
 Today, I'm happy to announce the `v2.5.0` release of [clue/reactphp-buzz](https://github.com/clue/reactphp-buzz),

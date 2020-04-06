@@ -8,6 +8,8 @@ tags:
   - docker
   - container
   - process
+author:
+  - Christian Lück
 ---
 
 ![animal-animal-photography-blue-water-831084](https://user-images.githubusercontent.com/776829/65258290-efbbf180-db02-11e9-90c7-4f3ee532e2df.jpg)

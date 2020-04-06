@@ -6,6 +6,8 @@ tags:
   - reactphp
   - release
   - tls
+author:
+  - Christian Lück
 ---
 
 Today, we're very happy to announce the immediate availability of the next `v1.2.0` feature release of [reactphp/socket](https://github.com/reactphp/socket), the async, streaming plaintext TCP/IP and secure TLS socket server and client for [ReactPHP](https://reactphp.org/). 🎉

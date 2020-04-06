@@ -2,6 +2,8 @@
 title: "Brief note: New domain"
 tags:
   - meta
+author:
+  - Christian Lück
 ---
 
 As of today, https://clue.engineering is the new domain for this site. This includes all past and upcoming blog posts, articles, project information, downloads etc.

@@ -4,6 +4,8 @@ external_url: https://24daysindecember.net/2019/12/15/open-source-sustainability
 tags:
  - open-source
  - sustainability
+author:
+  - Christian Lück
 ---
 
 Christmas is nigh! For many software developers, this means taking some time off from work, planning to spend some time with family and beloved ones, finally getting home and then… <em>doing even more work</em>! Wait a moment!?

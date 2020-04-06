@@ -9,6 +9,8 @@ tags:
  - bundle
  - build
  - php
+author:
+  - Christian Lück
 ---
 
 ![Symbolic image of a box that's not an actual Phar, original photo by Kelli McClintock](https://user-images.githubusercontent.com/776829/69410647-c0488180-0d0b-11ea-915f-0b0908b75338.jpg)

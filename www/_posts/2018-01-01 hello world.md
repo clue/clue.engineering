@@ -2,6 +2,8 @@
 title: Hello World!
 tags:
   - meta
+author:
+  - Christian Lück
 ---
 
 Without further ado, let me start with saying:

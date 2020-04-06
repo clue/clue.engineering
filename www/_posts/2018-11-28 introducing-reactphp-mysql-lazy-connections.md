@@ -6,6 +6,8 @@ tags:
   - release
   - mysql
   - database
+author:
+  - Christian Lück
 ---
 
 Today, we're very happy to announce the immediate availability of the next major beta release of [friends-of-reactphp/mysql](https://github.com/friends-of-reactphp/mysql), the async MySQL database client for [ReactPHP](https://reactphp.org/). 🎉

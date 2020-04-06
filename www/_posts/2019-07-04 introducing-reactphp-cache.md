@@ -6,6 +6,8 @@ tags:
   - reactphp
   - release
   - cache
+author:
+  - Christian Lück
 ---
 
 Today, we're very happy to announce the immediate availability of the next major beta release of [reactphp/cache](https://github.com/reactphp/cache), the async cache library for [ReactPHP](https://reactphp.org/). 🎉
