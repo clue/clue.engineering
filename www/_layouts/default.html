@@ -13,10 +13,10 @@
     <nav>
         <ul>
             <li><a href="./"><strong>clue</strong>·engineering</a></li>
-            <li><a href="blog">Blog</a></li>
-            <li><a href="talks">Talks</a></li>
-            <li><a href="support">Support</a></li>
-            <li><a href="contact">Contact</a></li>
+            <li{{ page.url == "/blog.html" ? ' class="active"' : '' }}><a href="blog">Blog</a></li>
+            <li{{ page.url == "/talks.html" ? ' class="active"' : '' }}><a href="talks">Talks</a></li>
+            <li{{ page.url == "/support.html" ? ' class="active"' : '' }}><a href="support">Support</a></li>
+            <li{{ page.url == "/contact.html" ? ' class="active"' : '' }}><a href="contact">Contact</a></li>
         </ul>
     </nav>
 
