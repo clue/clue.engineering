@@ -203,9 +203,12 @@ section#posts svg {
 }
 section#posts article {
     margin-bottom: 1.5em;
+    border: 1px solid #eee;
+    padding: 1.5em;
+    box-shadow: 0 0 30px -10px rgba(0, 9, 27, .2);
 }
 section#posts article > h4 {
-    margin-bottom: 0;
+    margin: 0;
 }
 section#posts article > ul {
     margin: 0;
