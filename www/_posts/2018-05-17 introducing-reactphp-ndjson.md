@@ -63,7 +63,7 @@ id,name
 
 CSV may look slightly simpler, but this simplicity comes at a price. CSV is limited to untyped, two-dimensional data, so there's no standard way of storing any nested structures or to differentiate a boolean value from a string or integer. Field names are sometimes used, sometimes they're not (application-dependant). Inconsistent handling for fields that contain separators such as `,` or spaces or even line breaks (think of URLS or user-provided descriptions) introduce additional complexity and its text encoding is usually undefined, Unicode (or UTF-8) is unlikely to be supported and CSV files often use ISO 8859-1 encoding or some variant (again application-dependant).
 
-Despite its shortcomings CSV is widely used and this is unlikely to change any time soon. In particular, CSV is a very common export format for a lot of tools to interface with spreadsheet processors (such as Exel, Calc etc.). This means that CSV is often used for historial reasons and using CSV to store structured application data is usually not a good idea nowadays – but exporting to CSV for known applications is a very reasonable approach.
+Despite its shortcomings, CSV is widely used and this is unlikely to change any time soon. In particular, CSV is a very common export format for a lot of tools to interface with spreadsheet processors (such as Excel, Calc etc.). This means that CSV is often used for historial reasons and using CSV to store structured application data is usually not a good idea nowadays – but exporting to CSV for known applications is a very reasonable approach.
 
 ### NDJSON vs. JSON text sequences
 

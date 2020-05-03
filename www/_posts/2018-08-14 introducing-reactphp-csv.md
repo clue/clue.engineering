@@ -73,7 +73,7 @@ As an alternative, if you want to process structured data in a more modern JSON-
 
 If you understand JSON and you're now looking at this newline-delimited JSON for the first time, you should already know everything you need to know to understand NDJSON: As the name implies, this format essentially consists of individual lines where each individual line is any valid JSON text and each line is delimited with a newline character.
 
-While NDJSON helps avoiding some of CVS's shortcomings, it is still a (relatively) young format while CSV files have been used in production systems for decades. This means that if you want to interface with an existing system, CSV is more likely to be supported as is in fact often the *lowest common denominator* for many interactions, even in today's systems. The following sections thus assume CSV as the format of choice, but otherwise this can equally be applied to NDJSON or other structured formats. If you want to learn more about NDJSON, you may want to check out one of the [previous blog posts](https://clue.engineering/2018/introducing-reactphp-ndjson).
+While NDJSON helps avoiding some of CSV's shortcomings, it is still a (relatively) young format while CSV files have been used in production systems for decades. This means that if you want to interface with an existing system, CSV is more likely to be supported as is in fact often the *lowest common denominator* for many interactions, even in today's systems. The following sections thus assume CSV as the format of choice, but otherwise this can equally be applied to NDJSON or other structured formats. If you want to learn more about NDJSON, you may want to check out one of the [previous blog posts](https://clue.engineering/2018/introducing-reactphp-ndjson).
 
 ## Parsing CSV with PHP
 
@@ -141,7 +141,7 @@ $loop->run();
 
 While this code looks slightly more complicated than the previous example, this should still be pretty self-explanatory; it still simply prints a message for each user record.
 
-Besides some additional boilerplate, the major difference to the first example is that this no longer imperatively loads the records from a stream. It merely says that the given CSV file should be read and interpreted by the CSV decoder and we "react" to its `data `event.
+Besides some additional boilerplate, the major difference to the first example is that this no longer imperatively loads the records from a stream. It merely says that the given CSV file should be read and interpreted by the CSV decoder and we "react" to its `data` event.
 
 This implies that this example also supports files of arbitrary sizes as only small chunks will be processed in memory and ReactPHP takes care of invoking your event handlers as expected. Because it can start processing records without having to wait for the whole file to be read into memory, this yields some interesting benchmarking results. On my laptop, parsing a 90 MiB CSV file with around 120000 records takes around 4 seconds (~30000 records/s) while memory consumptions stays rather constant at a few megabytes. Arguably, this is way faster than many people would probably expect PHP to be. (As always, don't trust some random stranger when it comes to performance – you're invited to run your own benchmarks and share what you've found.)
 
