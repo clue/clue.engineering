@@ -7,6 +7,7 @@ tags:
   - ndjson
   - streaming
   - rpc
+  - ipc
 author:
   - Christian Lück
 ---

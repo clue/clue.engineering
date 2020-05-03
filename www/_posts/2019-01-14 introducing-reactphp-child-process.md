@@ -6,6 +6,7 @@ tags:
   - reactphp
   - release
   - process
+  - ipc
 author:
   - Christian Lück
 ---

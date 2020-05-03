@@ -8,6 +8,8 @@ tags:
   - sqlite
   - database
   - process
+  - ipc
+  - ndjson
 author:
   - Christian Lück
 ---

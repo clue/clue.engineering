@@ -5,6 +5,7 @@ tags:
  - introducing
  - phar
  - composer
+ - release
  - package
  - bundle
  - build

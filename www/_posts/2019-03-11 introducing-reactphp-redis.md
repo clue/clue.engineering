@@ -6,6 +6,7 @@ tags:
   - reactphp
   - release
   - redis
+  - database
   - cache
   - pubsub
 author:
