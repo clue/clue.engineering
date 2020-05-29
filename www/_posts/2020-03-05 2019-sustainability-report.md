@@ -1,6 +1,6 @@
 ---
 title: Open-Source Sustainability Report (2019)
-social_image: https://clue.engineering/src/2019-sustainability-report.png
+social_image_large: https://clue.engineering/src/2019-sustainability-report.png
 tags:
   - open-source
   - sustainability

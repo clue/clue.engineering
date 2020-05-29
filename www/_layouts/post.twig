@@ -11,8 +11,11 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ page.title }}">
     <meta property="og:description" content="{{ description }}…">
-{% if page.social_image %}
-    <meta property="og:image" content="{{ site.url }}{{ page.social_image }}">
+{% if page.social_image_large %}
+    <meta property="og:image" content="{{ page.social_image_large }}">
+    <meta name="twitter:card" content="summary_large_image">
+{% elseif page.social_image %}
+    <meta property="og:image" content="{{ page.social_image }}">
 {% endif %}
     <meta property="og:url" content="https://clue.engineering{{ page.url | replace({'.html':''}) }}">
     <meta property="og:site_name" content="clue·engineering">

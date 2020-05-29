@@ -1,6 +1,6 @@
 ---
 title: Introducing streaming zlib compression and decompression with ReactPHP
-social_image: https://clue.engineering/src/2020-zlib-benchmark-social.png
+social_image_large: https://clue.engineering/src/2020-zlib-benchmark-social.png
 tags:
   - introducing-reactphp
   - reactphp
