@@ -58,7 +58,7 @@ $ php examples/benchmark-exec.php container dd if=/dev/zero bs=1M count=4k
 Received 4294967296 bytes in 1.8s => 2355.1 MB/s
 ```
 
-*(insert surprised emoji here!)* To be perfectly clear, this is now what I would have expected the first time I executed this benchmark. This suggests that this library can process several gigabytes per second and may in fact outperform the Docker client and seems to be limited only by the Docker Engine implementation. Instead of going into too many details here, you're encouraged to re-run the benchmarks yourself and see for yourself.
+*(insert surprised emoji here!)* To be perfectly clear, this is not what I would have expected the first time I executed this benchmark. This suggests that this library can process several gigabytes per second and may in fact outperform the Docker client and seems to be limited only by the Docker Engine implementation. Instead of going into too many details here, you're encouraged to re-run the benchmarks yourself and see for yourself.
 
 The key takeaway here is: *PHP is faster than you probably thought*.
 

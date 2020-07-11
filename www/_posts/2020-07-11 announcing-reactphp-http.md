@@ -13,7 +13,8 @@ author:
 
 Exactly eight years ago, 11th July 2012, the very first `v0.1.0` release of ReactPHP was tagged. 
 Today, the time has come again - **It's ReactPHP's birthday. 🎉**
-This will be celebrated with a big birthday party and a new component release of **HTTP `v1.0.0`** to ensure you will also get a big piece of the birthday cake to taste. 🍰
+This will be celebrated with a big birthday party and a new [react/http `v1.0.0`](https://reactphp.org/http/) component release
+to ensure you will also get a big piece of the birthday cake to taste. 🍰
 
 ![ReactPHP – 8 years](../src/2020-reactphp-birthday.png)
 
@@ -37,6 +38,7 @@ $client->get('http://example.com/')->then(function (Psr\Http\Message\ResponseInt
 $loop->run();
 ```
 
+It's async from the ground up and allows concurrently sending any number of HTTP requests.
 Does this look familiar to you?
 The code has been imported from [clue/reactphp-buzz](https://clue.engineering/2018/introducing-reactphp-buzz),
 so it's already battle-tested in production.
@@ -58,14 +60,10 @@ getting all the upcoming features without having to worry about BC breaks.
 With this release, we emphasize that ReactPHP is **production-ready** and a
 rock-solid foundation.
 
-## Updated HTTP server and more…
+## Updated HTTP server and more!
 
-This update involves some major new features and a number of BC breaks due to
-some necessary API cleanup. We've tried hard to avoid BC breaks where possible
-and minimize impact otherwise. We expect that most consumers of beta versions of
-this package will be affected by BC breaks, but updating should take no longer
-than a few minutes. Check out the [project page](https://reactphp.org/http/) and
-the upgrade guides for more details.
+Previous beta versions of this HTTP package have always contained an efficient HTTP server written in pure PHP.
+The new HTTP server is now faster and better than ever!
 
 ```php
 $server = new React\Http\Server($loop, function (Psr\Http\Message\ServerRequestInterface $request) {
@@ -80,7 +78,14 @@ $socket = new React\Socket\Server('0.0.0.0:8080', $loop);
 $server->listen($socket);
 ```
 
-In this context we have also released a new [react/react v1.1.0](https://github.com/reactphp/reactphp)
+This version update involves some major new features and a number of BC breaks due to
+some necessary API cleanup. We've tried hard to avoid BC breaks where possible
+and minimize impact otherwise. We expect that most consumers of beta versions of
+this package will be affected by BC breaks, but updating should take no longer
+than a few minutes. Check out the [project page](https://reactphp.org/http/) and
+the upgrade guides for more details.
+
+In this context we have also released a new [react/react `v1.1.0`](https://github.com/reactphp/reactphp)
 meta package. This meta package will install all stable components at once, and
 it now also includes our HTTP client and server. Happy prototyping!
 
