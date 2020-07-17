@@ -2,6 +2,8 @@
 
 Source code for https://clue.engineering/
 
+## Install
+
 Install dependencies:
 
 ```bash
@@ -14,7 +16,14 @@ Build website:
 $ vendor/bin/sculpin generate
 ```
 
+## Deploy
+
 Then deploy `build/` behind your favorite webserver (Apache + PHP-FPM etc.).
+
+Additionally, this should be deployed behind a reverse proxy (nginx) that is
+responsible for HTTPS certificate handling and forcing HTTPS redirects.
+
+## Tests
 
 You can run some simple acceptance tests to verify the deployed website works
 as expected by running:
