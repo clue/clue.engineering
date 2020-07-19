@@ -16,12 +16,21 @@ Build website:
 $ vendor/bin/sculpin generate
 ```
 
+This will create a `build/` directory that contains the static website that can
+be accessed with a web browser.
+
 ## Deploy
 
 Then deploy `build/` behind your favorite webserver (Apache + PHP-FPM etc.).
 
 Additionally, this should be deployed behind a reverse proxy (nginx) that is
 responsible for HTTPS certificate handling and forcing HTTPS redirects.
+
+For testing purposes, you can use the official `php` docker image like this:
+
+```bash
+$ docker run -it --rm -p 80:80 -v "$PWD"/build:/var/www/html php:7.2-apache sh -c "ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled; apache2-foreground"
+```
 
 ## Tests
 
@@ -30,4 +39,10 @@ as expected by running:
 
 ```bash
 $ tests/acceptance.sh https://clue.test
+```
+
+If you're using the above `php` docker image, you can run this test like this:
+
+```bash
+$ tests/acceptance.sh http://clue.localhost
 ```
