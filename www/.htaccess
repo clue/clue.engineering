@@ -1,7 +1,4 @@
-# redirect to HTTPS
 RewriteEngine On
-RewriteCond %{HTTPS} !=on
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 # POST /contacts should target contacts.php
 RewriteCond %{REQUEST_METHOD} POST
@@ -10,7 +7,7 @@ RewriteRule ^contact$ contact.php [END]
 # URLs should never end with trailing slash when file exists with .html extension, redirect to location without slash
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.+)/$ https://%{HTTP_HOST}/$1 [R,END]
+RewriteRule ^(.+)/$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [R,END]
 
 # all URLs should rewrite to append .html extension internally if this file exists (exclude index.html)
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -21,15 +18,15 @@ RewriteRule ^(.+)$ $1\.html [END]
 # URLs should never include .html extension, redirect to location without extension (exclude index.html)
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteCond %{REQUEST_FILENAME} !^.*index\.html$
-RewriteRule ^(.+)\.(html|php)$ https://%{HTTP_HOST}/$1 [R,END]
+RewriteRule ^(.+)\.(html|php)$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [R,END]
 
 # URLs should never include index.html, redirect to location without file
 RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^(.*)index\.(html|php)$ https://%{HTTP_HOST}/$1 [R,END]
+RewriteRule ^(.*)index\.(html|php)$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [R,END]
 
 # redirect 20xx/ to blog#20xx only when directory exists
 RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^(20\d\d)/?$ https://%{HTTP_HOST}/blog#$1 [NE,R,L]
+RewriteRule ^(20\d\d)/?$ %{REQUEST_SCHEME}://%{HTTP_HOST}/blog#$1 [NE,R,L]
 
 # redirect legacy blog post URLS
 # 2018-05-13
