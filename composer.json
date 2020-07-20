@@ -4,5 +4,10 @@
     },
     "require-dev": {
         "sculpin/sculpin": "^3.0"
+    },
+    "config": {
+        "platform": {
+            "php": "7.2"
+        }
     }
 }
