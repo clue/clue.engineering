@@ -6,6 +6,8 @@ dist: trusty
 jobs:
   include:
     - php: 7.2
+    - php: 7.3
+    - php: 7.4
 
 services:
   - docker
@@ -13,7 +15,7 @@ services:
 install:
   - composer install
   - vendor/bin/sculpin generate
-  - docker run -d -p 8080:80 -v "$PWD"/build:/var/www/html php:7.2-apache sh -c "ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled; apache2-foreground"
+  - docker run -d -p 8080:80 -v "$PWD"/build:/var/www/html php:7.4-apache sh -c "ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled; apache2-foreground"
 
 script:
   - tests/acceptance.sh http://localhost:8080
