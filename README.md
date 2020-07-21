@@ -29,7 +29,7 @@ responsible for HTTPS certificate handling and forcing HTTPS redirects.
 For testing purposes, you can use the official `php` docker image like this:
 
 ```bash
-$ docker run -it --rm -p 80:80 -v "$PWD"/build:/var/www/html php:7.2-apache sh -c "ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled; apache2-foreground"
+$ docker run -it --rm -p 80:80 -v "$PWD"/build:/var/www/html php:7.4-apache sh -c "ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled; apache2-foreground"
 ```
 
 ## Tests
