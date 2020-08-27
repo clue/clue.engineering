@@ -8,4 +8,4 @@ tags:
   - reactphp
   - usergroup
 ---
-Usergroup talk hosted by <a href="https://www.meetup.com/de-DE/Web-Meetup-Cologne/">Web Meetup Cologne</a>
+Usergroup talk hosted by [Web Meetup Cologne](https://www.meetup.com/de-DE/Web-Meetup-Cologne/)

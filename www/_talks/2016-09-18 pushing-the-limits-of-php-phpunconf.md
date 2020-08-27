@@ -8,4 +8,4 @@ tags:
   - reactphp
   - unconference
 ---
-Unconference talk split into two talks with ~40min each (Examples and Concepts) hosted by <a href="https://www.php-unconference.de/">PHP Unconference (@phpunconf)</a>
+Unconference talk split into two talks with ~40min each (Examples and Concepts) hosted by [PHP Unconference](https://www.php-unconference.de) ([@phpunconf](https://twitter.com/phpunconf))

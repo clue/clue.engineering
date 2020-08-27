@@ -8,4 +8,4 @@ tags:
   - usergroup
   - workshop
 ---
-Hands-on workshop hosted by <a href="https://www.meetup.com/de-DE/phpugms/">PHP-Usergroup Münster (@phpugms)</a>
+Hands-on workshop hosted by [PHP-Usergroup Münster](https://www.meetup.com/de-DE/phpugms/) ([@phpugms](https://twitter.com/phpugms))

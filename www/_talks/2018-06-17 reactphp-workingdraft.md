@@ -6,4 +6,4 @@ tags:
   - reactphp
   - podcast
 ---
-Podcast hosted by <a href="https://workingdraft.de/">Working Draft (@workingdraft)</a>
+Podcast hosted by [Working Draft](https://workingdraft.de/) ([@workingdraft](https://twitter.com/workingdraft))

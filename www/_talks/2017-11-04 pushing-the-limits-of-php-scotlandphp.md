@@ -11,4 +11,4 @@ tags:
   - reactphp
   - conference
 ---
-Conference talk hosted by <a href="https://conference.scotlandphp.co.uk/">ScotlandPHP (@scotlandphp)</a>
+Conference talk hosted by [ScotlandPHP](https://conference.scotlandphp.co.uk/) ([@scotlandphp](https://twitter.com/scotlandphp))

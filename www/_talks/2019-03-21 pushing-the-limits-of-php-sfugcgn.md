@@ -7,4 +7,4 @@ tags:
   - reactphp
   - usergroup
 ---
-Usergroup talk hosted by <a href="https://www.meetup.com/de-DE/sfugcgn/">Symfony User Group Cologne</a>
+Usergroup talk hosted by [Symfony User Group Cologne](https://www.meetup.com/de-DE/sfugcgn/)

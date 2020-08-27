@@ -10,4 +10,4 @@ tags:
   - conference
   - workshop
 ---
-Highlight conference talk + workshop hosted by <a href="https://t3dd.typo3.com">TYPO3 Developer Days (@t3dd)</a> (my first public conference talk)
+Highlight conference talk + workshop hosted by [TYPO3 Developer Days](https://t3dd.typo3.com) ([@t3dd](https://twitter.com/t3dd)) (my first public conference talk)

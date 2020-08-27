@@ -7,4 +7,4 @@ tags:
   - reactphp
   - usergroup
 ---
-Usergroup talk hosted by [Webmontag Bonn (@WebmontagBonn)](https://www.webmontag-bonn.de/)
+Usergroup talk hosted by [Webmontag Bonn](https://www.webmontag-bonn.de/) ([@WebmontagBonn](https://twitter.com/WebmontagBonn))

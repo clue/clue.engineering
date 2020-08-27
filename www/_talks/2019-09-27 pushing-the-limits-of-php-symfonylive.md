@@ -10,4 +10,4 @@ tags:
   - reactphp
   - conference
 ---
-Conference talk hosted by <a href="https://berlin2019.live.symfony.com/">SymfonyLive (@symfony_live)</a>
+Conference talk hosted by [SymfonyLive](https://berlin2019.live.symfony.com/) ([@symfony_live](https://twitter.com/symfony_live))

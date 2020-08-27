@@ -7,4 +7,4 @@ tags:
   - reactphp
   - usergroup
 ---
-Usergroup talk hosted by <a href="https://www.meetup.com/de-DE/phpugms/">PHP-Usergroup Münster (@phpugms)</a>
+Usergroup talk hosted by [PHP-Usergroup Münster](https://www.meetup.com/de-DE/phpugms/) ([@phpugms](https://twitter.com/phpugms))

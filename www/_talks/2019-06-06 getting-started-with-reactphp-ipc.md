@@ -10,4 +10,4 @@ tags:
   - reactphp
   - conference
 ---
-Conference talk hosted by <a href="https://phpconference.com/">International PHP Conference (IPC)</a>
+Conference talk hosted by [International PHP Conference (IPC)](https://phpconference.com/) ([@phpconference](https://twitter.com/phpconference))

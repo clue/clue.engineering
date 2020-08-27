@@ -8,4 +8,4 @@ tags:
   - conference
   - workshop
 ---
-Conference talk + spontaneous hands-on workshop hosted by <a href="https://php.ruhr/">PHP.RUHR (@phpruhr)</a>
+Conference talk + spontaneous hands-on workshop hosted by [PHP.RUHR](https://php.ruhr/) ([@phpruhr](https://twitter.com/phpruhr))

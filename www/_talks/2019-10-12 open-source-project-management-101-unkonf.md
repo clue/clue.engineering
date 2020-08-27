@@ -9,4 +9,4 @@ tags:
   - project-management
   - unconference
 ---
-Unconference talk hosted by [unKonf (@unkonf)](https://www.unkonf.de/)
+Unconference talk hosted by [unKonf](https://www.unkonf.de/) ([@unkonf](https://twitter.com/unkonf))

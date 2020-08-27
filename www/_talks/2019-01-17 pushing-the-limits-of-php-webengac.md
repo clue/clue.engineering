@@ -8,4 +8,4 @@ tags:
   - reactphp
   - usergroup
 ---
-Usergroup talk hosted by <a href="https://www.meetup.com/de-DE/Web-Engineering-Aachen/">Web Engineering Aachen (@WebEngAc)</a>
+Usergroup talk hosted by [Web Engineering Aachen](https://www.meetup.com/de-DE/Web-Engineering-Aachen/) ([@WebEngAc](https://twitter.com/WebEngAc))

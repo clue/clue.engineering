@@ -9,4 +9,4 @@ tags:
   - reactphp
   - usergroup
 ---
-Usergroup talk hosted by <a href="https://www.meetup.com/de-DE/PHPUG-Rhein-Neckar/">PHP User Group Metropolregion Rhein-Neckar</a>
+Usergroup talk hosted by [PHP User Group Metropolregion Rhein-Neckar](https://www.meetup.com/de-DE/PHPUG-Rhein-Neckar/) ([@phpugmrn](https://twitter.com/phpugmrn))

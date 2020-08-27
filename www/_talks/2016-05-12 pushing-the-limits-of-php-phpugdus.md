@@ -8,4 +8,4 @@ tags:
   - reactphp
   - usergroup
 ---
-Usergroup talk hosted by <a href="https://www.meetup.com/de-DE/Web-Engineering-Duesseldorf/">Web Engineering Düsseldorf (@WebEngDUS)</a> (called @phpugdus at that time) (my first public talk, circa 2h)
+Usergroup talk hosted by [Web Engineering Düsseldorf](https://www.meetup.com/de-DE/Web-Engineering-Duesseldorf) ([@WebEngDUS](https://twitter.com/WebEngDUS)) (called @phpugdus at that time) (my first public talk, circa 2h)

@@ -7,4 +7,4 @@ tags:
   - reactphp
   - usergroup
 ---
-Usergroup talk hosted by <a href="https://www.meetup.com/de-DE/WebTech-Bonn/">WebTech Bonn</a>
+Usergroup talk hosted by [WebTech Bonn](https://www.meetup.com/de-DE/WebTech-Bonn/)

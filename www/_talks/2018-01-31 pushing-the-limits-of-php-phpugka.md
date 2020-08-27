@@ -7,4 +7,4 @@ tags:
   - reactphp
   - usergroup
 ---
-Usergroup talk hosted by <a href="https://www.meetup.com/de-DE/PHP-Usergroup-Karlsruhe/">PHP Usergroup Karlsruhe (@phpugka)</a>
+Usergroup talk hosted by [PHP Usergroup Karlsruhe](https://www.meetup.com/de-DE/PHP-Usergroup-Karlsruhe/) ([@phpugka](https://twitter.com/phpugka))

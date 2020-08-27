@@ -9,4 +9,4 @@ tags:
   - usergroup
   - workshop
 ---
-Usergroup talk + hands-on workshop hosted by <a href="https://www.meetup.com/de-DE/phpugmunich/">PHP User Group Munich (@phpugmunich)</a>
+Usergroup talk + hands-on workshop hosted by [PHP User Group Munich](https://www.meetup.com/de-DE/phpugmunich/) ([@phpugmunich](https://twitter.com/phpugmunich))

@@ -7,4 +7,4 @@ tags:
   - reactphp
   - usergroup
 ---
-Usergroup talk hosted by <a href="https://www.meetup.com/de-DE/PHP-Web-Entwicklung-Meetup-Koln/">PHP / Web-Entwicklung Meetup Köln</a> and <a href="https://www.meetup.com/de-DE/Koln-PHP-Usergroup/">Köln PHP Usergroup (@phpugcgn)</a>
+Usergroup talk hosted by [PHP / Web-Entwicklung Meetup Köln](https://www.meetup.com/de-DE/PHP-Web-Entwicklung-Meetup-Koln/) and [Köln PHP Usergroup](https://www.meetup.com/de-DE/Koln-PHP-Usergroup/) ([@phpugcgn](https://twitter.com/phpugcgn))

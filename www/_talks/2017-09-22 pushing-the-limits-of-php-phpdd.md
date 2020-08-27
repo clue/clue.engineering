@@ -11,4 +11,4 @@ tags:
   - reactphp
   - conference
 ---
-Conference talk hosted by <a title="Dead link">PHP Dev Days (@phpdd)</a>
+Conference talk hosted by <a title="Dead link">PHP Dev Days</a> ([@phpdd](https://twitter.com/phpdd))

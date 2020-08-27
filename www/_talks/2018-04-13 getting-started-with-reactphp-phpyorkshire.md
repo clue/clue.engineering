@@ -11,4 +11,4 @@ tags:
   - conference
   - workshop
 ---
-Hands-on workshop hosted by <a href="https://www.phpyorkshire.co.uk/">PHP Yorkshire (@phpyorkshire)</a>
+Hands-on workshop hosted by [PHP Yorkshire](https://www.phpyorkshire.co.uk/) ([@phpyorkshire](https://twitter.com/phpyorkshire))

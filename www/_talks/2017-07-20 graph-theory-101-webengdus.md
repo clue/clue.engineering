@@ -7,4 +7,4 @@ tags:
   - graph-theory
   - usergroup
 ---
-Usergroup talk hosted by <a href="https://www.meetup.com/de-DE/Web-Engineering-Duesseldorf/">Web Engineering Düsseldorf (@WebEngDUS)</a>
+Usergroup talk hosted by [Web Engineering Düsseldorf](https://www.meetup.com/de-DE/Web-Engineering-Duesseldorf) ([@WebEngDUS](https://twitter.com/WebEngDUS))
