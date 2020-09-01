@@ -227,6 +227,33 @@ section#about a{
     color: #6296ae;
 }
 
+section#team div.container > div {
+    margin: 0 -30px;
+}
+section#team div.container > div > div {
+    display: inline-block;
+    width: 200px;
+    margin-left: 60px;
+    text-align: center;
+}
+section#team div.container > div > div:first-of-type {
+	margin-left: 0;
+}
+section#team img {
+    border-radius: 50%;
+    max-width: 100%;
+}
+section#team h1 {
+    font-size: 1em;
+    color: #284759;
+    font-weight: bold;
+    margin: 0;
+}
+section#team h2 {
+    font-size: 1em;
+    margin: 0;
+}
+
 section#posts svg {
     fill: #4C9ED9;
 }
@@ -375,7 +402,7 @@ section#post img {
     max-width: 100%;
 }
 
-section#projects, section#invite, section#comments, section#share, section#open-source, section#consulting {
+section#team, section#projects, section#invite, section#comments, section#share, section#open-source, section#consulting {
     background-color: #f8f8f8;
 }
 
