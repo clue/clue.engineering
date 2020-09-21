@@ -80,20 +80,22 @@ nav li.active {
 nav li a {
     text-decoration: none;
     color: #b5c6d5;
-    padding: .2em .2em;
+    padding: .2em;
 }
 nav li a:hover, nav li.active a {
     color: #5899C8;
 }
 nav li:first-child {
     float: left;
+    padding: 0;
+    border: 0;
+    height: 0;
 }
 nav li:first-child a {
     color: #fff;
-    margin-left: -3px;
-}
-#home nav li:first-child {
-    display: none;
+    margin-top: .5em;
+    padding-top: 0;
+    display: inline-block;
 }
 
 /* default section layout */
