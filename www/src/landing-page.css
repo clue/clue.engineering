@@ -225,16 +225,16 @@ section#about h1{
 section#about a{
     color: #6296ae;
 }
-section#about div.container > div {
-    margin: 2em 0;
+section#about ul {
+    padding: 0;
 }
-section#about div.container > div > div {
+section#about li {
     display: inline-block;
     width: 200px;
-    margin-left: 50px;
+    margin: 2em 0 2em 50px;
     text-align: center;
 }
-section#about div.container > div > div:first-of-type {
+section#about li:first-of-type {
 	margin-left: 0;
 }
 section#about img {
@@ -743,12 +743,12 @@ section#faq section:target p {
 }
 
 /* remove #about rounded corners when box size equals screen width */
-@media (max-width: 800px) {
+@media (max-width: 810px) {
     section#about{
         border-radius: 0;
     }
-    section#about div.container > div > div {
-        margin: 0;
+    section#about li {
+        margin-left: 0;
         width: auto;
         display: block;
     }
