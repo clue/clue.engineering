@@ -65,4 +65,4 @@ Contributions are essential to continue working on these open-source projects in
 One way to help out would be to [sponsor me on GitHub](https://github.com/sponsors/clue) if you want us to keep making progress.
 You are encouraged to send me your suggestions and to cooperate. Let's take this great project to the next level together.
 
-I'd love to hear your feedback, use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue). *Cheers!*
+I'd love to hear your feedback, use the contact options in the section below and let's get in touch. *Cheers!*

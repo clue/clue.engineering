@@ -67,5 +67,5 @@ If you care about [sustainable open-source](2019-sustainability-report) (*hint: 
 you may also want to keep in mind that given the extensive tests and many revisions,
 this turned out to be one of the more *expensive* releases.
 Consider [sponsoring me on GitHub](https://github.com/sponsors/clue) if you like to see us keep up with this.
-I'd love to hear your feedback, use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
+I'd love to hear your feedback, use the contact options in the section below and let's get in touch.
  

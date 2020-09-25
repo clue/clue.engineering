@@ -32,6 +32,6 @@ Accordingly, I'm aiming to establish this blog as the new home for everything re
 
 If you're interested in software engineering or want to learn more about what is happening behind the scenes in these projects, then this blog may be for you. In case nobody ends up reading any of these posts, then that's okay too and the posts will silently serve as a way to organize some of my thoughts. I will irregularly post software engineering insights that are relevant to my own work and that I feel more people should be aware of.
 
-If you have any feedback or just want to reach out and say hello, I'm more than happy to hear back! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
+If you have any feedback or just want to reach out and say hello, I'm more than happy to hear back! Use the contact options in the section below and let's get in touch.
 
 Cheers and Happy New Year!

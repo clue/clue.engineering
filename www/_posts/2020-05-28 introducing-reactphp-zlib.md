@@ -111,5 +111,5 @@ If you are interested in [sustainable open source](https://clue.engineering/2020
 
 Let's take these projects to the next level together! 🚀
 
-We love to hear your feedback, use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
+We love to hear your feedback, use the contact options in the section below and let's get in touch.
 *Cheers!*
