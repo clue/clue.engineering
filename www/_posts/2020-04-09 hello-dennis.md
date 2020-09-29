@@ -70,6 +70,6 @@ Contributions are essential to continue working on these open-source projects in
 You are encouraged to send us your suggestions and to cooperate. 
 Let's take these great projects to the next level together.
 
-We love to hear your feedback, use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
+We love to hear your feedback, use the contact options in the section below and let's get in touch.
 
 See you at **clue·labs**. Cheers!

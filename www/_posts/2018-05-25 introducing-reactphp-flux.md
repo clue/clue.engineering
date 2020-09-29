@@ -187,7 +187,7 @@ It goes without saying that this project does not aim to replace RabbitMQ or oth
 
 In case you're wondering: The name "flux" refers to its formal definition of "[…] the quantity which passes through a surface or substance". Any resemblance to other projects using similar names is purely coincidental...
 
-If you want to learn more about this project, make sure to check out [clue/reactphp-flux](https://github.com/clue/reactphp-flux). If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
+If you want to learn more about this project, make sure to check out [clue/reactphp-flux](https://github.com/clue/reactphp-flux). If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the contact options in the section below and let's get in touch.
 
 I'd like to thank [@geertvanbommel](https://github.com/geertvanbommel), a fellow software architect specializing in database batch processing and API development, for sponsoring the first release! 🎉 Thanks to sponsors like this, who understand the importance of open source development, I can justify spending time and focus on open source development instead of traditional paid work.
 

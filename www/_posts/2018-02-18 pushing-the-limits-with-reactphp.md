@@ -133,6 +133,6 @@ Personally, I thoroughly enjoy giving these talks and entering discussions about
 
 However, as much as I enjoy giving what has now become my signature talk, I will very likely step down a bit in this regard in the future and do not plan to actively promote and push this specific talk anymore. Instead, I would like to focus on helping people "getting started with ReactPHP" and will be preparing some fresh content for a future talk and upcoming hands-on workshops. That being said, if you want me to speak at your local event (user group or conference), reach out and I'm sure we can arrange this! Additionally, I also give talks specifically tailored during my freelance work, so reach out.
 
-If you like the talk, spreading the word is much appreciated! If you have an feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
+If you like the talk, spreading the word is much appreciated! If you have an feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the contact options in the section below and let's get in touch.
 
 Cheers! 🍻

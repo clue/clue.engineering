@@ -129,6 +129,6 @@ Once again I'd like to thank [@geertvanbommel](https://github.com/geertvanbommel
 
 > Did you know that I offer custom development services and issuing invoices for sponsorships of releases and for contributions? Contact me (@clue) for details.
 
-If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the comment section below or send a tweet to [@another_clue](https://twitter.com/another_clue).
+If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the contact options in the section below and let's get in touch.
 
 <blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">Just released friends-of-reactphp/mysql v0.4.0! 🎉 It includes many long awaited features: Promise-based APIs and streaming large result sets! Efficiently process thousands or millions of records from your <a href="https://twitter.com/MySQL?ref_src=twsrc%5Etfw">@MySQL</a> database with @ReactpPHP. <a href="https://twitter.com/hashtag/async?src=hash&amp;ref_src=twsrc%5Etfw">#async</a> <a href="https://twitter.com/hashtag/php?src=hash&amp;ref_src=twsrc%5Etfw">#php</a> <a href="https://t.co/b1Hv408RtD">https://t.co/b1Hv408RtD</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/1043161821409157129?ref_src=twsrc%5Etfw">21. September 2018</a></blockquote>
