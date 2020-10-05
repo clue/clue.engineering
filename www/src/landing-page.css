@@ -598,7 +598,10 @@ section#open-source > div > ul, section#sponsor > div > ul, section#consulting >
     list-style: none;
     padding: 10px 20px;
     border-radius: 4px;
-    border-top: 5px solid #799ed9;
+    border-top: 5px solid #4c9ed9;
+}
+section#sponsor > div > ul {
+    border-color: #d97a64;
 }
 section#open-source > div > ul {
     border-color: #64737d;
@@ -644,28 +647,37 @@ section#consulting img {
 ul.pricing {
     list-style: none;
     padding: 0;
-    margin: 10px -15px;
+    margin: 2em -15px;
     overflow: auto;
     white-space: nowrap;
 }
 ul.pricing > li {
     display: inline-block;
-    width: 135px;
-    margin-right: 10px;
+    width: 200px;
     margin-bottom: 10px;
     vertical-align: top;
     border-left: 4px solid #eee;
     padding-left: 10px;
     white-space: normal; 
 }
+ul.pricing h3 {
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+ul.pricing > li > div > strong {
+    color: #0f9ce1;
+}
 ul.pricing > li > div > strong > span {
     font-size: 2em;
 }
-section#consulting ul.pricing > li:last-child {
-    width: 200px;
+ul.pricing p {
+    margin: 0;
+    font-size: .8em;
 }
-section#consulting ul.pricing > li:last-child ul {
+ul.pricing ul {
     padding: 0 0 0 20px;
+    font-size: .8em;
 }
 
 section#faq h3 {
