@@ -605,6 +605,10 @@ ul.topics > li {
     border: 1px solid #eee;
     padding: 1.5em;
     box-shadow: 0 0 30px -10px rgba(0, 9, 27, .2);
+    transition: transform .2s ease;
+}
+ul.topics > li:hover {
+    transform: scale(1.1);
 }
 ul.topics > li > strong {
     text-transform: uppercase;
