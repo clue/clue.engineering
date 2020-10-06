@@ -754,6 +754,39 @@ section#faq section:target p {
     transition: max-height .5s ease;
 }
 
+section#footer {
+    background-color: #061324;
+    color: #eee;
+}
+section#footer ul {
+    display: inline-block;
+    width: auto;
+    padding: 0;
+    margin: 0 0 0 4em;
+}
+section#footer ul:first-child {
+    margin: 0;
+}
+section#footer li {
+    display: block;
+}
+section#footer a {
+    color: #eee;
+    text-decoration: none;
+    border-bottom: 1px dotted #83b1d9;
+}
+@media (max-width: 860px) {
+    section#footer ul {
+       margin: 0 0 0 9.2vw;
+    }
+}
+@media (max-width: 680px) {
+    section#footer ul {
+        display: block;
+        margin: 1em 0;
+    }
+}
+
 /* reduce navigation item size on smaller screens */
 @media (max-width: 450px) {
     nav ul {
