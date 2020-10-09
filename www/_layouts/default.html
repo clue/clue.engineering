@@ -1,28 +1,38 @@
+{% set base = page.url matches "#/.*/#" ? "../" : "" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-    <link href="src/landing-page.css" rel="stylesheet">
-{% if page.url != "/." %}
-    <script async src="src/app.js"></script>
+    <link href="{{base}}src/landing-page.css" rel="stylesheet">
+{# always include javascript except for index and blog posts #}
+{% if page.url != "/." and not (page.url matches "#/.*/#") %}
+    <script async src="{{base}}src/app.js"></script>
 {% endif %}
-    <link rel="alternate" type="application/atom+xml" href="posts.atom" title="Recent blog posts" />
+{# always include feed exept for blog posts? #}
+{% if not (page.url matches "#/.*/#") %}
+    <link rel="alternate" type="application/atom+xml" href="{{base}}posts.atom" title="Recent blog posts" />
+{% endif %}
+{% block head '' %}
 </head>
 
 <body{{ page.url == "/." ? ' id="home"' : '' }}>
     <nav>
         <ul>
-            <li{{ page.url == "/." ? ' class="active"' : '' }}><a href="./"><strong>clue</strong>·engineering</a></li>
-            <li{{ page.url == "/blog.html" ? ' class="active"' : '' }}><a href="blog">Blog</a></li>
-            <li{{ page.url == "/talks.html" ? ' class="active"' : '' }}><a href="talks">Talks</a></li>
-            <li{{ page.url == "/support.html" ? ' class="active"' : '' }}><a href="support">Support</a></li>
-            <li{{ page.url == "/contact.html" ? ' class="active"' : '' }}><a href="contact">Contact</a></li>
+            <li{{ page.url == "/." ? ' class="active"' : '' }}><a href="{{ base ?: "./" }}"><strong>clue</strong>·engineering</a></li>
+            <li{{ page.url == "/blog.html" or page.url matches "#/.*/#" ? ' class="active"' : '' }}><a href="{{ base }}blog">Blog</a></li>
+            <li{{ page.url == "/talks.html" ? ' class="active"' : '' }}><a href="{{ base }}talks">Talks</a></li>
+            <li{{ page.url == "/support.html" ? ' class="active"' : '' }}><a href="{{ base }}support">Support</a></li>
+            <li{{ page.url == "/contact.html" ? ' class="active"' : '' }}><a href="{{ base }}contact">Contact</a></li>
         </ul>
     </nav>
 
+{% if page.blocks.postcontent %}
+{% block postcontent '' %}
+{% else %}
 {% block content '' %}
+{% endif %}
 
     <script async type="text/javascript" src="https://userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/eb0f44ef8dbe480ab49d3a956f88be6034cf2d42e0114c31a532dc47ad6a9da7.js"></script>
 </body>
