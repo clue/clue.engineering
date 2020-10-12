@@ -10,10 +10,7 @@
 {% if page.url != "/." and not (page.url matches "#/.*/#") %}
     <script async src="{{base}}src/app.js"></script>
 {% endif %}
-{# always include feed exept for blog posts? #}
-{% if not (page.url matches "#/.*/#") %}
     <link rel="alternate" type="application/atom+xml" href="{{base}}posts.atom" title="Recent blog posts" />
-{% endif %}
 {% block head '' %}
 </head>
 
