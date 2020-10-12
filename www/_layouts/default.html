@@ -29,7 +29,34 @@
 {% block postcontent '' %}
 {% else %}
 {% block content '' %}
+
 {% endif %}
+
+    <section id="footer">
+        <div class="container">
+            <ul>
+                <li><strong>clue</strong>·engineering</a>
+                <li><a href="{{ base ?: "./" }}">Home</a></li>
+                <li><a href="{{ base }}blog">Blog</a></li>
+                <li><a href="{{ base }}talks">Talks</a></li>
+            </ul>
+            <ul>
+                <li><a href="{{ base }}support"><strong>Support</strong></a></li>
+                <li><a href="{{ base }}support#consulting">Consulting &amp; Coaching</a></li>
+                <li><a href="{{ base }}support#sponsor">Sponsoring</a></li>
+                <li><a href="{{ base }}support#open-source">Open-Source</a></li>
+            </ul>
+            <ul>
+                <li><a href="{{ base }}contact"><strong>Contact</strong></a></li>
+                <li><a href="{{ base }}contact#imprint">Imprint</a></li>
+                <li><a href="{{ base }}privacy">Privacy policy</a></li>
+                <li>
+                    <a href="https://twitter.com/another_clue" title="@another_clue on Twitter">Twitter</a>
+                    <a href="https://github.com/clue" title="@clue on GitHub">GitHub></a>
+                </li>
+            </ul>
+        </div>
+    </section>
 
     <script async type="text/javascript" src="https://userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/eb0f44ef8dbe480ab49d3a956f88be6034cf2d42e0114c31a532dc47ad6a9da7.js"></script>
 </body>
