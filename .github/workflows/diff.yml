@@ -1,0 +1,30 @@
+name: Diff HTML pages
+
+# Triggers the workflow on push or pull requests
+on:
+  push:
+  pull_request:
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+
+    steps:
+      # check out base ref and build site into old/
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+      - run: composer install
+      - run: vendor/bin/sculpin generate --output-dir=old
+
+      # check out head ref and build site into new/
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          clean: false # Prevent removing files in old/
+      - run: composer install
+      - run: vendor/bin/sculpin generate --output-dir=new
+
+      # Diff between old and new
+      - name: Diff between old and new
+        run: diff -r -u --color=always old new || true
