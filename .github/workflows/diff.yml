@@ -1,8 +1,7 @@
 name: Diff HTML pages
 
-# Triggers the workflow on push or pull requests
+# Triggers the workflow only for pull requests
 on:
-  push:
   pull_request:
 
 jobs:
@@ -27,4 +26,6 @@ jobs:
 
       # Diff between old and new
       - name: Diff between old and new
-        run: diff -r -u --color=always old new || true
+        run: |
+          git diff --no-index --stat --color=always old new && echo No changed detected || true
+          diff -r -u --color=always old new || true
