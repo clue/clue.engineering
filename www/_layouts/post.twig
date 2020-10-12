@@ -1,13 +1,9 @@
-{% set description = page.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <meta name="description" content="{{ description }}…">
-    <link href="../src/landing-page.css" rel="stylesheet">
+{% extends "default" %}
 
+{% block head %}
+{% set description = page.blocks.content|raw|striptags|replace({"\n":' ', "\r":' '})|trim|split(' ')|slice(0,50)|join(' ')|raw %}
+
+    <meta name="description" content="{{ description }}…">
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ page.title }}">
     <meta property="og:description" content="{{ description }}…">
@@ -22,19 +18,9 @@
     <meta property="article:published_time" content="{{ page.date | date("Y-m-d") }}">
     <meta name="twitter:site" content="@another_clue">
     <meta name="twitter:creator" content="@another_clue">
-</head>
+{% endblock %}
 
-<body>
-    <nav>
-        <ul>
-            <li><a href="../"><strong>clue</strong>·engineering</a></li>
-            <li class="active"><a href="../blog">Blog</a></li>
-            <li><a href="../talks">Talks</a></li>
-            <li><a href="../support">Support</a></li>
-            <li><a href="../contact">Contact</a></li>
-        </ul>
-    </nav>
-
+{% block postcontent %}
     <section id="post">
         <div class="container">
             <article>
@@ -51,17 +37,16 @@
                     </address>
                     on <time datetime="{{ page.date | date("Y-m-d") }}">{{ page.date | date("Y-m-d") }}</time>
 {% if page.tags %}
-<div>
-  tagged
+                    <div>
+                        tagged
 {%     for tag in page.tags %}
-  <a href="../blog#{{ tag }}" title="Show all blog posts tagged #{{ tag }}" rel="tag">#{{ tag }}</a>
+                        <a href="../blog#{{ tag }}" title="Show all blog posts tagged #{{ tag }}" rel="tag">#{{ tag }}</a>
 {%     endfor %}
-</div>
+                    </div>
 {% endif %}
                 </div>
 
 {% block content %}{% endblock %}
-
             </article>
         </div>
     </section>
@@ -89,7 +74,4 @@
             </p>
         </div>
     </section>
-
-    <script async type="text/javascript" src="https://userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/eb0f44ef8dbe480ab49d3a956f88be6034cf2d42e0114c31a532dc47ad6a9da7.js"></script>
-</body>
-</html>
+{% endblock %}
