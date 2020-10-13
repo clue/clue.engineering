@@ -709,6 +709,9 @@ ul.pricing > li {
     padding-left: 10px;
     white-space: normal; 
 }
+ul.pricing > li:first-child {
+    border-left: 0;
+}
 ul.pricing h3 {
     margin: 0;
     font-weight: bold;
