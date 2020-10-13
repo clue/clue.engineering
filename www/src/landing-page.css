@@ -596,6 +596,7 @@ ul.topics {
     padding: 0;
     width: 1200px;
     margin: 2em 0 .5em -260px;
+    transition: all .1s ease;
 }
 ul.topics > li {
     display: inline-block;
@@ -622,6 +623,12 @@ ul.topics p {
     font-size: .8em;
 }
 @media (max-width: 1220px) {
+    ul.topics {
+        margin-left: -60px;
+        width: 800px;
+    }
+}
+@media (max-width: 820px) {
     ul.topics {
         width: auto;
         margin: 0 auto;
