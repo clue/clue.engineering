@@ -71,11 +71,8 @@ nav ul {
 nav li {
     display: inline-block;
     margin: 0;
-    padding: .25em 0 .5em 0;
+    padding: .25em 0 .5em .5em;
     border-top: .25em solid transparent;
-}
-nav li.active {
-    border-top-color: #408BC2;
 }
 nav li a {
     text-decoration: none;
@@ -96,6 +93,19 @@ nav li:first-child a {
     margin-top: .5em;
     padding-top: 0;
     display: inline-block;
+}
+nav li:last-child a {
+    margin-right: 2px;
+    padding: .4em 1em;
+    background-color: #408bc2;
+    color: #f8f8f8;
+    text-shadow: 1px 1px 0px #555;
+    transition: all .1s ease;
+}
+nav li:last-child a:hover {
+    background-color: #84bde6;
+    color: #fff;
+    text-shadow: 0px 0px 2px #555;
 }
 
 /* default section layout */
