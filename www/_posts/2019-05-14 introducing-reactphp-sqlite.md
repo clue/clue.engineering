@@ -1,6 +1,5 @@
 ---
 title: Introducing async SQLite database for ReactPHP
-legacy_id: https://www.lueck.tv/2019/introducing-reactphp-sqlite
 tags:
   - introducing-reactphp
   - reactphp

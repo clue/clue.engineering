@@ -1,6 +1,5 @@
 ---
 title: Introducing SSH proxy connector for ReactPHP
-legacy_id: https://www.lueck.tv/2018/introducing-reactphp-ssh-proxy
 tags:
   - introducing-reactphp
   - reactphp

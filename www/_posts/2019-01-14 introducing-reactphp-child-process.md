@@ -1,6 +1,5 @@
 ---
 title: Introducing event-driven child process for ReactPHP
-legacy_id: 2019/introducing-reactphp-child-process
 tags:
   - introducing-reactphp
   - reactphp

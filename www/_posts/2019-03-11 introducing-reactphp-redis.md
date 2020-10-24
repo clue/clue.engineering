@@ -1,6 +1,5 @@
 ---
 title: Introducing async Redis database client for ReactPHP
-legacy_id: https://www.lueck.tv/2019/introducing-reactphp-redis
 tags:
   - introducing-reactphp
   - reactphp

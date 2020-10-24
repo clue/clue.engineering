@@ -1,6 +1,5 @@
 ---
 title: Introducing TLS 1.3 for ReactPHP
-legacy_id: 2019/introducing-tls-1-3-for-reactphp
 tags:
   - introducing-reactphp
   - reactphp

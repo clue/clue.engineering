@@ -1,6 +1,5 @@
 ---
 title: Introducing async cache for ReactPHP
-legacy_id: https://www.lueck.tv/2019/introducing-reactphp-cache
 tags:
   - introducing-reactphp
   - reactphp
