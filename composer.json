@@ -5,6 +5,9 @@
     "require-dev": {
         "sculpin/sculpin": "^3.0"
     },
+    "replace": {
+        "sculpin/sculpin-theme-composer-plugin": "1.0.2"
+    },
     "config": {
         "platform": {
             "php": "7.2"
