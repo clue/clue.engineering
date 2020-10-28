@@ -16,9 +16,12 @@ the simple, async [SOAP](https://en.wikipedia.org/wiki/SOAP) web service client 
 
 To answer the first thing you may be wondering: *Yes, it is 2018* and indeed, this project has been used in production in a number of projects for a few of years already. So I guess it's about time to write an introductory blog post about this project, how SOAP requests can be used and why I think ReactPHP's design makes it a perfect fit. Warning, terrible puns ahead.
 
+> Note you're viewing an outdated blog post for the version 1 release of this library.
+  See our [new version 2 release announcement](../2020/announcing-reactphp-soap-2) for the current version.
+
 ## SOAP shouldn't make you feel dirty
 
-Most notably, SOAP is often used for invoking [Remote procedure calls](https://en.wikipedia.org/wiki/Remote_procedure_call) (RPCs) in distributed systems. Internally, SOAP messages are encoded as XML and usually sent via HTTP POST requests. Each SOAP web service may offer any number of RPC functions. These are usually defined in a public [WSDL](https://en.wikipedia.org/wiki/Web_Services_Description_Language) file which contains definitions for all functions, their arguments and return values. For the most part, SOAP (originally *Simple Object Access protocol*) is a protocol of the past, and in fact anything but *simple*. It is still in use by many (often *legacy*) systems.
+Most notably, SOAP is often used for invoking [remote procedure calls](https://en.wikipedia.org/wiki/Remote_procedure_call) (RPCs) in distributed systems. Internally, SOAP messages are encoded as XML and usually sent via HTTP POST requests. Each SOAP web service may offer any number of RPC functions. These are usually defined in a public [WSDL](https://en.wikipedia.org/wiki/Web_Services_Description_Language) file which contains definitions for all functions, their arguments and return values. For the most part, SOAP (originally *Simple Object Access protocol*) is a protocol of the past, and in fact anything but *simple*. It is still in use by many (often *legacy*) systems.
 
 Nowadays, competing approaches could involve (RESTful) HTTP APIs, GraphQL and JSON-RPC, among others. I'm not going to argue that either approach would be best suited for your particular use-case, but I *will* argue that many SOAP APIs have clearly stood the test of time and continue to provide very real business value with little maintenance overhead. This remains something  the more modern approaches to API design have yet to prove. Arguably, while RPCs formatted as XML sent over HTTP are not exactly network-efficient, this is not really a major concern for many of the more *enterprisey* applications out there.
 
