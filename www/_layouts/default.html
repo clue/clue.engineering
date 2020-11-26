@@ -15,14 +15,16 @@
 </head>
 
 <body{{ page.url == "/." ? ' id="home"' : '' }}>
-    <nav>
-        <ul>
-            <li{{ page.url == "/." ? ' class="active"' : '' }}><a href="{{ base ?: "./" }}"><strong>clue</strong>·engineering</a></li>
-            <li{{ page.url == "/blog.html" or page.url matches "#/.*/#" ? ' class="active"' : '' }}><a href="{{ base }}blog">Blog</a></li>
-            <li{{ page.url == "/talks.html" ? ' class="active"' : '' }}><a href="{{ base }}talks">Talks</a></li>
-            <li{{ page.url == "/support.html" ? ' class="active"' : '' }}><a href="{{ base }}support">Get Support</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav>
+            <ul>
+                <li{{ page.url == "/." ? ' class="active"' : '' }}><a href="{{ base ?: "./" }}"><strong>clue</strong>·engineering</a></li>
+                <li{{ page.url == "/blog.html" or page.url matches "#/.*/#" ? ' class="active"' : '' }}><a href="{{ base }}blog">Blog</a></li>
+                <li{{ page.url == "/talks.html" ? ' class="active"' : '' }}><a href="{{ base }}talks">Talks</a></li>
+                <li{{ page.url == "/support.html" ? ' class="active"' : '' }}><a href="{{ base }}support">Get Support</a></li>
+            </ul>
+        </nav>
+    </header>
 
 {% if page.blocks.postcontent %}
 {% block postcontent '' %}
@@ -31,7 +33,7 @@
 
 {% endif %}
 
-    <section id="footer">
+    <footer>
         <div class="container">
             <ul>
                 <li><strong>clue</strong>·engineering</li>
@@ -55,7 +57,7 @@
                 </li>
             </ul>
         </div>
-    </section>
+    </footer>
 
     <script async type="text/javascript" src="https://userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/eb0f44ef8dbe480ab49d3a956f88be6034cf2d42e0114c31a532dc47ad6a9da7.js"></script>
 </body>
