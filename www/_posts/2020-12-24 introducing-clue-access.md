@@ -1,6 +1,6 @@
 ---
-title: Introducing clue·access - because open source needs to be sustainable!
-social_image_large: https://clue.engineering/src/2020-introducing-clue-access
+title: Introducing clue·access – because open source needs to be sustainable!
+social_image_large: https://clue.engineering/src/2020-introducing-clue-access.png
 tags:
   - clue-access
   - open-source
