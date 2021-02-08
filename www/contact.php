@@ -20,18 +20,4 @@ $id = '<' . gmdate('YmdHis') . '.' . mt_rand() . '@clue.engineering>';
 $ret = mail('hello@clue.engineering', '=?UTF-8?B?' . base64_encode($subject) . '?=', $message, "From: $email\r\nSender: hello@clue.engineering\r\nMessage-ID: $id\r\nContent-Type: text/plain; charset=utf-8");
 assert($ret);
 
-$message = 'Thanks for reaching out!
-
-This is an automated reply to let you know your mail has made it my way and I will get back to your mail as soon as possible.
-
-Christian
-https://clue.engineering/
-
-
-Original message:
-> ' . preg_replace('/(\r?\n)/', "\r\n> ", trim($message));
-
-$ret = mail($email, '=?UTF-8?B?' . base64_encode('Re: ' . $subject) . '?=', $message, "From: hello@clue.engineering\r\nReferences: $id\r\nIn-Reply-To: $id\r\nContent-Type: text/plain; charset=utf-8");
-assert($ret);
-
 header('Location: contact#thanks');
