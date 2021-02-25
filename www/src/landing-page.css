@@ -12,10 +12,11 @@ hr {
     border: 0;
     border-top: 2px solid #dbdbdb;
 }
-a {
+.container a {
     color: #4C9ED9;
+    text-decoration: underline;
 }
-a:not([href]) {
+.container a:not([href]) {
     text-decoration: line-through underline;
 }
 h1,h2,h3,h4 {
@@ -47,8 +48,15 @@ a:empty::before {
     display: block;
 }
 
-svg {
+.container svg {
     height: 0.8em;
+    display: inline-block;
+}
+.container h1, .container h2, .container h3, .container h4, .container p {
+    margin: 1em 0;
+}
+.container h1 {
+    font-size: 1.5em;
 }
 
 nav {
@@ -410,46 +418,10 @@ section#projects, section#invite, section#share, section#open-source, section#co
     background-color: #f8f8f8;
 }
 
-section.contact address {
-    font-style: normal;
-}
-section.contact svg, section#share svg {
+section#share svg {
     fill: #4C9ED9;
 }
-section.contact input, section.contact textarea, section.contact select, section.contact span {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-
-    font-size: inherit;
-    font-family: inherit;
-    padding: 8px 12px;
-    border: 0;
-    background-color: #fff;
-    color: #444;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06);
-    margin-bottom: 1em;
-    white-space: nowrap;
-    overflow: hidden;
-
-    -webkit-appearance: none;
-    border-radius: 0;
-}
-section.contact input:focus, section.contact textarea:focus, section.contact select:focus {
-    box-shadow: 0 0 0 3px rgba(66,153,225,.5);
-}
-section.contact input::placeholder, section.contact textarea::placeholder {
-    color: #aaa;
-}
-section.contact label:nth-child(3) { /* spammenot */
-    display: none;
-}
-section.contact textarea {
-    min-height: 8em;
-    max-height: 20em;
-    resize: vertical;
-}
-section.contact button, a.button {
+a.button {
     background-color: #4c9ed9;
     background-image: linear-gradient(160deg, #fff3 0%, #fff0 50%);
     color: #fff;
@@ -466,7 +438,7 @@ section.contact button, a.button {
     text-decoration: none;
     transition: all .15s ease, transform .05s ease;
 }
-section.contact button:hover, a.button:hover{
+a.button:hover{
     transform: scale(1.02);
     background-color: #4775b0;
 }
@@ -774,25 +746,6 @@ section#faq section:target p {
     transition: max-height .5s ease;
 }
 
-section#contact {
-    color: #f8f8f8;
-    background-color: #4C9ED9;
-}
-section#contact h3, section#contact a {
-    color: currentColor;
-}
-section#contact a:before {
-    display: inline-block;
-    margin-right: .2em;
-    width: 1em;
-    height: 1.2em;
-    vertical-align: middle;
-
-    /* thank you! https://fontawesome.com/ (solid/envelope) */
-    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>');
-    filter: invert(100%);
-}
-
 body > footer {
     background-color: #061324;
     color: #eee;
@@ -810,7 +763,7 @@ body > footer ul:first-child {
 body > footer li {
     display: block;
 }
-body > footer a {
+body > footer .container a {
     color: #eee;
     text-decoration: none;
     border-bottom: 1px dotted #83b1d9;
@@ -850,12 +803,14 @@ body > footer a[href^="https://github.com/"] {
         font-size: 4vw;
     }
 }
+
 /* section container fills complete width minus margin on small devices */
 @media (max-width: 760px) {
     section#main {
         background-attachment: scroll; /* iOS doesn't like fixed attachment, scroll is *good enough*… */
     }
     section .container, footer .container {
+        width: auto;
         margin: 50px 20px;
     }
     section.overlay div.container {

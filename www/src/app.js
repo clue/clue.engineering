@@ -14,7 +14,7 @@
             });
         });
         /* follow anchors without hash without reloading page */
-        document.querySelectorAll("div[class^=tagged-] a, .overlay a:not([href^='#']):not([href^='mailto:'])").forEach(function (elem) {
+        document.querySelectorAll("div[class^=tagged-] a").forEach(function (elem) {
             elem.addEventListener("click", function (ev) {
                 window.location.hash = '';
                 history.replaceState({}, document.title, window.location.pathname);

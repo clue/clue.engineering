@@ -2,48 +2,108 @@
 title: Contact clue·engineering
 layout: default
 ---
-<section class="contact">
-    <div class="container">
-        <h1>
-            Say Hello!
-        </h1>
-        <p>
-            Email us if you think we should be working together on interesting projects.
-        </p>
-        
-        <form action="contact" method="post">
-            <label>
-                <strong>Send mail to</strong>:
-                <span><address>
-                    <a href="mailto:hello@clue.engineering">
-                        <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
-                        <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
-                        hello@clue.engineering
-                    </a>
-                </address></span>
-            </label>
-            <label>
-                <strong>Your email</strong> <small>(required)</small>:
-                <input type="email" name="email" required placeholder="you@example.com">
-            </label>
-            <label>
-                <strong>Your URL</strong> <small>(leave this empty)</small>:
-                <input type="url" name="url">
-            </label>
-            <label>
-                <strong>Your message</strong> <small>(required)</small>:
-                <textarea name="message" required rows="6" minlength="20" maxlength="100000" placeholder="Hi Christian, &#10;let's work together! Here's some additional info about the thing… &#10;Cheers, Alice"></textarea>
-            </label>
-            <button type="submit">Send message</button>
-        </form>
-        
-        <p><small>
-            All fields are required.
+
+{% block head %}
+    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<section class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8">
+  <div class="relative max-w-xl mx-auto">
+    <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
+      <defs>
+        <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+        </pattern>
+      </defs>
+      <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
+    </svg>
+    <svg class="absolute right-full bottom-0 transform -translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
+      <defs>
+        <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+        </pattern>
+      </defs>
+      <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
+    </svg>
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Drop Us a Line
+      </h2>
+      <p class="mt-4 text-lg leading-6 text-gray-500">
+        This is the fastest way to contact us. We will get back to you as soon as possible.
+      </p>
+    </div>
+    <div class="mt-12">
+      <form action="" method="POST">
+        <div class="mb-6">
+          <span class="block text-sm font-medium text-gray-700 cursor-default">Send mail to:</span>
+          <!-- heroicon mail small -->
+          <address class="py-3 px-4 block w-full shadow text-gray-500 border-gray-300 rounded-md">
+            <svg class="h-4 inline text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            </svg>
+            <a href="mailto:hello@clue.engineering" class="text-blue-500 underline not-italic">hello@clue.engineering</a>
+          </address>
+        </div>
+        <div class="mb-6">
+          <label for="name" class="block text-sm font-medium text-gray-700">Your name: <small class="text-gray-500">(required)</small></label>
+          <div class="mt-1">
+            <input type="text" name="name" id="name" autocomplete="name" placeholder="Your name" required minlength="2" maxlength="200" class="py-3 px-4 block w-full shadow bg-transparent text-gray-500 border-gray-300 rounded-md">
+          </div>
+        </div>
+        <div class="mb-6">
+          <label for="email" class="block text-sm font-medium text-gray-700">Your email: <small class="text-gray-500">(required)</small></label>
+          <div class="mt-1">
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="200" class="py-3 px-4 block w-full shadow bg-transparent text-gray-500 border-gray-300 rounded-md">
+          </div>
+        </div>
+        <div class="mb-6">
+          <label for="company" class="block text-sm font-medium text-gray-700">Company: <small class="text-gray-500">(optional)</small></label>
+          <div class="mt-1">
+            <input type="text" name="company" id="company" autocomplete="organization" placeholder="Your company" maxlength="200" class="py-3 px-4 block w-full shadow bg-transparent text-gray-500 border-gray-300 rounded-md">
+          </div>
+        </div>
+        <div class="mb-6 hidden">
+          <label for="url" class="block text-sm font-medium text-gray-700">Your URL: <small class="text-gray-500">(please leave blank)</small></label>
+          <div class="mt-1">
+            <input id="url" name="url" type="url" autocomplete="off" placeholder="http://example.com/" maxlength="200" class="py-3 px-4 block w-full shadow bg-transparent text-gray-500 border-gray-300 rounded-md">
+          </div>
+        </div>
+        <div class="mb-6">
+          <label for="budget" class="block text-sm font-medium text-gray-700">Estimated budget: <small class="text-gray-500">(optional)</small></label>
+          <select id="budget" name="budget" class="py-3 px-4 block w-full shadow border-transparent bg-transparent text-gray-500 rounded-md">
+            <option>No budget</option>
+            <option>&lt; 2 000 €</option>
+            <option>2 000 - 10 000 €</option>
+            <option>10 000 - 50 000 €</option>
+            <option>50 000 - 200 000 €</option>
+            <option>200 000+ €</option>
+          </select>
+        </div>
+        <div class="mb-6">
+          <label for="message" class="block text-sm font-medium text-gray-700">Message: <small class="text-gray-500">(required)</small></label>
+          <div class="mt-1">
+            <textarea id="message" name="message" rows="6" required minlength="20" maxlength="100000" placeholder="Hi Christian, &#10;let's work together! Here's some additional info about the thing… &#10;Cheers, Alice" class="py-3 px-4 block w-full shadow bg-transparent text-gray-500 border-gray-300 rounded-md"></textarea>
+          </div>
+        </div>
+        <div class="mb-6">
+          <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow text-base font-medium text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+            Let's talk
+          </button>
+        </div>
+        <div>
+          <p><small>
+            Please fill in all required fields.
             Your email address will only be used for us to get back to you.
             If you don't like using contact forms, you can also use the above
             email address to directly send us a message.
-        </small></p>
+          </small></p>
+        </div>
+      </form>
     </div>
+  </div>
 </section>
 
 <section id="invite">
@@ -163,3 +223,5 @@ layout: default
         <a href="contact">&#x2714; Dismiss</a>
     </div>
 </section>
+
+{% endblock %}
