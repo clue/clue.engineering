@@ -52,11 +52,23 @@ a:empty::before {
     height: 0.8em;
     display: inline-block;
 }
+
+/* Tailwind CSS overrides to restore browser defaults */
 .container h1, .container h2, .container h3, .container h4, .container p {
     margin: 1em 0;
 }
-.container h1 {
+.container h1, .container h2 {
     font-size: 1.5em;
+}
+.container h3 {
+    font-size: 1.17em;
+}
+.container ul {
+    list-style: disc;
+    padding-left: 2em;
+}
+.container img {
+    display: inline;
 }
 
 nav {
@@ -235,6 +247,7 @@ section#about {
 section#about .container{
     margin: 40px;
     max-width: none;
+    width: auto;
 }
 section#about h1{
     color: #648797;
@@ -512,6 +525,7 @@ section#intro li a strong {
     display: block;
 }
 section#intro li a span {
+    box-sizing: content-box;
     display: block;
     height: 5em;
     padding: 20px;
@@ -581,6 +595,7 @@ ul.topics {
     transition: all .1s ease;
 }
 ul.topics > li {
+    box-sizing: content-box;
     display: inline-block;
     background-color: #fff;
     width: 300px;
@@ -751,7 +766,7 @@ body > footer {
     color: #eee;
     padding: 1px 0;
 }
-body > footer ul {
+body > footer .container ul {
     display: inline-block;
     width: auto;
     padding: 0;
