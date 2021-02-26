@@ -16,15 +16,28 @@
 </head>
 
 <body{{ page.url == "/." ? ' id="home"' : '' }}>
-    <header>
-        <nav>
-            <ul>
-                <li{{ page.url == "/." ? ' class="active"' : '' }}><a href="{{ base ?: "./" }}"><strong>clue</strong>·engineering</a></li>
-                <li{{ page.url == "/blog.html" or page.url matches "#/.*/#" ? ' class="active"' : '' }}><a href="{{ base }}blog">Blog</a></li>
-                <li{{ page.url == "/talks.html" ? ' class="active"' : '' }}><a href="{{ base }}talks">Talks</a></li>
-                <li{{ page.url == "/support.html" ? ' class="active"' : '' }}><a href="{{ base }}support">Get Support</a></li>
-            </ul>
-        </nav>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="{{ base ?: "./" }}" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="{{ base }}blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="{{ base }}talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="{{ base }}support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Get</span> Support
+            </a>
+          </nav>
+        </div>
+      </div>
     </header>
 
 {% if page.blocks.postcontent %}

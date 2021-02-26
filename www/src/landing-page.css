@@ -71,63 +71,6 @@ a:empty::before {
     display: inline;
 }
 
-header nav {
-    height: auto;
-    background: #0b3e51 no-repeat center center;
-    background-image: linear-gradient(to right, #091f29 0%, #113a4e 50%, #0c273b 75%, #060d1b 100%)
-}
-#home header nav {
-    height: 0;
-    position: relative;
-    z-index: 2;
-}
-header nav ul {
-    margin: 0 auto;
-    max-width: 700px;
-    padding: 0;
-    text-align: right;
-    font-size: .9em;
-}
-header nav li {
-    display: inline-block;
-    margin: 0;
-    padding: .25em 0 .5em .5em;
-    border-top: .25em solid transparent;
-}
-header nav li a {
-    text-decoration: none;
-    color: #b5c6d5;
-    padding: .2em;
-}
-header nav li a:hover, header nav li.active a {
-    color: #5899C8;
-}
-header nav li:first-child {
-    float: left;
-    padding: 0;
-    border: 0;
-    height: 0;
-}
-header nav li:first-child a {
-    color: #fff;
-    margin-top: .5em;
-    padding-top: 0;
-    display: inline-block;
-}
-header nav li:last-child a {
-    margin-right: 2px;
-    padding: .4em 1em;
-    background-color: #408bc2;
-    color: #f8f8f8;
-    text-shadow: 1px 1px 0px #555;
-    transition: all .1s ease;
-}
-header nav li:last-child a:hover {
-    background-color: #84bde6;
-    color: #fff;
-    text-shadow: 0px 0px 2px #555;
-}
-
 /* default section layout */
 section {
     width: 100%;
@@ -759,14 +702,6 @@ section#faq section:target p {
     max-height: 800px;
     margin: 1em 20px;
     transition: max-height .5s ease;
-}
-
-/* reduce navigation item size on smaller screens */
-@media (max-width: 450px) {
-    nav ul {
-        font-size: .68em;
-        font-size: 4vw;
-    }
 }
 
 /* section container fills complete width minus margin on small devices */
