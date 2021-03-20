@@ -84,14 +84,15 @@ class UserRepository
 {
     private $base = 'http://example.com/user/';
 
-    public static function checkUser(int $id): bool
+    public function checkUser(int $id): bool
     {
         $response = fetch($this->base . $id);
         return $response->getStatusCode() === 200;
     }
 }
 
-if (UserRepository::checkUser(42)) {
+$ok = $userRepository->checkUser(42);
+if ($ok) {
     echo 'User exists!';
 }
 ```
@@ -112,7 +113,7 @@ class UserRepository
     private $base = 'http://example.com/user/';
 
     /** @return PromiseInterface<bool> */
-    public static function checkUser(int $id): PromiseInterface
+    public function checkUser(int $id): PromiseInterface
     {
         return fetch($this->base . $id)->then(function (ResponseInterface $response) {
             return $response->getStatusCode() === 200;
@@ -120,8 +121,8 @@ class UserRepository
     }
 }
 
-UserRepository::checkUser(42)->then(function ($bool) {
-    if ($bool) {
+$userRepository->checkUser(42)->then(function (bool $ok) {
+    if ($ok) {
         echo 'User exists!';
     }
 });
@@ -148,7 +149,7 @@ class UserRepository
     private $base = 'http://example.com/user/';
 
     /** @return PromiseInterface<bool> */
-    public static function checkUser(int $id): PromiseInterface
+    public function checkUser(int $id): PromiseInterface
     {
         return async(function () use ($id) {
             $response = yield fetch($this->base . $id);
@@ -157,8 +158,8 @@ class UserRepository
     }
 }
 
-UserRepository::checkUser(42)->then(function ($bool) {
-    if ($bool) {
+$userRepository->checkUser(42)->then(function (bool $ok) {
+    if ($ok) {
         echo 'User exists!';
     }
 });
@@ -181,14 +182,15 @@ class UserRepository
 {
     private $base = 'http://example.com/user/';
 
-    public static function checkUser(int $id): bool
+    public function checkUser(int $id): bool
     {
         $response = fetch($this->base . $id);
         return $response->getStatusCode() === 200;
     }
 }
 
-if (UserRepository::checkUser(42)) {
+$ok = $userRepository->checkUser(42);
+if ($ok) {
     echo 'User exists!';
 }
 ```
@@ -225,8 +227,7 @@ class UserRepository
     private $base1 = 'http://example.com/user/';
     private $base2 = 'http://api.example.org/user/';
 
-    /** @return PromiseInterface<bool> */
-    public function checkUser(int $id): PromiseInterface
+    public function checkUser(int $id): bool
     {
         $response1 = fetch($this->base1 . $id);
         $response2 = fetch($this->base2 . $id);
@@ -235,7 +236,8 @@ class UserRepository
     }
 }
 
-if (UserRepository::checkUser(42)) {
+$ok = $userRepository->checkUser(42);
+if ($ok) {
     echo 'User exists!';
 }
 ```
@@ -258,7 +260,7 @@ class UserRepository
     private $base2 = 'http://api.example.org/user/';
 
     /** @return PromiseInterface<bool> */
-    public static function checkUser(int $id): PromiseInterface
+    public function checkUser(int $id): PromiseInterface
     {
         $promise1 = fetch($this->base1 . $id);
         $promise2 = fetch($this->base2 . $id);
@@ -269,8 +271,8 @@ class UserRepository
     }
 }
 
-UserRepository::checkUser(42)->then(function ($bool) {
-    if ($bool) {
+$userRepository->checkUser(42)->then(function (bool $ok) {
+    if ($ok) {
         echo 'User exists!';
     }
 });
@@ -298,7 +300,8 @@ class UserRepository
     private $base1 = 'http://example.com/user/';
     private $base2 = 'http://api.example.org/user/';
 
-    public static function checkUser(int $id): PromiseInterface
+    /** @return PromiseInterface<bool> */
+    public function checkUser(int $id): PromiseInterface
     {
         return async(function () use ($id) {
             $promise1 = fetch($this->base1 . $id);
@@ -311,8 +314,8 @@ class UserRepository
     }
 }
 
-UserRepository::checkUser(42)->then(function ($bool) {
-    if ($bool) {
+$userRepository->checkUser(42)->then(function (bool $ok) {
+    if ($ok) {
         echo 'User exists!';
     }
 });
@@ -338,7 +341,7 @@ class UserRepository
     private $base1 = 'http://example.com/user/';
     private $base2 = 'http://api.example.org/user/';
 
-    public static function checkUser(int $id): bool
+    public function checkUser(int $id): bool
     {
         $promise1 = async(function () use ($id) {
             return fetch($this->base1 . $id);
@@ -353,7 +356,8 @@ class UserRepository
     }
 }
 
-if (UserRepository::checkUser(42)) {
+$ok = $userRepository->checkUser(42);
+if ($ok) {
     echo 'User exists!';
 }
 ```
