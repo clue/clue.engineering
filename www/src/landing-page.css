@@ -30,9 +30,6 @@ h2 small {
 .container h2 {
     border-bottom: 1px solid aliceblue;
 }
-#home h2 {
-    border: 0;
-}
 
 /* show empty link anchors with "#" only when hovering parent heading */
 a:empty {
@@ -79,147 +76,6 @@ section {
 section .container {
     max-width: 700px;
     margin: 50px auto;
-}
-
-section#main {
-    min-height: 550px;
-    min-height: 100vh;
-    padding: 0;
-    width: 100%;
-
-    background: #0b3e51 no-repeat center center;
-    background-image: linear-gradient(to right, #10394b 0%, #113a4e 50%, #0c273b 75%, #060d1b 100%);
-    background-image: url(bg.jpg);
-    background-size: cover;
-    background-attachment: fixed;
-
-    color: #f8f8f8;
-    text-align: center;
-    font-size: 2em;
-}
-section#main > div {
-    margin: 200px 0 0 0;
-    margin: 30vh 0 0 0;
-    background-color: #0004;
-    padding: 1em;
-}
-section#main hr {
-    border-top: 4px solid #67aeca3b;
-    width: 20em;
-    margin: 1em auto;
-}
-section#main > div p {
-    margin: 0;
-    color: #fffe;
-    font-size: .8em;
-    line-height: 1.1;
-}
-section#main span {
-    display: block;
-}
-section#main > div div {
-    height: 1.5em;
-    margin-bottom: -.5em;
-    overflow: hidden;
-}
-section#main ul{
-    margin: 0;
-    padding: 0;
-    animation: animate 15s ease-in-out infinite;
-}
-section#main li{
-    display: block;
-    color: #fffd;
-    height: 2em;
-}
-@keyframes animate{
-    0%{
-        transform: translateY(2em);
-    }
-
-    5%{
-        transform: translateY(0);
-    }
-    20%{
-        transform: translateY(0);
-    }
-
-    25%{
-        transform: translateY(-2em);
-    }
-    40%{
-        transform: translateY(-2em);
-    }
-
-    45%{
-        transform: translateY(-4em);
-    }
-    60%{
-        transform: translateY(-4em);
-    }
-
-    65%{
-        transform: translateY(-6em);
-    }
-    80%{
-        transform: translateY(-6em);
-    }
-
-    85%{
-        transform: translateY(-8em);
-    }
-    97.5%{
-        transform: translateY(-8em);
-    }
-    100%{
-        transform: translateY(-9em);
-    }
-}
-
-section#about {
-    margin: -150px auto 50px auto; /* negative top margin to show on top of previous #main */
-    max-width: 800px;
-
-    background-color: #061324;
-    background: linear-gradient(to bottom, #0006 0%, #061324 150px); /* subtle transparent gradient over #main */
-    box-shadow: 0 0 75px -10px rgb(0, 9, 27);
-    border-radius: 4px;
-    border-top: 4px solid #142F49;
-    color: #9aa9b5;
-}
-section#about .container{
-    margin: 40px;
-    max-width: none;
-    width: auto;
-}
-section#about h1{
-    color: #648797;
-    font-size: 1.2em;
-}
-section#about a{
-    color: #6296ae;
-}
-section#about ul {
-    padding: 0;
-}
-section#about li {
-    display: inline-block;
-    width: 200px;
-    margin: 2em 0 2em 50px;
-    text-align: center;
-}
-section#about li:first-of-type {
-	margin-left: 0;
-}
-section#about img {
-    border-radius: 50%;
-    max-width: 100%;
-}
-section#about h2 {
-    font-size: 1em;
-    margin: 0;
-    font-weight: bold;
-    color: inherit;
 }
 
 section#posts svg {
@@ -370,7 +226,7 @@ section#post img {
     max-width: 100%;
 }
 
-section#projects, section#invite, section#share {
+section#invite, section#share {
     background-color: #f8f8f8;
 }
 
@@ -406,9 +262,6 @@ section.overlay div.container h2 {
 
 /* section container fills complete width minus margin on small devices */
 @media (max-width: 760px) {
-    section#main {
-        background-attachment: scroll; /* iOS doesn't like fixed attachment, scroll is *good enough*… */
-    }
     section .container {
         width: auto;
         margin: 50px 20px;
@@ -429,31 +282,5 @@ section.overlay div.container h2 {
     section.overlay div.container {
         margin-top: 10px;
         margin-bottom: 10px;
-    }
-}
-
-/* fill #main section to screen width */
-@media (max-width: 920px) {
-    section#main {
-        font-size: 1em;
-        font-size: 4.3vw;
-    }
-}
-
-/* remove #about rounded corners when box size equals screen width */
-@media (max-width: 810px) {
-    section#about{
-        border-radius: 0;
-    }
-    section#about li {
-        margin-left: 0;
-        width: auto;
-        display: block;
-    }
-}
-@media (max-height: 600px) {
-    section#about {
-        margin-top: 50px;
-        background: #061324;
     }
 }
