@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-    <link href="{{base}}src/landing-page.css" rel="stylesheet">
+    <link href="{{base}}src/landing-page.v2.css" rel="stylesheet">
     <link href="{{base}}src/tailwind-2.0.3.min.css" rel="stylesheet">
 {# always include javascript except for index and blog posts #}
 {% if page.url != "/." and not (page.url matches "#/.*/#") %}
-    <script async src="{{base}}src/app.js"></script>
+    <script async src="{{base}}src/app.v2.js"></script>
 {% endif %}
     <link rel="alternate" type="application/atom+xml" href="{{base}}posts.atom" title="Recent blog posts" />
 {% block head '' %}

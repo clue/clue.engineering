@@ -26,6 +26,8 @@ Then deploy `build/` behind your favorite webserver (Apache + PHP-FPM etc.).
 Additionally, this should be deployed behind a reverse proxy (nginx) that is
 responsible for HTTPS certificate handling and forcing HTTPS redirects.
 
+Additionally, Apache has been configured to cache static files for 1 day.
+
 For testing purposes, you can use the official `php` docker image like this:
 
 ```bash
