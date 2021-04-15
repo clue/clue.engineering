@@ -30,9 +30,11 @@ out=$(curl -v $base/2018/hello-world/ 2>&1) &&  match -i "Location: $redir/2018/
 
 out=$(curl -v $base/contact 2>&1) &&            match "HTTP/.* 200"
 out=$(curl -v $base/contact -X POST 2>&1) &&    match "HTTP/.* 400"
-out=$(curl -v $base/contact --data email=foo@example.com --data message="hello http://example.com" 2>&1) &&  match "HTTP/.* 403"
-out=$(curl -v $base/contact --data email=foo@example.com --data message="hello https://example.com" 2>&1) && match "HTTP/.* 403"
-# out=$(curl -v $base/contact --data email=foo@example.com --data message="For Christian: http://example.com" 2>&1) && match "HTTP/.* 302"
+out=$(curl -v $base/contact --data name=A --data email=alice@example.com --data company=ACME --data budget=None --data message="Let's get in touch!" 2>&1) && match "HTTP/.* 400" # name length
+out=$(curl -v $base/contact --data name=Alice --data email=alice --data company=ACME --data budget=None --data message="Let's get in touch!" 2>&1) && match "HTTP/.* 400" # email invalid
+out=$(curl -v $base/contact --data name=Alice --data email=alice@example.com --data company=ACME --data budget=A --data message="Let's get in touch!" 2>&1) && match "HTTP/.* 400" # budget invalid
+# out=$(curl -v $base/contact --data name=Alice --data email=alice@example.com --data company= --data budget=Yes --data message="Let's get in touch!!" 2>&1) && match "HTTP/.* 302" # valid without company
+# out=$(curl -v $base/contact --data name=Alice --data email=alice@example.com --data company=ACME --data budget=Yes --data message="Let's get in touch!!" 2>&1) && match "HTTP/.* 302" # valid with company
 out=$(curl -v $base/contact.html 2>&1) &&       match -i "Location: $redir/contact"
 out=$(curl -v $base/contact.php 2>&1) &&        match -i "Location: $redir/contact"
 out=$(curl -v $base/contact/ 2>&1) &&           match -i "Location: $redir/contact"

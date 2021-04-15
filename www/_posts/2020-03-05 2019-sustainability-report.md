@@ -10,14 +10,14 @@ author:
   - Dennis Graßnick
 ---
 
-As announced in my [previous blog post](2019-in-review), I would like to use this post to clearly explain the aspect of [sustainability](https://24daysindecember.net/2019/12/15/open-source-sustainability/) for [my open-source projects](../#projects).
+As announced in my [previous blog post](2019-in-review), I would like to use this post to clearly explain the aspect of [sustainability](https://24daysindecember.net/2019/12/15/open-source-sustainability/) for [my open-source projects](https://github.com/clue).
 First, I would like to demonstrate this with a small calculation example.
 
 Over the course of the last year, I have invested about **500 hours** of my working time in open-source projects.
 The time tracked specifically includes time spent on triaging open issues and working on new features, but it does not include the time spent answering support requests, [writing my blogs](../blog) and preparing for my [public talks](../talks).
 It's much harder to get an exact number here, but it's safe to estimate the total to be somewhere around 1000 hours.
 
-Besides working on open-source projects, I work as a freelance software-engineering consultant, so I very well know what my time is worth (*if you're interested, [I'm available for hire](../support#consulting)*).
+Besides working on open-source projects, I work as a freelance software-engineering consultant, so I very well know what my time is worth (*if you're interested, [I'm available for hire](../support)*).
 My hourly rates depend on the project size and requirements, so it's a bit hard to commit to a fixed number here.
 What I know, last time I went to an official BMW car mechanic, I've been invoiced 125&nbsp;€/h, so I think it's fair to go with an hourly rate of 150 €/h for the following calculations.
 I'll play fair here and apply a discount, so let's go with just the 500 hours, and let's take a look, **who paid for this?**
@@ -75,8 +75,8 @@ In December, I wrote a piece about [open-source sustainability](https://24daysin
 It's still my understanding that if your project relies on some open-source projects for its business-critical features, it's in our best interest that these open-projects are sustainable.
 
 As a measure in this regard, I made detailed adjustments to my sponsoring options and added sponsoring buttons to [my projects on GitHub](https://github.com/clue).
-You can now [sponsor me on GitHub](https://github.com/sponsors/clue) or see my [sponsoring page](../support#sponsor) for more details.
 This is not to be confused with a simple *donation*, so if you become a sponsor, you will also get something in return: dedicated support options, sponsor placements and some lovely stickers!
+For more details, see my [sponsoring page on GitHub](https://github.com/sponsors/clue).
 
 Let's go step by step, at the time of writing this, I'm receiving 4 $ per month through GitHub sponsors, but you know how to help me change this, right? :-)
 I'm planning to evaluate the outcome at the end of the year and will sum this up in another sustainability report for 2020.
@@ -92,6 +92,6 @@ It is a real pleasure to develop ideas and implement them with you.
 Among other things, Geert enables me to continue my passionate work on open-source besides purely commercial assignments.
 
 Do you also care about sustainable open-source?
-Remember you can now [sponsor me on GitHub](https://github.com/sponsors/clue) or see my [sponsoring page](../support#sponsor) for more details,
+Remember you can now [sponsor me on GitHub](https://github.com/sponsors/clue),
 plus you get a chance to be mentioned in my upcoming sustainability report for 2020.
 Looking forward to a great year 2020 and helping make open-source more sustainable! Cheers! 🎉
