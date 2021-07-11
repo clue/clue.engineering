@@ -3,6 +3,7 @@ title: Announcing stable ReactPHP LTS release
 tags:
   - reactphp
   - release
+  - birthday
 author:
   - Christian Lück
 ---
