@@ -3,6 +3,7 @@ title: "Fibers in PHP: A new opportunity for async PHP?"
 social_image_large: https://clue.engineering/src/2021-christopher-burns-Kj2SaNHG-hg-unsplash.social.jpg
 tags:
   - reactphp
+  - fibers
 author:
   - Christian Lück
 ---
