@@ -1,16 +1,16 @@
 {
     "require": {
-        "php": ">=7.2"
+        "php": ">=8.1"
     },
     "require-dev": {
-        "sculpin/sculpin": "^3.0"
+        "sculpin/sculpin": "dev-master#23a74ba as 3.2"
     },
     "replace": {
         "sculpin/sculpin-theme-composer-plugin": "1.0.2"
     },
     "config": {
         "platform": {
-            "php": "7.2"
+            "php": "8.1.8"
         }
     }
 }
