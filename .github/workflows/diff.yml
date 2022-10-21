@@ -6,21 +6,24 @@ on:
 
 jobs:
   diff:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        php:
+          - 8.1
     steps:
       # check out base ref and build site into old/
-      - uses: actions/checkout@v2
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - uses: actions/checkout@v3
+      - uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.0
+          php-version: ${{ matrix.php }}
+          coverage: none
           ref: ${{ github.event.pull_request.base.sha }}
       - run: composer install
       - run: vendor/bin/sculpin generate --output-dir=old
 
       # check out head ref and build site into new/
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           clean: false # Prevent removing files in old/
