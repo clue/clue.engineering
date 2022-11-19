@@ -20,7 +20,6 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           coverage: none
-      - run: test -f Makefile || echo -en "build:\n\tcomposer install\n\tvendor/bin/sculpin generate\n" > Makefile # remove me once Makefile is merged
       - run: make && mv build/ old/
 
       # check out head ref and build site into new/
