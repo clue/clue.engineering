@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#run with base url argument like "http://clue.test" or "https://user:pass@clue.test"
-base=${1:-http://clue.test}
+#run with base url argument like "http://clue.localhost" or "https://user:pass@clue.example"
+base=${1:-http://clue.localhost}
 redir=$(echo $base | sed "s,://.*@,://,g")
 echo -n "Testing $redir"
 
