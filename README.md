@@ -1,50 +1,55 @@
 # clue.engineering
 
-Source code for https://clue.engineering/
+Source code for the https://clue.engineering/ website.
 
-## Install
+## Build
 
-Install dependencies:
-
-```bash
-composer install
-```
-
-Build website:
+You can build the website like this:
 
 ```bash
-vendor/bin/sculpin generate
+make
 ```
 
-This will create a `build/` directory that contains the static website that can
-be accessed with a web browser.
+Once built, you can manually browse the `build/` directory or run the web server
+container (Apache) in the foreground like this:
+
+```bash
+make serve
+```
+
+Alternatively, you may also run the web server container (Apache) as a
+background daemon like this:
+
+```bash
+make served
+```
+
+Once running, you can run some integration tests that check correct paths etc.
+like this:
+
+```bash
+make test
+```
+
+> This test assumes you're running the above web server container on
+> `http://clue.localhost`. You may test other deployments like this:
+>
+> ```bash
+> tests/acceptance.sh https://clue.example
+> ```
+
+Once done, you can clean up like this:
+
+```bash
+make clean
+```
 
 ## Deploy
 
-Then deploy `build/` behind your favorite webserver (Apache + PHP-FPM etc.).
+Once built (see previous "Build" section), you can simply deploy the `build/`
+directory behind your favorite web server (Apache + PHP-FPM etc.).
 
 Additionally, this should be deployed behind a reverse proxy (nginx) that is
 responsible for HTTPS certificate handling and forcing HTTPS redirects.
 
 Additionally, Apache has been configured to cache static files for 1 day.
-
-For testing purposes, you can use the official `php` docker image like this:
-
-```bash
-docker run -it --rm -p 80:80 -v "$PWD"/build:/var/www/html php:8.1-apache sh -c "ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled; apache2-foreground"
-```
-
-## Tests
-
-You can run some simple acceptance tests to verify the deployed website works
-as expected by running:
-
-```bash
-tests/acceptance.sh https://clue.test
-```
-
-If you're using the above `php` docker image, you can run this test like this:
-
-```bash
-tests/acceptance.sh http://clue.localhost
-```
