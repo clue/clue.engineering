@@ -1,5 +1,8 @@
 # clue.engineering
 
+[![CI status](https://github.com/clue/clue.engineering/actions/workflows/ci.yml/badge.svg)](https://github.com/clue/clue.engineering/actions)
+[![Last deployed on `live`](https://img.shields.io/github/last-commit/clue/clue.engineering/live?label=last%20deployed&logo=github)](https://github.com/clue/clue.engineering/tree/live)
+
 Source code for the https://clue.engineering/ website.
 
 ## Build
@@ -53,3 +56,16 @@ Additionally, this should be deployed behind a reverse proxy (nginx) that is
 responsible for HTTPS certificate handling and forcing HTTPS redirects.
 
 Additionally, Apache has been configured to cache static files for 1 day.
+
+The live website is deployed by pushing the contents of the `build/` directory to
+the `live` branch like this:
+
+```bash
+make deploy
+```
+
+## Auto-Deployment
+
+Any time a commit is merged (such as when a PR is merged), GitHub actions will
+automatically build and deploy the website. This is done by running the above
+deployment script (see previous chapter).

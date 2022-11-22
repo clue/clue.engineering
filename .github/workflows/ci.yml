@@ -3,9 +3,10 @@ name: CI
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
-  Acceptance:
+  Deploy:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -20,3 +21,7 @@ jobs:
       - run: make
       - run: make served
       - run: make test
+      - run: git config --global user.name "GitHub Actions" && git config --global user.email "actions@github.com"
+      - run: git config --global url."https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+      - run: make deploy
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
