@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f637e16e93c9ebe49ab8e951c9bad463",
+    "content-hash": "21483a280dd9675a8815b6455f69e633",
     "packages": [],
     "packages-dev": [
         {
@@ -1624,16 +1624,16 @@
         },
         {
             "name": "sculpin/sculpin",
-            "version": "dev-master",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sculpin/sculpin.git",
-                "reference": "23a74ba"
+                "reference": "5f705d845b2dc980ed91b79c49ccaa5f64cbdda0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sculpin/sculpin/zipball/23a74ba",
-                "reference": "23a74ba",
+                "url": "https://api.github.com/repos/sculpin/sculpin/zipball/5f705d845b2dc980ed91b79c49ccaa5f64cbdda0",
+                "reference": "5f705d845b2dc980ed91b79c49ccaa5f64cbdda0",
                 "shasum": ""
             },
             "require": {
@@ -1684,7 +1684,6 @@
                 "ext-iconv": "To convert non-UTF-8 strings to UTF-8.",
                 "ext-posix": "If you have PCNTL, you'll want the POSIX extension as well."
             },
-            "default-branch": true,
             "bin": [
                 "bin/sculpin",
                 "bin/sculpin.php"
@@ -1725,9 +1724,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sculpin/sculpin/issues",
-                "source": "https://github.com/sculpin/sculpin/tree/master"
+                "source": "https://github.com/sculpin/sculpin/tree/3.2.0"
             },
-            "time": "2022-01-25T06:18:07+00:00"
+            "time": "2022-10-31T19:34:13+00:00"
         },
         {
             "name": "symfony/config",
@@ -3746,18 +3745,9 @@
             "time": "2017-05-11T10:04:12+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "sculpin/sculpin",
-            "version": "9999999-dev",
-            "alias": "3.2",
-            "alias_normalized": "3.2.0.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "sculpin/sculpin": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
