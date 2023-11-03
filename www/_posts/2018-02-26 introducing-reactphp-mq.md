@@ -100,7 +100,7 @@ This means that the above code actually sends all 100 requests concurrently and 
 
 Assuming that each page still takes around `0.2s`, this script will theoretically run only for little over `0.2s` for all 100 URLs. Yes, these numbers are no longer multiplied, it actually only has to wait for the *slowest* response. Again, the `0.2s` in this example is a rather optimistic assumption, many real-world pages actually take significantly longer.
 
-In pratice, sending 100 requests *at once* may not be that much of a good idea. While concurrently sending a smaller number of requests should work perfectly fine, sending an excessive number of requests may either take up all resources on your side or it may even get you banned by the remote side if it sees an unreasonable number of requests from your side.
+In practice, sending 100 requests *at once* may not be that much of a good idea. While concurrently sending a smaller number of requests should work perfectly fine, sending an excessive number of requests may either take up all resources on your side or it may even get you banned by the remote side if it sees an unreasonable number of requests from your side.
 
 This means that while async processing allows you to get some very impressive speed improvements (`20s` vs `0.2s` total), you will very like run into issues if you overwhelm individual parts of your often complex system.
 
@@ -145,7 +145,7 @@ foreach ($urls as $url) {
 $loop->run();
 ```
 
-You'll notice that this code differs only slighty from the previous example and this should still be pretty self-explanatory; it simply dumps the size of each response after a request completes.
+You'll notice that this code differs only slightly from the previous example and this should still be pretty self-explanatory; it simply dumps the size of each response after a request completes.
 
 The major difference to the previous example is that the `$browser->get()` method is now wrapped in a `Queue` instance and this instance is invoked where a new request is to be sent. Other than that, this code still uses a [Promise](https://github.com/reactphp/promise) which is *fulfilled* with a response object.
 
