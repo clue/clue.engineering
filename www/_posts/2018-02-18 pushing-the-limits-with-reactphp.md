@@ -75,7 +75,7 @@ What follows is a hopefully complete listing of all talk dates and details that 
   * Usergroup talk
   * [Info](https://www.meetup.com/de-DE/phpugms/events/232608916/)
 * 2016-11-10 **@phpruhr** (Dortmund)
-  * Conference talk + spontanious hands-on workshop
+  * Conference talk + spontaneous hands-on workshop
   * [Info](https://2016.php.ruhr/session/pushing-the-limits-with-react-php/)
 * 2017-06-01 **@phpconference** (Berlin)
   * Conference talk

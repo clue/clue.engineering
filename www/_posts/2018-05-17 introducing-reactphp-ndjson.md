@@ -64,7 +64,7 @@ id,name
 
 CSV may look slightly simpler, but this simplicity comes at a price. CSV is limited to untyped, two-dimensional data, so there's no standard way of storing any nested structures or to differentiate a boolean value from a string or integer. Field names are sometimes used, sometimes they're not (application-dependant). Inconsistent handling for fields that contain separators such as `,` or spaces or even line breaks (think of URLS or user-provided descriptions) introduce additional complexity and its text encoding is usually undefined, Unicode (or UTF-8) is unlikely to be supported and CSV files often use ISO 8859-1 encoding or some variant (again application-dependant).
 
-Despite its shortcomings, CSV is widely used and this is unlikely to change any time soon. In particular, CSV is a very common export format for a lot of tools to interface with spreadsheet processors (such as Excel, Calc etc.). This means that CSV is often used for historial reasons and using CSV to store structured application data is usually not a good idea nowadays – but exporting to CSV for known applications is a very reasonable approach.
+Despite its shortcomings, CSV is widely used and this is unlikely to change any time soon. In particular, CSV is a very common export format for a lot of tools to interface with spreadsheet processors (such as Excel, Calc etc.). This means that CSV is often used for historical reasons and using CSV to store structured application data is usually not a good idea nowadays – but exporting to CSV for known applications is a very reasonable approach.
 
 ### NDJSON vs. JSON text sequences
 
@@ -112,7 +112,7 @@ One of the less commonly used alternatives to NDJSON is concatenated JSON, where
 
 Trying to interpret this example as a human requires only little more effort than NDJSON, because the end of each record is no longer as obvious. However, this can easily get way more complicated when a record contains nested data that contains sub-structures so that the resulting file may contain a large number of curly braces that do not necessarily terminate a record.
 
-As a consequence, while generating concatenated JSON requires trivial effort, parsing this format actually requires significant effort. In fact, it requires implementing a context-aware parser to detect message framing so that message framing is no longer independant of actual message parsing. Fortunately, this is not a format you'll likely come across very often. Among others, this is used by the Docker daemon to send progress notifications only when using legacy HTTP/1.0.
+As a consequence, while generating concatenated JSON requires trivial effort, parsing this format actually requires significant effort. In fact, it requires implementing a context-aware parser to detect message framing so that message framing is no longer independent of actual message parsing. Fortunately, this is not a format you'll likely come across very often. Among others, this is used by the Docker daemon to send progress notifications only when using legacy HTTP/1.0.
 
 If you have to deal with concatenated JSON in PHP, you may want to look into using [clue/json-stream](https://github.com/clue/php-json-stream). If you're in control over this format, I would suggest just adding a newline in between each record. Existing streaming parsers should be able to cope with this just fine as non-significant whitespace outside of JSON should be ignored. Also, this means that you've just turned this into standard NDJSON and can simply use the following processing logic :-)
 
@@ -237,7 +237,7 @@ While this example requires you to manually launch this script, it should show y
 
 Streaming JSON-based records or messages is a really powerful approach for a large number of use cases and by now I hope I could show you how newline-delimited JSON (NDJSON) is really simple, yet powerful, addition to this toolset.
 
-[NDJSON](http://ndjson.org/) can be used to store multiple JSON records in a file to store any kind of (uniform) structured data, such as a list of user objects or log entries. It uses a simple newline character between each individual record and as such can be both used for efficient persistence and simple append-style operations. This also allows it to be used in a streaming context, such as a simple inter-process commmunication (IPC) protocol or for a remote procedure call (RPC) mechanism.
+[NDJSON](http://ndjson.org/) can be used to store multiple JSON records in a file to store any kind of (uniform) structured data, such as a list of user objects or log entries. It uses a simple newline character between each individual record and as such can be both used for efficient persistence and simple append-style operations. This also allows it to be used in a streaming context, such as a simple inter-process communication (IPC) protocol or for a remote procedure call (RPC) mechanism.
 
 There are some valid criticisms against JSON and if human readability is not an issue for your use case, then there are some more efficient alternatives. Obviously, this also applies to NDJSON likewise. For many use cases this does not apply and JSON is a perfectly reasonable choice in this case. If you're processing multiple independent JSON objects, then NDJSON may be a good candidate.
 
