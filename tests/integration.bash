@@ -1,7 +1,10 @@
 #!/bin/bash
 
-#run with base url argument like "http://clue.localhost" or "https://user:pass@clue.example"
-base=${1:-http://clue.localhost}
+# run with base url argument like "http://clue.localhost" or "https://user:pass@clue.example"
+base=${1:-http://clue.localhost/}
+base=${base%/}
+
+# base url with any userinfo removed
 redir=$(echo $base | sed "s,://.*@,://,g")
 
 n=0

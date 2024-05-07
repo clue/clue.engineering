@@ -34,11 +34,11 @@ like this:
 make test
 ```
 
-> This test assumes you're running the above web server container on
-> `http://clue.localhost`. You may test other deployments like this:
+> If you don't want to test this against the local container, you can optionally
+> pass in a different base URL like this:
 >
 > ```bash
-> tests/integration.bash https://clue.example
+> tests/integration.bash http://clue.localhost/
 > ```
 
 Once done, you can clean up like this:

@@ -21,7 +21,7 @@ served: build
 	@echo Container running. Use \"docker rm -f {containerId}\" to stop container.
 
 test:
-	bash tests/integration.bash
+	bash tests/integration.bash http://clue.localhost/
 	test -z "$$(git status --porcelain)" || (echo Directory is dirty && git status && exit 1)
 
 deploy:
