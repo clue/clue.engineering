@@ -38,7 +38,7 @@ make test
 > `http://clue.localhost`. You may test other deployments like this:
 >
 > ```bash
-> tests/acceptance.sh https://clue.example
+> tests/integration.bash https://clue.example
 > ```
 
 Once done, you can clean up like this:
