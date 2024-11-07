@@ -1,0 +1,62 @@
+RewriteEngine On
+
+# POST /contacts should target contacts.php
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^contact$ contact.php [END]
+
+# URLs should never end with trailing slash when file exists with .html extension, redirect to location without slash
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+)/$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [R,END]
+
+# all URLs should rewrite to append .html extension internally if this file exists (exclude index.html)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteCond %{REQUEST_FILENAME} !^.*index$
+RewriteRule ^(.+)$ $1\.html [END]
+
+# URLs should never include .html extension, redirect to location without extension (exclude index.html)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_FILENAME} !^.*index\.html$
+RewriteRule ^(.+)\.(html|php)$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [R,END]
+
+# URLs should never include index.html, redirect to location without file
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.*)index\.(html|php)$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [R,END]
+
+# redirect 20xx/ to blog#20xx only when directory exists
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(20\d\d)/?$ %{REQUEST_SCHEME}://%{HTTP_HOST}/blog#$1 [NE,R,L]
+
+# redirect legacy blog post URLS
+# 2018-05-13
+RedirectPermanent /2018/introducing-mq-react            /2018/introducing-reactphp-mq
+# 2018-11-27
+RedirectPermanent /2018/introducing-reactphp-mini-queue /2018/introducing-reactphp-mq
+RedirectPermanent /2018/introducing-ndjson-reactphp     /2018/introducing-reactphp-ndjson
+
+RedirectPermanent /graph-composer/graph-composer.phar /graph-composer-latest.phar
+RedirectPermanent /phar-composer/phar-composer.phar /phar-composer-latest.phar
+RedirectPermanent /psocksd/psocksd.phar /psocksd-latest.phar
+
+Redirect /graph-composer-latest.phar /graph-composer-1.1.0.phar
+Redirect /graph-composer-1.1.0.phar https://github.com/clue/graph-composer/releases/download/v1.1.0/graph-composer-1.1.0.phar
+Redirect /graph-composer-1.0.0.phar https://github.com/clue/graph-composer/releases/download/v1.0.0/graph-composer.phar
+Redirect /graph-composer-0.1.1.phar https://github.com/clue/graph-composer/releases/download/v0.1.1/graph-composer.phar
+
+Redirect /phar-composer-latest.phar /phar-composer-1.4.0.phar
+Redirect /phar-composer-1.4.0.phar https://github.com/clue/phar-composer/releases/download/v1.4.0/phar-composer-1.4.0.phar
+Redirect /phar-composer-1.3.0.phar https://github.com/clue/phar-composer/releases/download/v1.3.0/phar-composer-1.3.0.phar
+Redirect /phar-composer-1.2.0.phar https://github.com/clue/phar-composer/releases/download/v1.2.0/phar-composer-1.2.0.phar
+Redirect /phar-composer-1.1.0.phar https://github.com/clue/phar-composer/releases/download/v1.1.0/phar-composer-1.1.0.phar
+Redirect /phar-composer-1.0.0.phar https://github.com/clue/phar-composer/releases/download/v1.0.0/phar-composer.phar
+Redirect /phar-composer-0.5.0.phar https://github.com/clue/phar-composer/releases/download/v0.5.0/phar-composer.phar
+Redirect /phar-composer-0.4.0.phar https://github.com/clue/phar-composer/releases/download/v0.4.0/phar-composer.phar
+
+Redirect /psocksd-latest.phar /psocksd-0.4.0.phar
+Redirect /psocksd-0.4.0.phar https://github.com/clue/psocksd/releases/download/v0.4.0/psocksd.phar
+Redirect /psocksd-0.3.5.phar https://github.com/clue/psocksd/releases/download/v0.3.5/psocksd.phar
+Redirect /psocksd-0.3.4.phar https://github.com/clue/psocksd/releases/download/v0.3.4/psocksd.phar
+Redirect /psocksd-0.3.3.phar https://github.com/clue/psocksd/releases/download/v0.3.3/psocksd.phar
+Redirect /psocksd-0.3.2.phar https://github.com/clue/psocksd/releases/download/v0.3.2/psocksd.phar
+Redirect /psocksd-0.3.1.phar https://github.com/clue/psocksd/releases/download/v0.3.1/psocksd.phar
