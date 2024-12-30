@@ -5,7 +5,9 @@
 
 Source code for the https://clue.engineering/ website.
 
-## Build
+## Development
+
+### Build
 
 You can build the website like this:
 
@@ -13,19 +15,21 @@ You can build the website like this:
 make
 ```
 
+### Run
+
 Once built, you can manually browse the `build/` directory or run the web server
 container (Apache) in the foreground like this:
 
 ```bash
-make serve
+docker compose up --build --watch
 ```
 
-Alternatively, you may also run the web server container (Apache) as a
-background daemon like this:
+> Once running, you can now access http://clue.localhost/ in your web browser.
+> If you want to run this on a different port, you may pass the `PORT`
+> environment variable like `PORT=8080 docker compose up`.
+> To run the container in the background, you may use the `docker compose up -d` command.
 
-```bash
-make served
-```
+### Tests
 
 Once running, you can run some integration tests that check correct paths etc.
 like this:
@@ -40,6 +44,8 @@ make test
 > ```bash
 > tests/integration.bash http://clue.localhost/
 > ```
+
+### Cleanup
 
 Once done, you can clean up like this:
 

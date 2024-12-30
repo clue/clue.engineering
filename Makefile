@@ -5,20 +5,9 @@ vendor: composer.json composer.lock
 	composer install
 	touch $@
 
-www/src/tailwind.min.css: www/_layouts/* www/_posts/* www/_talks/* www/*.html www/*.html.twig tailwindcss tailwind.config.js
-	./tailwindcss -o $@ --minify
+www/src/tailwind.min.css: www/_layouts/* www/_posts/* www/_talks/* www/*.html www/*.html.twig tailwind.config.js
+	docker compose run --rm --build tailwind -o $@ --minify
 	touch $@
-
-tailwindcss:
-	test -x tailwindcss || curl -L https://github.com/tailwindlabs/tailwindcss/releases/download/v3.2.4/tailwindcss-linux-x64 > tailwindcss && chmod +x tailwindcss
-
-serve: build
-	docker run -it --rm -p 80:80 -v "$$PWD"/build/:/var/www/html/ php:8.1-apache sh -c "ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled; apache2-foreground"
-
-served: build
-	docker run -d --rm -p 80:80 -v "$$PWD"/build/:/var/www/html/ php:8.1-apache sh -c "ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled; apache2-foreground"
-	@sleep 2
-	@echo Container running. Use \"docker rm -f {containerId}\" to stop container.
 
 test:
 	bash tests/integration.bash http://clue.localhost/
@@ -33,6 +22,7 @@ deploy:
 	git -C build/ push origin live -f
 
 clean:
-	rm -rf build/ vendor/ tailwindcss
+	rm -rf build/ vendor/
+	docker compose down --remove-orphans --rmi local
 
-.PHONY: build serve served test deploy clean
+.PHONY: build test deploy clean
