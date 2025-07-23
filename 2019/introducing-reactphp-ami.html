@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducing event-driven Asterisk Manager Interface (AMI) for ReactPHP</title>
+    <link href="../src/landing-page.v2.css" rel="stylesheet">
+    <link href="../src/tailwind.min.css" rel="stylesheet">
+    <link rel="alternate" type="application/atom+xml" href="../posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+
+    <meta name="description" content="This week, I&#039;m happy to announce the first stable v1.0.0 release of clue/reactphp-ami, the streaming, event-driven access to the Asterisk Manager Interface (AMI), built on top of ReactPHP 🎉  Once again, don&#039;t be fooled by the version number: Its release history suggests this is not exactly a new project.…">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Introducing event-driven Asterisk Manager Interface (AMI) for ReactPHP">
+    <meta property="og:description" content="This week, I&#039;m happy to announce the first stable v1.0.0 release of clue/reactphp-ami, the streaming, event-driven access to the Asterisk Manager Interface (AMI), built on top of ReactPHP 🎉  Once again, don&#039;t be fooled by the version number: Its release history suggests this is not exactly a new project.…">
+    <meta property="og:image" content="https://user-images.githubusercontent.com/776829/67948024-23e7ff00-fbe5-11e9-9662-fb8f0ca16edc.jpg">
+    <meta property="og:url" content="https://clue.engineering/2019/introducing-reactphp-ami">
+    <meta property="og:site_name" content="clue·engineering">
+    <meta property="article:published_time" content="2019-11-03">
+    <meta name="twitter:site" content="@another_clue">
+    <meta name="twitter:creator" content="@another_clue">
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="../" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="../blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="../talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="../support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section id="post">
+        <div class="container">
+            <article>
+                <h1>Introducing event-driven Asterisk Manager Interface (AMI) for ReactPHP</h1>
+                <div>
+                    <address>
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <a href="../">Christian Lück</a>
+                    </address>
+                    on <time datetime="2019-11-03">2019-11-03</time>
+                    <div>
+                        tagged
+                        <a href="../blog#introducing-reactphp" title="Show all blog posts tagged #introducing-reactphp" rel="tag">#introducing-reactphp</a>
+                        <a href="../blog#reactphp" title="Show all blog posts tagged #reactphp" rel="tag">#reactphp</a>
+                        <a href="../blog#release" title="Show all blog posts tagged #release" rel="tag">#release</a>
+                        <a href="../blog#asterisk" title="Show all blog posts tagged #asterisk" rel="tag">#asterisk</a>
+                        <a href="../blog#telephony" title="Show all blog posts tagged #telephony" rel="tag">#telephony</a>
+                    </div>
+                </div>
+
+<p><img src="https://user-images.githubusercontent.com/776829/67948024-23e7ff00-fbe5-11e9-9662-fb8f0ca16edc.jpg" alt="black-and-white-black-and-white-chairs-315638" />
+<!-- https://www.pexels.com/photo/chairs-on-table-against-window-315638/ --></p>
+
+<p>This week, I'm happy to announce the first stable <code>v1.0.0</code> release of <a href="https://github.com/clue/reactphp-ami">clue/reactphp-ami</a>, the streaming, event-driven access to the Asterisk Manager Interface (AMI), built on top of <a href="https://reactphp.org/">ReactPHP</a> 🎉</p>
+
+<p>Once again, don't be fooled by the version number: Its <a href="https://github.com/clue/reactphp-ami/releases">release history</a> suggests this is not exactly a new project. In fact, this is one of the projects that got me hooked on ReactPHP's event-driven execution model a while ago and one of the first ReactPHP-based projects that I've used in a production environment. So I guess it's about time to write an introductory blog post about this project and why I think ReactPHP's design makes it a perfect fit.</p>
+
+<h2 id="about-asterisk">About Asterisk</h2>
+
+<p>The <a href="https://www.asterisk.org/">Asterisk PBX</a> is a popular open-source telephony solution that offers a wide range of telephony features for both VoIP and traditional PSTN networks. Asterisk powers IP PBX systems, VoIP gateways, conference servers and other custom solutions. It is used by small businesses, large businesses, call centers, carriers and government agencies, worldwide.</p>
+
+<p>Asterisk's configuration is quite complex and feature-rich. In a gist, Asterisk is configured using a static dialplan configuration to define how incoming and outgoing phone calls are routed to which telephone (number or "extension"). On top of this, it also supports dynamic scripts to create custom behavior (like dynamic voice menus) using <abbrev title="Asterisk Gateway Interface">AGI</abbrev> scripts (which is left up for a follow-up blog post) and monitoring and controlling the current state using <abbrev title="Asterisk Manager Interface">AMI</abbrev> scripts as described below.</p>
+
+<h2 id="async-ami-actions">Async AMI Actions</h2>
+
+<p>The Asterisk Manager Interface (AMI) provides access to a number of <a href="https://wiki.asterisk.org/wiki/display/AST/Asterisk+17+AMI+Actions">actions</a> to execute on your Asterisk server. Among others, this can be used to check what phone calls are currently ongoing, end an active call, dial a new number, send a text message (SMS) and much more.</p>
+
+<p><a href="https://github.com/clue/reactphp-ami">clue/reactphp-ami</a> provides a lightweight abstraction to access these functions in an async API. For example, let's take a look at the current SIP peers connected to your Asterisk server:</p>
+
+<pre><code class="php">$loop = React\EventLoop\Factory::create();
+$factory = new Clue\React\Ami\Factory($loop);
+
+$factory-&gt;createClient('user:secret@localhost')-&gt;then(function (Clue\React\Ami\Client $client) {
+    echo 'Client connected' . PHP_EOL;
+
+    $sender = new Clue\React\Ami\ActionSender($client);
+    $sender-&gt;sipPeers()-&gt;then(function (Clue\React\Ami\Protocol\Collection $collection) {
+        $peers = $collection-&gt;getEntryEvents();
+        echo 'Found ' . count($peers) . ' peers' . PHP_EOL;
+    });
+});
+
+$loop-&gt;run();
+</code></pre>
+
+<p>Even if you've never worked with Asterisk or ReactPHP's async APIs, you should should be able to understand what's going on in this example. It uses a simple AMI action retrieve all current SIP peers and dumps the number of SIP peers to the console.</p>
+
+<p>If you've ever worked with AMI or ReactPHP's async APIs before, you may appreciate how each method call on the <code>ActionSender</code> matches exactly one AMI action. Its Promise-based API allows you to easily invoke any number of actions that will be pipelined to your Asterisk PBX automatically and you can react to the action results you care about. For more details, you may also want to check out the provided documentation or the list of <a href="https://wiki.asterisk.org/wiki/display/AST/Asterisk+17+AMI+Actions">AMI actions</a> provided by Asterisk.</p>
+
+<h2 id="event-driven-ami-events">Event-driven AMI events</h2>
+
+<p>Besides executing actions on your Asterisk server, the Asterisk Manager Interface (AMI) also allows you to monitor the current state and receive a number of <a href="https://wiki.asterisk.org/wiki/display/AST/Asterisk+17+AMI+Events">events</a> whenever something interesting happens. Among others, this can be used to get an instant notification when a new phone call comes in, somebody picks up their phone and much more.</p>
+
+<p>Again, <a href="https://github.com/clue/reactphp-ami">clue/reactphp-ami</a> provides a lightweight abstraction to access these events using a simple event-driven API. For example, let's take a look at all the events that are reported by your Asterisk server:</p>
+
+<pre><code class="php">$loop = React\EventLoop\Factory::create();
+$factory = new Clue\React\Ami\Factory($loop);
+
+$factory-&gt;createClient('user:secret@localhost')-&gt;then(function (Clue\React\Ami\Client $client) {
+    echo 'Client connected' . PHP_EOL;
+
+    $sender = new Clue\React\Ami\ActionSender($client);
+    $sender-&gt;events(true);
+
+    $client-&gt;on('close', function() {
+        echo 'Connection closed' . PHP_EOL;
+    });
+
+    $client-&gt;on('event', function (Clue\React\Ami\Protocol\Event $event) {
+        echo 'Event: ' . $event-&gt;getName() . ': ' . json_encode($event-&gt;getFields()) . PHP_EOL;
+    });
+});
+
+$loop-&gt;run();
+</code></pre>
+
+<p>Even if you've never worked with ReactPHP's event-driven APIs, you should be able to understand what's going on in this simple example: It simply dumps each incoming event name and its fields whenever a new event is received. This simple example keeps running as long as the connection to your Asterisk server is active and will keep reporting all events as they happen.</p>
+
+<p>The above snippet only aims to give you an idea of how this lightweight API can be used. In a more realistic example you may want to filter certain events (such as all incoming phone calls only) and use this information to build your own live dashboard application. If you want to learn more about the events exposed by this API, you can take a look at the provided API documentation or at the official list of <a href="https://wiki.asterisk.org/wiki/display/AST/Asterisk+17+AMI+Events">AMI events</a>.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>The <a href="https://www.asterisk.org/">Asterisk PBX</a> is a popular open-source telephony solution that offers a wide range of telephony features for both VoIP and traditional PSTN networks. It powers a large variety of installations of custom IP PBX systems and more. With this stable release of <a href="https://github.com/clue/reactphp-ami">clue/reactphp-ami</a>, you can use its actions and events from within PHP to build customized solutions.</p>
+
+<p>If you want to learn more about this project, make sure to check out the project homepage of <a href="https://github.com/clue/reactphp-ami">clue/reactphp-ami</a>. Its documentation describes common usage patterns as well as all the nifty details. It is considered stable and feature complete and has been used in production projects for a few years already and you're invited to also give it a try! If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the contact options in the section below and let's get in touch.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Released v1.0.0 of clue/reactphp-ami this week, giving you event-driven access to your <a href="https://twitter.com/asteriskpbx?ref_src=twsrc%5Etfw">@asteriskpbx</a> <a href="https://twitter.com/hashtag/AMI?src=hash&amp;ref_src=twsrc%5Etfw">#AMI</a> with <a href="https://twitter.com/hashtag/PHP?src=hash&amp;ref_src=twsrc%5Etfw">#PHP</a>. Monitor and control your phone calls and text messages using <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a> ☎️🐘<a href="https://t.co/RQpxUi989u">https://t.co/RQpxUi989u</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/1191044350563758082?ref_src=twsrc%5Etfw">November 3, 2019</a></blockquote>
+            </article>
+        </div>
+    </section>
+
+    <section id="calendly">
+        <div class="bg-white">
+            <div class="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+                    <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-10 xl:px-10">
+                        <div class="lg:self-center">
+                            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                                <span class="block">We're Here to Help!</span>
+                                <span class="block text-blue-400">Let's Tackle Your Problems Together.</span>
+                            </h2>
+                            <p class="mt-4 text-lg leading-6 text-gray-200">
+                                Did you know we provide <a href="https://clue.engineering/support" class="underline">professional support</a> for software projects?
+                                Book an appointment, you pay absolutely nothing for the first consultation.
+                            </p>
+                            <a href="https://calendly.com/clue-engineering/getting-started" class="mt-8 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white">Set Up a Free Call</a>
+                        </div>
+                    </div>
+                    <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                        <a href="https://calendly.com/clue-engineering/getting-started">
+                            <img class="transform translate-x-16 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-24 lg:translate-y-24 lg:translate-x-16" src="../src/2023-calendly.png" alt="calendly screenshot">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="share">
+        <div class="container">
+            <h3>
+                <a href="#share"></a>
+                We love feedback!
+            </h3>
+            <p>
+                If you have anything to add,
+                send a tweet to <a href="https://twitter.com/another_clue">@another_clue</a>.
+            </p>
+            <p>
+                We invite you to share our blog posts with friends and colleagues.
+                All our blog posts can be shared freely under the permissive
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+                license.
+            </p>
+            <p>
+                <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+                <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                <a href="../contact">Email us</a> if you think we should be working together on interesting projects.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="../" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="../contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

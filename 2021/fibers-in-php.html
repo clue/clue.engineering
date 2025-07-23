@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibers in PHP: A new opportunity for async PHP?</title>
+    <link href="../src/landing-page.v2.css" rel="stylesheet">
+    <link href="../src/tailwind.min.css" rel="stylesheet">
+    <link rel="alternate" type="application/atom+xml" href="../posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+
+    <meta name="description" content="It looks like PHP will get fibers soon with PHP 8.1! That’s awesome! Or is it?  What are fibers?  I think the Ruby documentation does a good job at describing what fibers are:     Fibers are primitives for implementing light weight cooperative concurrency [in Ruby].…">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Fibers in PHP: A new opportunity for async PHP?">
+    <meta property="og:description" content="It looks like PHP will get fibers soon with PHP 8.1! That’s awesome! Or is it?  What are fibers?  I think the Ruby documentation does a good job at describing what fibers are:     Fibers are primitives for implementing light weight cooperative concurrency [in Ruby].…">
+    <meta property="og:image" content="https://clue.engineering/src/2021-christopher-burns-Kj2SaNHG-hg-unsplash.social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="https://clue.engineering/2021/fibers-in-php">
+    <meta property="og:site_name" content="clue·engineering">
+    <meta property="article:published_time" content="2021-03-19">
+    <meta name="twitter:site" content="@another_clue">
+    <meta name="twitter:creator" content="@another_clue">
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="../" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="../blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="../talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="../support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section id="post">
+        <div class="container">
+            <article>
+                <h1>Fibers in PHP: A new opportunity for async PHP?</h1>
+                <div>
+                    <address>
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <a href="../">Christian Lück</a>
+                    </address>
+                    on <time datetime="2021-03-19">2021-03-19</time>
+                    <div>
+                        tagged
+                        <a href="../blog#reactphp" title="Show all blog posts tagged #reactphp" rel="tag">#reactphp</a>
+                        <a href="../blog#fibers" title="Show all blog posts tagged #fibers" rel="tag">#fibers</a>
+                    </div>
+                </div>
+
+<p><img src="../src/2021-christopher-burns-Kj2SaNHG-hg-unsplash.jpg" alt="" /></p>
+
+<p>It <a href="https://wiki.php.net/rfc/fibers">looks like PHP will get fibers</a> soon with PHP 8.1! That’s awesome! Or is it?</p>
+
+<h2 id="what-are-fibers%3F">What are fibers?</h2>
+
+<p>I think the Ruby documentation does a good job at describing what fibers are:</p>
+
+<blockquote>
+  <p>Fibers are primitives for implementing light weight cooperative concurrency [in Ruby].
+  Basically they are a means of creating code blocks that can be paused and resumed, much like threads.
+  The main difference is that they are never preempted and that the scheduling must be done by the programmer and not the VM.</p>
+  
+  <p>– <a href="https://ruby-doc.org/core-3.0.0/Fiber.html">https://ruby-doc.org/core-3.0.0/Fiber.html</a></p>
+</blockquote>
+
+<h2 id="will-fibers-bring-async-to-php%3F">Will fibers bring async to PHP?</h2>
+
+<p>No. Maybe yes? This is perhaps one of the most common misconceptions about the
+<a href="https://wiki.php.net/rfc/fibers">fibers RFC</a> and also where things become tricky, so hear me out.</p>
+
+<p>Fibers are a low-level construct to manage control flow.
+They allow you to build (synchronous) functions in such a way that they can be paused and resumed.
+It is up to the person developing this function to define where this function can be paused and what event it waits for to resume execution.</p>
+
+<p>Fibers themselves do not schedule these executions, but they allow an additional scheduler to resume a paused fiber.
+In any realistic environment, this would be handled through an event loop implementing the reactor pattern.
+Now, the fiber API itself does not provide such an event loop (which I consider a good thing).</p>
+
+<p>This means you would still have to use something like ReactPHP, Swoole or Amp
+to provide async execution models or to build anything that can actually execute concurrently.
+This means that with or without fibers, async PHP will be provided by external libraries.</p>
+
+<p>However, at the same time fibers have the potential to bring async PHP to more projects.
+From an average developer’s perspective, they will never interface with fibers at all.
+Fibers can be used as an implementation detail in async libraries so that async functions look just like a synchronous API,
+but with the help of the event loop can execute something asynchronously internally.
+This means there’s a chance we will see more async implementations in the future because they integrate more seamlessly into synchronous environments.</p>
+
+<h2 id="do-we-need-fibers-for-async-php%3F">Do we need fibers for async PHP?</h2>
+
+<p>No. As detailed in the previous section, we need a scheduler (or event loop) in order to run things asynchronously or concurrently.</p>
+
+<p>This means you would still have to use something like ReactPHP, Swoole or Amp for async PHP.
+With or without fibers, async PHP will be provided by external libraries.</p>
+
+<blockquote>
+  <p>Full disclaimer here, I’m one of the maintainers of ReactPHP and we’ve built hundreds of production-grade projects using async PHP.
+    And with <a href="https://packagist.org/?q=reactphp">tens of millions of downloads</a>,
+    ReactPHP has clearly stood the test of time and has allowed thousands of projects to take advantage of async PHP.
+    Personally, I’ve been using ReactPHP for years (I’ve started using ReactPHP on PHP 5.3) with great success.
+    In fact, we also use ReactPHP at the core of my <a href="https://clue.engineering/">software company business</a> and
+    we’ve helped numerous projects to get the most out of PHP by leveraging async PHP in production with great success.</p>
+</blockquote>
+
+<p>Fibers are one possible building block for asynchronous applications among others.
+<a href="https://packagist.org/packages/react/promise/stats">Unlike ReactPHP’s promises</a>,
+Fibers haven’t stood the test of time yet in the PHP ecosystem.
+Yet, we see potential for the fiber proposal to change the async PHP landscape for·ever – and perhaps <em>for the better</em>.</p>
+
+<h2 id="what-problem-do-fibers-solve%3F">What problem do fibers solve?</h2>
+
+<p>Fibers address the <a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/">“What color is your function?”</a> problem.</p>
+
+<p>Yes, that’s a somewhat lengthy post, but you may want to read it to fully understand the concerns.
+In short, it means that many languages have a distinction between synchronous and asynchronous functions.
+Worse yet, when using any asynchronous function, it makes your entire call stack asynchronous as well.</p>
+
+<p>To see this in practice, let’s take a look at some code to send an HTTP request.</p>
+
+<h3 id="synchronous">Synchronous</h3>
+
+<p>In synchronous code, sending an HTTP request could look something like this:</p>
+
+<pre><code class="php">function fetch(string $url): ResponseInterface { }
+
+class UserRepository
+{
+    private $base = 'http://example.com/user/';
+
+    public function checkUser(int $id): bool
+    {
+        $response = fetch($this-&gt;base . $id);
+        return $response-&gt;getStatusCode() === 200;
+    }
+}
+
+$ok = $userRepository-&gt;checkUser(42);
+if ($ok) {
+    echo 'User exists!';
+}
+</code></pre>
+
+<h3 id="promises">Promises</h3>
+
+<p>In order to represent the eventual return value of an asynchronous function call, many language environments use promises.
+Some languages provide a native promise implementation, in other languages, this is commonly implemented in userland.
+In PHP, this would be provided by ReactPHP or Guzzle.
+Here’s the same example using promises to send an HTTP request:</p>
+
+<pre><code class="php">/** @return PromiseInterface&lt;ResponseInterface&gt; */
+function fetch(string $url): PromiseInterface { }
+
+class UserRepository
+{
+    private $base = 'http://example.com/user/';
+
+    /** @return PromiseInterface&lt;bool&gt; */
+    public function checkUser(int $id): PromiseInterface
+    {
+        return fetch($this-&gt;base . $id)-&gt;then(function (ResponseInterface $response) {
+            return $response-&gt;getStatusCode() === 200;
+        });
+    }
+}
+
+$userRepository-&gt;checkUser(42)-&gt;then(function (bool $ok) {
+    if ($ok) {
+        echo 'User exists!';
+    }
+});
+</code></pre>
+
+<p>Promise-based designs provide a powerful and <em>sane</em> interface to working with async responses.
+At the same time, we realize that this example can look more complicated than its traditional, synchronous counterpart.
+In particular, by using the async <code>fetch()</code> function, our entire <code>checkUser()</code> method also became asynchronous and needs to return a promise.
+This in turn has a direct effect on how the main application uses this method.</p>
+
+<h3 id="coroutines">Coroutines</h3>
+
+<p>This is where coroutines come into play.
+Some environments prefer <a href="https://www.npopov.com/2012/12/22/Cooperative-multitasking-using-coroutines-in-PHP.html">implementing coroutines</a>
+with the help of generators to make this same control flow look more like synchronous code.
+Among others, you can find this when combining ReactPHP with Recoil or using the current Amp version:</p>
+
+<pre><code class="php">/** @return PromiseInterface&lt;ResponseInterface&gt; */
+function fetch(string $url): PromiseInterface { }
+
+class UserRepository
+{
+    private $base = 'http://example.com/user/';
+
+    /** @return PromiseInterface&lt;bool&gt; */
+    public function checkUser(int $id): PromiseInterface
+    {
+        return async(function () use ($id) {
+            $response = yield fetch($this-&gt;base . $id);
+            return $response-&gt;getStatusCode() === 200;
+        });
+    }
+}
+
+$userRepository-&gt;checkUser(42)-&gt;then(function (bool $ok) {
+    if ($ok) {
+        echo 'User exists!';
+    }
+});
+</code></pre>
+
+<p>Accessing the async return value now certainly looks much easier.
+However, we can see that this now requires wrapping this in a generator function.
+Additionally, we now need a generator-based coroutine implementation providing an <code>async()</code> function
+that hooks into the <code>yield</code> statement and manages control flow for our promises.
+This means this <em>can</em> be a nicer API for some aspects, but we’re still dealing with promises after all.</p>
+
+<h3 id="fibers">Fibers</h3>
+
+<p>Fortunately, fibers can come to a rescue here:</p>
+
+<pre><code class="php">function fetch(string $url): ResponseInterface { }
+
+class UserRepository
+{
+    private $base = 'http://example.com/user/';
+
+    public function checkUser(int $id): bool
+    {
+        $response = fetch($this-&gt;base . $id);
+        return $response-&gt;getStatusCode() === 200;
+    }
+}
+
+$ok = $userRepository-&gt;checkUser(42);
+if ($ok) {
+    echo 'User exists!';
+}
+</code></pre>
+
+<p>This sure looks nice, right?
+In fact, with fibers you will no longer see that a function call is asynchronous at all.
+Fibers allow you to express a synchronous program flow, so you don’t have to deal with any async execution at all.
+Interestingly, this also means the average PHP application developer will also never interface with the <code>Fiber</code> implementation at all.
+I think this is a great plus.</p>
+
+<p>Fibers provide a building block to build functions that can be used in a synchronous or in an asynchronous environment without changes.
+Their internal workings hide the fact that it might be executing other functions asynchronously with the help of an event loop.
+Fibers can be used in both synchronous and asynchronous environments without using adapters in-between.
+This means there will be a chance of us seeing more asynchronous implementations because they integrate more seamlessly into synchronous environments.</p>
+
+<p>However, this is no fair comparison with promises.
+The above example looks entirely synchronous – because it <em>IS</em> synchronous.
+In order to make a fair comparison between fibers and promises,
+we actually have to take a look at an example that sends concurrent requests.</p>
+
+<h2 id="what-does-concurrency-look-like-in-real-world-applications%3F">What does concurrency look like in real-world applications?</h2>
+
+<p>Again, let’s take our previous example and how instead of checking one external API, we check two external APIs.</p>
+
+<h3 id="synchronous">Synchronous</h3>
+
+<p>Changing this in our synchronous example isn’t a lot of work:</p>
+
+<pre><code class="php">function fetch(string $url): ResponseInterface { }
+
+class UserRepository
+{
+    private $base1 = 'http://example.com/user/';
+    private $base2 = 'http://api.example.org/user/';
+
+    public function checkUser(int $id): bool
+    {
+        $response1 = fetch($this-&gt;base1 . $id);
+        $response2 = fetch($this-&gt;base2 . $id);
+
+        return $response1-&gt;getStatusCode() === 200 &amp;&amp; $response2-&gt;getStatusCode() === 200;
+    }
+}
+
+$ok = $userRepository-&gt;checkUser(42);
+if ($ok) {
+    echo 'User exists!';
+}
+</code></pre>
+
+<p>Now assuming that the first service always takes 1s and the second always takes 2s,
+executing this takes a total of 3s.
+It’s easy to see why: Every call happens one after another, so times add up.</p>
+
+<h3 id="promises">Promises</h3>
+
+<p>Likewise, we can change your previous promise example to fetch from two APIs:</p>
+
+<pre><code class="php">/** @return PromiseInterface&lt;ResponseInterface&gt; */
+function fetch(string $url): PromiseInterface { }
+
+class UserRepository
+{
+    private $base1 = 'http://example.com/user/';
+    private $base2 = 'http://api.example.org/user/';
+
+    /** @return PromiseInterface&lt;bool&gt; */
+    public function checkUser(int $id): PromiseInterface
+    {
+        $promise1 = fetch($this-&gt;base1 . $id);
+        $promise2 = fetch($this-&gt;base2 . $id);
+
+        return all([$promise1, $promise2])-&gt;then(array $responses) {
+            return $responses[0]-&gt;getStatusCode() === 200 &amp;&amp; $responses[1]-&gt;getStatusCode() === 200;
+        });
+    }
+}
+
+$userRepository-&gt;checkUser(42)-&gt;then(function (bool $ok) {
+    if ($ok) {
+        echo 'User exists!';
+    }
+});
+</code></pre>
+
+<p>We can see that adding this second API call didn’t change much about the structure.
+Promises will execute "in the background" by default and we can simply wait for both results by using an <code>all()</code> function.</p>
+
+<p>Now again assuming that the first service always takes 1s and the second always takes 2s,
+executing this takes only a total of 2s.
+Internally, promises are resolved with the help of an async event loop.
+This happens concurrently, so we have to wait for the slowest one to complete.
+We can see why this would show an even more significant improvement with high concurrency.</p>
+
+<h3 id="coroutines">Coroutines</h3>
+
+<p>Likewise, we can change our original coroutine example to fetch from two APIs:</p>
+
+<pre><code class="php">/** @return PromiseInterface&lt;ResponseInterface&gt; */
+function fetch(string $url): PromiseInterface { }
+
+class UserRepository
+{
+    private $base1 = 'http://example.com/user/';
+    private $base2 = 'http://api.example.org/user/';
+
+    /** @return PromiseInterface&lt;bool&gt; */
+    public function checkUser(int $id): PromiseInterface
+    {
+        return async(function () use ($id) {
+            $promise1 = fetch($this-&gt;base1 . $id);
+            $promise2 = fetch($this-&gt;base2 . $id);
+
+            $responses = yield all([$promise1, $promise2]);
+
+            return $responses[0]-&gt;getStatusCode() === 200 &amp;&amp; $responses[1]-&gt;getStatusCode() === 200;
+        });
+    }
+}
+
+$userRepository-&gt;checkUser(42)-&gt;then(function (bool $ok) {
+    if ($ok) {
+        echo 'User exists!';
+    }
+});
+</code></pre>
+
+<p>We can see that adding this second API call again didn’t change much about the structure,
+but also that it’s starting to look a lot like the previous promise example using an <code>all()</code> function.
+This isn’t really too surprising considering this coroutine implementation would build on top of promises.
+This is also why from my experience, coroutine implementations don’t usually bring a lot of value to many real-world applications (<em>YMMV</em>).</p>
+
+<p>Now again assuming that the first service always takes 1s and the second always takes 2s,
+executing this takes again only a total of 2s.</p>
+
+<h3 id="fibers">Fibers</h3>
+
+<p>Let’s take a look at what our previous fibers example looks like when changed to fetching from two APIs:</p>
+
+<pre><code class="php">function fetch(string $url): ResponseInterface { }
+
+class UserRepository
+{
+    private $base1 = 'http://example.com/user/';
+    private $base2 = 'http://api.example.org/user/';
+
+    public function checkUser(int $id): bool
+    {
+        $promise1 = async(function () use ($id) {
+            return fetch($this-&gt;base1 . $id);
+        });
+        $promise2 = async(function () use ($id) {
+            return fetch($this-&gt;base2 . $id);
+        });
+
+        $responses = await(all([$promise1, $promise2]));
+
+        return $responses[0]-&gt;getStatusCode() === 200 &amp;&amp; $responses[1]-&gt;getStatusCode() === 200;
+    }
+}
+
+$ok = $userRepository-&gt;checkUser(42);
+if ($ok) {
+    echo 'User exists!';
+}
+</code></pre>
+
+<p>Wait a moment? Aren’t fibers supposed to make asynchronous simple?
+Kind of, but that’s not really what fibers are about.
+Fibers specifically help to avoid the "What color is your function?" problem (see above).</p>
+
+<p><strong>Fibers aren’t magic!</strong></p>
+
+<p>Fibers themselves do not solve concurrent execution.
+Fibers allow expressing a (synchronous) control flow.
+The moment we want to express an asynchronous control flow, we still have to resort to promises.</p>
+
+<p>In this example, we need to use two functions provided by our async library of choice.
+The <code>async()</code> function turns a fiber-based function into a promise that will be executed "in the background".
+And the <code>await()</code> function that instructs the event loop to execute until it can return to your synchronous flow.</p>
+
+<p>This <code>async()</code> function sure looks like magic!
+It looks like it could turn any synchronous function into an asynchronous one.
+Unfortunately, however, this only works with functions that use fibers that instruct the event loop internally.</p>
+
+<p>Problem is, you can no longer tell whether this function can be used in an asynchronous context at all.
+It might as well block your entire non-blocking application and you would have no way of knowing it in advance.
+Fibers eliminated the distinction between synchronous and asynchronous functions.
+What started as a good idea means that you’re now missing important information and
+your only chance is to check the documentation for each function that you want to execute asynchronously.</p>
+
+<h2 id="what-does-this-mean-for-the-future-of-promises%3F">What does this mean for the future of promises?</h2>
+
+<p>Promises are not going anywhere.
+But perhaps we’re going to see them a lot less often.</p>
+
+<p>With fibers, we can see how consumers of an API don’t <em>need</em> to use promise APIs for many common use cases.
+I believe this is a good thing because it can make many of the simpler use cases much less complicated.</p>
+
+<p>Whenever you want to concurrently execute multiple functions, you will still need to use async primitives.
+This means promises will remain a viable option for async program flows, just like they are today.
+This is not something fibers will make obsolete.</p>
+
+<h2 id="what-does-this-mean-for-the-future-of-coroutines%3F">What does this mean for the future of coroutines?</h2>
+
+<p>As seen above, generator-based coroutines can be useful at times.</p>
+
+<p>Want to take a look at my crystal ball?
+Once fibers become mainstream, their usage will likely fade into insignificance.</p>
+
+<h2 id="what-about-%60async%60-%2F-%60await%60-keywords%3F">What about <code>async</code> / <code>await</code> keywords?</h2>
+
+<p><a href="https://wiki.php.net/rfc/fibers#why_not_add_an_event_loop_and_asyncawait_api_to_core">Out of scope</a> for the current fibers RFC.</p>
+
+<p>In fact, the way many languages chose to provide native <code>async</code> and <code>await</code> keywords
+would lead to the main "What color is your function?" problem that fibers aim to address (see above).
+This means it’s becoming less likely we will see these keywords used that way in PHP.</p>
+
+<p>The above examples use <code>async()</code> and <code>await()</code> functions that would be provided by your asynchronous library of choice.
+Personally, I still see a lot of value in having these basic building blocks as part of the language itself.
+This way, we could potentially enable broad interoperability between different async frameworks.
+But at the same time, these implementations have a much larger scope and are also somewhat more opinionated.
+The good news is we’re starting to see more collaboration between these implementations… (more on that in another post).</p>
+
+<h2 id="what-does-this-mean-for-the-future-of-reactphp%3F">What does this mean for the future of ReactPHP?</h2>
+
+<p>We’ve discussed this in the ReactPHP team already and we’re looking forward to native fiber support in PHP!</p>
+
+<p>We’ve already started working on a future version that takes advantage of fibers that will be released once fibers become available.
+This future version will take advantage of fibers to provide async APIs that can be used just like their synchronous counterparts.</p>
+
+<p>At the same time, we deeply care about our existing user base.
+We’ve always been committed to providing a rock-solid foundation for other projects to build on top of and
+just ditching everything for the “new shiny” is an absolute no-go for us.</p>
+
+<p>That’s why we’re focusing our efforts on providing a smooth upgrade path between the current version and the future version.
+We will make sure to make the switch as seamlessly as possible.
+On top of this, we realize that some form of coexistence between current ReactPHP-based projects and projects that build on top of a future version will be inevitable.
+We will make sure to provide ways to combine and mix and match wherever possible.</p>
+
+<p>On top of this, we will continue our long-term support (LTS) promise (<em>see what I did there?</em>) and
+will continue supporting the current version for the foreseeable future.
+With the help of my <a href="https://clue.engineering/">software company business</a>,
+we will also provide professional support to ensure a smooth upgrade path also for commercial projects.</p>
+
+<p>Additionally, we’re currently also working on <a href="https://twitter.com/x_framework">Framework X</a>
+which was always designed to bridge the gap between traditional, synchronous PHP and the shiny world of asynchronous PHP.
+With the integration of fibers into PHP, we’re excited this will become better than ever!</p>
+
+<h2 id="should-php-have-fibers%3F">Should PHP have fibers?</h2>
+
+<p>I think fibers are a really interesting concept! We should absolutely have fibers in PHP.</p>
+
+<p><strong>But fibers don’t do what most people seem to think they do.</strong></p>
+
+<p>I’m the first to admit fibers sound great and it’s very hard to describe the nuanced details.
+Fibers seem to promise we’ll see native async PHP, but that’s really not what fibers are about.</p>
+
+<p>Fibers do a great job at solving the "What color is your function?" problem.
+This means there’s a chance we will see more async implementations in the future because they integrate more seamlessly into synchronous environments.</p>
+
+<p>Personally, I feel that some valid concerns have been brought up against the fibers RFC.
+I understand the RFC process and PHP internals can be harsh at times and agree that
+ideally, more discussions should have taken place before the RFC vote began.
+Some people suggested this entire feature should be marked as experimental only, so the question becomes:
+How much would we want to depend on something that’s an experimental feature only?</p>
+
+<p>Let’s take this opportunity to have this discussion now.
+I think we, as the PHP community, should better get this right.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="calendly">
+        <div class="bg-white">
+            <div class="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+                    <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-10 xl:px-10">
+                        <div class="lg:self-center">
+                            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                                <span class="block">We're Here to Help!</span>
+                                <span class="block text-blue-400">Let's Tackle Your Problems Together.</span>
+                            </h2>
+                            <p class="mt-4 text-lg leading-6 text-gray-200">
+                                Did you know we provide <a href="https://clue.engineering/support" class="underline">professional support</a> for software projects?
+                                Book an appointment, you pay absolutely nothing for the first consultation.
+                            </p>
+                            <a href="https://calendly.com/clue-engineering/getting-started" class="mt-8 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white">Set Up a Free Call</a>
+                        </div>
+                    </div>
+                    <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                        <a href="https://calendly.com/clue-engineering/getting-started">
+                            <img class="transform translate-x-16 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-24 lg:translate-y-24 lg:translate-x-16" src="../src/2023-calendly.png" alt="calendly screenshot">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="share">
+        <div class="container">
+            <h3>
+                <a href="#share"></a>
+                We love feedback!
+            </h3>
+            <p>
+                If you have anything to add,
+                send a tweet to <a href="https://twitter.com/another_clue">@another_clue</a>.
+            </p>
+            <p>
+                We invite you to share our blog posts with friends and colleagues.
+                All our blog posts can be shared freely under the permissive
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+                license.
+            </p>
+            <p>
+                <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+                <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                <a href="../contact">Email us</a> if you think we should be working together on interesting projects.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="../" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="../contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
