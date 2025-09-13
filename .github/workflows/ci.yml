@@ -20,8 +20,7 @@ jobs:
           coverage: none
       - run: make
       - run: docker compose build
-      - run: docker compose up -d
-      - run: bash tests/await.bash http://clue.localhost/
+      - run: docker compose up -d --wait
       - run: make test
       - run: docker compose stop -t 60
         timeout-minutes: 0.5
