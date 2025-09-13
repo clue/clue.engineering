@@ -19,9 +19,13 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: none
       - run: make
-      - run: make served
-      - run: bash tests/await.bash http://clue.localhost/
+      - run: docker compose build
+      - run: docker compose up -d --wait
       - run: make test
+      - run: docker compose stop -t 60
+        timeout-minutes: 0.5
+      - run: docker compose logs --timestamps | sort -k3
+        if: ${{ always() }}
       - run: git config --global user.name "GitHub Actions" && git config --global user.email "actions@github.com"
       - run: git config --global url."https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - run: make deploy

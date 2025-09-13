@@ -1,0 +1,34 @@
+services:
+  # main apache service running the full website
+  apache:
+    build: .
+    ports:
+      - ${PORT:-80}:80
+    restart: unless-stopped
+    develop:
+      watch:
+        - path: app/
+          action: rebuild
+        - path: www/
+          action: rebuild
+        - path: composer.lock
+          action: rebuild
+        - path: Dockerfile
+          action: rebuild
+
+  # tailwind dev sidecar to watch and recompile CSS on demand
+  tailwind:
+    build:
+      context: .
+      target: tailwind
+    command: --watch -o www/src/tailwind.min.css --minify
+    restart: unless-stopped
+    stdin_open: true
+    stop_signal: SIGKILL
+    volumes:
+      - ./tailwind.config.js:/app/tailwind.config.js:ro
+      - ./www:/app/www:rw
+    develop:
+      watch:
+        - path: Dockerfile
+          action: rebuild
