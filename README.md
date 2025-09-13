@@ -52,8 +52,8 @@ make clean
 Once built (see previous "Build" section), you can simply deploy the `build/`
 directory behind your favorite web server (Apache + PHP-FPM etc.).
 
-Additionally, this should be deployed behind a reverse proxy (nginx) that is
-responsible for HTTPS certificate handling and forcing HTTPS redirects.
+Additionally, this should be deployed behind a reverse proxy (nginx) or CDN (Bunny CDN)
+that is responsible for HTTPS certificate handling and forcing HTTPS redirects.
 
 Additionally, Apache has been configured to cache static files for 1 day.
 
@@ -64,8 +64,16 @@ the `live` branch like this:
 make deploy
 ```
 
-## Auto-Deployment
+## Continuous Deployment
 
-Any time a commit is merged (such as when a PR is merged), GitHub actions will
-automatically build and deploy the website. This is done by running the above
-deployment script (see previous chapter).
+We use continuous deployment to keep this website up to date. Any time a commit
+is pushed (such as when a PR is merged), GitHub actions will automatically build
+and deploy the website. This is done by running the above deployment script (see
+previous chapter).
+
+This CI/CD process requires a one-time setup that involves the following steps:
+First, set up the project on the web hosting infrastructure with a `public/`
+docroot. Next, configure the hosting to pull from this repository and set up a
+matching read-only deploy key in this repository. Finally, set up a webhook in
+this repository to trigger a deployment on any `push` event to the hosting
+platform.
