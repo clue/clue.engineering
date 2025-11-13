@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducing event-driven console I/O with ReactPHP</title>
+    <link href="../src/landing-page.v2.css" rel="stylesheet">
+    <link href="../src/tailwind.min.css" rel="stylesheet">
+    <link rel="alternate" type="application/atom+xml" href="../posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+
+    <meta name="description" content="Today, I&#039;m happy to announce the stable v2.3.0 release of clue/reactphp-stdio, the event-driven and UTF-8 aware console input &amp;amp; output (STDIN, STDOUT) library for truly interactive CLI applications, built on top of ReactPHP 🎉  Once again, the version number and its release history suggests this is not exactly a…">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Introducing event-driven console I/O with ReactPHP">
+    <meta property="og:description" content="Today, I&#039;m happy to announce the stable v2.3.0 release of clue/reactphp-stdio, the event-driven and UTF-8 aware console input &amp;amp; output (STDIN, STDOUT) library for truly interactive CLI applications, built on top of ReactPHP 🎉  Once again, the version number and its release history suggests this is not exactly a…">
+    <meta property="og:url" content="https://clue.engineering/2019/introducing-reactphp-stdio">
+    <meta property="og:site_name" content="clue·engineering">
+    <meta property="article:published_time" content="2019-08-28">
+    <meta name="twitter:site" content="@another_clue">
+    <meta name="twitter:creator" content="@another_clue">
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="../" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="../blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="../talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="../support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section id="post">
+        <div class="container">
+            <article>
+                <h1>Introducing event-driven console I/O with ReactPHP</h1>
+                <div>
+                    <address>
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <a href="../">Christian Lück</a>
+                    </address>
+                    on <time datetime="2019-08-28">2019-08-28</time>
+                    <div>
+                        tagged
+                        <a href="../blog#introducing-reactphp" title="Show all blog posts tagged #introducing-reactphp" rel="tag">#introducing-reactphp</a>
+                        <a href="../blog#reactphp" title="Show all blog posts tagged #reactphp" rel="tag">#reactphp</a>
+                        <a href="../blog#release" title="Show all blog posts tagged #release" rel="tag">#release</a>
+                        <a href="../blog#console" title="Show all blog posts tagged #console" rel="tag">#console</a>
+                        <a href="../blog#stdio" title="Show all blog posts tagged #stdio" rel="tag">#stdio</a>
+                        <a href="../blog#cli" title="Show all blog posts tagged #cli" rel="tag">#cli</a>
+                    </div>
+                </div>
+
+<p>Today, I'm happy to announce the stable <code>v2.3.0</code> release of <a href="https://github.com/clue/reactphp-stdio">clue/reactphp-stdio</a>, the event-driven and UTF-8 aware console input &amp; output (STDIN, STDOUT) library for truly interactive CLI applications, built on top of <a href="https://reactphp.org/">ReactPHP</a> 🎉</p>
+
+<p>Once again, the version number and its <a href="https://github.com/clue/reactphp-stdio/releases">release history</a> suggests this is not exactly a new project. In fact, this has been used in production for some projects for a few years already. So I guess it's about time to write an introductory blog post about this project and why I think ReactPHP's design makes it a perfect fit.</p>
+
+<h2 id="php-is-not-only-for-the-web">PHP is not only for the web</h2>
+
+<p>Traditionally, PHP is most frequently used to build web pages. Additionally, more and more people are getting accustomed to using PHP to build interactive CLI (command line interface) applications that run from the terminal instead of being accessed from a web browser. This often makes sense for maintenance commands that are run by priviledged users and development tools, that should be kept separate from the core application business logic (yet often share some of its domain logic).</p>
+
+<p>With excellent CLI libraries such as <a href="https://symfony.com/doc/current/components/console.html">Symfony's Console Component</a> and others, building solid and well-tested CLI tools is a breeze. The most common way to accept user input for such programs is either program arguments, environment variables or building an interactive dialog to ask for user input like this:</p>
+
+<pre><code class="terminal">$ php register-user-example.php
+User Name?
+&gt; Alice
+Email?
+&gt; alice@example.com
+Created user Alice with ID 1
+</code></pre>
+
+<p>These kinds of applications are often said to follow an Input-Process-Output (IPO) model. Now if you want to learn more about how to build these traditional, interactive CLI application in PHP, I encourage you to check out the documentation linked above. What this post is more interested in is seeing how we can build truly interactive CLI applications that are driven by user interaction and allow you to respond to these events as soon as they happen.</p>
+
+<h2 id="event-driven-console-i%2Fo">Event-driven console I/O</h2>
+
+<p>For some applications, this traditional Input-Process-Output (IPO) model is less applicable and makes a lot less sense. Think of any long-running CLI application, chat-like applications, read-eval-print-loop programs (REPL), log monitoring solution etc. These kinds of applications are often a perfect fit for an event-driven architecture where the program <em>reacts</em> to user input at any time instead of only <em>asking</em> for it at certain points. This means you give up some control over the program execution flow and instead let this flow be driven by events happening.</p>
+
+<p>Getting started with this library isn't too hard. Just install it using <code>composer require clue/reactphp-stdio:^2.3</code> and use the following example code to react to any user input:</p>
+
+<pre><code class="php">$loop = React\EventLoop\Factory::create();
+$stdio = new Stdio($loop);
+
+$stdio-&gt;setPrompt('Input &gt; ');
+
+$stdio-&gt;on('data', function ($line) use ($stdio) {
+    $line = rtrim($line, "\r\n");
+    $stdio-&gt;write('Your input: ' . $line . PHP_EOL);
+
+    if ($line === 'quit') {
+        $stdio-&gt;end();
+    }
+});
+
+$loop-&gt;run();
+</code></pre>
+
+<p>This very simple code snippet already allows you react to individual commands any time the user hits <kbd>enter</kbd>. For more sophisticated command parsing/routing, you may want to combine this with another library, such as <a href="https://github.com/clue/php-arguments">clue/arguments</a> (more on that in a future blog post).</p>
+
+<p>On top of this, you can use this library to control various aspects of your user interaction, such as history support using cursor keys, autocompletion using the <kbd>tab</kbd> key or even binding entirely new functions to individual key presses:</p>
+
+<pre><code class="php">$stdio-&gt;on('a', function () use ($stdio) {
+     $stdio-&gt;addInput('ä');
+});
+</code></pre>
+
+<p>Under the hood, this library does all the heavy lifting and takes care of applying the correct terminal settings and parsing terminal control code sequences to make this work. This allows you to focus just on your user interaction and how your program reacts to it, without requiring any special setup or extensions.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>There are plenty of use cases for building interactive command line tools. With this release of <a href="https://github.com/clue/reactphp-stdio#quickstart-example">clue/reactphp-stdio</a>, it becomes more feasible to build these tools with PHP. If a large fraction of your domain logic is written in PHP and/or you're already working with a team of PHP developers, you may want to give this project a try.</p>
+
+<p>If you want to learn more about this project, make sure to check out the project homepage of <a href="https://github.com/clue/reactphp-stdio">clue/reactphp-stdio</a>. Its documentation describes common usage patterns as well as all the nifty details. It is considered stable (but not feature complete) and has been used in production for a few years already, so you're invited to also give it a try! If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the contact options in the section below and let's get in touch.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Just released v2.3.0 of clue/reactphp-stdio, the event-driven and UTF-8 aware console input &amp; output (STDIN, STDOUT) library for truly interactive CLI applications with <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a>. API cleaned up, consistent features, see blog post for motivation 🐘 <a href="https://twitter.com/hashtag/php?src=hash&amp;ref_src=twsrc%5Etfw">#php</a><a href="https://t.co/451zT4KqU6">https://t.co/451zT4KqU6</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/1166685622523879424?ref_src=twsrc%5Etfw">August 28, 2019</a></blockquote>
+            </article>
+        </div>
+    </section>
+
+    <section id="calendly">
+        <div class="bg-white">
+            <div class="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+                    <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-10 xl:px-10">
+                        <div class="lg:self-center">
+                            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                                <span class="block">We're Here to Help!</span>
+                                <span class="block text-blue-400">Let's Tackle Your Problems Together.</span>
+                            </h2>
+                            <p class="mt-4 text-lg leading-6 text-gray-200">
+                                Did you know we provide <a href="https://clue.engineering/support" class="underline">professional support</a> for software projects?
+                                Book an appointment, you pay absolutely nothing for the first consultation.
+                            </p>
+                            <a href="https://calendly.com/clue-engineering/getting-started" class="mt-8 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white">Set Up a Free Call</a>
+                        </div>
+                    </div>
+                    <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                        <a href="https://calendly.com/clue-engineering/getting-started">
+                            <img class="transform translate-x-16 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-24 lg:translate-y-24 lg:translate-x-16" src="../src/2023-calendly.png" alt="calendly screenshot">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="share">
+        <div class="container">
+            <h3>
+                <a href="#share"></a>
+                We love feedback!
+            </h3>
+            <p>
+                If you have anything to add,
+                send a tweet to <a href="https://twitter.com/another_clue">@another_clue</a>.
+            </p>
+            <p>
+                We invite you to share our blog posts with friends and colleagues.
+                All our blog posts can be shared freely under the permissive
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+                license.
+            </p>
+            <p>
+                <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+                <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                <a href="../contact">Email us</a> if you think we should be working together on interesting projects.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="../" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="../contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

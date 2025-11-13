@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clue·engineering blog posts</title>
+    <link href="src/landing-page.v2.css" rel="stylesheet">
+    <link href="src/tailwind.min.css" rel="stylesheet">
+    <script async src="src/app.v2.js"></script>
+    <link rel="alternate" type="application/atom+xml" href="posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="./" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+<section id="posts">
+    <div class="container">
+        <h1>
+            Recent blog posts, articles and thoughts
+            <a href="posts.atom" title="Atom feed with recent blog posts">
+                <!-- Thanks! https://fontawesome.com/ -->
+                <svg viewBox="0 0 448 512"><path d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"/></svg>
+            </a>
+        </h1>
+        <p>
+            Here's a list of our recent blog posts.
+            We like to write about our projects, latest releases, recent development
+            in the ecosystem, and what's happening behind the scenes.
+            You may also want to learn more about <a href="./">our work</a> or
+            <a href="https://twitter.com/another_clue">follow us Twitter</a> for more updates.
+        </p>
+
+<style scoped>
+/* show only tagged elements when URL includes tag, show all otherwise. Thanks to https://stackoverflow.com/a/38062486 */
+.tag-anchor:target ~ .tagged, .tag-anchor:target ~ .tagged small {
+    display: none;
+}
+#reactphp:target ~ .tagged-reactphp, #birthday:target ~ .tagged-birthday, #release:target ~ .tagged-release, #promise:target ~ .tagged-promise, #fibers:target ~ .tagged-fibers, #meta:target ~ .tagged-meta, #year-in-review:target ~ .tagged-year-in-review, #eventloop:target ~ .tagged-eventloop, #clue-access:target ~ .tagged-clue-access, #open-source:target ~ .tagged-open-source, #sustainability:target ~ .tagged-sustainability, #sponsorware:target ~ .tagged-sponsorware, #team:target ~ .tagged-team, #welcome:target ~ .tagged-welcome, #cooperation:target ~ .tagged-cooperation, #introducing-reactphp:target ~ .tagged-introducing-reactphp, #soap:target ~ .tagged-soap, #http:target ~ .tagged-http, #zlib:target ~ .tagged-zlib, #compression:target ~ .tagged-compression, #streaming:target ~ .tagged-streaming, #introducing:target ~ .tagged-introducing, #graph:target ~ .tagged-graph, #composer:target ~ .tagged-composer, #php:target ~ .tagged-php, #ipv6:target ~ .tagged-ipv6, #phar:target ~ .tagged-phar, #package:target ~ .tagged-package, #bundle:target ~ .tagged-bundle, #build:target ~ .tagged-build, #asterisk:target ~ .tagged-asterisk, #telephony:target ~ .tagged-telephony, #docker:target ~ .tagged-docker, #container:target ~ .tagged-container, #process:target ~ .tagged-process, #console:target ~ .tagged-console, #stdio:target ~ .tagged-stdio, #cli:target ~ .tagged-cli, #cache:target ~ .tagged-cache, #sqlite:target ~ .tagged-sqlite, #database:target ~ .tagged-database, #ipc:target ~ .tagged-ipc, #ndjson:target ~ .tagged-ndjson, #redis:target ~ .tagged-redis, #pubsub:target ~ .tagged-pubsub, #tls:target ~ .tagged-tls, #ssh:target ~ .tagged-ssh, #proxy:target ~ .tagged-proxy, #mysql:target ~ .tagged-mysql, #socks:target ~ .tagged-socks, #rpc:target ~ .tagged-rpc, #concurrency:target ~ .tagged-concurrency, #csv:target ~ .tagged-csv, #flux:target ~ .tagged-flux, #queue:target ~ .tagged-queue, #talk:target ~ .tagged-talk {
+    display: block;
+}
+
+/* tag anchors are invisible, but attached to top of page to force scroll reset */
+.tag-anchor {
+    position: absolute;
+    top: 0;
+}
+
+/* hide all tag descriptions */
+.tag-anchor + *{
+    display: none;
+    padding: 10px;
+    background-color: #eefbff;
+    border: 1px solid #cbe1e8;
+    border-radius: 4px;
+}
+</style>
+
+<div class="tag-anchor" id="reactphp"></div>
+<div class="tagged-reactphp">
+    Showing all blog posts tagged #reactphp (31). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="birthday"></div>
+<div class="tagged-birthday">
+    Showing all blog posts tagged #birthday (7). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="release"></div>
+<div class="tagged-release">
+    Showing all blog posts tagged #release (30). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="promise"></div>
+<div class="tagged-promise">
+    Showing all blog posts tagged #promise (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="fibers"></div>
+<div class="tagged-fibers">
+    Showing all blog posts tagged #fibers (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="meta"></div>
+<div class="tagged-meta">
+    Showing all blog posts tagged #meta (9). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="year-in-review"></div>
+<div class="tagged-year-in-review">
+    Showing all blog posts tagged #year-in-review (5). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="eventloop"></div>
+<div class="tagged-eventloop">
+    Showing all blog posts tagged #eventloop (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="clue-access"></div>
+<div class="tagged-clue-access">
+    Showing all blog posts tagged #clue-access (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="open-source"></div>
+<div class="tagged-open-source">
+    Showing all blog posts tagged #open-source (3). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="sustainability"></div>
+<div class="tagged-sustainability">
+    Showing all blog posts tagged #sustainability (3). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="sponsorware"></div>
+<div class="tagged-sponsorware">
+    Showing all blog posts tagged #sponsorware (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="team"></div>
+<div class="tagged-team">
+    Showing all blog posts tagged #team (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="welcome"></div>
+<div class="tagged-welcome">
+    Showing all blog posts tagged #welcome (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="cooperation"></div>
+<div class="tagged-cooperation">
+    Showing all blog posts tagged #cooperation (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="introducing-reactphp"></div>
+<div class="tagged-introducing-reactphp">
+    Showing all blog posts tagged #introducing-reactphp (22). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="soap"></div>
+<div class="tagged-soap">
+    Showing all blog posts tagged #soap (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="http"></div>
+<div class="tagged-http">
+    Showing all blog posts tagged #http (4). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="zlib"></div>
+<div class="tagged-zlib">
+    Showing all blog posts tagged #zlib (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="compression"></div>
+<div class="tagged-compression">
+    Showing all blog posts tagged #compression (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="streaming"></div>
+<div class="tagged-streaming">
+    Showing all blog posts tagged #streaming (4). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="introducing"></div>
+<div class="tagged-introducing">
+    Showing all blog posts tagged #introducing (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="graph"></div>
+<div class="tagged-graph">
+    Showing all blog posts tagged #graph (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="composer"></div>
+<div class="tagged-composer">
+    Showing all blog posts tagged #composer (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="php"></div>
+<div class="tagged-php">
+    Showing all blog posts tagged #php (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="ipv6"></div>
+<div class="tagged-ipv6">
+    Showing all blog posts tagged #ipv6 (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="phar"></div>
+<div class="tagged-phar">
+    Showing all blog posts tagged #phar (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="package"></div>
+<div class="tagged-package">
+    Showing all blog posts tagged #package (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="bundle"></div>
+<div class="tagged-bundle">
+    Showing all blog posts tagged #bundle (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="build"></div>
+<div class="tagged-build">
+    Showing all blog posts tagged #build (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="asterisk"></div>
+<div class="tagged-asterisk">
+    Showing all blog posts tagged #asterisk (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="telephony"></div>
+<div class="tagged-telephony">
+    Showing all blog posts tagged #telephony (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="docker"></div>
+<div class="tagged-docker">
+    Showing all blog posts tagged #docker (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="container"></div>
+<div class="tagged-container">
+    Showing all blog posts tagged #container (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="process"></div>
+<div class="tagged-process">
+    Showing all blog posts tagged #process (3). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="console"></div>
+<div class="tagged-console">
+    Showing all blog posts tagged #console (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="stdio"></div>
+<div class="tagged-stdio">
+    Showing all blog posts tagged #stdio (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="cli"></div>
+<div class="tagged-cli">
+    Showing all blog posts tagged #cli (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="cache"></div>
+<div class="tagged-cache">
+    Showing all blog posts tagged #cache (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="sqlite"></div>
+<div class="tagged-sqlite">
+    Showing all blog posts tagged #sqlite (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="database"></div>
+<div class="tagged-database">
+    Showing all blog posts tagged #database (4). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="ipc"></div>
+<div class="tagged-ipc">
+    Showing all blog posts tagged #ipc (3). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="ndjson"></div>
+<div class="tagged-ndjson">
+    Showing all blog posts tagged #ndjson (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="redis"></div>
+<div class="tagged-redis">
+    Showing all blog posts tagged #redis (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="pubsub"></div>
+<div class="tagged-pubsub">
+    Showing all blog posts tagged #pubsub (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="tls"></div>
+<div class="tagged-tls">
+    Showing all blog posts tagged #tls (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="ssh"></div>
+<div class="tagged-ssh">
+    Showing all blog posts tagged #ssh (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="proxy"></div>
+<div class="tagged-proxy">
+    Showing all blog posts tagged #proxy (3). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="mysql"></div>
+<div class="tagged-mysql">
+    Showing all blog posts tagged #mysql (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="socks"></div>
+<div class="tagged-socks">
+    Showing all blog posts tagged #socks (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="rpc"></div>
+<div class="tagged-rpc">
+    Showing all blog posts tagged #rpc (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="concurrency"></div>
+<div class="tagged-concurrency">
+    Showing all blog posts tagged #concurrency (4). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="csv"></div>
+<div class="tagged-csv">
+    Showing all blog posts tagged #csv (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="flux"></div>
+<div class="tagged-flux">
+    Showing all blog posts tagged #flux (2). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="queue"></div>
+<div class="tagged-queue">
+    Showing all blog posts tagged #queue (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+<div class="tag-anchor" id="talk"></div>
+<div class="tagged-talk">
+    Showing all blog posts tagged #talk (1). <br/>
+    <a href="blog">Show all blog posts (45).</a>
+</div>
+
+  
+        <h2 id="2025" class="tagged tagged-reactphp tagged-birthday"><a href="#2025"></a>2025 <small>(1 post)</small></h2>
+
+        <article class="tagged tagged-reactphp tagged-birthday">
+            <h4><a href="2025/reactphp-birthday">Happy birthday ReactPHP! 13 years of async PHP</a></h4>
+            <ul>
+                <li><time>2025-07-11</time></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#birthday" title="Show only blog posts tagged #birthday (7)" rel="tag">#birthday</a></li>
+            </ul>
+            <p>Thirteen years ago, ReactPHP emerged into the world, and now it's officially a teenager!  Like any 13-year-old, ReactPHP has grown more independent and learned to handle complex async operations with ease. It's reached that age where it can stay up all night handling streams without its parents worrying. …</p>
+            <a href="2025/reactphp-birthday"><em>Read more</em></a>
+        </article>
+  
+        <h2 id="2023" class="tagged tagged-reactphp tagged-release tagged-birthday tagged-promise"><a href="#2023"></a>2023 <small>(1 post)</small></h2>
+
+        <article class="tagged tagged-reactphp tagged-release tagged-birthday tagged-promise">
+            <h4><a href="2023/announcing-reactphp-promise-v3">Happy birthday ReactPHP – releasing new Promise v3!</a></h4>
+            <ul>
+                <li><time>2023-07-11</time></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#birthday" title="Show only blog posts tagged #birthday (7)" rel="tag">#birthday</a></li>
+                <li><a href="#promise" title="Show only blog posts tagged #promise (1)" rel="tag">#promise</a></li>
+            </ul>
+            <p>Today marks ReactPHP’s 11th birthday. 🎉 To celebrate this special day together with all of you, we are thrilled to announce the release of the highly anticipated v3.0.0 of our Promise component. This major version has been in the works since 2016 and marks the starting point for a bigger,…</p>
+            <a href="2023/announcing-reactphp-promise-v3"><em>Read more</em></a>
+        </article>
+  
+        <h2 id="2022" class="tagged tagged-reactphp tagged-release tagged-birthday tagged-fibers tagged-meta tagged-year-in-review"><a href="#2022"></a>2022 <small>(2 posts)</small></h2>
+
+        <article class="tagged tagged-reactphp tagged-release tagged-birthday tagged-fibers">
+            <h4><a href="2022/announcing-reactphp-async">Happy birthday ReactPHP – announcing the future of async with fibers!</a></h4>
+            <ul>
+                <li><time>2022-07-11</time></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#birthday" title="Show only blog posts tagged #birthday (7)" rel="tag">#birthday</a></li>
+                <li><a href="#fibers" title="Show only blog posts tagged #fibers (2)" rel="tag">#fibers</a></li>
+            </ul>
+            <p>Today marks ReactPHP’s 10th birthday. 🎉 To celebrate, we’re thrilled to announce the immediate availability of our all-new Async component using fibers in PHP 8.1+. By taking advantage of fibers, we’re making a big step forward for the future of async PHP and bringing new APIs that allow us to…</p>
+            <a href="2022/announcing-reactphp-async"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-meta tagged-year-in-review">
+            <h4><a href="2022/2021-in-review">2021 – A Year In Review</a></h4>
+            <ul>
+                <li><time>2022-01-21</time></li>
+                <li><a href="#meta" title="Show only blog posts tagged #meta (9)" rel="tag">#meta</a></li>
+                <li><a href="#year-in-review" title="Show only blog posts tagged #year-in-review (5)" rel="tag">#year-in-review</a></li>
+            </ul>
+            <p>Another year has passed, so it’s time for our year in review! Let's take a look at the major achievement we've made with an entirely new Framework X, preparing ReactPHP for fibers and more. Happy new year to everybody and let’s dive right in for some of our highlights from…</p>
+            <a href="2022/2021-in-review"><em>Read more</em></a>
+        </article>
+  
+        <h2 id="2021" class="tagged tagged-reactphp tagged-release tagged-birthday tagged-eventloop tagged-fibers tagged-meta tagged-year-in-review"><a href="#2021"></a>2021 <small>(3 posts)</small></h2>
+
+        <article class="tagged tagged-reactphp tagged-release tagged-birthday tagged-eventloop">
+            <h4><a href="2021/announcing-reactphp-default-loop">Happy birthday ReactPHP – announcing new default loop!</a></h4>
+            <ul>
+                <li><time>2021-07-11</time></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#birthday" title="Show only blog posts tagged #birthday (7)" rel="tag">#birthday</a></li>
+                <li><a href="#eventloop" title="Show only blog posts tagged #eventloop (1)" rel="tag">#eventloop</a></li>
+            </ul>
+            <p>Today marks ReactPHP's 9th birthday. 🎉 And with today's release of the new default loop, using ReactPHP has never been easier! Let's celebrate with a big birthday party to ensure you will also get a big piece of the birthday cake to taste. 🍰  We're releasing a new version…</p>
+            <a href="2021/announcing-reactphp-default-loop"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-reactphp tagged-fibers">
+            <h4><a href="2021/fibers-in-php">Fibers in PHP: A new opportunity for async PHP?</a></h4>
+            <ul>
+                <li><time>2021-03-19</time></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#fibers" title="Show only blog posts tagged #fibers (2)" rel="tag">#fibers</a></li>
+            </ul>
+            <p>It looks like PHP will get fibers soon with PHP 8.1! That’s awesome! Or is it?  What are fibers?  I think the Ruby documentation does a good job at describing what fibers are:     Fibers are primitives for implementing light weight cooperative concurrency [in Ruby].…</p>
+            <a href="2021/fibers-in-php"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-meta tagged-year-in-review">
+            <h4><a href="2021/2020-in-review">2020 – A Year In Review</a></h4>
+            <ul>
+                <li><time>2021-01-06</time></li>
+                <li><a href="#meta" title="Show only blog posts tagged #meta (9)" rel="tag">#meta</a></li>
+                <li><a href="#year-in-review" title="Show only blog posts tagged #year-in-review (5)" rel="tag">#year-in-review</a></li>
+            </ul>
+            <p>It's the turn of the year, so it's time for our year in review. An enormous amount has happened, in almost every aspect. We, clue·engineering, have expanded our team and with JustKanban and clue·access we have two awesome main-projects on the road to sustainable open-source. Oh.. of course you also…</p>
+            <a href="2021/2020-in-review"><em>Read more</em></a>
+        </article>
+  
+        <h2 id="2020" class="tagged tagged-clue-access tagged-open-source tagged-sustainability tagged-sponsorware tagged-team tagged-welcome tagged-cooperation tagged-meta tagged-introducing-reactphp tagged-reactphp tagged-soap tagged-release tagged-birthday tagged-http tagged-zlib tagged-compression tagged-streaming tagged-introducing tagged-graph tagged-composer tagged-php tagged-ipv6 tagged-year-in-review"><a href="#2020"></a>2020 <small>(10 posts)</small></h2>
+
+        <article class="tagged tagged-clue-access tagged-open-source tagged-sustainability tagged-sponsorware">
+            <h4><a href="2020/introducing-clue-access">Introducing clue·access – because open source needs to be sustainable!</a></h4>
+            <ul>
+                <li><time>2020-12-24</time></li>
+                <li><a href="#clue-access" title="Show only blog posts tagged #clue-access (1)" rel="tag">#clue-access</a></li>
+                <li><a href="#open-source" title="Show only blog posts tagged #open-source (3)" rel="tag">#open-source</a></li>
+                <li><a href="#sustainability" title="Show only blog posts tagged #sustainability (3)" rel="tag">#sustainability</a></li>
+                <li><a href="#sponsorware" title="Show only blog posts tagged #sponsorware (1)" rel="tag">#sponsorware</a></li>
+            </ul>
+            <p>Today, we are happy to introduce you to clue·access, our new exclusive early access for GitHub sponsors. 🎉 You get the best out of our projects – we get sponsors to help us focus on creating awesome projects. Here you will find why we designed this concept, what it looks…</p>
+            <a href="2020/introducing-clue-access"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-team tagged-welcome tagged-cooperation tagged-meta">
+            <h4><a href="2020/hello-simon">All good things come in threes: Hello Simon!</a></h4>
+            <ul>
+                <li><time>2020-12-22</time></li>
+                <li><a href="#team" title="Show only blog posts tagged #team (2)" rel="tag">#team</a></li>
+                <li><a href="#welcome" title="Show only blog posts tagged #welcome (2)" rel="tag">#welcome</a></li>
+                <li><a href="#cooperation" title="Show only blog posts tagged #cooperation (2)" rel="tag">#cooperation</a></li>
+                <li><a href="#meta" title="Show only blog posts tagged #meta (9)" rel="tag">#meta</a></li>
+            </ul>
+            <p>The turn of the year provides an appropriate opportunity to introduce the youngster of clue·engineering - me! I am the third head in our team and have been working together with Christian and Dennis for half a year now. Therefore, I would like to tell you something about me, the…</p>
+            <a href="2020/hello-simon"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-soap tagged-release">
+            <h4><a href="2020/announcing-reactphp-soap-2">Announcing async SOAP requests with ReactPHP version 2</a></h4>
+            <ul>
+                <li><time>2020-10-28</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#soap" title="Show only blog posts tagged #soap (2)" rel="tag">#soap</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+            </ul>
+            <p>Today, I'm happy to announce the v2.0.0 release of clue/reactphp-soap, the simple, async SOAP web service client library, built on top of ReactPHP. 🎉 The common opinion is that SOAP might be out of fashion. We'll show that's not necessarily true and try to help make SOAP the trend again.…</p>
+            <a href="2020/announcing-reactphp-soap-2"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-reactphp tagged-release tagged-birthday tagged-http">
+            <h4><a href="2020/announcing-reactphp-http">Happy Birthday ReactPHP – HTTP client and server LTS release!</a></h4>
+            <ul>
+                <li><time>2020-07-11</time></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#birthday" title="Show only blog posts tagged #birthday (7)" rel="tag">#birthday</a></li>
+                <li><a href="#http" title="Show only blog posts tagged #http (4)" rel="tag">#http</a></li>
+            </ul>
+            <p>Exactly eight years ago, 11th July 2012, the very first v0.1.0 release of ReactPHP was tagged.  Today, the time has come again - It's ReactPHP's birthday. 🎉 This will be celebrated with a big birthday party and a new react/http v1.0.0 component release to ensure you will also get…</p>
+            <a href="2020/announcing-reactphp-http"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-zlib tagged-compression tagged-streaming tagged-release">
+            <h4><a href="2020/introducing-reactphp-zlib">Introducing streaming zlib compression and decompression with ReactPHP</a></h4>
+            <ul>
+                <li><time>2020-05-28</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#zlib" title="Show only blog posts tagged #zlib (1)" rel="tag">#zlib</a></li>
+                <li><a href="#compression" title="Show only blog posts tagged #compression (1)" rel="tag">#compression</a></li>
+                <li><a href="#streaming" title="Show only blog posts tagged #streaming (4)" rel="tag">#streaming</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+            </ul>
+            <p>Today, clue/reactphp-zlib leaves the beta and appears in its first stable release v1.0.0. It provides a streaming zlib compressor and decompressor for ReactPHP, supporting compression and decompression of GZIP, ZLIB and raw DEFLATE formats.  The beta is done - release!  The project has been started almost 5 years…</p>
+            <a href="2020/introducing-reactphp-zlib"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-team tagged-welcome tagged-cooperation tagged-meta">
+            <h4><a href="2020/hello-dennis">Two heads are better than one: Hello Dennis!</a></h4>
+            <ul>
+                <li><time>2020-04-09</time></li>
+                <li><a href="#team" title="Show only blog posts tagged #team (2)" rel="tag">#team</a></li>
+                <li><a href="#welcome" title="Show only blog posts tagged #welcome (2)" rel="tag">#welcome</a></li>
+                <li><a href="#cooperation" title="Show only blog posts tagged #cooperation (2)" rel="tag">#cooperation</a></li>
+                <li><a href="#meta" title="Show only blog posts tagged #meta (9)" rel="tag">#meta</a></li>
+            </ul>
+            <p>After several weeks of working together, it is time to introduce myself, Dennis. You may have seen our recent Open-Source Sustainability Report and may know why funding open-source development is important. One reason: clue·engineering is no longer a one-man show and Christian now has a co-pilot on the PHP journey.…</p>
+            <a href="2020/hello-dennis"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing tagged-graph tagged-composer tagged-php tagged-release">
+            <h4><a href="2020/introducing-graph-composer">Introducing graph visualization of composer package dependencies</a></h4>
+            <ul>
+                <li><time>2020-03-26</time></li>
+                <li><a href="#introducing" title="Show only blog posts tagged #introducing (2)" rel="tag">#introducing</a></li>
+                <li><a href="#graph" title="Show only blog posts tagged #graph (1)" rel="tag">#graph</a></li>
+                <li><a href="#composer" title="Show only blog posts tagged #composer (2)" rel="tag">#composer</a></li>
+                <li><a href="#php" title="Show only blog posts tagged #php (2)" rel="tag">#php</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+            </ul>
+            <p>I am happy to inform you that version 1.1 of clue/graph-composer is now available. Over time I have received plenty of requests, suggestions for improvement and feedback on this project, so I would like to respond to this great interest with an updated version.    This example illustration…</p>
+            <a href="2020/introducing-graph-composer"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-ipv6">
+            <h4><a href="2020/introducing-ipv6-for-reactphp">Introducing IPv6 for ReactPHP</a></h4>
+            <ul>
+                <li><time>2020-03-12</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#ipv6" title="Show only blog posts tagged #ipv6 (1)" rel="tag">#ipv6</a></li>
+            </ul>
+            <p>Today, we're very happy to announce the immediate availability of the next v1.4.0 feature release of reactphp/socket, the async, streaming plaintext TCP/IP and secure TLS socket server and client for ReactPHP. 🎉  As the main feature of this release, this library now has support for IPv6 out of the…</p>
+            <a href="2020/introducing-ipv6-for-reactphp"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-open-source tagged-sustainability tagged-year-in-review">
+            <h4><a href="2020/2019-sustainability-report">Open-Source Sustainability Report (2019)</a></h4>
+            <ul>
+                <li><time>2020-03-05</time></li>
+                <li><a href="#open-source" title="Show only blog posts tagged #open-source (3)" rel="tag">#open-source</a></li>
+                <li><a href="#sustainability" title="Show only blog posts tagged #sustainability (3)" rel="tag">#sustainability</a></li>
+                <li><a href="#year-in-review" title="Show only blog posts tagged #year-in-review (5)" rel="tag">#year-in-review</a></li>
+            </ul>
+            <p>As announced in my previous blog post, I would like to use this post to clearly explain the aspect of sustainability for my open-source projects. First, I would like to demonstrate this with a small calculation example.  Over the course of the last year, I have invested about 500…</p>
+            <a href="2020/2019-sustainability-report"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-meta tagged-year-in-review">
+            <h4><a href="2020/2019-in-review">2019 – A Year In Review</a></h4>
+            <ul>
+                <li><time>2020-01-31</time></li>
+                <li><a href="#meta" title="Show only blog posts tagged #meta (9)" rel="tag">#meta</a></li>
+                <li><a href="#year-in-review" title="Show only blog posts tagged #year-in-review (5)" rel="tag">#year-in-review</a></li>
+            </ul>
+            <p>With a little delay, you also receive some happy new year greetings from me! Now that I have worked through the polite phrase, I would like to review the year 2019 and see what's been going on the last 12 months.  First, I would like to dedicate a few…</p>
+            <a href="2020/2019-in-review"><em>Read more</em></a>
+        </article>
+  
+        <h2 id="2019" class="tagged tagged-open-source tagged-sustainability tagged-introducing tagged-phar tagged-composer tagged-release tagged-package tagged-bundle tagged-build tagged-php tagged-introducing-reactphp tagged-reactphp tagged-asterisk tagged-telephony tagged-docker tagged-container tagged-process tagged-meta tagged-console tagged-stdio tagged-cli tagged-birthday tagged-cache tagged-sqlite tagged-database tagged-ipc tagged-ndjson tagged-redis tagged-pubsub tagged-tls tagged-year-in-review"><a href="#2019"></a>2019 <small>(14 posts)</small></h2>
+
+        <article class="tagged tagged-open-source tagged-sustainability">
+            <h4><a href="https://24daysindecember.net/2019/12/15/open-source-sustainability/">Open-Source Sustainability</a></h4>
+            <ul>
+                <li><time>2019-12-15</time></li>
+                <li><a href="#open-source" title="Show only blog posts tagged #open-source (3)" rel="tag">#open-source</a></li>
+                <li><a href="#sustainability" title="Show only blog posts tagged #sustainability (3)" rel="tag">#sustainability</a></li>
+            </ul>
+            <p>Christmas is nigh! For many software developers, this means taking some time off from work, planning to spend some time with family and beloved ones, finally getting home and then… doing even more work! Wait a moment!?  If you, like many regular software developers, have a nine-to-five job, this…</p>
+            <a href="https://24daysindecember.net/2019/12/15/open-source-sustainability/"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing tagged-phar tagged-composer tagged-release tagged-package tagged-bundle tagged-build tagged-php">
+            <h4><a href="2019/introducing-phar-composer">Introducing zero-config phar creation for every PHP project</a></h4>
+            <ul>
+                <li><time>2019-11-27</time></li>
+                <li><a href="#introducing" title="Show only blog posts tagged #introducing (2)" rel="tag">#introducing</a></li>
+                <li><a href="#phar" title="Show only blog posts tagged #phar (1)" rel="tag">#phar</a></li>
+                <li><a href="#composer" title="Show only blog posts tagged #composer (2)" rel="tag">#composer</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#package" title="Show only blog posts tagged #package (1)" rel="tag">#package</a></li>
+                <li><a href="#bundle" title="Show only blog posts tagged #bundle (1)" rel="tag">#bundle</a></li>
+                <li><a href="#build" title="Show only blog posts tagged #build (1)" rel="tag">#build</a></li>
+                <li><a href="#php" title="Show only blog posts tagged #php (2)" rel="tag">#php</a></li>
+            </ul>
+            <p>Last week, I've released v1.1.0 of clue/phar-composer: it allows simple phar (php archive) creation for every PHP project managed via Composer. It takes any PHP project as input and turns its project directory and all its vendor files into a single Phar file which allows easy distribution. This is particularly…</p>
+            <a href="2019/introducing-phar-composer"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-asterisk tagged-telephony">
+            <h4><a href="2019/introducing-reactphp-ami">Introducing event-driven Asterisk Manager Interface (AMI) for ReactPHP</a></h4>
+            <ul>
+                <li><time>2019-11-03</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#asterisk" title="Show only blog posts tagged #asterisk (1)" rel="tag">#asterisk</a></li>
+                <li><a href="#telephony" title="Show only blog posts tagged #telephony (1)" rel="tag">#telephony</a></li>
+            </ul>
+            <p>This week, I'm happy to announce the first stable v1.0.0 release of clue/reactphp-ami, the streaming, event-driven access to the Asterisk Manager Interface (AMI), built on top of ReactPHP 🎉  Once again, don't be fooled by the version number: Its release history suggests this is not exactly a new project.…</p>
+            <a href="2019/introducing-reactphp-ami"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-docker tagged-container tagged-process">
+            <h4><a href="2019/introducing-reactphp-docker">Introducing event-driven Docker Engine API client for ReactPHP</a></h4>
+            <ul>
+                <li><time>2019-09-19</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#docker" title="Show only blog posts tagged #docker (1)" rel="tag">#docker</a></li>
+                <li><a href="#container" title="Show only blog posts tagged #container (1)" rel="tag">#container</a></li>
+                <li><a href="#process" title="Show only blog posts tagged #process (3)" rel="tag">#process</a></li>
+            </ul>
+            <p>Today, I'm happy to announce the first stable v1.0.0 release of clue/reactphp-docker, the async client library for event-driven access to the Docker Engine API, built on top of ReactPHP 🎉  Once again, don't be fooled by the version number: Its release history suggests this is not exactly a new…</p>
+            <a href="2019/introducing-reactphp-docker"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-meta">
+            <h4><a href="2019/new-blog">Brief note: New blog engine</a></h4>
+            <ul>
+                <li><time>2019-09-16</time></li>
+                <li><a href="#meta" title="Show only blog posts tagged #meta (9)" rel="tag">#meta</a></li>
+            </ul>
+            <p>As of today, this website is now built using Sculpin as a static site generator. Most notably, this means that all blog posts should load much faster now that they have been imported from external Gists into static files. All existing page links have been migrated as is and should…</p>
+            <a href="2019/new-blog"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-console tagged-stdio tagged-cli">
+            <h4><a href="2019/introducing-reactphp-stdio">Introducing event-driven console I/O with ReactPHP</a></h4>
+            <ul>
+                <li><time>2019-08-28</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#console" title="Show only blog posts tagged #console (1)" rel="tag">#console</a></li>
+                <li><a href="#stdio" title="Show only blog posts tagged #stdio (1)" rel="tag">#stdio</a></li>
+                <li><a href="#cli" title="Show only blog posts tagged #cli (1)" rel="tag">#cli</a></li>
+            </ul>
+            <p>Today, I'm happy to announce the stable v2.3.0 release of clue/reactphp-stdio, the event-driven and UTF-8 aware console input &amp; output (STDIN, STDOUT) library for truly interactive CLI applications, built on top of ReactPHP 🎉  Once again, the version number and its release history suggests this is not exactly a…</p>
+            <a href="2019/introducing-reactphp-stdio"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-meta">
+            <h4><a href="2019/new-domain">Brief note: New domain</a></h4>
+            <ul>
+                <li><time>2019-08-23</time></li>
+                <li><a href="#meta" title="Show only blog posts tagged #meta (9)" rel="tag">#meta</a></li>
+            </ul>
+            <p>As of today, https://clue.engineering is the new domain for this site. This includes all past and upcoming blog posts, articles, project information, downloads etc.  All links to the legacy domain (lueck.tv) should automatically redirect to the updated location, so all incoming links should continue to function as usual. I've…</p>
+            <a href="2019/new-domain"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-reactphp tagged-release tagged-birthday">
+            <h4><a href="2019/announcing-reactphp-lts">Announcing full stable ReactPHP LTS release</a></h4>
+            <ul>
+                <li><time>2019-07-11</time></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#birthday" title="Show only blog posts tagged #birthday (7)" rel="tag">#birthday</a></li>
+            </ul>
+            <p>Exactly seven years ago, 11th July 2012, the very first v0.1.0 release of ReactPHP was tagged. On last year's anniversary we took the chance to releases the first set of stable components for ReactPHP's main components. Today, we're thrilled to announce the immediate availability of the very first stable v1.0.0…</p>
+            <a href="2019/announcing-reactphp-lts"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-cache">
+            <h4><a href="2019/introducing-reactphp-cache">Introducing async cache for ReactPHP</a></h4>
+            <ul>
+                <li><time>2019-07-04</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#cache" title="Show only blog posts tagged #cache (2)" rel="tag">#cache</a></li>
+            </ul>
+            <p>Today, we're very happy to announce the immediate availability of the next major beta release of reactphp/cache, the async cache library for ReactPHP. 🎉  ReactPHP ❤️ PSRs  As the main feature of this v0.6.0 release, this library now provides an updated CacheInterface that provides all the common methods…</p>
+            <a href="2019/introducing-reactphp-cache"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-sqlite tagged-database tagged-process tagged-ipc tagged-ndjson">
+            <h4><a href="2019/introducing-reactphp-sqlite">Introducing async SQLite database for ReactPHP</a></h4>
+            <ul>
+                <li><time>2019-05-14</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#sqlite" title="Show only blog posts tagged #sqlite (1)" rel="tag">#sqlite</a></li>
+                <li><a href="#database" title="Show only blog posts tagged #database (4)" rel="tag">#database</a></li>
+                <li><a href="#process" title="Show only blog posts tagged #process (3)" rel="tag">#process</a></li>
+                <li><a href="#ipc" title="Show only blog posts tagged #ipc (3)" rel="tag">#ipc</a></li>
+                <li><a href="#ndjson" title="Show only blog posts tagged #ndjson (2)" rel="tag">#ndjson</a></li>
+            </ul>
+            <p>Today, I'm happy to announce the very first stable v1.0.0 release of clue/reactphp-sqlite, the async SQLite database for ReactPHP 🎉  Now that v1.0.0 has been tagged and released today, let's take a look at how we can use an async SQLite database in a non-blocking PHP application, how it…</p>
+            <a href="2019/introducing-reactphp-sqlite"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-redis tagged-database tagged-cache tagged-pubsub">
+            <h4><a href="2019/introducing-reactphp-redis">Introducing async Redis database client for ReactPHP</a></h4>
+            <ul>
+                <li><time>2019-03-11</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#redis" title="Show only blog posts tagged #redis (1)" rel="tag">#redis</a></li>
+                <li><a href="#database" title="Show only blog posts tagged #database (4)" rel="tag">#database</a></li>
+                <li><a href="#cache" title="Show only blog posts tagged #cache (2)" rel="tag">#cache</a></li>
+                <li><a href="#pubsub" title="Show only blog posts tagged #pubsub (1)" rel="tag">#pubsub</a></li>
+            </ul>
+            <p>Today, I'm happy to announce the v2.3.0 release of clue/reactphp-redis, the async Redis database client built on top of ReactPHP 🎉  Once again, the version number and its release history suggests this is not exactly a new project. In fact, this has been used in production in a larger…</p>
+            <a href="2019/introducing-reactphp-redis"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-process tagged-ipc">
+            <h4><a href="2019/introducing-reactphp-child-process">Introducing event-driven child process for ReactPHP</a></h4>
+            <ul>
+                <li><time>2019-01-14</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#process" title="Show only blog posts tagged #process (3)" rel="tag">#process</a></li>
+                <li><a href="#ipc" title="Show only blog posts tagged #ipc (3)" rel="tag">#ipc</a></li>
+            </ul>
+            <p>Today, we're very happy to announce the immediate availability of the next major beta release of reactphp/child-process, the event-driven library for executing child processes with ReactPHP. 🎉  ReactPHP ❤️ Windows  As the main feature of this v0.6.0 release, this library now has limited Windows support and supports passing…</p>
+            <a href="2019/introducing-reactphp-child-process"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-tls">
+            <h4><a href="2019/introducing-tls-1-3-for-reactphp">Introducing TLS 1.3 for ReactPHP</a></h4>
+            <ul>
+                <li><time>2019-01-07</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#tls" title="Show only blog posts tagged #tls (1)" rel="tag">#tls</a></li>
+            </ul>
+            <p>Today, we're very happy to announce the immediate availability of the next v1.2.0 feature release of reactphp/socket, the async, streaming plaintext TCP/IP and secure TLS socket server and client for ReactPHP. 🎉  As the main feature of this release, this library now has improved support for secure TLS 1.3…</p>
+            <a href="2019/introducing-tls-1-3-for-reactphp"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-meta tagged-year-in-review">
+            <h4><a href="2019/2018-in-review">2018 – A Year In Review</a></h4>
+            <ul>
+                <li><time>2019-01-01</time></li>
+                <li><a href="#meta" title="Show only blog posts tagged #meta (9)" rel="tag">#meta</a></li>
+                <li><a href="#year-in-review" title="Show only blog posts tagged #year-in-review (5)" rel="tag">#year-in-review</a></li>
+            </ul>
+            <p>Without further ado, let me start with saying:  &lt;?php  echo 'Happy New Year! 🎉';   Now with a fresh start, let's take a moment to review some of my highlights of the past year. In 2018…   I've started my first blog and published a total…</p>
+            <a href="2019/2018-in-review"><em>Read more</em></a>
+        </article>
+  
+        <h2 id="2018" class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-ssh tagged-proxy tagged-mysql tagged-database tagged-socks tagged-soap tagged-rpc tagged-http tagged-concurrency tagged-csv tagged-streaming tagged-flux tagged-birthday tagged-ndjson tagged-ipc tagged-queue tagged-talk tagged-meta"><a href="#2018"></a>2018 <small>(14 posts)</small></h2>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-ssh tagged-proxy">
+            <h4><a href="2018/introducing-reactphp-ssh-proxy">Introducing SSH proxy connector for ReactPHP</a></h4>
+            <ul>
+                <li><time>2018-12-19</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#ssh" title="Show only blog posts tagged #ssh (1)" rel="tag">#ssh</a></li>
+                <li><a href="#proxy" title="Show only blog posts tagged #proxy (3)" rel="tag">#proxy</a></li>
+            </ul>
+            <p>Today, I'm happy to announce the very first stable v1.0.0 release of clue/reactphp-ssh-proxy, the async SSH proxy connector and forwarder, tunnel any TCP/IP-based protocol through an SSH server, built on top of ReactPHP. 🎉  Now that v1.0.0 has been tagged and released today, let's take a look at how…</p>
+            <a href="2018/introducing-reactphp-ssh-proxy"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-mysql tagged-database">
+            <h4><a href="2018/introducing-reactphp-mysql-lazy-connections">Introducing lazy MySQL connections with ReactPHP</a></h4>
+            <ul>
+                <li><time>2018-11-28</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#mysql" title="Show only blog posts tagged #mysql (2)" rel="tag">#mysql</a></li>
+                <li><a href="#database" title="Show only blog posts tagged #database (4)" rel="tag">#database</a></li>
+            </ul>
+            <p>Today, we're very happy to announce the immediate availability of the next major beta release of friends-of-reactphp/mysql, the async MySQL database client for ReactPHP. 🎉  Now that v0.5.0 has been tagged and released today, let's look into why we believe the new API provides significant new features that warrant…</p>
+            <a href="2018/introducing-reactphp-mysql-lazy-connections"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-socks tagged-proxy">
+            <h4><a href="2018/introducing-reactphp-socks">Introducing SOCKS proxy connector for ReactPHP</a></h4>
+            <ul>
+                <li><time>2018-11-20</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#socks" title="Show only blog posts tagged #socks (1)" rel="tag">#socks</a></li>
+                <li><a href="#proxy" title="Show only blog posts tagged #proxy (3)" rel="tag">#proxy</a></li>
+            </ul>
+            <p>Today, I'm happy to announce the v1.0.0 release of clue/reactphp-socks, the async SOCKS proxy connector client and server implementation, tunnel any TCP/IP-based protocol through a SOCKS5 or SOCKS4(a) proxy server, built on top of ReactPHP. 🎉  Don't be fooled by the version number: Its release history suggests this is…</p>
+            <a href="2018/introducing-reactphp-socks"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-soap tagged-rpc tagged-http">
+            <h4><a href="2018/introducing-reactphp-soap">Introducing async SOAP requests with ReactPHP</a></h4>
+            <ul>
+                <li><time>2018-11-07</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#soap" title="Show only blog posts tagged #soap (2)" rel="tag">#soap</a></li>
+                <li><a href="#rpc" title="Show only blog posts tagged #rpc (2)" rel="tag">#rpc</a></li>
+                <li><a href="#http" title="Show only blog posts tagged #http (4)" rel="tag">#http</a></li>
+            </ul>
+            <p>Today, I'm happy to announce the v1.0.0 release of clue/reactphp-soap, the simple, async SOAP web service client library, built on top of ReactPHP. 🎉  To answer the first thing you may be wondering: Yes, it is 2018 and indeed, this project has been used in production in a number…</p>
+            <a href="2018/introducing-reactphp-soap"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-http tagged-proxy">
+            <h4><a href="2018/introducing-reactphp-http-proxy">Introducing HTTP CONNECT proxy connector for ReactPHP</a></h4>
+            <ul>
+                <li><time>2018-10-30</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#http" title="Show only blog posts tagged #http (4)" rel="tag">#http</a></li>
+                <li><a href="#proxy" title="Show only blog posts tagged #proxy (3)" rel="tag">#proxy</a></li>
+            </ul>
+            <p>Today, I'm happy to announce the v1.4.0 release of clue/reactphp-http-proxy, the async HTTP proxy connector, use any TCP/IP-based protocol through an HTTP CONNECT proxy server, built on top of ReactPHP. 🎉  Once again, the version number and its release history suggests this is not exactly a new project. In…</p>
+            <a href="2018/introducing-reactphp-http-proxy"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-http tagged-concurrency">
+            <h4><a href="2018/introducing-reactphp-buzz">Introducing async HTTP requests with ReactPHP</a></h4>
+            <ul>
+                <li><time>2018-10-24</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#http" title="Show only blog posts tagged #http (4)" rel="tag">#http</a></li>
+                <li><a href="#concurrency" title="Show only blog posts tagged #concurrency (4)" rel="tag">#concurrency</a></li>
+            </ul>
+            <p>Today, I'm happy to announce the v2.5.0 release of clue/reactphp-buzz, the simple, async PSR-7 HTTP client for concurrently processing any number of HTTP requests, built on top of ReactPHP. 🎉  As the version number suggests, this is not exactly a new project. In fact, this has been used in…</p>
+            <a href="2018/introducing-reactphp-buzz"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-mysql tagged-database">
+            <h4><a href="2018/introducing-reactphp-mysql">Introducing MySQL streaming with ReactPHP</a></h4>
+            <ul>
+                <li><time>2018-09-21</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#mysql" title="Show only blog posts tagged #mysql (2)" rel="tag">#mysql</a></li>
+                <li><a href="#database" title="Show only blog posts tagged #database (4)" rel="tag">#database</a></li>
+            </ul>
+            <p>Today, we're very happy to announce the immediate availability of the next major beta release of friends-of-reactphp/mysql, the async MySQL database client for ReactPHP. 🎉  Now that v0.4.0 has been tagged and released today, let's look into why I think this is not only a major milestone for this…</p>
+            <a href="2018/introducing-reactphp-mysql"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-csv tagged-streaming tagged-concurrency tagged-flux">
+            <h4><a href="2018/introducing-reactphp-csv">Introducing streaming CSV (Comma-Separated Values) with ReactPHP</a></h4>
+            <ul>
+                <li><time>2018-08-14</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#csv" title="Show only blog posts tagged #csv (1)" rel="tag">#csv</a></li>
+                <li><a href="#streaming" title="Show only blog posts tagged #streaming (4)" rel="tag">#streaming</a></li>
+                <li><a href="#concurrency" title="Show only blog posts tagged #concurrency (4)" rel="tag">#concurrency</a></li>
+                <li><a href="#flux" title="Show only blog posts tagged #flux (2)" rel="tag">#flux</a></li>
+            </ul>
+            <p>I'm happy to announce the very first stable release of clue/reactphp-csv, the streaming CSV (Comma-Separated Values or Character-Separated Values) parser and encoder for ReactPHP. 🎉  Now that v1.0.0 has been tagged and released today, let's look into what CSV is, how it compares to other formats such as NDJSON…</p>
+            <a href="2018/introducing-reactphp-csv"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-reactphp tagged-release tagged-birthday">
+            <h4><a href="2018/announcing-reactphp-lts">Announcing stable ReactPHP LTS release</a></h4>
+            <ul>
+                <li><time>2018-07-11</time></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#birthday" title="Show only blog posts tagged #birthday (7)" rel="tag">#birthday</a></li>
+            </ul>
+            <p>Exactly six years ago, 11th July 2012, the very first v0.1.0 release of ReactPHP was tagged. Today, six years later, we're thrilled to announce the immediate availability of the very first stable v1.0.0 release of ReactPHP's main components:   react/event-loop v1.0.0 react/stream v1.0.0 react/socket v1.0.0   Happy birthday…</p>
+            <a href="2018/announcing-reactphp-lts"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-flux tagged-streaming tagged-concurrency">
+            <h4><a href="2018/introducing-reactphp-flux">Introducing concurrent stream processing with ReactPHP and Flux</a></h4>
+            <ul>
+                <li><time>2018-05-25</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#flux" title="Show only blog posts tagged #flux (2)" rel="tag">#flux</a></li>
+                <li><a href="#streaming" title="Show only blog posts tagged #streaming (4)" rel="tag">#streaming</a></li>
+                <li><a href="#concurrency" title="Show only blog posts tagged #concurrency (4)" rel="tag">#concurrency</a></li>
+            </ul>
+            <p>I'm happy to announce the very first stable release of clue/reactphp-flux, the lightweight stream processor to concurrently do many (but not too many) things at once, built on top of ReactPHP. 🎉  Now that v1.0.0 has been tagged and released today, let's look into why streaming processing is useful,…</p>
+            <a href="2018/introducing-reactphp-flux"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-ndjson tagged-streaming tagged-rpc tagged-ipc">
+            <h4><a href="2018/introducing-reactphp-ndjson">Introducing streaming newline-delimited JSON (NDJSON) with ReactPHP</a></h4>
+            <ul>
+                <li><time>2018-05-17</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#ndjson" title="Show only blog posts tagged #ndjson (2)" rel="tag">#ndjson</a></li>
+                <li><a href="#streaming" title="Show only blog posts tagged #streaming (4)" rel="tag">#streaming</a></li>
+                <li><a href="#rpc" title="Show only blog posts tagged #rpc (2)" rel="tag">#rpc</a></li>
+                <li><a href="#ipc" title="Show only blog posts tagged #ipc (3)" rel="tag">#ipc</a></li>
+            </ul>
+            <p>I'm happy to announce the very first stable release of clue/reactphp-ndjson, the streaming newline-delimited JSON (NDJSON) parser and encoder for ReactPHP. 🎉  Now that v1.0.0 has been tagged and released today, let's look into what NDJSON is, how it compares to other formats such as JSON, CSV etc. and…</p>
+            <a href="2018/introducing-reactphp-ndjson"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-introducing-reactphp tagged-reactphp tagged-release tagged-queue tagged-concurrency">
+            <h4><a href="2018/introducing-reactphp-mq">Introducing clue/reactphp-mq v1.0.0</a></h4>
+            <ul>
+                <li><time>2018-02-26</time></li>
+                <li><a href="#introducing-reactphp" title="Show only blog posts tagged #introducing-reactphp (22)" rel="tag">#introducing-reactphp</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+                <li><a href="#release" title="Show only blog posts tagged #release (30)" rel="tag">#release</a></li>
+                <li><a href="#queue" title="Show only blog posts tagged #queue (1)" rel="tag">#queue</a></li>
+                <li><a href="#concurrency" title="Show only blog posts tagged #concurrency (4)" rel="tag">#concurrency</a></li>
+            </ul>
+            <p>I'm happy to announce the very first stable release of clue/reactphp-mq, the lightweight in-memory message queue to concurrently do many (but not too many) things at once, built on top of ReactPHP. 🎉  Now that v1.0.0 has been tagged and released today, let's look into why this is useful,…</p>
+            <a href="2018/introducing-reactphp-mq"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-talk tagged-reactphp">
+            <h4><a href="2018/pushing-the-limits-with-reactphp">Pushing the limits with ReactPHP</a></h4>
+            <ul>
+                <li><time>2018-02-18</time></li>
+                <li><a href="#talk" title="Show only blog posts tagged #talk (1)" rel="tag">#talk</a></li>
+                <li><a href="#reactphp" title="Show only blog posts tagged #reactphp (31)" rel="tag">#reactphp</a></li>
+            </ul>
+            <p>"Pushing the limits with ReactPHP – why ReactPHP is awesome and why you should care" has by now become what one could consider  my signature talk. In this post I'm trying to give a short overview what this talk is all about, why I think this is a very…</p>
+            <a href="2018/pushing-the-limits-with-reactphp"><em>Read more</em></a>
+        </article>
+
+        <article class="tagged tagged-meta">
+            <h4><a href="2018/hello-world">Hello World!</a></h4>
+            <ul>
+                <li><time>2018-01-01</time></li>
+                <li><a href="#meta" title="Show only blog posts tagged #meta (9)" rel="tag">#meta</a></li>
+            </ul>
+            <p>Without further ado, let me start with saying:  &lt;?php  echo 'Hello World!';   Yes, it's about time!  Over the course of the last year or two I've been asked a number of times to share some background info about some of the projects I'm working on…</p>
+            <a href="2018/hello-world"><em>Read more</em></a>
+        </article>
+    </div>
+</section>
+
+<section id="share">
+    <div class="container">
+        <h3>
+            <a href="#share"></a>
+            We love feedback!
+        </h3>
+        <p>
+            If you have anything to add,
+            send a tweet to <a href="https://twitter.com/another_clue">@another_clue</a>.
+        </p>
+        <p>
+            We invite you to share our blog posts with friends and colleagues.
+            All our blog posts can be shared freely under the permissive
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+            license.
+        </p>
+        <p>
+            <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+            <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+            <a href="contact">Email us</a> if you think we should be working together on interesting projects.
+        </p>
+    </div>
+</section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="./" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducing clue/reactphp-mq v1.0.0</title>
+    <link href="../src/landing-page.v2.css" rel="stylesheet">
+    <link href="../src/tailwind.min.css" rel="stylesheet">
+    <link rel="alternate" type="application/atom+xml" href="../posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+
+    <meta name="description" content="I&#039;m happy to announce the very first stable release of clue/reactphp-mq, the lightweight in-memory message queue to concurrently do many (but not too many) things at once, built on top of ReactPHP. 🎉  Now that v1.0.0 has been tagged and released today, let&#039;s look into why this is useful,…">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Introducing clue/reactphp-mq v1.0.0">
+    <meta property="og:description" content="I&#039;m happy to announce the very first stable release of clue/reactphp-mq, the lightweight in-memory message queue to concurrently do many (but not too many) things at once, built on top of ReactPHP. 🎉  Now that v1.0.0 has been tagged and released today, let&#039;s look into why this is useful,…">
+    <meta property="og:url" content="https://clue.engineering/2018/introducing-reactphp-mq">
+    <meta property="og:site_name" content="clue·engineering">
+    <meta property="article:published_time" content="2018-02-26">
+    <meta name="twitter:site" content="@another_clue">
+    <meta name="twitter:creator" content="@another_clue">
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="../" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="../blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="../talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="../support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section id="post">
+        <div class="container">
+            <article>
+                <h1>Introducing clue/reactphp-mq v1.0.0</h1>
+                <div>
+                    <address>
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <a href="../">Christian Lück</a>
+                    </address>
+                    on <time datetime="2018-02-26">2018-02-26</time>
+                    <div>
+                        tagged
+                        <a href="../blog#introducing-reactphp" title="Show all blog posts tagged #introducing-reactphp" rel="tag">#introducing-reactphp</a>
+                        <a href="../blog#reactphp" title="Show all blog posts tagged #reactphp" rel="tag">#reactphp</a>
+                        <a href="../blog#release" title="Show all blog posts tagged #release" rel="tag">#release</a>
+                        <a href="../blog#queue" title="Show all blog posts tagged #queue" rel="tag">#queue</a>
+                        <a href="../blog#concurrency" title="Show all blog posts tagged #concurrency" rel="tag">#concurrency</a>
+                    </div>
+                </div>
+
+<p>I'm happy to announce the very first stable release of <a href="https://github.com/clue/reactphp-mq">clue/reactphp-mq</a>,
+the lightweight in-memory message queue to concurrently do many (but not too many) things at once, built on top of <a href="https://reactphp.org/">ReactPHP</a>. 🎉</p>
+
+<p>Now that v1.0.0 has been tagged and released today, let's look into why this is useful, how this can be used and whether this means everybody should uninstall their RabbitMQ cluster? What follows is a short introduction into async PHP with ReactPHP and how a message queue can help doing many things at once.</p>
+
+<h2 id="doing-many-things">Doing many things</h2>
+
+<p>Many people use PHP and have an idea what it can be used for. Doing many things <em>at once</em> is not one of the things PHP is usually associated with, so let's first see what problem <a href="https://github.com/clue/reactphp-mq">clue/reactphp-mq</a> is trying to solve.</p>
+
+<p>Nowadays, PHP is often used in different kind of backend systems. Whether it's processing some data that came in through an HTTP request, through some backend queuing system (job worker) or some CLI (cron) script that periodically processes data from a database or filesystem. While these may be solving some entirely different problems, what's common to these is that they often need to process a larger number of uniform operations (batch processing).</p>
+
+<p>For example, this post assumes you've crawled an HTML page and find that you now need to send 100 requests to collect information from the following pages. If you want to learn more about this use case, see also <a href="https://sergeyzhuk.me/2018/02/12/fast-webscraping-with-reactphp/">fast webscraping with ReactPHP</a> by <a href="https://twitter.com/zhukserega">@zhukserega</a> for a good introduction. HTTP is used as an example here because it's common to a lot of problem, but of course, this can be easily substituted with any other remote API or database system. To further simplify our example let's say we're also done parsing this initial page and have dumped the following 100 URLs into a simple <code>urls.txt</code> file, which can now be read like this:</p>
+
+<pre><code class="php">$urls = file('urls.txt', FILE_IGNORE_NEW_LINES);
+</code></pre>
+
+<p>Again, let's go with this for the sake of brevity. In a more realistic scenario we could also load this from a database, JSON files, some other third-party API or heck, even a huge hard-coded array.</p>
+
+<p>The following example uses <a href="https://github.com/kriswallsmith/Buzz">kriswallsmith/buzz</a> as a lightweight HTTP client library for brevity, but again you can use any library you want:</p>
+
+<pre><code class="bash">$ composer require kriswallsmith/buzz:^0.16
+</code></pre>
+
+<p>The full code to load the list of URLs to fetch and then (sequentially) send a request to each URL could look something like:</p>
+
+<pre><code class="php">$urls = file('urls.txt', FILE_IGNORE_NEW_LINES);
+
+$browser = new Buzz\Browser();
+
+foreach ($urls as $url) {
+    $response = $browser-&gt;get($url);
+
+    printf(
+        "%s has %d bytes\n",
+        $url,
+        strlen($response-&gt;getContent())
+    );
+}
+</code></pre>
+
+<p>This is code should be pretty self-explanatory; it simply dumps the size of each response after a request completes and the continue to send the next request.</p>
+
+<p>Assuming that each page takes around <code>0.2s</code>, this script will run around <code>20s</code> for all 100 URLs. The <code>0.2s</code> in this example is a rather optimistic assumption, many real-world pages actually take significantly longer. What's worse, if a single HTTP request takes longer (say request number 3), the whole script will block and take even longer before even starting the next request.</p>
+
+<p>In fact, if you monitor your CPU usage while this script is running (or trace its internals), you will find that most of the time, the script will actually do <em>nothing</em>. Most of the time, it will simply sit there waiting for some data to arrive. It's obvious that this time can be spent doing more useful things: Enter ReactPHP…</p>
+
+<h2 id="concurrency-with-reactphp">Concurrency with ReactPHP</h2>
+
+<p><a href="https://reactphp.org">ReactPHP</a> is a low-level library for event-driven programming in PHP. In a nutshell, it allows you to run multiple I/O operations concurrently.</p>
+
+<p>Applying this to our above example, this means that we can use it to concurrently request all our pages at the same time and then simply <em>react</em> to when one of the responses comes in. The following example uses kriswallsmith/buzz as a lightweight HTTP client library for brevity, but again you can use any library you want: For this to work, we'll install the async HTTP client <a href="https://github.com/clue/reactphp-buzz">clue/reactphp-buzz</a> like this:</p>
+
+<pre><code class="bash">$ composer require clue/buzz-react:^2.0
+</code></pre>
+
+<p>The full code to load the list of URLs to fetch and then (concurrently) send a request to each URL could look something like:</p>
+
+<pre><code class="php">$urls = file('urls.txt', FILE_IGNORE_NEW_LINES);
+
+$loop = React\EventLoop\Factory::create();
+$browser = new Clue\React\Buzz\Browser($loop);
+
+foreach ($urls as $url) {
+    $browser-&gt;get($url)-&gt;then(
+        function (ResponseInterface $response) use ($url) {
+            printf(
+                "%s has %d bytes\n",
+                $url,
+                $response-&gt;getBody()-&gt;getSize()
+            );
+        }
+    );
+}
+
+$loop-&gt;run();
+</code></pre>
+
+<p>While this code looks slightly more complicated than the first example, this should still be pretty self-explanatory; it still simply dumps the size of each response after a request completes.</p>
+
+<p>Besides some additional boilerplate, the major difference to the first example is the <code>$browser-&gt;get()</code> method: While the former version <em>returned</em> a response object, the latter returns a <a href="https://github.com/reactphp/promise">Promise</a> which is <em>fulfilled</em> with a response object. Without going into too much detail here, the basic idea here is that each <code>get()</code> call actually <em>starts</em> a non-blocking operation that will <em>eventually</em> complete (async).</p>
+
+<p>This means that the above code actually sends all 100 requests concurrently and then simply waits for each response to arrive. The <a href="https://github.com/reactphp/promise">Promise</a>-based interface makes it easy to react to when an operation is completed (i.e. either successfully fulfilled or rejected with an error).</p>
+
+<p>Assuming that each page still takes around <code>0.2s</code>, this script will theoretically run only for little over <code>0.2s</code> for all 100 URLs. Yes, these numbers are no longer multiplied, it actually only has to wait for the <em>slowest</em> response. Again, the <code>0.2s</code> in this example is a rather optimistic assumption, many real-world pages actually take significantly longer.</p>
+
+<p>In practice, sending 100 requests <em>at once</em> may not be that much of a good idea. While concurrently sending a smaller number of requests should work perfectly fine, sending an excessive number of requests may either take up all resources on your side or it may even get you banned by the remote side if it sees an unreasonable number of requests from your side.</p>
+
+<p>This means that while async processing allows you to get some very impressive speed improvements (<code>20s</code> vs <code>0.2s</code> total), you will very like run into issues if you overwhelm individual parts of your often complex system.</p>
+
+<h2 id="limiting-concurrency">Limiting concurrency</h2>
+
+<p>This is where <a href="https://github.com/clue/reactphp-mq">clue/reactphp-mq</a> comes into play: You can use this library to limit the number of concurrent operations. This allows you to effectively rate limit your operations and queue excessives ones so that not too many operations are processed at once.</p>
+
+<p>This library provides a simple API that is easy to use in order to manage any kind of async operation without having to mess with most of the low-level details. You can use this to easily throttle multiple HTTP requests as in this example, database queries or pretty much any API that already uses Promises.</p>
+
+<p>For this to work, we'll install the <a href="https://github.com/clue/reactphp-mq">clue/reactphp-mq</a> like this:</p>
+
+<pre><code class="bash">$ composer require clue/mq-react
+</code></pre>
+
+<p>The full code to load the list of URLs to fetch and then (with limited concurrency) send a request to each URL could look something like:</p>
+
+<pre><code class="php">$urls = file('urls.txt', FILE_IGNORE_NEW_LINES);
+
+$loop = React\EventLoop\Factory::create();
+$browser = new Clue\React\Buzz\Browser($loop);
+
+// each job should use the browser to GET a certain URL
+// limit number of concurrent jobs here
+$q = new Clue\React\Mq\Queue(10, null, function ($url) use ($browser) {
+    return $browser-&gt;get($url);
+});
+
+foreach ($urls as $url) {
+    $q($url)-&gt;then(
+        function (ResponseInterface $response) use ($url) {
+            printf(
+                "%s has %d bytes\n",
+                $url,
+                $response-&gt;getBody()-&gt;getSize()
+            );
+        }
+    );
+}
+
+$loop-&gt;run();
+</code></pre>
+
+<p>You'll notice that this code differs only slightly from the previous example and this should still be pretty self-explanatory; it simply dumps the size of each response after a request completes.</p>
+
+<p>The major difference to the previous example is that the <code>$browser-&gt;get()</code> method is now wrapped in a <code>Queue</code> instance and this instance is invoked where a new request is to be sent. Other than that, this code still uses a <a href="https://github.com/reactphp/promise">Promise</a> which is <em>fulfilled</em> with a response object.</p>
+
+<p>This means that from the consumer's perspective is still tries to send all 100 requests concurrently and then simply waits for each response to arrive. The <a href="https://github.com/reactphp/promise">Promise</a>-based interface makes it easy to react to when an operation is completed (i.e. either successfully fulfilled or rejected with an error).</p>
+
+<p>However, the <code>Queue</code> instance is now responsible for managing your operations and ensuring not too many operations are executed at once. It's a very simple and lightweight in-memory implementation of the <a href="https://en.wikipedia.org/wiki/Leaky_bucket#As_a_queue">leaky bucket</a> algorithm. Without going into too much detail here, this means that you control how many operations can be executed concurrently. If you add a job to the queue and it still below the limit, it will be executed immediately. If you keep adding new jobs to the queue and its concurrency limit is reached, it will not start a new operation and instead queue this for future execution. Once one of the pending operations complete, it will pick the next job from the queue and execute this operation. This queue also has an optional maximum size to avoid taking up all memory for outstanding jobs.</p>
+
+<p>The <code>new Queue(int $concurrency, ?int $limit, callable $handler)</code> call can be used to create a new queue instance. You can create any number of queues, for example when you want to apply different limits to different kinds of operations.</p>
+
+<p>The <code>$concurrency</code> parameter sets a new soft limit for the maximum number of jobs to handle concurrently. Finding a good concurrency limit depends on your particular use case. It's common to limit concurrency to a rather small value, as doing more than a dozen of things at once may easily overwhelm the receiving side.</p>
+
+<p>The <code>$limit</code> parameter sets a new hard limit on how many jobs may be outstanding (kept in memory) at once. Depending on your particular use case, it's usually safe to keep a few hundreds or thousands of jobs in memory. If you do not want to apply an upper limit, you can pass a <code>null</code> value which is semantically more meaningful than passing a big number.</p>
+
+<p>The <code>$handler</code> parameter must be a valid callable that accepts your job parameters, invokes the appropriate operation and returns a Promise as a placeholder for its future result. Because each operation is expected to be async (non-blocking), you may actually invoke multiple operations concurrently (send multiple requests in parallel).</p>
+
+<p>For our HTTP example, this means that we assume it's safe to concurrently send 10 requests at once and we have no need to limit how many jobs can be queued in total:</p>
+
+<pre><code class="php">$q = new Queue(10, null, function ($url) use ($browser) {
+    return $browser-&gt;get($url);
+});
+</code></pre>
+
+<p>What makes this implementation so powerful is the fact that it relies solely on promises for its API. This means that the consumer of the API does not have to take care of whether it's waiting for an operation that simply takes a while or if the queue has currently set this operation on hold. Each operation may take some time to complete, but due to its async nature you can actually start any number of (queued) operations. Once the concurrency limit is reached, this invocation will simply be queued and this will return a pending promise which will start the actual operation once another operation is completed. This means that this is handled entirely transparently and you do not need to worry about this concurrency limit yourself.</p>
+
+<p>In our example, we assume that the <code>Queue</code> should send an HTTP request. But by passing a custom <code>$handler</code> parameter, we can actually use this to rate limit any other async operation. Any parameters that are passed to the queue invocation are simply passed through to the <code>$handler</code>, so we may also use this to pass additional parameters, such as timeout values and anything that is applicable to our particular use case.</p>
+
+<h2 id="blocking">Blocking</h2>
+
+<p>As seen above, this library provides you a powerful, async API by default. If, however, this looks strange to you and you want to integrate this into your traditional, blocking environment, you can also use the more traditional blocking API. This allows you to take advantage of an event driven application to do multiple things at once within your existing, blocking controller functions or any other place.</p>
+
+<p>For this to work, we'll install <a href="https://github.com/clue/reactphp-block">clue/reactphp-block</a> like this:</p>
+
+<pre><code class="bash">$ composer require clue/block-react
+</code></pre>
+
+<p>The full code to load the list of URLs to fetch and then await sending a request to each URL could look something like:</p>
+
+<pre><code class="php">$urls = file('urls.txt', FILE_IGNORE_NEW_LINES);
+
+/**
+ * Concurrently downloads all the given URLs
+ *
+ * @param string[] $urls       list of URLs to download
+ * @return ResponseInterface[] map with a response object for each URL
+ * @throws Exception if any of the URLs can not be downloaded
+ */
+function download(array $urls)
+{
+    $loop = React\EventLoop\Factory::create();
+    $browser = new Clue\React\Buzz\Browser($loop);
+
+    $urls = array_combine($urls, $urls);
+    $promise = Queue::all(10, $urls, function ($url) use ($browser) {
+        return $browser-&gt;get($url);
+    });
+
+    return Clue\React\Block\await($promise, $loop);
+}
+
+foreach (download($urls) as $url =&gt; $response) {
+    printf(
+        "%s has %d bytes\n",
+        $url,
+        $response-&gt;getBody()-&gt;getSize()
+    );
+}
+</code></pre>
+
+<p>This is code should be pretty self-explanatory; it simply dumps the size of each response after all requests complete.</p>
+
+<p>The major difference to the previous example is that we wrap all async code within a single blocking <code>download()</code> function. This function is now used to hide all the async details and provide a normal blocking API. Other than that, this code still uses a <a href="https://github.com/reactphp/promise">Promise</a> internally which is <em>fulfilled</em> with a response object. The blocking API ensures that consumers of this API only see an array of response objects in return.</p>
+
+<p>Note that because this function now returns with an array of all response messages, so we can easily iterate over this array. However, keep in mind that this means the whole response body has to be kept in memory. This should work just fine for our example where we request 100 HTML pages, but may easily take up all your memory for bigger responses, such as file downloads.</p>
+
+<h2 id="closing-thoughts">Closing thoughts</h2>
+
+<p>Does that mean everybody should uninstall their RabbitMQ cluster? It goes without saying that RabbitMQ is a great project that offers a large number of features that are not provided by this library. If you <em>need</em> a message queue with strict guarantees about message delivery, persistence and high availability, RabbitMQ is a very good choice! However, I've been involved in a number of projects where these features may be <em>overkill</em> when all your really need is a lightweight way to do <em>many</em> (but not <em>too many</em>) things at once.</p>
+
+<p>For instance, this project can also be used within your existing RabbitMQ worker: When you receive a single persistent RabbitMQ job message, you may start sending a request to a number of HTTP endpoints. This allows you to synchronously process a single job by asynchronously processing its subtasks.</p>
+
+<p>If you want to learn more about this project, make sure to check out <a href="https://github.com/clue/reactphp-mq">clue/reactphp-mq</a>. If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the contact options in the section below and let's get in touch.</p>
+
+<blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">Introducing clue/mq-react v1.0.0, the lightweight in-memory message queue to concurrently do many (but not too many) things at once with <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a>. <a href="https://twitter.com/hashtag/async?src=hash&amp;ref_src=twsrc%5Etfw">#async</a> <a href="https://twitter.com/hashtag/php?src=hash&amp;ref_src=twsrc%5Etfw">#php</a> <a href="https://twitter.com/hashtag/concurrency?src=hash&amp;ref_src=twsrc%5Etfw">#concurrency</a> <a href="https://t.co/qUqr8yLfcH">https://t.co/qUqr8yLfcH</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/968087258682351617?ref_src=twsrc%5Etfw">Feb 26, 2018</a></blockquote>
+
+<p>I'd like to thank <a href="https://www.bergfreunde.de/">Bergfreunde GmbH</a>, a German online retailer for Outdoor Gear &amp; Clothing, for sponsoring the first release! 🎉 Thanks to sponsors like this, who understand the importance of open source development, I can justify spending time and focus on open source development instead of traditional paid work.</p>
+
+<blockquote>
+  <p>Did you know that I offer custom development services and issuing invoices for sponsorships of releases and for contributions? Contact me (@clue) for details.</p>
+</blockquote>
+            </article>
+        </div>
+    </section>
+
+    <section id="calendly">
+        <div class="bg-white">
+            <div class="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+                    <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-10 xl:px-10">
+                        <div class="lg:self-center">
+                            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                                <span class="block">We're Here to Help!</span>
+                                <span class="block text-blue-400">Let's Tackle Your Problems Together.</span>
+                            </h2>
+                            <p class="mt-4 text-lg leading-6 text-gray-200">
+                                Did you know we provide <a href="https://clue.engineering/support" class="underline">professional support</a> for software projects?
+                                Book an appointment, you pay absolutely nothing for the first consultation.
+                            </p>
+                            <a href="https://calendly.com/clue-engineering/getting-started" class="mt-8 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white">Set Up a Free Call</a>
+                        </div>
+                    </div>
+                    <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                        <a href="https://calendly.com/clue-engineering/getting-started">
+                            <img class="transform translate-x-16 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-24 lg:translate-y-24 lg:translate-x-16" src="../src/2023-calendly.png" alt="calendly screenshot">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="share">
+        <div class="container">
+            <h3>
+                <a href="#share"></a>
+                We love feedback!
+            </h3>
+            <p>
+                If you have anything to add,
+                send a tweet to <a href="https://twitter.com/another_clue">@another_clue</a>.
+            </p>
+            <p>
+                We invite you to share our blog posts with friends and colleagues.
+                All our blog posts can be shared freely under the permissive
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+                license.
+            </p>
+            <p>
+                <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+                <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                <a href="../contact">Email us</a> if you think we should be working together on interesting projects.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="../" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="../contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

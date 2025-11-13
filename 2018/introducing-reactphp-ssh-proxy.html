@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducing SSH proxy connector for ReactPHP</title>
+    <link href="../src/landing-page.v2.css" rel="stylesheet">
+    <link href="../src/tailwind.min.css" rel="stylesheet">
+    <link rel="alternate" type="application/atom+xml" href="../posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+
+    <meta name="description" content="Today, I&#039;m happy to announce the very first stable v1.0.0 release of clue/reactphp-ssh-proxy, the async SSH proxy connector and forwarder, tunnel any TCP/IP-based protocol through an SSH server, built on top of ReactPHP. 🎉  Now that v1.0.0 has been tagged and released today, let&#039;s take a look at how…">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Introducing SSH proxy connector for ReactPHP">
+    <meta property="og:description" content="Today, I&#039;m happy to announce the very first stable v1.0.0 release of clue/reactphp-ssh-proxy, the async SSH proxy connector and forwarder, tunnel any TCP/IP-based protocol through an SSH server, built on top of ReactPHP. 🎉  Now that v1.0.0 has been tagged and released today, let&#039;s take a look at how…">
+    <meta property="og:url" content="https://clue.engineering/2018/introducing-reactphp-ssh-proxy">
+    <meta property="og:site_name" content="clue·engineering">
+    <meta property="article:published_time" content="2018-12-19">
+    <meta name="twitter:site" content="@another_clue">
+    <meta name="twitter:creator" content="@another_clue">
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="../" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="../blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="../talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="../support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section id="post">
+        <div class="container">
+            <article>
+                <h1>Introducing SSH proxy connector for ReactPHP</h1>
+                <div>
+                    <address>
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <a href="../">Christian Lück</a>
+                    </address>
+                    on <time datetime="2018-12-19">2018-12-19</time>
+                    <div>
+                        tagged
+                        <a href="../blog#introducing-reactphp" title="Show all blog posts tagged #introducing-reactphp" rel="tag">#introducing-reactphp</a>
+                        <a href="../blog#reactphp" title="Show all blog posts tagged #reactphp" rel="tag">#reactphp</a>
+                        <a href="../blog#release" title="Show all blog posts tagged #release" rel="tag">#release</a>
+                        <a href="../blog#ssh" title="Show all blog posts tagged #ssh" rel="tag">#ssh</a>
+                        <a href="../blog#proxy" title="Show all blog posts tagged #proxy" rel="tag">#proxy</a>
+                    </div>
+                </div>
+
+<p>Today, I'm happy to announce the very first stable <code>v1.0.0</code> release of <a href="https://github.com/clue/reactphp-ssh-proxy">clue/reactphp-ssh-proxy</a>,
+the async SSH proxy connector and forwarder, tunnel any TCP/IP-based protocol through an SSH server, built on top of <a href="https://reactphp.org/">ReactPHP</a>. 🎉</p>
+
+<p>Now that v1.0.0 has been tagged and released today, let's take a look at how we can use SSH tunnels as a powerful feature for many different use cases, how it compares to other proxy protocols and why I think ReactPHP's design makes it a perfect fit.</p>
+
+<h2 id="ssh-proxy-a.k.a.-ssh-tunnel">SSH proxy a.k.a. SSH tunnel</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Secure_Shell">Secure Shell (SSH)</a> is a secure network protocol that is most commonly used to access a login shell on a remote server. Its architecture allows it to use multiple secure channels over a single connection. Among others, this can also be used to create an "SSH tunnel", which is commonly used to tunnel HTTP(S) traffic through an intermediary ("proxy"), to conceal the origin address (anonymity) or to circumvent address blocking (geoblocking). This can be used to tunnel any TCP/IP-based protocol (HTTP, SMTP, IMAP etc.) and as such also allows you to access local services that are otherwise not accessible from the outside (database behind firewall).</p>
+
+<p><a href="https://github.com/clue/reactphp-ssh-proxy">clue/reactphp-ssh-proxy</a> is implemented as a lightweight process wrapper around the <code>ssh</code> client binary and provides a simple API to create these tunneled connections for you. Because it implements ReactPHP's standard <a href="https://github.com/reactphp/socket#connectorinterface"><code>ConnectorInterface</code></a>, it can simply be used in place of a normal connector. This makes it fairly simple to add SSH proxy support to pretty much any existing higher-level protocol implementation.</p>
+
+<h2 id="proxy-http-requests">Proxy HTTP requests</h2>
+
+<blockquote>
+  <p>I'm probably not telling you something new when I say the web is built on top of HTTP. This blog post is served over HTTP. Your YouTube videos are served over HTTP. Your downloads are served over HTTP. RESTful backend APIs are served over HTTP. GraphQL APIs are served over HTTP. SOAP APIs are served over HTTP. Yes, I may be oversimplifying things a bit here, but I think you get the point.</p>
+  
+  <p>– From my recent blog post <a href="https://clue.engineering/2018/introducing-reactphp-buzz">introducing async HTTP requests with ReactPHP</a>.</p>
+</blockquote>
+
+<p>Yes, I've <a href="https://clue.engineering/2018/introducing-reactphp-http-proxy">mentioned this before</a> <a href="https://clue.engineering/2018/introducing-reactphp-socks">multiple times</a> and I will mention it again: With HTTP being so ubiquitous, it's no surprise that using a proxy server for HTTP requests is one of the more common requirements when using proxy servers. To recap once again, let's first take a look at how to send an HTTP request with ReactPHP, again from the <a href="https://clue.engineering/2018/introducing-reactphp-buzz">recent blog post</a>:</p>
+
+<pre><code class="php">$loop = React\EventLoop\Factory::create();
+$client = new Clue\React\Buzz\Browser($loop);
+
+$client-&gt;get('https://api.example.com/')-&gt;then(function (ResponseInterface $response) {
+    var_dump($response-&gt;getHeaders(), (string)$response-&gt;getBody());
+});
+
+$loop-&gt;run();
+</code></pre>
+
+<p>This example makes no mention of any proxy setup and thus sends a <code>GET</code> request over a direct connection to the destination host. If you want to proxy the same HTTP request through an SSH proxy server, you only have to add a few extra lines of code. If you remember the recent blog post <a href="https://clue.engineering/2018/introducing-reactphp-http-proxy">introducing HTTP CONNECT proxy support</a> or <a href="https://clue.engineering/2018/introducing-reactphp-socks">introducing SOCKS proxy support</a>, the following should be no surprise. After installing the SSH proxy support with <code>composer require clue/reactphp-ssh-proxy:^1.0</code>, the same example could look something like this:</p>
+
+<pre><code class="php">$loop = React\EventLoop\Factory::create();
+
+$proxy = new Clue\React\SshProxy\SshSocksConnector('user@example.com', $loop);
+$connector = new React\Socket\Connector($loop, array(
+    'tcp' =&gt; $proxy,
+    'dns' =&gt; false
+));
+
+$client = new Clue\React\Buzz\Browser($loop, $connector);
+
+$client-&gt;get('https://api.example.com/')-&gt;then(function (ResponseInterface $response) {
+    var_dump($response-&gt;getHeaders(), (string)$response-&gt;getBody());
+});
+
+$loop-&gt;run();
+</code></pre>
+
+<p>For this to work, you'll just need to have SSH access as <code>user@example.com</code> and be allowed to use port forwarding (which is the default for most distributions). If you already have a server or VPS running somewhere and have ever used any SSH client to access it, there's a fair chance you can simply pass in your credentials in the previous example and start using it as a proxy server right away! The gist: If you can access a remote SSH server with <code>ssh user@example.com</code>, then so can this project.</p>
+
+<p>Now what does all of this code mean? Admittedly, the few extra lines of code added near the top may look a bit confusing at first, so let's ignore this for a moment. Interestingly, what has <em>not</em> changed is any of the code that actually sends the HTTP requests. In fact, if you go take a look at the internals of this <a href="https://github.com/clue/reactphp-buzz">HTTP client</a>, you'll find that all of this works without having even a single line of code internally dedicated to proxy server support.</p>
+
+<p>Now what does this code actually do? The few extra lines of code added near the top specifically change the way the HTTP client creates a connection to the destination host. Instead of using the default <code>Connector</code> to create a direct connection to the host, we create an explicit <code>Connector</code> which uses the proxy server to create the connection to the destination host. What this means is that the HTTP client doesn't really require any changes, it only requires a special <code>Connector</code> which somehow creates this connection to the destination. What the <code>SshSocksConnector</code> does internally, is it creates a connection to the proxy server though the <code>ssh</code> client binary, uses the SOCKS proxy protocol to ask the local SSH client to create a connection to the destination host and then returns this connection once it's ready. Remember that if you can access a remote SSH server with <code>ssh user@example.com</code>, then so can this project? In fact, this project will simply spawn the <code>ssh</code> client binary with the equivalent of <code>ssh -D 1080 user@example.com</code> and then monitor and use this running process. You can open any number of connections over this one process and once the last connection closes, it will automatically kill this process again, freeing any resources allocated.</p>
+
+<h2 id="tunnel-any-protocol%21">Tunnel any protocol!</h2>
+
+<p>In the previous chapter we've seen how this project can be used to send HTTP requests through an SSH proxy server. Likewise, we can use this to tunnel any tool/protocol that builds on top of HTTP over an SSH proxy server, whether it's your favorite RESTful HTTP API, GraphQL API or even <a href="https://clue.engineering/2018/introducing-reactphp-soap">SOAP</a>.</p>
+
+<p>But what about other protocols? If you look closely at the previous example, you'll see that nothing of what we've discussed so far is really limited to HTTP at all. In fact, if you look a bit closer at the previous example, you'll see that it already uses HTTPS (secure HTTP over TLS) instead of plain HTTP. What this means is that SSH proxy servers do not really care what kind of (payload) protocol you send over this tunneled connection, so this can be used to tunnel any TCP/IP-based protocol (HTTP, SMTP, IMAP etc.).</p>
+
+<p><a href="https://github.com/reactphp/react/wiki/Users">ReactPHP's vast ecosystem</a> features a large number of existing client implementations for pretty much any widespread protocol and database system out there. Any project that builds on top of ReactPHP's components will in one way or another use a <code>Connector</code> to create its underlying connection to its destination host. Accordingly, if you go take a look at their documentation, you'll find that pretty much all of them expose an optional <code>Connector</code> instance somehow. Among others, this allows us to pass an explicit proxy connector like in the previous example. For example, this allows us to create a MySQL or Redis database connection over an SSH proxy server.</p>
+
+<h2 id="tunneled-database-connections">Tunneled database connections</h2>
+
+<p>We should now have a basic understanding of how we can tunnel any TCP/IP-based protocol over an SSH proxy server. Besides using this to access "external" services, this is also particularly useful because it allows you to access network services otherwise only local to this SSH server from the outside, such as a firewalled database server.</p>
+
+<p>For example, taking the <a href="https://clue.engineering/2018/introducing-reactphp-mysql-lazy-connections">lazy MySQL database connections</a> from a previous blog post and combining it with the above SSH proxy server setup, you can access a firewalled MySQL database server through an SSH tunnel. Here's the gist:</p>
+
+<pre><code class="php">$loop = React\EventLoop\Factory::create();
+
+$proxy = new Clue\React\SshProxy\SshProcessConnector('user@example.com', $loop);
+$connector = new React\Socket\Connector($loop, array(
+    'tcp' =&gt; $proxy,
+    'dns' =&gt; false
+));
+
+$uri = 'test:test@localhost/test';
+$factory = new React\MySQL\Factory($loop, $connector);
+$connection = $factory-&gt;createLazyConnection($uri);
+
+$connection-&gt;query('SELECT * FROM book')-&gt;then(
+    function (QueryResult $command) {
+        echo count($command-&gt;resultRows) . ' row(s) in set' . PHP_EOL;
+    },
+    function (Exception $error) {
+        echo 'Error: ' . $error-&gt;getMessage() . PHP_EOL;
+    }
+);
+
+$connection-&gt;quit();
+
+$loop-&gt;run();
+</code></pre>
+
+<p>This example will automatically launch the <code>ssh</code> client binary to create the connection to a database server that can not otherwise be accessed from the outside. From the perspective of the database server, this looks just like a regular, local connection. From this code's perspective, this will create a regular, local connection which just happens to use a secure SSH tunnel to transport this to a remote server, so you can send any query like you would to a local database server.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Secure_Shell">Secure Shell (SSH)</a> is a secure network protocol that can also be used to create an "SSH tunnel", which is commonly used to tunnel HTTP(S) traffic through an intermediary ("proxy"), to conceal the origin address (anonymity) or to circumvent address blocking (geoblocking). This can be used to tunnel any TCP/IP-based protocol (HTTP, SMTP, IMAP etc.) and also allows you to access local services that are otherwise not accessible from the outside (database behind firewall). Thanks to ReactPHP's component-based design, we can add SSH proxy server support to pretty much any existing higher-level implementation with ease, whether it's a common HTTP client implementation or some obscure binary protocol.</p>
+
+<p>If you want to learn more about this project, make sure to check out the project homepage of <a href="https://github.com/clue/reactphp-ssh-proxy">clue/reactphp-ssh-proxy</a>. Its documentation describes common usage patterns as well as all the nifty details. While it is a relatively new project, it is considered stable and you're invited to also give it a try! If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the contact options in the section below and let's get in touch.</p>
+
+<blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">Just released clue/reactphp-ssh-proxy v1.0.0! 🎉 Tunnel any TCP/IP-based protocol over an automatic SSH tunnel with plain PHP and access your firewalled database on a remote server as if it&#39;s local with <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a>. 🐘💪 <a href="https://twitter.com/hashtag/async?src=hash&amp;ref_src=twsrc%5Etfw">#async</a> <a href="https://twitter.com/hashtag/php?src=hash&amp;ref_src=twsrc%5Etfw">#php</a> <a href="https://twitter.com/hashtag/ssh?src=hash&amp;ref_src=twsrc%5Etfw">#ssh</a> <a href="https://t.co/STVCGbGxXu">https://t.co/STVCGbGxXu</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/1075486829703557122?ref_src=twsrc%5Etfw">19. Dezember 2018</a></blockquote>
+            </article>
+        </div>
+    </section>
+
+    <section id="calendly">
+        <div class="bg-white">
+            <div class="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+                    <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-10 xl:px-10">
+                        <div class="lg:self-center">
+                            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                                <span class="block">We're Here to Help!</span>
+                                <span class="block text-blue-400">Let's Tackle Your Problems Together.</span>
+                            </h2>
+                            <p class="mt-4 text-lg leading-6 text-gray-200">
+                                Did you know we provide <a href="https://clue.engineering/support" class="underline">professional support</a> for software projects?
+                                Book an appointment, you pay absolutely nothing for the first consultation.
+                            </p>
+                            <a href="https://calendly.com/clue-engineering/getting-started" class="mt-8 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white">Set Up a Free Call</a>
+                        </div>
+                    </div>
+                    <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                        <a href="https://calendly.com/clue-engineering/getting-started">
+                            <img class="transform translate-x-16 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-24 lg:translate-y-24 lg:translate-x-16" src="../src/2023-calendly.png" alt="calendly screenshot">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="share">
+        <div class="container">
+            <h3>
+                <a href="#share"></a>
+                We love feedback!
+            </h3>
+            <p>
+                If you have anything to add,
+                send a tweet to <a href="https://twitter.com/another_clue">@another_clue</a>.
+            </p>
+            <p>
+                We invite you to share our blog posts with friends and colleagues.
+                All our blog posts can be shared freely under the permissive
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+                license.
+            </p>
+            <p>
+                <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+                <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                <a href="../contact">Email us</a> if you think we should be working together on interesting projects.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="../" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="../contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

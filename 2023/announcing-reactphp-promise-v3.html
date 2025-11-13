@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy birthday ReactPHP – releasing new Promise v3!</title>
+    <link href="../src/landing-page.v2.css" rel="stylesheet">
+    <link href="../src/tailwind.min.css" rel="stylesheet">
+    <link rel="alternate" type="application/atom+xml" href="../posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+
+    <meta name="description" content="Today marks ReactPHP’s 11th birthday. 🎉 To celebrate this special day together with all of you, we are thrilled to announce the release of the highly anticipated v3.0.0 of our Promise component. This major version has been in the works since 2016 and marks the starting point for a bigger,…">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Happy birthday ReactPHP – releasing new Promise v3!">
+    <meta property="og:description" content="Today marks ReactPHP’s 11th birthday. 🎉 To celebrate this special day together with all of you, we are thrilled to announce the release of the highly anticipated v3.0.0 of our Promise component. This major version has been in the works since 2016 and marks the starting point for a bigger,…">
+    <meta property="og:image" content="https://clue.engineering/src/2023-reactphp-birthday.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="https://clue.engineering/2023/announcing-reactphp-promise-v3">
+    <meta property="og:site_name" content="clue·engineering">
+    <meta property="article:published_time" content="2023-07-11">
+    <meta name="twitter:site" content="@another_clue">
+    <meta name="twitter:creator" content="@another_clue">
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="../" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="../blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="../talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="../support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section id="post">
+        <div class="container">
+            <article>
+                <h1>Happy birthday ReactPHP – releasing new Promise v3!</h1>
+                <div>
+                    <address>
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <img src="../src/simon.jpg" alt="Simon Frings Portrait Photo">
+                        <a href="../">Christian Lück</a> &amp; <a href="../">Simon Frings</a>
+                    </address>
+                    on <time datetime="2023-07-11">2023-07-11</time>
+                    <div>
+                        tagged
+                        <a href="../blog#reactphp" title="Show all blog posts tagged #reactphp" rel="tag">#reactphp</a>
+                        <a href="../blog#release" title="Show all blog posts tagged #release" rel="tag">#release</a>
+                        <a href="../blog#birthday" title="Show all blog posts tagged #birthday" rel="tag">#birthday</a>
+                        <a href="../blog#promise" title="Show all blog posts tagged #promise" rel="tag">#promise</a>
+                    </div>
+                </div>
+
+<p><img src="../src/2023-reactphp-birthday.png" alt="ReactPHP – 11 years" /></p>
+
+<p>Today marks <strong>ReactPHP’s 11th birthday</strong>. 🎉 To celebrate this special day together with all of you, we are thrilled to announce the release of the highly anticipated <a href="https://reactphp.org/promise/">v3.0.0 of our Promise component</a>. This major version has been in the works since 2016 and marks the starting point for a bigger, better and brighter future for the whole ReactPHP ecosystem.</p>
+
+<p>The new Promise version comes with a bunch of improvements to enhance the user experience with ReactPHP. You can check out the full <a href="https://reactphp.org/changelog.html">ReactPHP changelog</a> for all the details, but here's a quick overview of the key highlights:</p>
+
+<h3 id="better-error-reporting-for-unhandled-rejections">Better error reporting for unhandled rejections</h3>
+
+<p>Over the years we have received a lot of questions and feedback from the community, particularly regarding better insights when things go wrong. In previous versions, if exceptions or errors were thrown inside a promise callback and not being handled properly, they would be discarded without the user being aware of them. This has caused a great deal of confusion in the past, but things are about to change.</p>
+
+<p>With the introduction of Promise v3, all unhandled promise rejections will be reported and logged as error messages by default:</p>
+
+<pre><code class="php">// Unhandled promise rejection with RuntimeException: Unhandled in example.php:2
+reject(new RuntimeException('Unhandled'));
+</code></pre>
+
+<p>By gaining a better understanding of the problem, finding a solution becomes much easier and quicker, thus greatly improving the developer experience with Promise v3. And if you want more control over the default behavior, we've got you covered with a new <a href="https://reactphp.org/promise/#set_rejection_handler"><code>set_rejection_handler()</code> function</a> to adjust this to your needs.</p>
+
+<h3 id="type-safe-apis">Type safe APIs</h3>
+
+<p>We now take advantage of native PHP type declarations consistently for our APIs. By ensuring type safety for promises, we can assist IDEs, static analysis tools and <em>humans</em> alike, which allows everybody to write code with greater confidence. Long overdue, this will also raise the minimum supported PHP version to PHP 7.1+ with PHP 8.1+ recommended for best performance.</p>
+
+<p>To achieve even better type safety, we also now leverage PHPStan template types. This means PHPStan can now help you detect this code as invalid:</p>
+
+<pre><code class="php">/** @return PromiseInterface&lt;int&gt; */
+function answer(): PromiseInterface
+{
+    return resolve(42);
+}
+
+// PHPStan now detects the following line as invalid
+answer()-&gt;then(function (bool $result): string {
+    return 'Can you also tell what is wrong?';
+});
+</code></pre>
+
+<p>Fun note: PHPStan uses ReactPHP internally for faster execution – and we're now using PHPStan in ReactPHP for faster development. If you also want to take advantage of the type-safe Promise API, we can highly recommend giving <a href="https://phpstan.org/">PHPStan</a> a try.</p>
+
+<h3 id="improved-api%2C-removed-deprecations%2C-and-more">Improved API, removed deprecations, and more</h3>
+
+<p>The release of a new major version presents an excellent opportunity to improve APIs and implement some much-desired changes. Among others, we've used this opportunity to bring our APIs more in line with the ES6 Promise specification as found in JavaScript. This includes a number of API changes that may introduce minor BC breaks such as the following:</p>
+
+<pre><code class="php">// old (arguments used to be optional)
+$promise = resolve();
+$promise = reject();
+
+// new (already supported before)
+$promise = resolve(null);
+$promise = reject(new RuntimeException());
+</code></pre>
+
+<p>On top of this, we've simplified our APIs by merging <code>CancellablePromiseInterface</code> and <code>ExtendedPromiseInterface</code> into a single <code>PromiseInterface</code> for your convenience. Thanks to the updated PHP language support, we can now provide <code>catch()</code> and <code>finally()</code> methods like this:</p>
+
+<pre><code class="php">// old (multiple interfaces may or may not be implemented)
+assert($promise instanceof PromiseInterface);
+assert(method_exists($promise, 'then'));
+if ($promise instanceof ExtendedPromiseInterface) {
+    assert(method_exists($promise, 'otherwise'));
+    assert(method_exists($promise, 'always'));
+}
+if ($promise instanceof CancellablePromiseInterface) {
+    assert(method_exists($promise, 'cancel'));
+}
+
+// new (single PromiseInterface with all methods)
+assert($promise instanceof PromiseInterface);
+assert(method_exists($promise, 'then'));
+assert(method_exists($promise, 'catch'));
+assert(method_exists($promise, 'finally'));
+assert(method_exists($promise, 'cancel'));
+</code></pre>
+
+<p>Most of these changes should be fairly straightforward, but if you're upgrading from an older version, you may want to check out the <a href="https://reactphp.org/promise/changelog.html#300-2023-07-11">Promise <code>v3.0.0</code> changelog</a> for all detailed changes.</p>
+
+<p>In this context, we have also released a new <a href="https://github.com/reactphp/reactphp">reactphp/reactphp <code>v1.4.0</code></a> meta package. This meta package will install all stable components at once, and it now also includes our updated Promise v3 component. Happy prototyping!</p>
+
+<h3 id="looking-forward">Looking forward</h3>
+
+<p>We are proud to announce that Promise v3 is now live, marking the next major step toward the upcoming release of ReactPHP v3. Promise v3 provides a glimpse into what a more modern ReactPHP can look like, making development with ReactPHP much easier, significantly faster and <em>more awesome</em>.</p>
+
+<p>After being in the works for more than 7 years, we'd like to emphasize that this component is production ready and battle-tested. Accordingly, we will <em>promise</em> to continue our long-term support (LTS) for at least 24 months, so you have a rock-solid foundation to build on top of.</p>
+
+<p>We would like to thank everyone who has contributed to ReactPHP over the years, whether it’s been through code contributions, publishing blog posts and videos, helping with the documentation, answering questions on the issue tracker or chat, or just spreading the word about ReactPHP.</p>
+
+<p>If you're also excited about the future of ReactPHP, you can help us! Working on the next major version still involves a lot of work (join our <a href="https://github.com/orgs/reactphp/discussions/481">discussion</a>) and we're always looking for sponsors to allow us to spend more time on ReactPHP. Check out <a href="https://github.com/sponsors/reactphp">ReactPHP's sponsor profile</a> and consider supporting the ongoing development ❤️</p>
+
+<p>It’s been an amazing ride so far and we’re excited to see what the future brings! Happy birthday and here’s to more awesome years of asynchronous PHP with <a href="https://reactphp.org/">ReactPHP</a>! 🎉</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="calendly">
+        <div class="bg-white">
+            <div class="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+                    <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-10 xl:px-10">
+                        <div class="lg:self-center">
+                            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                                <span class="block">We're Here to Help!</span>
+                                <span class="block text-blue-400">Let's Tackle Your Problems Together.</span>
+                            </h2>
+                            <p class="mt-4 text-lg leading-6 text-gray-200">
+                                Did you know we provide <a href="https://clue.engineering/support" class="underline">professional support</a> for software projects?
+                                Book an appointment, you pay absolutely nothing for the first consultation.
+                            </p>
+                            <a href="https://calendly.com/clue-engineering/getting-started" class="mt-8 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white">Set Up a Free Call</a>
+                        </div>
+                    </div>
+                    <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                        <a href="https://calendly.com/clue-engineering/getting-started">
+                            <img class="transform translate-x-16 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-24 lg:translate-y-24 lg:translate-x-16" src="../src/2023-calendly.png" alt="calendly screenshot">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="share">
+        <div class="container">
+            <h3>
+                <a href="#share"></a>
+                We love feedback!
+            </h3>
+            <p>
+                If you have anything to add,
+                send a tweet to <a href="https://twitter.com/another_clue">@another_clue</a>.
+            </p>
+            <p>
+                We invite you to share our blog posts with friends and colleagues.
+                All our blog posts can be shared freely under the permissive
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+                license.
+            </p>
+            <p>
+                <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+                <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                <a href="../contact">Email us</a> if you think we should be working together on interesting projects.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="../" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="../contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,286 @@
+/* global layout */
+body, html {
+    margin: 0;
+
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #64737d;
+    font-size: 20px;
+    line-height: 1.5;
+}
+hr {
+    margin: 2em 4em;
+    border: 0;
+    border-top: 2px solid #dbdbdb;
+}
+.container a {
+    color: #4C9ED9;
+    text-decoration: underline;
+}
+.container a:not([href]) {
+    text-decoration: line-through underline;
+}
+h1,h2,h3,h4 {
+    font-weight: normal;
+    line-height: 1.25;
+    color: #29586a;
+}
+h2 small {
+    font-size: .5em;
+}
+.container h2 {
+    border-bottom: 1px solid aliceblue;
+}
+
+/* show empty link anchors with "#" only when hovering parent heading */
+a:empty {
+    display: none;
+    float: left;
+    margin-left: -1em;
+    width: 1em;
+}
+a:empty::before {
+    content: "#";
+}
+:hover > a:empty {
+    display: block;
+}
+
+.container svg {
+    height: 0.8em;
+    display: inline-block;
+}
+
+/* Tailwind CSS overrides to restore browser defaults */
+.container h1, .container h2, .container h3, .container h4, .container p {
+    margin: 1em 0;
+}
+.container h1, .container h2 {
+    font-size: 1.5em;
+}
+.container h3 {
+    font-size: 1.17em;
+}
+.container ul {
+    list-style: disc;
+    padding-left: 2em;
+}
+.container img {
+    display: inline;
+}
+
+/* default section layout */
+section {
+    width: 100%;
+    overflow: auto;
+}
+section .container {
+    max-width: 700px;
+    margin: 50px auto;
+}
+
+section#posts svg {
+    fill: #4C9ED9;
+}
+section#posts article {
+    margin-bottom: 1.5em;
+    border: 1px solid #eee;
+    padding: 1.5em;
+    box-shadow: 0 0 30px -10px rgba(0, 9, 27, .2);
+}
+section#posts article > h4 {
+    margin: 0;
+}
+section#posts article > ul {
+    margin: 0;
+    padding: 0;
+}
+section#posts article > ul > li {
+    display: inline;
+    margin-right: 4px;
+}
+section#posts article > h4 + * {
+    font-size: small;
+    display: block;
+}
+section#posts article > p {
+    margin: 0;
+}
+section#posts article > p + ul > li {
+    font-size: .9em;
+    white-space: nowrap;
+}
+section#posts article > p + ul > li:before {
+    /* scale from 24px to 16px */
+    transform: scale(.66);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 2px;
+
+    /* filter black to current text color #64737d: thank you! https://stackoverflow.com/a/43960991 */
+    filter: invert(42%) sepia(26%) saturate(257%) hue-rotate(161deg) brightness(97%) contrast(83%);
+    color: #000;
+
+    content: "i";
+    /* thank you! https://iconmonstr.com/info-6-svg/ */
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg>');
+}
+section#posts article > p + ul > li.slides:before {
+    /* thank you! https://iconmonstr.com/eye-3-svg/ */
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15 12c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-.199.02-.393.057-.581 1.474.541 2.927-.882 2.405-2.371.174-.03.354-.048.538-.048 1.657 0 3 1.344 3 3zm-2.985-7c-7.569 0-12.015 6.551-12.015 6.551s4.835 7.449 12.015 7.449c7.733 0 11.985-7.449 11.985-7.449s-4.291-6.551-11.985-6.551zm-.015 12c-2.761 0-5-2.238-5-5 0-2.761 2.239-5 5-5 2.762 0 5 2.239 5 5 0 2.762-2.238 5-5 5z"/></svg>');
+}
+section#posts article > p + ul > li.recording:before {
+    /* thank you! https://iconmonstr.com/youtube-6-svg/ */
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>');
+}
+section#posts article > p + ul > li.rating:before {
+    /* unicode star glyph, slightly bigger */
+    content: "★";
+    font-size: 24px;
+    transform: none;
+    vertical-align: bottom;
+}
+section#posts article > p + ul > li.location:before {
+    /* thank you! https://iconmonstr.com/location-1-svg/ */
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>');
+}
+
+section#post h1 {
+    margin-left: -10px;
+    margin-right: -10px;
+    font-size: 2em;
+    text-align: center;
+    letter-spacing: 2px;
+}
+section#post h1 ~ div {
+    color: #9aa9b5;
+    font-size: .8em;
+    margin-bottom: 3em;
+    text-align: center;
+}
+section#post h1 ~ div address {
+    display: inline;
+}
+section#post h1 ~ div img {
+    border-radius: 100%;
+    width: 2em;
+    vertical-align: middle;
+    border: 3px solid #fff;
+    position: relative;
+}
+section#post h1 ~ div img + img {
+    margin-left: -14px;
+    position: initial;
+}
+section#post article p:first-of-type {
+    font-style: italic;
+}
+section#post article > p:first-of-type:after { /* first paragraph gets bottom border */
+    content: " ";
+    border-bottom: 2px solid #f7f7f7;
+    border-bottom-color: #dbdbdb;
+    display: block;
+    width: 80%;
+    margin: 40px auto;
+}
+section#post article > p:first-of-type img { /* first paragraph is an image: overlap/hide border */
+    margin-bottom: -60px;
+}
+section#post article hr {
+    margin: 2em auto;
+    width: 80%;
+    border: 0;
+    border-top: 2px solid #dbdbdb;
+}
+section#post pre {
+    background-color: #fafafa;
+    padding: 1em;
+    border-left: 8px solid #f1f1f1;
+    overflow: auto;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+section#post p > code {
+    background-color: #f1f1f1;
+    padding: 0 4px;
+    font-family: monospace;
+}
+section#post p > kbd {
+    background-color: #fafafa;
+    padding: 0 6px;
+    border-radius: 3px;
+    border: 1px solid #f1f1f1;
+    border-bottom: 3px solid #e3e3e3;
+    font-family: monospace;
+}
+section#post blockquote {
+    margin: 0;
+    padding: 0 1em;
+    border-left: 5px solid #f1f1f1;
+}
+section#post blockquote.twitter-tweet {
+    border: 1px solid #9aa9b5;
+    border-radius: 4px;
+    padding: 1em 2em 2em;
+}
+section#post img {
+    max-width: 100%;
+}
+
+section#invite, section#share {
+    background-color: #f8f8f8;
+}
+
+section#share svg {
+    fill: #4C9ED9;
+}
+
+section.overlay {
+    display: none;
+}
+section.overlay:target {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 2;
+
+    background-color: #0008;
+}
+section.overlay div.container {
+    margin-top: 200px;
+    margin-top: 15vh;
+    margin-top: calc((100vh - 900px) / 2);
+    margin-bottom: 0;
+
+    padding: 50px;
+    background-color: #fff;
+}
+section.overlay div.container h2 {
+    margin-top: 0;
+}
+
+/* section container fills complete width minus margin on small devices */
+@media (max-width: 760px) {
+    section .container {
+        width: auto;
+        margin: 50px 20px;
+    }
+    section.overlay div.container {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+/* overlay should have margin instead on small devices */
+@media (max-width: 850px) {
+    section.overlay div.container {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+@media (max-height: 920px) {
+    section.overlay div.container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

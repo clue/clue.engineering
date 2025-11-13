@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducing lazy MySQL connections with ReactPHP</title>
+    <link href="../src/landing-page.v2.css" rel="stylesheet">
+    <link href="../src/tailwind.min.css" rel="stylesheet">
+    <link rel="alternate" type="application/atom+xml" href="../posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+
+    <meta name="description" content="Today, we&#039;re very happy to announce the immediate availability of the next major beta release of friends-of-reactphp/mysql, the async MySQL database client for ReactPHP. 🎉  Now that v0.5.0 has been tagged and released today, let&#039;s look into why we believe the new API provides significant new features that warrant…">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Introducing lazy MySQL connections with ReactPHP">
+    <meta property="og:description" content="Today, we&#039;re very happy to announce the immediate availability of the next major beta release of friends-of-reactphp/mysql, the async MySQL database client for ReactPHP. 🎉  Now that v0.5.0 has been tagged and released today, let&#039;s look into why we believe the new API provides significant new features that warrant…">
+    <meta property="og:url" content="https://clue.engineering/2018/introducing-reactphp-mysql-lazy-connections">
+    <meta property="og:site_name" content="clue·engineering">
+    <meta property="article:published_time" content="2018-11-28">
+    <meta name="twitter:site" content="@another_clue">
+    <meta name="twitter:creator" content="@another_clue">
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="../" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="../blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="../talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="../support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section id="post">
+        <div class="container">
+            <article>
+                <h1>Introducing lazy MySQL connections with ReactPHP</h1>
+                <div>
+                    <address>
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <a href="../">Christian Lück</a>
+                    </address>
+                    on <time datetime="2018-11-28">2018-11-28</time>
+                    <div>
+                        tagged
+                        <a href="../blog#introducing-reactphp" title="Show all blog posts tagged #introducing-reactphp" rel="tag">#introducing-reactphp</a>
+                        <a href="../blog#reactphp" title="Show all blog posts tagged #reactphp" rel="tag">#reactphp</a>
+                        <a href="../blog#release" title="Show all blog posts tagged #release" rel="tag">#release</a>
+                        <a href="../blog#mysql" title="Show all blog posts tagged #mysql" rel="tag">#mysql</a>
+                        <a href="../blog#database" title="Show all blog posts tagged #database" rel="tag">#database</a>
+                    </div>
+                </div>
+
+<p>Today, we're very happy to announce the immediate availability of the next major beta release of <a href="https://github.com/friends-of-reactphp/mysql">friends-of-reactphp/mysql</a>, the async MySQL database client for <a href="https://reactphp.org/">ReactPHP</a>. 🎉</p>
+
+<p>Now that v0.5.0 has been tagged and released today, let's look into why we believe the new API provides significant new features that warrant a major version bump. While existing code will continue to work without changes, you're highly recommended to consider using the new lazy connections as detailed below. Alright, let's be lazy!</p>
+
+<h2 id="eager-database-connections">Eager database connections</h2>
+
+<p><a href="https://github.com/friends-of-reactphp/mysql">friends-of-reactphp/mysql</a> provides a pure PHP implementation for accessing an existing MySQL database with <a href="https://reactphp.org/">ReactPHP</a>. It allows you to asynchronously connect to your database and send queries to it. Depending on your use case, you can use multiple concurrent connections or use ReactPHP's vast ecosystem to concurrency access other services (<em>at the same time</em>). If you want to learn more about the basics, you may want to check out one of the recent blog posts <a href="https://clue.engineering/2018/introducing-reactphp-mysql">introducing MySQL streaming with ReactPHP</a>.</p>
+
+<p>While this project does use a very efficient protocol implementation, there's no denying that certain operations will just take some time: creating a connection to a remote database over a slow link or sending a large SQL statement to a busy database will mostly be limited by how fast the database is able to return its results. Because of this, these kinds of operations are represented by promises that allow you to <em>react</em> to when a result is available. In other words, this allows you to <em>eagerly</em> await its resolution. To get a better understanding, let's take a look at what an average query looks like with the existing promise-based API:</p>
+
+<pre><code class="php">$uri = 'test:test@localhost/test';
+$factory-&gt;createConnection($uri)-&gt;then(function (ConnectionInterface $connection) {
+    $connection-&gt;query('SELECT * FROM book')-&gt;then(
+        function (QueryResult $command) {
+            echo count($command-&gt;resultRows) . ' row(s) in set' . PHP_EOL;
+        },
+        function (Exception $error) {
+            echo 'Error: ' . $error-&gt;getMessage() . PHP_EOL;
+        }
+    );
+
+    $connection-&gt;quit();
+});
+</code></pre>
+
+<h3 id="lazy-database-connections">Lazy database connections</h3>
+
+<p>The new release now provides a new <code>createLazyConnection()</code> method to <em>lazily</em> connect on demand and automatically queue all outstanding requests until the underlying connection is ready. Additionally, it implements an "idle" timeout to close the underlying connection when it is unused for some time and will automatically create a new underlying connection on demand again. Let's take a look at what the above query could look like with the new lazy connection API:</p>
+
+<pre><code class="php">$uri = 'test:test@localhost/test';
+$connection = $factory-&gt;createLazyConnection($uri);
+
+$connection-&gt;query('SELECT * FROM book')-&gt;then(
+    function (QueryResult $command) {
+        echo count($command-&gt;resultRows) . ' row(s) in set' . PHP_EOL;
+    },
+    function (Exception $error) {
+        echo 'Error: ' . $error-&gt;getMessage() . PHP_EOL;
+    }
+);
+
+$connection-&gt;quit();
+</code></pre>
+
+<p>This method immediately returns a "virtual" connection implementing the existing <code>ConnectionInterface</code> that can be used to interface with your MySQL database. From a consumer side this means that you can start sending queries to the database right away while the underlying connection may still be outstanding. Because creating this underlying connection may take some time, it will enqueue all oustanding commands and will ensure that all commands will be executed in correct order once the connection is ready. In other words, this "virtual" connection behaves just like a "real" connection as described in the <code>ConnectionInterface</code> and frees you from having to deal with its async resolution.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>Depending on your particular use case, you may prefer this method or the underlying <code>createConnection()</code> which resolves with a promise. For many simple use cases it may be easier to create a lazy connection because it frees you from manually managing connection state and caring about connection timeouts and reconnects for long-running applications. By re-using the existing <code>ConnectionInterface</code>, you can simply start using the new <code>createLazyConnection()</code> method and use this "virtual" connection without having to deal with its async resolution anymore.</p>
+
+<p>By using existing interfaces, this new release can now be integrated much easier with the existing ecosystem and some of the exciting tech I've introduced in the last blog posts. Additionally, there are plans to use this feature as the base for a future connection pool to automatically manage multiple connections (load-balancing or high-availability setups), but I'll leave this up for another post in the not too far future. But first, make sure to head over to <a href="https://github.com/friends-of-reactphp/mysql">friends-of-reactphp/mysql</a> and let's celebrate this release 🎉</p>
+
+<p>If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the contact options in the section below and let's get in touch.</p>
+
+<blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">Just released friends-of-reactphp/mysql v0.5.0! 🎉 It now supports lazy database connections with automatic re-connections and idle timeouts, making long running database applications with <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a> even easier! 🐘💪 <a href="https://twitter.com/hashtag/async?src=hash&amp;ref_src=twsrc%5Etfw">#async</a> <a href="https://twitter.com/hashtag/php?src=hash&amp;ref_src=twsrc%5Etfw">#php</a> <a href="https://t.co/YQtr57mnc0">https://t.co/YQtr57mnc0</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/1067867796078501890?ref_src=twsrc%5Etfw">28. November 2018</a></blockquote>
+
+<p>Once again I'd like to thank <a href="https://github.com/geertvanbommel">@geertvanbommel</a>, a fellow software architect specializing in database batch processing and API development, for sponsoring large parts of this development! 🎉 Thanks to sponsors like this, who understand the importance of open source development, I can justify spending time and focus on open source development instead of traditional paid work. If you follow my posts more regularly, I'm sure you'll recall his name. And if you plan to follow my future posts, I'm sure there are more exiting announcements to follow in the future…</p>
+
+<blockquote>
+  <p>Did you know that I offer custom development services and issuing invoices for sponsorships of releases and for contributions? Contact me (@clue) for details.</p>
+</blockquote>
+            </article>
+        </div>
+    </section>
+
+    <section id="calendly">
+        <div class="bg-white">
+            <div class="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+                    <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-10 xl:px-10">
+                        <div class="lg:self-center">
+                            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                                <span class="block">We're Here to Help!</span>
+                                <span class="block text-blue-400">Let's Tackle Your Problems Together.</span>
+                            </h2>
+                            <p class="mt-4 text-lg leading-6 text-gray-200">
+                                Did you know we provide <a href="https://clue.engineering/support" class="underline">professional support</a> for software projects?
+                                Book an appointment, you pay absolutely nothing for the first consultation.
+                            </p>
+                            <a href="https://calendly.com/clue-engineering/getting-started" class="mt-8 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white">Set Up a Free Call</a>
+                        </div>
+                    </div>
+                    <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                        <a href="https://calendly.com/clue-engineering/getting-started">
+                            <img class="transform translate-x-16 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-24 lg:translate-y-24 lg:translate-x-16" src="../src/2023-calendly.png" alt="calendly screenshot">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="share">
+        <div class="container">
+            <h3>
+                <a href="#share"></a>
+                We love feedback!
+            </h3>
+            <p>
+                If you have anything to add,
+                send a tweet to <a href="https://twitter.com/another_clue">@another_clue</a>.
+            </p>
+            <p>
+                We invite you to share our blog posts with friends and colleagues.
+                All our blog posts can be shared freely under the permissive
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+                license.
+            </p>
+            <p>
+                <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+                <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                <a href="../contact">Email us</a> if you think we should be working together on interesting projects.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="../" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="../contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
