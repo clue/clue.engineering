@@ -9,21 +9,21 @@ redir=$(echo $base | sed "s,://.*@,://,g")
 
 n=0
 curl() {
-    out=$($(which curl) "$@" 2>&1);
+    out=$(command curl "$@" 2>&1 | sed 's/\r$//');
 }
 match() {
-    n=$[$n+1]
+    n=$((n+1))
     echo "$out" | grep "$@" >/dev/null && echo -n . || \
         (echo ""; echo "Error in test $n: Unable to \"grep $@\" this output:"; echo "$out"; exit 1) || exit 1
 }
 
 curl -v $base/
 match "HTTP/.* 200"
-match -iP "Content-Type: text/html[;\r\n]"
+match -iE "Content-Type: text/html(;.*)?$"
 
 curl -v $base/index.html
 match "HTTP/.* 302"
-match -iP "Location: $redir/[\r\n]"
+match -iE "Location: $redir/$"
 
 curl -v $base/index.html/
 match "HTTP/.* 404"
@@ -33,23 +33,23 @@ match "HTTP/.* 404"
 
 curl -v $base/blog
 match "HTTP/.* 200"
-match -iP "Content-Type: text/html[;\r\n]"
+match -iE "Content-Type: text/html(;.*)?$"
 
 curl -v $base/blog.html
 match "HTTP/.* 302"
-match -iP "Location: $redir/blog[\r\n]"
+match -iE "Location: $redir/blog$"
 
 curl -v $base/blog/
 match "HTTP/.* 302"
-match -iP "Location: $redir/blog[\r\n]"
+match -iE "Location: $redir/blog$"
 
 curl -v $base/2019
 match "HTTP/.* 302"
-match -iP "Location: $redir/blog#2019[\r\n]"
+match -iE "Location: $redir/blog#2019$"
 
 curl -v $base/2019/
 match "HTTP/.* 302"
-match -iP "Location: $redir/blog#2019[\r\n]"
+match -iE "Location: $redir/blog#2019$"
 
 curl -v $base/2000
 match "HTTP/.* 404"
@@ -59,15 +59,15 @@ match "HTTP/.* 404"
 
 curl -v $base/2018/hello-world
 match "HTTP/.* 200"
-match -iP "Content-Type: text/html[;\r\n]"
+match -iE "Content-Type: text/html(;.*)?$"
 
 curl -v $base/2018/hello-world/
 match "HTTP/.* 302"
-match -iP "Location: $redir/2018/hello-world[\r\n]"
+match -iE "Location: $redir/2018/hello-world$"
 
 curl -v $base/contact
 match "HTTP/.* 200"
-match -iP "Content-Type: text/html[;\r\n]"
+match -iE "Content-Type: text/html(;.*)?$"
 
 curl -v $base/contact -X POST
 match "HTTP/.* 400"
@@ -89,14 +89,14 @@ match "HTTP/.* 400" # budget invalid
 
 curl -v $base/contact.html
 match "HTTP/.* 302"
-match -iP "Location: $redir/contact[\r\n]"
+match -iE "Location: $redir/contact$"
 
 curl -v $base/contact.php
 match "HTTP/.* 302"
-match -iP "Location: $redir/contact[\r\n]"
+match -iE "Location: $redir/contact$"
 
 curl -v $base/contact/
 match "HTTP/.* 302"
-match -iP "Location: $redir/contact[\r\n]"
+match -iE "Location: $redir/contact$"
 
 echo "OK ($n)"
