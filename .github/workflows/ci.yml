@@ -22,6 +22,7 @@ jobs:
       - run: docker compose build
       - run: docker compose up -d --wait
       - run: make test
+      - run: docker compose run --build --rm playwright
       - run: docker compose stop -t 60
         timeout-minutes: 0.5
       - run: docker compose logs --timestamps | sort -k3
