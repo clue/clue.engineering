@@ -60,3 +60,6 @@ Redirect /psocksd-0.3.4.phar https://github.com/clue/psocksd/releases/download/v
 Redirect /psocksd-0.3.3.phar https://github.com/clue/psocksd/releases/download/v0.3.3/psocksd.phar
 Redirect /psocksd-0.3.2.phar https://github.com/clue/psocksd/releases/download/v0.3.2/psocksd.phar
 Redirect /psocksd-0.3.1.phar https://github.com/clue/psocksd/releases/download/v0.3.1/psocksd.phar
+
+# all files should be cached for 1 day, otherwise any intermediaries may apply their own caching rules
+Header set Cache-Control "max-age=86400"

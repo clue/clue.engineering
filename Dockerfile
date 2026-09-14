@@ -18,7 +18,7 @@ COPY www/ www/
 RUN vendor/bin/sculpin generate
 
 FROM php:8.1-apache
-RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
+RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled
 COPY --from=build /app/build/ /var/www/html/
 HEALTHCHECK --start-period=1m --start-interval=0.1s --interval=1h \
     CMD ["curl", "-I", "--no-progress-meter", "http://localhost/"]
