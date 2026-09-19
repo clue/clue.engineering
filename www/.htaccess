@@ -63,3 +63,8 @@ Redirect /psocksd-0.3.1.phar https://github.com/clue/psocksd/releases/download/v
 
 # all files should be cached for 1 day, otherwise any intermediaries may apply their own caching rules
 Header set Cache-Control "max-age=86400"
+
+# content-hashed files get a new URL whenever they change, so they never expire
+<FilesMatch "\.[0-9a-f]{7}\.(css|js)$">
+    Header set Cache-Control "max-age=31536000, immutable"
+</FilesMatch>

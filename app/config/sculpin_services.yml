@@ -1,0 +1,7 @@
+services:
+    cache_busting:
+        class: App\CacheBusting
+        arguments: ['%sculpin.source_dir%']
+        tags:
+            - { name: twig.extension }
+            - { name: kernel.event_subscriber }

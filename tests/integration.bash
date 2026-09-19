@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# run with base url argument like "http://clue.localhost" or "https://user:pass@clue.example"
+# run from the repository root with base url argument like "http://clue.localhost" or "https://user:pass@clue.example"
 base=${1:-http://clue.localhost/}
 base=${base%/}
 
@@ -21,6 +21,8 @@ curl -v $base/
 match "HTTP/.* 200"
 match -iE "Content-Type: text/html(;.*)?$"
 match -iE "Cache-Control: max-age=86400$"
+match -F "<link href=\"src/landing-page.$(sha1sum www/src/landing-page.v2.css | cut -c-7).css\" rel=\"stylesheet\">"
+match -F "<link href=\"src/tailwind.$(sha1sum www/src/tailwind.min.css | cut -c-7).css\" rel=\"stylesheet\">"
 
 curl -v $base/index.html
 match "HTTP/.* 302"
@@ -36,6 +38,7 @@ curl -v $base/blog
 match "HTTP/.* 200"
 match -iE "Content-Type: text/html(;.*)?$"
 match -iE "Cache-Control: max-age=86400$"
+match -F "<script async src=\"src/app.$(sha1sum www/src/app.v2.js | cut -c-7).js\"></script>"
 
 curl -v $base/blog.html
 match "HTTP/.* 302"
@@ -106,9 +109,28 @@ match "HTTP/.* 200"
 match -iE "Content-Type: application/atom\+xml$"
 match -iE "Cache-Control: max-age=86400$"
 
-curl -v $base/src/tailwind.min.css
+curl -v $base/src/tailwind.$(sha1sum www/src/tailwind.min.css | cut -c-7).css
 match "HTTP/.* 200"
 match -iE "Content-Type: text/css$"
-match -iE "Cache-Control: max-age=86400$"
+match -iE "Cache-Control: max-age=31536000, immutable$"
+
+curl -v $base/src/landing-page.$(sha1sum www/src/landing-page.v2.css | cut -c-7).css
+match "HTTP/.* 200"
+match -iE "Content-Type: text/css$"
+match -iE "Cache-Control: max-age=31536000, immutable$"
+
+curl -v $base/src/app.$(sha1sum www/src/app.v2.js | cut -c-7).js
+match "HTTP/.* 200"
+match -iE "Content-Type: (text|application)/javascript$"
+match -iE "Cache-Control: max-age=31536000, immutable$"
+
+curl -v $base/src/tailwind.min.css
+match "HTTP/.* 404"
+
+curl -v $base/src/landing-page.v2.css
+match "HTTP/.* 404"
+
+curl -v $base/src/app.v2.js
+match "HTTP/.* 404"
 
 echo "OK ($n)"
