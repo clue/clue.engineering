@@ -20,6 +20,7 @@ match() {
 curl -v $base/
 match "HTTP/.* 200"
 match -iE "Content-Type: text/html(;.*)?$"
+match -iE "Cache-Control: max-age=86400$"
 
 curl -v $base/index.html
 match "HTTP/.* 302"
@@ -34,6 +35,7 @@ match "HTTP/.* 404"
 curl -v $base/blog
 match "HTTP/.* 200"
 match -iE "Content-Type: text/html(;.*)?$"
+match -iE "Cache-Control: max-age=86400$"
 
 curl -v $base/blog.html
 match "HTTP/.* 302"
@@ -98,5 +100,15 @@ match -iE "Location: $redir/contact$"
 curl -v $base/contact/
 match "HTTP/.* 302"
 match -iE "Location: $redir/contact$"
+
+curl -v $base/posts.atom
+match "HTTP/.* 200"
+match -iE "Content-Type: application/atom\+xml$"
+match -iE "Cache-Control: max-age=86400$"
+
+curl -v $base/src/tailwind.min.css
+match "HTTP/.* 200"
+match -iE "Content-Type: text/css$"
+match -iE "Cache-Control: max-age=86400$"
 
 echo "OK ($n)"
