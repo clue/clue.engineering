@@ -92,8 +92,8 @@ and deploy the website. This is done by running the above deployment script (see
 previous chapter).
 
 This CI/CD process requires a one-time setup that involves the following steps:
-First, set up the project on the web hosting infrastructure with a `public/`
-docroot. Next, configure the hosting to pull from this repository and set up a
-matching read-only deploy key in this repository. Finally, set up a webhook in
-this repository to trigger a deployment on any `push` event to the hosting
-platform.
+First, set up the project on the web hosting infrastructure with the contents
+of the `live` branch as its docroot. Next, configure the hosting to pull from
+this repository and set up a matching read-only deploy key in this repository.
+Finally, set up a webhook in this repository to trigger a deployment on any
+`push` event to the hosting platform.
