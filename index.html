@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clue·engineering by Christian Lück</title>
+    <link href="src/landing-page.v2.css" rel="stylesheet">
+    <link href="src/tailwind.min.css" rel="stylesheet">
+    <link rel="alternate" type="application/atom+xml" href="posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="./" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+<section>
+  <main>
+    <div>
+      <div class="relative">
+        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100"></div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-14">
+          <div class="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
+            <div class="absolute inset-0">
+              <img class="h-full w-full object-cover" src="src/team-stock.jpg" alt="People working on laptops" aria-hidden="true">
+              <div class="absolute inset-0 bg-gray-800" style="mix-blend-mode: multiply;"></div>
+            </div>
+            <div class="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
+              <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                <span class="block text-white">Providing Software that</span>
+                <span class="block text-blue-400">works for you</span>
+              </h1>
+              <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
+                We provide custom solutions to help you automate your tasks, improve 
+                processes, and enable efficient data exchange.
+              </p>
+              <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                <div class="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
+                  <a href="#appointment" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-blue-400 bg-white hover:bg-blue-500 hover:text-white sm:px-8">
+                    Free Appointment
+                  </a>
+                  <a href="support" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-400 bg-opacity-60 hover:bg-opacity-70 sm:px-8">
+                    How It Works
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-100 pt-12 sm:pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-extrabold text-gray-500 sm:text-4xl">
+              Trusted by users around the world
+            </h2>
+            <p class="mt-3 text-xl text-gray-500 sm:mt-4">
+              We build software not only for ourselves, but to provide value to countless users.
+              See the numbers yourself.
+            </p>
+          </div>
+        </div>
+        <div class="mt-10 pb-12 bg-white sm:pb-16">
+          <div class="relative">
+            <div class="absolute inset-0 h-1/2 bg-gray-100"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="max-w-4xl mx-auto">
+                <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
+                  <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
+                    <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                      <a href="https://github.com/clue" class="hover:underline">Projects</a>
+                    </dt>
+                    <dd class="order-1 text-5xl font-extrabold text-blue-400">
+                      100+
+                    </dd>
+                  </div>
+                  <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+                    <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                      <a href="https://packagist.org/users/clue/" class="hover:underline">Downloads</a>
+                    </dt>
+                    <dd class="order-1 text-5xl font-extrabold text-blue-400">
+                      300+ Mio
+                    </dd>
+                  </div>
+                  <div class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
+                    <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                      Experience
+                    </dt>
+                    <dd class="order-1 text-5xl font-extrabold text-blue-400">
+                      ~20 years
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>
+
+<section id="about" class="relative bg-white py-16 sm:py-24">
+  <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-start">
+    <div class="relative sm:py-16 lg:py-0">
+      <div aria-hidden="true" class="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen">
+        <div class="absolute inset-y-0 right-1/2 w-full bg-gray-50 rounded-r-3xl lg:right-72"></div>
+        <svg class="absolute top-8 left-1/2 -ml-3 lg:-right-8 lg:left-auto lg:top-12" width="404" height="392" fill="none" viewBox="0 0 404 392">
+          <defs>
+            <pattern id="02f20b47-fd69-4224-a62a-4c9de5c763f7" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+            </pattern>
+          </defs>
+          <rect width="404" height="392" fill="url(#02f20b47-fd69-4224-a62a-4c9de5c763f7)" />
+        </svg>
+      </div>
+      <div class="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0 lg:max-w-none lg:py-20">
+        <div class="relative pt-64 pb-10 rounded-2xl shadow-xl overflow-hidden">
+          <img class="absolute inset-0 h-full w-full object-cover" src="src/kanban-stock.jpg" alt="" aria-hidden="true">
+          <div class="absolute inset-0 bg-gray-700" style="mix-blend-mode: multiply;"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-blue-500 bg-gray-800 opacity-5"></div>
+          <div class="relative px-8">
+            <blockquote class="mt-8">
+              <div class="relative text-lg font-medium text-white md:flex-grow">
+                <svg class="absolute top-0 left-0 transform -translate-x-3 -translate-y-2 h-8 w-8 text-gray-700" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                  <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                </svg>
+                <p class="relative">
+                  Do what you love, the saying goes, and you’ll never work a day in your life.
+                </p>
+              </div>
+
+              <footer class="mt-4">
+                <p class="text-base font-semibold text-blue-300">Christian Lück, Head of clue·engineering</p>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
+      <div class="pt-12 sm:pt-16 lg:pt-20">
+        <h2 class="text-3xl text-gray-700 font-extrabold tracking-tight sm:text-4xl">
+          Empowering Projects, Empowering Progress
+        </h2>
+        <div class="mt-6 text-gray-500 space-y-6">
+          <p class="text-lg">
+            As a business ourselves, we understand that time is a crucial resource. It has an impact on costs, priorities, and success.
+          </p>
+          <p class="text-base leading-7">
+            We're here to help you spend your time on more important things by providing you with the solutions that allow your
+            business to grow and thrive. If the past few years have taught us anything, it’s that true progress can only be achieved by
+            working together.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <dl class="grid grid-cols-2 gap-x-4 gap-y-8">
+          <div class="border-t-2 border-gray-100 pt-6">
+            <dt class="text-base font-medium text-gray-500">On the mission</dt>
+            <dd class="text-3xl font-extrabold tracking-tight text-gray-700">Since 2016</dd>
+          </div>
+
+          <div class="border-t-2 border-gray-100 pt-6">
+            <dt class="text-base font-medium text-gray-500">Team members</dt>
+            <dd class="text-3xl font-extrabold tracking-tight text-gray-700">3</dd>
+          </div>
+
+        </dl>
+        <div class="mt-10">
+          <a href="support" class="text-base font-medium text-blue-400 hover:underline">
+            Learn more about us and our philosophy <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-gray-800">
+  <div class="max-w-7xl mx-auto md:grid md:grid-cols-2 md:px-6 lg:px-8">
+    <div class="py-12 px-4 sm:px-6 md:flex md:flex-col md:py-16 md:pl-0 md:pr-10 md:border-r md:border-gray-900 lg:pr-16">
+      <div class="md:flex-shrink-0">
+        <img class="h-10" src="src/logo-streambiki.svg" alt="Streambiki">
+      </div>
+      <blockquote class="mt-6 md:flex-grow md:flex md:flex-col">
+        <div class="relative text-lg font-medium text-white md:flex-grow">
+          <p class="relative">Christian has the unique skill to break down a problem to its fundamentals and work out a solid solution. For our company, Christian and his team have become great sparring partners over the years.</p>
+        </div>
+        <footer class="mt-8">
+          <div class="flex items-start">
+            <div class="flex-shrink-0 inline-flex rounded-full border-2 border-white">
+              <img class="h-12 w-12 rounded-full" src="src/picture-geert.jpg" alt="">
+            </div>
+            <div class="ml-4">
+              <div class="text-base font-medium text-white">Geert Van Bommel</div>
+              <div class="text-base font-medium text-indigo-200">CEO, <a href="https://www.streambiki.com/" class="hover:underline text-indigo-200">Streambiki</a></div>
+            </div>
+          </div>
+        </footer>
+      </blockquote>
+    </div>
+    <div class="py-12 px-4 border-t-2 border-gray-900 sm:px-6 md:py-16 md:pr-0 md:pl-10 md:border-t-0 md:border-l lg:pl-16">
+      <div class="md:flex-shrink-0">
+        <img class="h-10" src="src/logo-snapshooter.svg" alt="SnapShooter">
+      </div>
+      <blockquote class="mt-6 md:flex-grow md:flex md:flex-col">
+        <div class="relative text-lg font-medium text-white md:flex-grow">
+          <p class="relative">Amazing results! After two consulting calls with Christian we had a full running proxy that can handle 2 Gbps with under 10 MB of RAM.</p>
+        </div>
+        <footer class="mt-14">
+          <div class="flex items-start">
+            <div class="flex-shrink-0 inline-flex rounded-full border-2 border-white">
+              <img class="h-12 w-12 rounded-full" src="src/picture-simon-bennett.jpg" alt="">
+            </div>
+            <div class="ml-4">
+              <div class="text-base font-medium text-white">Simon Bennett</div>
+              <div class="text-base font-medium text-indigo-200">CEO, <a href="https://snapshooter.com/" class="hover:underline text-indigo-200">SnapShooter</a></div>
+            </div>
+          </div>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white">
+  <div class="max-w-7xl mx-auto py-12 px-4 text-center sm:px-6 lg:px-8 lg:pt-24">
+    <div class="space-y-12">
+      <div class="space-y-5 sm:mx-auto sm:max-w-xl sm:space-y-4 lg:max-w-5xl">
+        <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Meet our team</h2>
+        <p class="text-xl text-gray-500">Hi, my name is Christian Lück, I’m a maintainer of ReactPHP, public speaker, and Software Engineer. Together with my team, we are clue·engineering. We build efficient software with high-quality thanks to PHP and ReactPHP. </p>
+      </div>
+      <ul class="mx-auto space-y-16 sm:grid sm:grid-cols-2 sm:gap-16 sm:space-y-0 lg:grid-cols-3 lg:max-w-5xl">
+        <li>
+          <div class="space-y-6">
+            <img class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56" src="src/me.jpg" alt="Picture of Christian Lück">
+            <div class="space-y-2">
+              <div class="text-gray-700 text-lg leading-6 font-medium space-y-1">
+                <h3>Christian Lück</h3>
+                <p class="text-blue-400">Head of clue·engineering</p>
+              </div>
+              <ul class="flex justify-center space-x-5">
+                <li>
+                  <a href="https://twitter.com/another_clue" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">Twitter</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/clue" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="space-y-6">
+            <img class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56" src="src/2025-paul.jpg" alt="Picture of PaulRotmann">
+            <div class="space-y-2">
+              <div class="text-gray-700 text-lg leading-6 font-medium space-y-1">
+                <h3>Paul Rotmann</h3>
+                <p class="text-blue-400">Trainee Software Development</p>
+              </div>
+              <ul class="flex justify-center space-x-5">
+                <li>
+                  <a href="https://x.com/paul_rotmann" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">Twitter</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/PaulRotmann" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="space-y-6">
+            <img class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56" src="src/2024-cassi.png" alt="Picture of Cassandra Esser">
+            <div class="space-y-2">
+              <div class="text-gray-700 text-lg leading-6 font-medium space-y-1">
+                <h3>Cassandra Esser</h3>
+                <p class="text-blue-400">Business Development</p>
+              </div>
+              <ul class="flex justify-center space-x-5">
+                <li>
+                  <a href="https://x.com/cassandra_esser" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">Twitter</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/cassifyit" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="space-y-6">
+            <img class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56" src="src/2022-neo-ruki.jpg" alt="Picture of Neo and Ruki">
+            <div class="space-y-2">
+              <div class="text-gray-700 text-lg leading-6 font-medium space-y-1">
+                <h3>Neo &amp; Ruki</h3>
+                <p class="text-blue-400">Motivational Experts</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="rounded-lg bg-gray-50 max-w-4xl mx-auto xl:items-center">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:flex lg:items-center lg:justify-between lg:py-10 lg:px-12">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight text-gray-700 md:text-3xl">
+          <span class="block">Want to join our team?</span>
+          <span class="block text-blue-400">Let's get in touch!</span>
+        </h2>
+        <p class="mt-3 max-w-2xl text-gray-500">
+          Are you a software engineer, trainee, or looking for a (paid) internship?
+          We’re looking for new team members to help us work on our Open Source projects.
+          Just drop us a line and let’s see if we’re a good fit.
+        </p>
+      </div>
+      <div class="mt-8 lg:ml-12 flex lg:mt-0 lg:flex-shrink-0">
+        <div class="inline-flex rounded-md shadow">
+          <a href="contact" class="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-400 px-5 py-3 text-base font-medium text-white hover:bg-blue-500">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="bg-white">
+  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:pt-32 lg:px-8">
+    <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-700 sm:text-4xl">
+          Our Areas of Expertise
+        </h2>
+        <p class="mt-3 max-w-3xl text-lg text-gray-500">
+          One of the amazing things about working with so many different clients is the fact that our team
+          has the chance to fine-tune our open-source solutions and professional data engineering services
+          to suit a variety of industries and sectors. Here are some of the industries we’ve worked in:
+        </p>
+        <div class="mt-8 sm:flex">
+          <div class="rounded-md shadow">
+            <a href="contact" class="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500">
+              Let’s Start Scaling
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 grid gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
+        <div class="col-span-1 py-10 bg-gray-50 hover:bg-gray-100 transition">
+          <p class="text-center text-lg text-gray-500">
+            Automotive industry
+          </p>
+        </div>
+        <div class="col-span-1 py-10 bg-gray-50 hover:bg-gray-100 transition">
+          <p class="text-center text-lg text-gray-500">
+            Agriculture 2.0
+          </p>
+        </div>
+        <div class="col-span-1 py-10 bg-gray-50 hover:bg-gray-100 transition">
+          <p class="text-center text-lg text-gray-500">
+            Financial industry
+          </p>
+        </div>
+        <div class="col-span-1 py-10 bg-gray-50 hover:bg-gray-100 transition">
+          <p class="text-center text-lg text-gray-500">
+            Data streams 
+          </p>
+        </div>
+        <div class="col-span-1 py-10 bg-gray-50 hover:bg-gray-100 transition">
+          <p class="text-center text-lg text-gray-500">
+            Telecommunications 
+          </p>
+         </div>
+        <div class="col-span-1 py-10 bg-gray-50 hover:bg-gray-100 transition">
+          <p class="text-center text-lg text-gray-500">
+            E-Commerce
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="relative bg-white py-16 sm:py-24 lg:py-32">
+  <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
+    <h2 class="text-base font-semibold tracking-wider text-blue-400 uppercase">We know your problems</h2>
+    <p class="mt-2 text-3xl font-extrabold text-gray-700 tracking-tight sm:text-4xl">
+      We Understand What You’re Working With
+    </p>
+    <p class="mt-5 mx-auto text-xl text-gray-500">
+      Because we run a business ourselves, we understand the frustrations
+      and limitations you face on a daily basis. We use our experience from numerous implemented projects to
+      do everything we can to help you break free from these limits and push the boundaries of what
+      your business can achieve.
+    </p>
+  </div>
+</section>
+
+<section id="appointment" class="bg-gray-800">
+  <div class="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+      <span class="block">Boost your business.</span>
+      <span class="block">Schedule a free appointment today.</span>
+    </h2>
+    <p class="mt-4 text-lg leading-6 text-gray-300">
+      If you’re in need of high-quality software solutions, schedule
+      a free appointment, no strings attached. We're happy to take a look and work something out.
+    </p>
+    <a href="https://calendly.com/clue-engineering/getting-started" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 sm:w-auto">
+      Book an Appointment Now
+    </a>
+  </div>
+</section>
+
+<section class="bg-white">
+  <div class="max-w-7xl mx-auto py-16 px-4 divide-y-2 divide-gray-200 sm:py-24 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-extrabold text-gray-700">
+      Frequently asked questions
+    </h2>
+    <div class="mt-6 pt-10">
+      <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-x-8 md:gap-y-12">
+        <div>
+          <dt class="text-lg leading-6 font-medium text-gray-700">
+            Is the free appointment really completely free of charge?
+          </dt>
+          <dd class="mt-2 text-base text-gray-500">
+            Yes, absolutely. <a href="support" class="hover:underline text-blue-400">Let’s get to know each other</a> and get an overview of your project. You pay nothing!
+          </dd>
+        </div>
+
+        <div>
+          <dt class="text-lg leading-6 font-medium text-gray-700">
+            Do you only offer open-source solutions?
+          </dt>
+          <dd class="mt-2 text-base text-gray-500">
+            No, we also offer <a href="support" class="hover:underline text-blue-400">coaching and consulting services</a> to help you streamline your projects.
+          </dd>
+        </div>
+
+        <div>
+          <dt class="text-lg leading-6 font-medium text-gray-700">
+            Where can I see your work?
+          </dt>
+          <dd class="mt-2 text-base text-gray-500">
+            We’re currently compiling a list of highlight projects.
+            In the meantime, check out our <a href="https://github.com/clue" class="hover:underline text-blue-400"> profile on GitHub</a> to learn more about our exciting open-source projects.
+          </dd>
+        </div>
+
+        <div>
+          <dt class="text-lg leading-6 font-medium text-gray-700">
+            I’m a hobbyist, how can I get support?
+          </dt>
+          <dd class="mt-2 text-base text-gray-500">
+            We’re here to help if you need support with any of our projects!
+            Check out our <a href="https://github.com/clue" class="hover:underline text-blue-400"> profile on GitHub</a> and file an issue
+            or send a Tweet to <a href="https://twitter.com/another_clue" class="hover:underline text-blue-400">@another_clue</a>.
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="./" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

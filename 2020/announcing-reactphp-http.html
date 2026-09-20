@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday ReactPHP – HTTP client and server LTS release!</title>
+    <link href="../src/landing-page.v2.css" rel="stylesheet">
+    <link href="../src/tailwind.min.css" rel="stylesheet">
+    <link rel="alternate" type="application/atom+xml" href="../posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+
+    <meta name="description" content="Exactly eight years ago, 11th July 2012, the very first v0.1.0 release of ReactPHP was tagged.  Today, the time has come again - It&#039;s ReactPHP&#039;s birthday. 🎉 This will be celebrated with a big birthday party and a new react/http v1.0.0 component release to ensure you will also get…">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Happy Birthday ReactPHP – HTTP client and server LTS release!">
+    <meta property="og:description" content="Exactly eight years ago, 11th July 2012, the very first v0.1.0 release of ReactPHP was tagged.  Today, the time has come again - It&#039;s ReactPHP&#039;s birthday. 🎉 This will be celebrated with a big birthday party and a new react/http v1.0.0 component release to ensure you will also get…">
+    <meta property="og:image" content="https://clue.engineering/src/2020-reactphp-birthday.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="https://clue.engineering/2020/announcing-reactphp-http">
+    <meta property="og:site_name" content="clue·engineering">
+    <meta property="article:published_time" content="2020-07-11">
+    <meta name="twitter:site" content="@another_clue">
+    <meta name="twitter:creator" content="@another_clue">
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="../" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="../blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="../talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="../support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section id="post">
+        <div class="container">
+            <article>
+                <h1>Happy Birthday ReactPHP – HTTP client and server LTS release!</h1>
+                <div>
+                    <address>
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <img src="../src/dennis.jpg" alt="Dennis Graßnick Portrait Photo">
+                        <a href="../">Christian Lück</a> &amp; <a href="../">Dennis Graßnick</a>
+                    </address>
+                    on <time datetime="2020-07-11">2020-07-11</time>
+                    <div>
+                        tagged
+                        <a href="../blog#reactphp" title="Show all blog posts tagged #reactphp" rel="tag">#reactphp</a>
+                        <a href="../blog#release" title="Show all blog posts tagged #release" rel="tag">#release</a>
+                        <a href="../blog#birthday" title="Show all blog posts tagged #birthday" rel="tag">#birthday</a>
+                        <a href="../blog#http" title="Show all blog posts tagged #http" rel="tag">#http</a>
+                    </div>
+                </div>
+
+<p>Exactly eight years ago, 11th July 2012, the very first <code>v0.1.0</code> release of ReactPHP was tagged. 
+Today, the time has come again - <strong>It's ReactPHP's birthday. 🎉</strong>
+This will be celebrated with a big birthday party and a new <a href="https://reactphp.org/http/">react/http <code>v1.0.0</code></a> component release
+to ensure you will also get a big piece of the birthday cake to taste. 🍰</p>
+
+<p><img src="../src/2020-reactphp-birthday.png" alt="ReactPHP – 8 years" /></p>
+
+<p>We're enthusiastic to announce the immediate availability of the very first
+stable <code>v1.0.0</code> release of <a href="https://reactphp.org/http/">ReactPHP's HTTP library</a>,
+our event-driven, streaming HTTP client and server implementation written in pure PHP.</p>
+
+<h2 id="new-http-client">New HTTP client</h2>
+
+<p>The most important addition is the new HTTP client, which is now included in one package alongside the HTTP server implementation.
+Let's take a look and send some simple HTTP GET requests:</p>
+
+<pre><code class="php">$loop = React\EventLoop\Factory::create();
+$client = new React\Http\Browser($loop);
+
+$client-&gt;get('http://example.com/')-&gt;then(function (Psr\Http\Message\ResponseInterface $response) {
+    echo $response-&gt;getBody();
+});
+
+$loop-&gt;run();
+</code></pre>
+
+<p>It's async from the ground up and allows concurrently sending any number of HTTP requests.
+Does this look familiar to you?
+The code has been imported from <a href="https://clue.engineering/2018/introducing-reactphp-buzz">clue/reactphp-buzz</a>,
+so it's already battle-tested in production.
+It uses the existing Promise-based APIs and PSR-7 message interfaces just like the server component,
+so upgrading should be very easy.
+Have a look at <a href="https://github.com/reactphp/http/tree/master/examples">all the examples</a> for more details.</p>
+
+<h2 id="stable-lts">Stable LTS</h2>
+
+<p>We're seeing a recent surge in all kinds of different web applications and
+frameworks that build on top of ReactPHP. We think this is super exciting
+and we would love to help these projects thrive!</p>
+
+<p>That's why we're happy to announce we're <strong>extending our LTS promise</strong> (<em>no pun intended</em>)
+for at least another 24 months for the new HTTP component as well as all <a href="https://clue.engineering/2019/announcing-reactphp-lts">main components</a>.
+This means that these LTS releases continue being a stable base for you to build on top of.
+The release series will be supported for at least 24 months, so you can safely update these components,
+getting all the upcoming features without having to worry about BC breaks.
+With this release, we emphasize that ReactPHP is <strong>production-ready</strong> and a
+rock-solid foundation.</p>
+
+<h2 id="updated-http-server-and-more%21">Updated HTTP server and more!</h2>
+
+<p>Previous beta versions of this HTTP package have always contained an efficient HTTP server written in pure PHP.
+The new HTTP server is now faster and better than ever!</p>
+
+<pre><code class="php">$server = new React\Http\Server($loop, function (Psr\Http\Message\ServerRequestInterface $request) {
+     return new React\Http\Message\Response(
+         200,
+         [],
+         "Hello world!\n"
+     );
+});
+
+$socket = new React\Socket\Server('0.0.0.0:8080', $loop);
+$server-&gt;listen($socket);
+</code></pre>
+
+<p>This version update involves some major new features and a number of BC breaks due to
+some necessary API cleanup. We've tried hard to avoid BC breaks where possible
+and minimize impact otherwise. We expect that most consumers of beta versions of
+this package will be affected by BC breaks, but updating should take no longer
+than a few minutes. Check out the <a href="https://reactphp.org/http/">project page</a> and
+the upgrade guides for more details.</p>
+
+<p>In this context we have also released a new <a href="https://github.com/reactphp/reactphp">react/react <code>v1.1.0</code></a>
+meta package. This meta package will install all stable components at once, and
+it now also includes our HTTP client and server. Happy prototyping!</p>
+
+<h2 id="looking-forward">Looking forward</h2>
+
+<p>We've started planning this release <a href="https://clue.engineering/2019/announcing-reactphp-lts">last year</a>
+and we've made some great progress!
+With this stable release now shipped, this allows us to focus on developing
+exciting new stuff, such as HTTP keep-alive support, HTTP/2 and much more.
+So don't worry: The future is already taken care of!</p>
+
+<p>We invest a lot of time to develop, maintain and update <a href="https://github.com/clue?tab=repositories">our awesome open-source projects</a>. 
+If you are interested in <a href="https://clue.engineering/2020/2019-sustainability-report">sustainable open source</a> <em>(note: you should)</em>, you can help us sustain this high-quality of our work by <a href="https://github.com/sponsors/clue">becoming a sponsor on GitHub</a>. Sponsors allow us to keep making progress and get numerous benefits in return, see our <a href="https://github.com/sponsors/clue">sponsoring page</a> for details.</p>
+
+<p>Let's take these projects to the next level together... but before we do - let's have a kickass party!</p>
+
+<p><em>Hooray <a href="https://reactphp.org/">ReactPHP</a></em> 🎉💥</p>
+
+<hr />
+
+<p><em>We love to hear your feedback, use the contact options in the section below and let's get in touch.</em></p>
+            </article>
+        </div>
+    </section>
+
+    <section id="calendly">
+        <div class="bg-white">
+            <div class="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+                    <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-10 xl:px-10">
+                        <div class="lg:self-center">
+                            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                                <span class="block">We're Here to Help!</span>
+                                <span class="block text-blue-400">Let's Tackle Your Problems Together.</span>
+                            </h2>
+                            <p class="mt-4 text-lg leading-6 text-gray-200">
+                                Did you know we provide <a href="https://clue.engineering/support" class="underline">professional support</a> for software projects?
+                                Book an appointment, you pay absolutely nothing for the first consultation.
+                            </p>
+                            <a href="https://calendly.com/clue-engineering/getting-started" class="mt-8 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white">Set Up a Free Call</a>
+                        </div>
+                    </div>
+                    <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                        <a href="https://calendly.com/clue-engineering/getting-started">
+                            <img class="transform translate-x-16 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-24 lg:translate-y-24 lg:translate-x-16" src="../src/2023-calendly.png" alt="calendly screenshot">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="share">
+        <div class="container">
+            <h3>
+                <a href="#share"></a>
+                We love feedback!
+            </h3>
+            <p>
+                If you have anything to add,
+                send a tweet to <a href="https://twitter.com/another_clue">@another_clue</a>.
+            </p>
+            <p>
+                We invite you to share our blog posts with friends and colleagues.
+                All our blog posts can be shared freely under the permissive
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+                license.
+            </p>
+            <p>
+                <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+                <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                <a href="../contact">Email us</a> if you think we should be working together on interesting projects.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="../" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="../contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

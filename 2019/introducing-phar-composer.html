@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducing zero-config phar creation for every PHP project</title>
+    <link href="../src/landing-page.v2.css" rel="stylesheet">
+    <link href="../src/tailwind.min.css" rel="stylesheet">
+    <link rel="alternate" type="application/atom+xml" href="../posts.atom" title="Recent blog posts" />
+    <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>
+
+    <meta name="description" content="Last week, I&#039;ve released v1.1.0 of clue/phar-composer: it allows simple phar (php archive) creation for every PHP project managed via Composer. It takes any PHP project as input and turns its project directory and all its vendor files into a single Phar file which allows easy distribution. This is particularly…">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Introducing zero-config phar creation for every PHP project">
+    <meta property="og:description" content="Last week, I&#039;ve released v1.1.0 of clue/phar-composer: it allows simple phar (php archive) creation for every PHP project managed via Composer. It takes any PHP project as input and turns its project directory and all its vendor files into a single Phar file which allows easy distribution. This is particularly…">
+    <meta property="og:image" content="https://user-images.githubusercontent.com/776829/69410647-c0488180-0d0b-11ea-915f-0b0908b75338.jpg">
+    <meta property="og:url" content="https://clue.engineering/2019/introducing-phar-composer">
+    <meta property="og:site_name" content="clue·engineering">
+    <meta property="article:published_time" content="2019-11-27">
+    <meta name="twitter:site" content="@another_clue">
+    <meta name="twitter:creator" content="@another_clue">
+</head>
+
+<body>
+    <header class="bg-gray-800">
+      <div class="relative">
+        <div class="flex justify-between items-center max-w-3xl mx-auto px-1 py-1">
+          <div class="flex justify-start">
+            <a href="../" class="text-white py-1 px-1 hover:text-blue-100">
+              <strong>clue</strong>·engineering
+            </a>
+          </div>
+          
+          <nav class="flex justify-end items-center space-x-1 sm:space-x-8">
+            <a href="../blog" class="text-base text-gray-300 hover:text-gray-200">
+              Blog
+            </a>
+            <a href="../talks" class="text-base text-gray-300 hover:text-gray-200">
+              Talks
+            </a>
+            <a href="../support" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-1 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-400">
+              <span class="hidden sm:inline sm:mr-1">Professional</span> Services
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section id="post">
+        <div class="container">
+            <article>
+                <h1>Introducing zero-config phar creation for every PHP project</h1>
+                <div>
+                    <address>
+                        <img src="../src/me.jpg" alt="Christian Lück Portrait Photo">
+                        <a href="../">Christian Lück</a>
+                    </address>
+                    on <time datetime="2019-11-27">2019-11-27</time>
+                    <div>
+                        tagged
+                        <a href="../blog#introducing" title="Show all blog posts tagged #introducing" rel="tag">#introducing</a>
+                        <a href="../blog#phar" title="Show all blog posts tagged #phar" rel="tag">#phar</a>
+                        <a href="../blog#composer" title="Show all blog posts tagged #composer" rel="tag">#composer</a>
+                        <a href="../blog#release" title="Show all blog posts tagged #release" rel="tag">#release</a>
+                        <a href="../blog#package" title="Show all blog posts tagged #package" rel="tag">#package</a>
+                        <a href="../blog#bundle" title="Show all blog posts tagged #bundle" rel="tag">#bundle</a>
+                        <a href="../blog#build" title="Show all blog posts tagged #build" rel="tag">#build</a>
+                        <a href="../blog#php" title="Show all blog posts tagged #php" rel="tag">#php</a>
+                    </div>
+                </div>
+
+<p><img src="https://user-images.githubusercontent.com/776829/69410647-c0488180-0d0b-11ea-915f-0b0908b75338.jpg" alt="Symbolic image of a box that's not an actual Phar, original photo by Kelli McClintock" />
+<!-- Photo by [Kelli McClintock](https://unsplash.com/@kelli_mcclintock?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/GopRYASfsOc) --></p>
+
+<p>Last week, I've released <code>v1.1.0</code> of <a href="https://github.com/clue/phar-composer">clue/phar-composer</a>: it allows simple phar (php archive) creation for every PHP project managed via Composer.
+It takes any PHP project as input and turns its project directory and all its vendor files into a single Phar file which allows easy distribution. This is particularly useful for CLI applications, but it can equally be used to bundle any PHP web application.</p>
+
+<p>The new version brings up-to-date dependency support (including support for Symfony 5), significantly improves performance and fixes a number of minor issues when bundling less common project setups. If you care about the details what has changed, take a look at its <a href="https://github.com/clue/phar-composer/releases">release history</a>, otherwise keep reading.</p>
+
+<h2 id="quickstart">Quickstart</h2>
+
+<p>Now let's get this up and running for a quick demo project. The recommended way to install this project it by downloading the ready-to-use version as a Phar to any directory like this:</p>
+
+<pre><code class="bash">$ curl -JOL https://clue.engineering/phar-composer-latest.phar
+</code></pre>
+
+<p>That's it already. Once downloaded, you can now use <code>build</code> command to build an executable single-file phar for any project managed by Composer:</p>
+
+<pre><code class="bash">$ php phar-composer-1.1.0.phar build ~/workspace/acme
+</code></pre>
+
+<p>After a second or two, it should report that it successfully created your <code>acme.phar</code> output file. You can now upload this build artefact to your GitHub releases or host this on your website for quick download. This is everything you need to know to get you started shipping phar files for distribution.</p>
+
+<p>If you want to install phar-composer as a more permanent solution for your project, you may want to check out the documentation to <a href="https://github.com/clue/phar-composer#installation-using-composer">install phar-composer as a <code>dev</code> dependency</a>.
+Once this is done, you may consider adding a simple build script so that building your phar becomes as easy as running <code>composer build</code>. For inspiration, feel free to check out the included build script which we use to bundle the phar-composer release itself with phar-composer.</p>
+
+<h2 id="looking-forward">Looking forward</h2>
+
+<p>One of the most exciting features of phar-composer is how it's incredibly boring: It just works. And in fact, it hasn't changed much in 6+ years. It takes your project directory and turns it into a single phar file that can be distributed easily.</p>
+
+<p>In the future, I'm planning to bring in some features to provide better, more opinionated defaults out-of-the-box.
+For instance, excluding any <code>dev</code> dependencies currently requires an explicit build script to run a <code>composer install --no-dev</code> in a temporary project directory.
+Among other changes, we're planning to make this the default.</p>
+
+<p>If you want to learn more about the project and see how it could be useful for your project, check out its <a href="https://github.com/clue/phar-composer">project homepage</a>.
+Its documentation covers all the details and if you still have any questions or remarks, make sure to let me know: Use the contact options in the section below and let's get in touch. Cheers 🍻</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Released v1.1.0 of clue/phar-composer: simple phar (php archive) creation for every PHP project managed via <a href="https://twitter.com/hashtag/ComposerPHP?src=hash&amp;ref_src=twsrc%5Etfw">#ComposerPHP</a>. Significant performance improvements, <a href="https://twitter.com/symfony?ref_src=twsrc%5Etfw">@symfony</a> 5 support and more 🐘📦📈 <a href="https://twitter.com/hashtag/php?src=hash&amp;ref_src=twsrc%5Etfw">#php</a> <a href="https://twitter.com/hashtag/archive?src=hash&amp;ref_src=twsrc%5Etfw">#archive</a> <a href="https://twitter.com/hashtag/bundle?src=hash&amp;ref_src=twsrc%5Etfw">#bundle</a> <a href="https://t.co/aIhffnOfAx">https://t.co/aIhffnOfAx</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/1199727438718259200?ref_src=twsrc%5Etfw">November 27, 2019</a></blockquote>
+            </article>
+        </div>
+    </section>
+
+    <section id="calendly">
+        <div class="bg-white">
+            <div class="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+                    <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-10 xl:px-10">
+                        <div class="lg:self-center">
+                            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                                <span class="block">We're Here to Help!</span>
+                                <span class="block text-blue-400">Let's Tackle Your Problems Together.</span>
+                            </h2>
+                            <p class="mt-4 text-lg leading-6 text-gray-200">
+                                Did you know we provide <a href="https://clue.engineering/support" class="underline">professional support</a> for software projects?
+                                Book an appointment, you pay absolutely nothing for the first consultation.
+                            </p>
+                            <a href="https://calendly.com/clue-engineering/getting-started" class="mt-8 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white">Set Up a Free Call</a>
+                        </div>
+                    </div>
+                    <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                        <a href="https://calendly.com/clue-engineering/getting-started">
+                            <img class="transform translate-x-16 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-24 lg:translate-y-24 lg:translate-x-16" src="../src/2023-calendly.png" alt="calendly screenshot">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="share">
+        <div class="container">
+            <h3>
+                <a href="#share"></a>
+                We love feedback!
+            </h3>
+            <p>
+                If you have anything to add,
+                send a tweet to <a href="https://twitter.com/another_clue">@another_clue</a>.
+            </p>
+            <p>
+                We invite you to share our blog posts with friends and colleagues.
+                All our blog posts can be shared freely under the permissive
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+                license.
+            </p>
+            <p>
+                <!-- Thank you! https://fontawesome.com/ (solid/envelope) -->
+                <svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                <a href="../contact">Email us</a> if you think we should be working together on interesting projects.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <div class="px-5 py-2">
+            <a href="../" class="text-base text-gray-400 hover:text-gray-300">
+              Home
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../support" class="text-base text-gray-400 hover:text-gray-300">
+              Services
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../blog" class="text-base text-gray-400 hover:text-gray-300">
+              Blog
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../talks" class="text-base text-gray-400 hover:text-gray-300">
+              Talks
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="../contact" class="text-base text-gray-400 hover:text-gray-300">
+              Contact
+            </a>
+          </div>
+
+
+          <div class="px-5 py-2">
+            <a href="../contact#imprint" class="text-base text-gray-400 hover:text-gray-300">
+              Imprint
+            </a>
+          </div>
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="https://twitter.com/another_clue" title="@another_clue on Twitter" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+    
+          <a href="https://github.com/clue" title="@clue on GitHub" class="text-gray-400 hover:text-gray-300">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

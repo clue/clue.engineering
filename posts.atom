@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>clue·engineering blog posts</title>
+    <updated>2025-07-11T00:00:00Z</updated>
+    <link href="https://clue.engineering/posts.atom" rel="self" />
+    <link href="https://clue.engineering/blog" rel="alternate" type="text/html" />
+    <id>https://clue.engineering/</id>
+    <entry>
+        <title>Happy birthday ReactPHP! 13 years of async PHP</title>
+        <link href="https://clue.engineering/2025/reactphp-birthday" />
+        <id>https://clue.engineering/2025/reactphp-birthday</id>
+        <updated>2025-07-11T00:00:00Z</updated>
+        <summary>Thirteen years ago, ReactPHP emerged into the world, and now it's officially a teenager!  Like any 13-year-old, ReactPHP has grown more independent and learned to handle complex async operations with ease. It's reached that age where it can stay up all night handling streams without its parents worrying. …</summary>
+        <category term="reactphp" />
+        <category term="birthday" />
+        <author>
+            <name>Christian Lück</name>
+        </author>
+    </entry>
+    <entry>
+        <title>Happy birthday ReactPHP – releasing new Promise v3!</title>
+        <link href="https://clue.engineering/2023/announcing-reactphp-promise-v3" />
+        <id>https://clue.engineering/2023/announcing-reactphp-promise-v3</id>
+        <updated>2023-07-11T00:00:00Z</updated>
+        <summary>Today marks ReactPHP’s 11th birthday. 🎉 To celebrate this special day together with all of you, we are thrilled to announce the release of the highly anticipated v3.0.0 of our Promise component. This major version has been in the works since 2016 and marks the starting point for a bigger,…</summary>
+        <category term="reactphp" />
+        <category term="release" />
+        <category term="birthday" />
+        <category term="promise" />
+        <author>
+            <name>Christian Lück</name>
+        </author>
+        <author>
+            <name>Simon Frings</name>
+        </author>
+    </entry>
+    <entry>
+        <title>Happy birthday ReactPHP – announcing the future of async with fibers!</title>
+        <link href="https://clue.engineering/2022/announcing-reactphp-async" />
+        <id>https://clue.engineering/2022/announcing-reactphp-async</id>
+        <updated>2022-07-11T00:00:00Z</updated>
+        <summary>Today marks ReactPHP’s 10th birthday. 🎉 To celebrate, we’re thrilled to announce the immediate availability of our all-new Async component using fibers in PHP 8.1+. By taking advantage of fibers, we’re making a big step forward for the future of async PHP and bringing new APIs that allow us to…</summary>
+        <category term="reactphp" />
+        <category term="release" />
+        <category term="birthday" />
+        <category term="fibers" />
+        <author>
+            <name>Christian Lück</name>
+        </author>
+    </entry>
+    <entry>
+        <title>2021 – A Year In Review</title>
+        <link href="https://clue.engineering/2022/2021-in-review" />
+        <id>https://clue.engineering/2022/2021-in-review</id>
+        <updated>2022-01-21T00:00:00Z</updated>
+        <summary>Another year has passed, so it’s time for our year in review! Let's take a look at the major achievement we've made with an entirely new Framework X, preparing ReactPHP for fibers and more. Happy new year to everybody and let’s dive right in for some of our highlights from…</summary>
+        <category term="meta" />
+        <category term="year-in-review" />
+        <author>
+            <name>Christian Lück</name>
+        </author>
+        <author>
+            <name>Simon Frings</name>
+        </author>
+    </entry>
+    <entry>
+        <title>Happy birthday ReactPHP – announcing new default loop!</title>
+        <link href="https://clue.engineering/2021/announcing-reactphp-default-loop" />
+        <id>https://clue.engineering/2021/announcing-reactphp-default-loop</id>
+        <updated>2021-07-11T00:00:00Z</updated>
+        <summary>Today marks ReactPHP's 9th birthday. 🎉 And with today's release of the new default loop, using ReactPHP has never been easier! Let's celebrate with a big birthday party to ensure you will also get a big piece of the birthday cake to taste. 🍰  We're releasing a new version…</summary>
+        <category term="reactphp" />
+        <category term="release" />
+        <category term="birthday" />
+        <category term="eventloop" />
+        <author>
+            <name>Christian Lück</name>
+        </author>
+        <author>
+            <name>Dennis Graßnick</name>
+        </author>
+    </entry>
+    <entry>
+        <title>Fibers in PHP: A new opportunity for async PHP?</title>
+        <link href="https://clue.engineering/2021/fibers-in-php" />
+        <id>https://clue.engineering/2021/fibers-in-php</id>
+        <updated>2021-03-19T00:00:00Z</updated>
+        <summary>It looks like PHP will get fibers soon with PHP 8.1! That’s awesome! Or is it?  What are fibers?  I think the Ruby documentation does a good job at describing what fibers are:     Fibers are primitives for implementing light weight cooperative concurrency [in Ruby].…</summary>
+        <category term="reactphp" />
+        <category term="fibers" />
+        <author>
+            <name>Christian Lück</name>
+        </author>
+    </entry>
+    <entry>
+        <title>2020 – A Year In Review</title>
+        <link href="https://clue.engineering/2021/2020-in-review" />
+        <id>https://clue.engineering/2021/2020-in-review</id>
+        <updated>2021-01-06T00:00:00Z</updated>
+        <summary>It's the turn of the year, so it's time for our year in review. An enormous amount has happened, in almost every aspect. We, clue·engineering, have expanded our team and with JustKanban and clue·access we have two awesome main-projects on the road to sustainable open-source. Oh.. of course you also…</summary>
+        <category term="meta" />
+        <category term="year-in-review" />
+        <author>
+            <name>Christian Lück</name>
+        </author>
+        <author>
+            <name>Dennis Graßnick</name>
+        </author>
+        <author>
+            <name>Simon Frings</name>
+        </author>
+    </entry>
+    <entry>
+        <title>Introducing clue·access – because open source needs to be sustainable!</title>
+        <link href="https://clue.engineering/2020/introducing-clue-access" />
+        <id>https://clue.engineering/2020/introducing-clue-access</id>
+        <updated>2020-12-24T00:00:00Z</updated>
+        <summary>Today, we are happy to introduce you to clue·access, our new exclusive early access for GitHub sponsors. 🎉 You get the best out of our projects – we get sponsors to help us focus on creating awesome projects. Here you will find why we designed this concept, what it looks…</summary>
+        <category term="clue-access" />
+        <category term="open-source" />
+        <category term="sustainability" />
+        <category term="sponsorware" />
+        <author>
+            <name>Christian Lück</name>
+        </author>
+        <author>
+            <name>Dennis Graßnick</name>
+        </author>
+    </entry>
+    <entry>
+        <title>All good things come in threes: Hello Simon!</title>
+        <link href="https://clue.engineering/2020/hello-simon" />
+        <id>https://clue.engineering/2020/hello-simon</id>
+        <updated>2020-12-22T00:00:00Z</updated>
+        <summary>The turn of the year provides an appropriate opportunity to introduce the youngster of clue·engineering - me! I am the third head in our team and have been working together with Christian and Dennis for half a year now. Therefore, I would like to tell you something about me, the…</summary>
+        <category term="team" />
+        <category term="welcome" />
+        <category term="cooperation" />
+        <category term="meta" />
+        <author>
+            <name>Simon Frings</name>
+        </author>
+        <author>
+            <name>Dennis Graßnick</name>
+        </author>
+        <author>
+            <name>Christian Lück</name>
+        </author>
+    </entry>
+    <entry>
+        <title>Announcing async SOAP requests with ReactPHP version 2</title>
+        <link href="https://clue.engineering/2020/announcing-reactphp-soap-2" />
+        <id>https://clue.engineering/2020/announcing-reactphp-soap-2</id>
+        <updated>2020-10-28T00:00:00Z</updated>
+        <summary>Today, I'm happy to announce the v2.0.0 release of clue/reactphp-soap, the simple, async SOAP web service client library, built on top of ReactPHP. 🎉 The common opinion is that SOAP might be out of fashion. We'll show that's not necessarily true and try to help make SOAP the trend again.…</summary>
+        <category term="introducing-reactphp" />
+        <category term="reactphp" />
+        <category term="soap" />
+        <category term="release" />
+        <author>
+            <name>Dennis Graßnick</name>
+        </author>
+        <author>
+            <name>Christian Lück</name>
+        </author>
+    </entry>
+</feed>
