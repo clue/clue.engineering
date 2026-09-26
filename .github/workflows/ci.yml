@@ -14,6 +14,9 @@ jobs:
           - 8.1
     steps:
       - uses: actions/checkout@v3
+      - run: docker compose build playwright
+        background: true
+        id: playwright
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -22,7 +25,8 @@ jobs:
       - run: docker compose build
       - run: docker compose up -d --wait
       - run: make test
-      - run: docker compose run --build --rm playwright
+      - wait: playwright
+      - run: docker compose run --rm playwright
       - run: docker compose stop -t 60
         timeout-minutes: 0.5
       - run: docker compose logs --timestamps | sort -k3
