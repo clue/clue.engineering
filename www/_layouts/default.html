@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-    <link href="{{base}}src/landing-page.v2.css" rel="stylesheet">
-    <link href="{{base}}src/tailwind.min.css" rel="stylesheet">
+    <link href="{{ base ~ asset('src/landing-page.v2.css') }}" rel="stylesheet">
+    <link href="{{ base ~ asset('src/tailwind.min.css') }}" rel="stylesheet">
 {# always include javascript except for index and blog posts #}
 {% if page.url != "/." and not (page.url matches "#/.*/#") %}
-    <script async src="{{base}}src/app.v2.js"></script>
+    <script async src="{{ base ~ asset('src/app.v2.js') }}"></script>
 {% endif %}
     <link rel="alternate" type="application/atom+xml" href="{{base}}posts.atom" title="Recent blog posts" />
     <script defer data-domain="clue.engineering" src="https://plausible.io/js/script.outbound-links.js"></script>

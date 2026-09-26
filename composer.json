@@ -5,6 +5,11 @@
     "require-dev": {
         "sculpin/sculpin": "^3.2"
     },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
     "replace": {
         "sculpin/sculpin-theme-composer-plugin": "1.0.2"
     },
