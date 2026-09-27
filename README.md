@@ -45,6 +45,14 @@ make test
 > tests/integration.bash http://clue.localhost/
 > ```
 
+In addition to the integration tests, client-side behavior is covered by a
+Playwright E2E suite that runs in its own container against the local Docker
+container like above:
+
+```bash
+docker compose run --build --rm playwright
+```
+
 ### Cleanup
 
 Once done, you can clean up like this:

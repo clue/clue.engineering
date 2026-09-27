@@ -16,6 +16,14 @@ services:
         - path: Dockerfile
           action: rebuild
 
+  # optional playwright test runner, start with `docker compose run --build --rm playwright`
+  playwright:
+    build: tests/playwright
+    environment:
+      - INTEGRATION_URL=http://apache
+    profiles:
+      - playwright
+
   # tailwind dev sidecar to watch and recompile CSS on demand
   tailwind:
     build:
