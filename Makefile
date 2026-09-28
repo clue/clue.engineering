@@ -5,7 +5,7 @@ vendor: composer.json composer.lock
 	composer install
 	touch $@
 
-www/src/tailwind.min.css: www/_layouts/* www/_posts/* www/_talks/* www/*.html www/*.html.twig tailwind.config.js
+www/src/tailwind.min.css: www/_layouts/* www/_posts/* www/_talks/* www/*.html www/*.html.twig tailwind.css
 	docker compose run --rm --build tailwind -o $@ --minify
 	touch $@
 

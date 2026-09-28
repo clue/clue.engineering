@@ -34,7 +34,7 @@ services:
     stdin_open: true
     stop_signal: SIGKILL
     volumes:
-      - ./tailwind.config.js:/app/tailwind.config.js:ro
+      - ./tailwind.css:/app/tailwind.css:ro
       - ./www:/app/www:rw
     develop:
       watch:

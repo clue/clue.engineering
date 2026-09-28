@@ -4,11 +4,12 @@ WORKDIR /app/
 COPY composer.json composer.lock ./
 RUN composer install --ignore-platform-reqs --optimize-autoloader
 
-FROM scratch AS tailwind
+FROM alpine:3 AS tailwind
+RUN apk --no-cache add libstdc++
 WORKDIR /app/
-ADD --checksum=sha256:cd52e757cb0bd15238f0207a215198d924811234028d056b7be39fde70491296 --chmod=0755 \
-    https://github.com/tailwindlabs/tailwindcss/releases/download/v3.2.4/tailwindcss-linux-x64 /usr/local/bin/tailwindcss
-ENTRYPOINT ["tailwindcss"]
+ADD --checksum=sha256:a04d34ceacc8f52cbe8920ad846cdeb61d3d0021dba32db0d1f77c9d9fad7a6c --chmod=0755 \
+    https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-x64-musl /usr/local/bin/tailwindcss
+ENTRYPOINT ["tailwindcss", "-i", "tailwind.css"]
 
 FROM php:8.1-apache AS build
 WORKDIR /app/
