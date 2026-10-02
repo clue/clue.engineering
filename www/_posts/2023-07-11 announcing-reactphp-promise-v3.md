@@ -19,7 +19,7 @@ The new Promise version comes with a bunch of improvements to enhance the user e
 
 ### Better error reporting for unhandled rejections
 
-Over the years we have received a lot of questions and feedback from the community, particularly regarding better insights when things go wrong. In previous versions, if exceptions or errors were thrown inside a promise callback and not being handled properly, they would be discarded without the user being aware of them. This has caused a great deal of confusion in the past, but things are about to change.
+Over the years we have received a lot of questions and feedback from the community, particularly regarding better insights when things go wrong. In previous versions, if exceptions or errors were thrown inside a promise callback and not handled properly, they would be discarded without the user being aware of them. This has caused a great deal of confusion in the past, but things are about to change.
 
 With the introduction of Promise v3, all unhandled promise rejections will be reported and logged as error messages by default:
 

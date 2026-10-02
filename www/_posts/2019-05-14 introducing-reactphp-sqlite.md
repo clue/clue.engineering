@@ -42,7 +42,7 @@ $db->quit();
 $loop->run();
 ```
 
-Even if you've never worked with SQLite or ReactPHP's async APIs, you should be able to understand what's going on in this simple example: It uses some simple SQL statements to create a table "users" and inserts a new user "Alice" into this list of users. One of the nice properties of SQLite is that is can simply persist these changes to a single database file (`users.db` in this example) without requiring any special database server setup.
+Even if you've never worked with SQLite or ReactPHP's async APIs, you should be able to understand what's going on in this simple example: It uses some simple SQL statements to create a table "users" and inserts a new user "Alice" into this list of users. One of the nice properties of SQLite is that it can simply persist these changes to a single database file (`users.db` in this example) without requiring any special database server setup.
 
 If you've ever worked with [async MySQL connection](https://clue.engineering/2018/introducing-reactphp-mysql-lazy-connections) or [async Redis connection](https://clue.engineering/2019/introducing-reactphp-redis) in ReactPHP, you will find that it provides a very similar (perhaps *familiar*) API. Its Promise-based API allows you to enqueue any number of queries while the underlying database process may still be pending and you can react to the query results you care about.
 
@@ -50,7 +50,7 @@ Their APIs may be similar, but under the hood, this database binding is special:
 
 ## Conclusions
 
-[SQLite](https://www.sqlite.org/) is an efficient and versatile database. Its lightweight design makes it an ideal candidate for an embedded database in portable (CLI) applications, test environments and much more. Combined with ReactPHP's event-driven architecture and this library's efficient I/O implementation, this can be used to efficiently process a large quantity of entries in a number of different use cases. If you want to use it as a more traditial data store in your application, we've got you covered!
+[SQLite](https://www.sqlite.org/) is an efficient and versatile database. Its lightweight design makes it an ideal candidate for an embedded database in portable (CLI) applications, test environments and much more. Combined with ReactPHP's event-driven architecture and this library's efficient I/O implementation, this can be used to efficiently process a large quantity of entries in a number of different use cases. If you want to use it as a more traditional data store in your application, we've got you covered!
 
 [ReactPHP's vast ecosystem](https://github.com/reactphp/react/wiki/Users) features a large number of existing client implementations for pretty much any widespread protocol and database system out there – now including the perhaps [most used database](https://www.sqlite.org/mostdeployed.html) in existence. A future blog post will look into ways on how we can use this SQLite database adapter to provide mocked data access in a test suite for some higher-level integration tests instead of relying on an actual database server setup (e.g. MySQL) for web applications. In the meantime, if you want to learn more about the underlying I/O implementation or perhaps want to build a similar non-blocking process wrapper for another existing implementation, check out this project's source code and the previous blog posts linked above.
 

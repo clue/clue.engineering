@@ -25,7 +25,7 @@ This opens up completely new possibilities regarding the analysis and optimizati
 ## Quickstart in 60 seconds
 
 Alright, now let's get this up and running for a quick demo on your own project.
-The recommended way to install this project it by simply downloading the ready-to-use version as a Phar to any directory like this:
+The recommended way to install this project is by simply downloading the ready-to-use version as a Phar to any directory like this:
 
 ```bash
 $ curl -JOL https://clue.engineering/graph-composer-latest.phar

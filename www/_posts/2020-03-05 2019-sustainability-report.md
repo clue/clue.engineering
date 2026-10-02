@@ -63,7 +63,7 @@ var_dump($totals); // prints positive number
 To summarize, it's been a fantastic year!
 I would like to say that professionally, considering all the aspects mentioned, I can consider the year an absolute success.
 Working as a freelancer definitely *is* a [successful business model](2019-in-review) and gives me a lot of freedom.
-Working on open-source may not be sustainable business model for me in the short term right now, but things are slowly coming together for the long haul.
+Working on open-source may not be a sustainable business model for me in the short term right now, but things are slowly coming together for the long haul.
 Best of all, there's reason to believe that the upcoming year will be no less successful.
 
 ## Looking Forward
@@ -72,7 +72,7 @@ In the future, it is important to use the already positive trend as a basis for 
 This is necessary to continue investing many hours in open-source projects.
 
 In December, I wrote a piece about [open-source sustainability](https://24daysindecember.net/2019/12/15/open-source-sustainability/) and how this is not just about *making money*, but rather having a solid, reliable base to build on top of.
-It's still my understanding that if your project relies on some open-source projects for its business-critical features, it's in our best interest that these open-projects are sustainable.
+It's still my understanding that if your project relies on some open-source projects for its business-critical features, it's in our best interest that these open-source projects are sustainable.
 
 As a measure in this regard, I made detailed adjustments to my sponsoring options and added sponsoring buttons to [my projects on GitHub](https://github.com/clue).
 This is not to be confused with a simple *donation*, so if you become a sponsor, you will also get something in return: dedicated support options, sponsor placements and some lovely stickers!
@@ -84,8 +84,8 @@ I would be very grateful for your feedback on this and other topics!
 
 ## A special thanks
 
-I would like to conclude this post with thanking a special person understanding the importance of open-source.
-Thank you [@geertvanbommel](https://github.com/geertvanbommel) for the extremely great cooperation, which we are now maintaining for some time.
+I would like to conclude this post by thanking a special person who understands the importance of open-source.
+Thank you [@geertvanbommel](https://github.com/geertvanbommel) for the extremely great cooperation, which we have now been maintaining for some time.
 Our cooperation is based on the elementary open-source idea and demonstrates what can evolve from it.
 I hear there are going to be some awesome announcements very soon, so I'm not trying to give away too much here.
 It is a real pleasure to develop ideas and implement them with you.

@@ -11,7 +11,7 @@ author:
 
 ![ReactPHP – 7 years](https://user-images.githubusercontent.com/776829/61060544-39dd7400-a3ea-11e9-8184-50a680564518.png)
 
-Exactly seven years ago, 11th July 2012, the very first [v0.1.0 release](https://reactphp.org/changelog.html#eventloop-010-2012-07-11) of ReactPHP was tagged. On [last year's anniversary](https://clue.engineering/2018/announcing-reactphp-lts) we took the chance to releases the first set of stable components for ReactPHP's main components. Today, we're thrilled to announce the immediate availability of the very first stable v1.0.0 release of the remaining main components of any ReactPHP application:
+Exactly seven years ago, 11th July 2012, the very first [v0.1.0 release](https://reactphp.org/changelog.html#eventloop-010-2012-07-11) of ReactPHP was tagged. On [last year's anniversary](https://clue.engineering/2018/announcing-reactphp-lts) we took the chance to release the first set of stable components for ReactPHP's main components. Today, we're thrilled to announce the immediate availability of the very first stable v1.0.0 release of the remaining main components of any ReactPHP application:
 
 * [react/cache v1.0.0](https://reactphp.org/changelog.html#cache-100-2019-07-11)
 * [react/dns v1.0.0](https://reactphp.org/changelog.html#dns-100-2019-07-11)
@@ -32,7 +32,7 @@ As an alternative to this component based approach, we also provide `react/react
 
 ## Looking forward
 
-We've put some very significant effort into stabilizing ReactPHP's main components and streamlining and documenting existing behavior. On top of this, we'planning to build some exciting things, so don't worry: development doesn't stop here!
+We've put some very significant effort into stabilizing ReactPHP's main components and streamlining and documenting existing behavior. On top of this, we're planning to build some exciting things, so don't worry: development doesn't stop here!
 
 In the coming weeks and months, this allows us to focus our development efforts on our HTTP client and server components and bring in some long anticipated features: Among others, we've prepared some changes that will bring 200% performance improvements, will provide support for reusing connections (keep-alive) and will provide an outlook for HTTP/2 support soon! More on that in a later post, for now let's first celebrate this major milestone! 🎉🎉🎉
 
