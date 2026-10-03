@@ -23,6 +23,14 @@ test('loads a blog post without errors', async ({ page }) => {
   await expect(page).toHaveURL('/blog');
 });
 
+test('highlights PHP and JSON code blocks and leaves console sessions as plain text', async ({ page }) => {
+  await page.goto('/2018/introducing-reactphp-flux');
+
+  await expect(page.locator('pre code.php span')).not.toHaveCount(0);
+  await expect(page.locator('pre code.JSON span')).not.toHaveCount(0);
+  await expect(page.locator('pre code.bash span')).toHaveCount(0);
+});
+
 test('filters the blog list by tag and restores it without reloading', async ({ page }) => {
   await page.goto('/blog');
   const all = await page.locator('#posts article').count();
