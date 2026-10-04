@@ -7,13 +7,13 @@ on:
 
 jobs:
   Deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     strategy:
       matrix:
         php:
           - 8.1
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       - run: docker compose build playwright
         background: true
         id: playwright
