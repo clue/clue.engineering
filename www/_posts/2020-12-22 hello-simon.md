@@ -21,9 +21,9 @@ I am 23 years old and living my life as hard as you can imagine in these special
 
 <img src="../src/2020-welcome-simon.jpg" alt="Simon Frings Portrait Photo" style="max-width: 50%;float: right;margin: 0 0 10px 10px;">
 
-After school, I started studying **media informatics** at the TH-Köln. I didn't have much to do with computer science until then, but a broad interest in design and media developed in me, up to including game development. This is what pushed me to choose this study program and so far I'd say that it was the right choice for me.
+After school, I started studying **media informatics** at the TH-Köln. I didn't have much to do with computer science until then, but a broad interest in design and media developed in me, up to and including game development. This is what pushed me to choose this study program and so far I'd say that it was the right choice for me.
 
-I've ran into Christian in early 2020 and we had a quick talk about where we are in life and it quickly became clear that we share common interests. He introduced me to his business concept and one thing led to another. In the first instance, I started with an internship to get a feeling for ourselves and see if it was a good fit. 
+I ran into Christian in early 2020 and we had a quick talk about where we are in life and it quickly became clear that we share common interests. He introduced me to his business concept and one thing led to another. In the first instance, I started with an internship to get a feeling for ourselves and see if it was a good fit. 
 
 After a very short time, the combination of theory at university and the practical application at **clue·engineering** awakened in me enthusiasm for software development. This was of course also reflected in the daily work, so that we can speak of a successful first 3 months.
 

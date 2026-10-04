@@ -82,7 +82,7 @@ Its documentation describes common usage patterns as well as all the nifty detai
 Finally, I would like to end this with some words of vital importance.
 We invest a lot of time to develop, maintain and update [our awesome open-source projects](https://github.com/clue?tab=repositories). 
 If you are interested in [sustainable open-source](../2020/2019-sustainability-report) *(note: you should)*, 
-you can help us sustain this high-quality of our work by [becoming a sponsor on GitHub](https://github.com/sponsors/clue). 
+you can help us sustain this high quality of our work by [becoming a sponsor on GitHub](https://github.com/sponsors/clue). 
 Sponsors allow us to keep making progress and get numerous benefits in return, see our [sponsoring page](https://github.com/sponsors/clue) for details.
 
 Let's take these projects to the next level together.

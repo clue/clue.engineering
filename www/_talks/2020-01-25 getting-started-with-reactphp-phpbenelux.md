@@ -12,4 +12,4 @@ tags:
   - project-management
   - conference
 ---
-Conference talk + unconferance talk hosted by [PHPBenelux](https://conference.phpbenelux.eu/) ([@phpbenelux](https://twitter.com/phpbenelux))
+Conference talk + unconference talk hosted by [PHPBenelux](https://conference.phpbenelux.eu/) ([@phpbenelux](https://twitter.com/phpbenelux))

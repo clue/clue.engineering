@@ -61,7 +61,7 @@ With or without fibers, async PHP will be provided by external libraries.
 
 Fibers are one possible building block for asynchronous applications among others.
 [Unlike ReactPHP’s promises](https://packagist.org/packages/react/promise/stats),
-Fibers haven’t stood the test of time yet in the PHP ecosystem.
+fibers haven’t stood the test of time yet in the PHP ecosystem.
 Yet, we see potential for the fiber proposal to change the async PHP landscape for·ever – and perhaps *for the better*.
 
 ## What problem do fibers solve?
@@ -174,7 +174,7 @@ This means this *can* be a nicer API for some aspects, but we’re still dealing
 
 ### Fibers
 
-Fortunately, fibers can come to a rescue here:
+Fortunately, fibers can come to the rescue here:
 
 ```php
 function fetch(string $url): ResponseInterface { }
@@ -203,7 +203,7 @@ Interestingly, this also means the average PHP application developer will also n
 I think this is a great plus.
 
 Fibers provide a building block to build functions that can be used in a synchronous or in an asynchronous environment without changes.
-Their internal workings hide the fact that it might be executing other functions asynchronously with the help of an event loop.
+Their internal workings hide the fact that they might be executing other functions asynchronously with the help of an event loop.
 Fibers can be used in both synchronous and asynchronous environments without using adapters in-between.
 This means there will be a chance of us seeing more asynchronous implementations because they integrate more seamlessly into synchronous environments.
 
@@ -214,7 +214,7 @@ we actually have to take a look at an example that sends concurrent requests.
 
 ## What does concurrency look like in real-world applications?
 
-Again, let’s take our previous example and how instead of checking one external API, we check two external APIs.
+Again, let’s take our previous example and see how instead of checking one external API, we check two external APIs.
 
 ### Synchronous
 
@@ -249,7 +249,7 @@ It’s easy to see why: Every call happens one after another, so times add up.
 
 ### Promises
 
-Likewise, we can change your previous promise example to fetch from two APIs:
+Likewise, we can change our previous promise example to fetch from two APIs:
 
 ```php
 /** @return PromiseInterface<ResponseInterface> */
@@ -266,7 +266,7 @@ class UserRepository
         $promise1 = fetch($this->base1 . $id);
         $promise2 = fetch($this->base2 . $id);
 
-        return all([$promise1, $promise2])->then(array $responses) {
+        return all([$promise1, $promise2])->then(function (array $responses) {
             return $responses[0]->getStatusCode() === 200 && $responses[1]->getStatusCode() === 200;
         });
     }
@@ -375,7 +375,7 @@ The moment we want to express an asynchronous control flow, we still have to res
 
 In this example, we need to use two functions provided by our async library of choice.
 The `async()` function turns a fiber-based function into a promise that will be executed "in the background".
-And the `await()` function that instructs the event loop to execute until it can return to your synchronous flow.
+And the `await()` function instructs the event loop to execute until it can return to your synchronous flow.
 
 This `async()` function sure looks like magic!
 It looks like it could turn any synchronous function into an asynchronous one.

@@ -28,7 +28,7 @@ but here’s the gist of why we’re enthusiastic to ring in the next generation
 
 ## Async PHP with async & await
 
-We’re especially excited about built-in support for fibers with the [all-new Aync component](https://reactphp.org/async/).
+We’re especially excited about built-in support for fibers with the [all-new Async component](https://reactphp.org/async/).
 We believe this is a game-changer for the asynchronous PHP landscape.
 It provides a simple, composable, and consistent API for asynchronous programming in PHP.
 This makes it easy to write asynchronous code that is both super fast and easy to understand.

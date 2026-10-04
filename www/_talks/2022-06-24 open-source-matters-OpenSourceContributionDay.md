@@ -4,7 +4,7 @@ info: https://www.meetup.com/de-DE/teamneusta/events/285817080/
 slides: https://speakerdeck.com/clue/open-source-matters-b8ef203d-f3fd-476d-b733-72c7d70b4e7d
 location: Bremen, DE
 tags:
-  - open-source-metters
+  - open-source-matters
   - reactphp
   - open-source
   - contribution-day

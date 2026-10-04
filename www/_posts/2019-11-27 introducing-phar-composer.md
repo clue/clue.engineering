@@ -20,17 +20,17 @@ author:
 Last week, I've released `v1.1.0` of [clue/phar-composer](https://github.com/clue/phar-composer): it allows simple phar (php archive) creation for every PHP project managed via Composer.
 It takes any PHP project as input and turns its project directory and all its vendor files into a single Phar file which allows easy distribution. This is particularly useful for CLI applications, but it can equally be used to bundle any PHP web application.
 
-The new version brings up-to-date dependency support (including support for Symfony 5), significantly improves performance and fixes a number of minor issues when bundling less common project setups. If you care about the details what has changed, take a look at its [release history](https://github.com/clue/phar-composer/releases), otherwise keep reading.
+The new version brings up-to-date dependency support (including support for Symfony 5), significantly improves performance and fixes a number of minor issues when bundling less common project setups. If you care about the details of what has changed, take a look at its [release history](https://github.com/clue/phar-composer/releases), otherwise keep reading.
 
 ## Quickstart
 
-Now let's get this up and running for a quick demo project. The recommended way to install this project it by downloading the ready-to-use version as a Phar to any directory like this:
+Now let's get this up and running for a quick demo project. The recommended way to install this project is by downloading the ready-to-use version as a Phar to any directory like this:
 
 ```bash
 $ curl -JOL https://clue.engineering/phar-composer-latest.phar
 ```
 
-That's it already. Once downloaded, you can now use `build` command to build an executable single-file phar for any project managed by Composer:
+That's it already. Once downloaded, you can now use the `build` command to build an executable single-file phar for any project managed by Composer:
 
 ```bash
 $ php phar-composer-1.1.0.phar build ~/workspace/acme

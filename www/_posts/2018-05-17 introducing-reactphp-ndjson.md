@@ -31,7 +31,7 @@ To give you an idea of what NDJSON looks like, let's start with a really simple,
 ]
 ```
 
-This example uses an array of user objects where each user has a some arbitrary properties. This can easily be adjusted for many different use cases, such as storing for example products instead of users, assigning additional properties or having a significantly larger number of records.
+This example uses an array of user objects where each user has some arbitrary properties. This can easily be adjusted for many different use cases, such as storing for example products instead of users, assigning additional properties or having a significantly larger number of records.
 
 In contrast, let's look at the exact same example expressed as a simple NDJSON file, let's call this `users.ndjson`:
 
@@ -62,13 +62,13 @@ id,name
 3,Carol
 ```
 
-CSV may look slightly simpler, but this simplicity comes at a price. CSV is limited to untyped, two-dimensional data, so there's no standard way of storing any nested structures or to differentiate a boolean value from a string or integer. Field names are sometimes used, sometimes they're not (application-dependant). Inconsistent handling for fields that contain separators such as `,` or spaces or even line breaks (think of URLS or user-provided descriptions) introduce additional complexity and its text encoding is usually undefined, Unicode (or UTF-8) is unlikely to be supported and CSV files often use ISO 8859-1 encoding or some variant (again application-dependant).
+CSV may look slightly simpler, but this simplicity comes at a price. CSV is limited to untyped, two-dimensional data, so there's no standard way of storing any nested structures or to differentiate a boolean value from a string or integer. Field names are sometimes used, sometimes they're not (application-dependent). Inconsistent handling for fields that contain separators such as `,` or spaces or even line breaks (think of URLs or user-provided descriptions) introduces additional complexity and its text encoding is usually undefined, Unicode (or UTF-8) is unlikely to be supported and CSV files often use ISO 8859-1 encoding or some variant (again application-dependent).
 
 Despite its shortcomings, CSV is widely used and this is unlikely to change any time soon. In particular, CSV is a very common export format for a lot of tools to interface with spreadsheet processors (such as Excel, Calc etc.). This means that CSV is often used for historical reasons and using CSV to store structured application data is usually not a good idea nowadays – but exporting to CSV for known applications is a very reasonable approach.
 
 ### NDJSON vs. JSON text sequences
 
-A format somewhat similar to NDJSON is "JSON text sequences" as defined in [RFC 7464](https://tools.ietf.org/html/rfc7464). Among others, this is also used for "[GeoJSON](https://geojson.org/) Text Sequences" as defined in [RFC 8142](https://tools.ietf.org/html/rfc8142). The format differs mostly in that it uses the binary `RS` (*record separator*) binary ASCII/C0 code `\x1E` as a start indicator before each record.
+A format somewhat similar to NDJSON is "JSON text sequences" as defined in [RFC 7464](https://tools.ietf.org/html/rfc7464). Among others, this is also used for "[GeoJSON](https://geojson.org/) Text Sequences" as defined in [RFC 8142](https://tools.ietf.org/html/rfc8142). The format differs mostly in that it uses the `RS` (*record separator*) binary ASCII/C0 code `\x1E` as a start indicator before each record.
 
 The same example expressed as a JSON-sequence file could look like this, let's call this `users.json-seq`: 
 
@@ -110,7 +110,7 @@ One of the less commonly used alternatives to NDJSON is concatenated JSON, where
 {"id":1,"name":"Alice"}{"id":2,"name":"Bob"}{"id":3,"name":"Carol"}
 ```
 
-Trying to interpret this example as a human requires only little more effort than NDJSON, because the end of each record is no longer as obvious. However, this can easily get way more complicated when a record contains nested data that contains sub-structures so that the resulting file may contain a large number of curly braces that do not necessarily terminate a record.
+Trying to interpret this example as a human requires only a little more effort than NDJSON, because the end of each record is no longer as obvious. However, this can easily get way more complicated when a record contains nested data that contains sub-structures so that the resulting file may contain a large number of curly braces that do not necessarily terminate a record.
 
 As a consequence, while generating concatenated JSON requires trivial effort, parsing this format actually requires significant effort. In fact, it requires implementing a context-aware parser to detect message framing so that message framing is no longer independent of actual message parsing. Fortunately, this is not a format you'll likely come across very often. Among others, this is used by the Docker daemon to send progress notifications only when using legacy HTTP/1.0.
 
@@ -150,7 +150,7 @@ The first example loads the whole NDJSON file into memory and then processes eac
 
 [ReactPHP](https://reactphp.org) is a low-level library for event-driven programming in PHP. In a nutshell, it allows you to run multiple I/O operations concurrently and "react" to incoming events.
 
-Applying this to our above example, this means that we can use it to process our NDJSON file as a stream we can read from and then "react" to each record. For this to work, we'll install the new streaming NDJSON parser [clue/ndjson-reactphp](https://github.com/clue/reactphp-ndjson) like this:
+Applying this to our above example, this means that we can use it to process our NDJSON file as a stream we can read from and then "react" to each record. For this to work, we'll install the new streaming NDJSON parser [clue/reactphp-ndjson](https://github.com/clue/reactphp-ndjson) like this:
 
 ```bash
 $ composer require clue/ndjson-react:^1.0
@@ -181,7 +181,7 @@ $loop->run();
 
 While this code looks slightly more complicated than the previous example, this should still be pretty self-explanatory; it still simply prints a message for each user record.
 
-Besides some additional boilerplate, the major difference to the first example is that this no longer imperatively loads everything into memory. It merely says that the given NDJSON file should be read and interpreted by the NDJSON decoder and we "react" to its `data `event.
+Besides some additional boilerplate, the major difference to the first example is that this no longer imperatively loads everything into memory. It merely says that the given NDJSON file should be read and interpreted by the NDJSON decoder and we "react" to its `data` event.
 
 This implies that this example actually supports files of arbitrary sizes as only small chunks will be processed in memory and ReactPHP takes care of invoking your event handlers as expected. An interesting side effect of this is that this may even be faster than the first example, because it can start processing records without having to wait for the whole file to be read into memory. In fact, this is way faster than many people would probably expect PHP to be. On my laptop this yields around 5 Gbit/s, so it's probably faster than your average network connection or persistent storage. (As always, don't trust some random stranger when it comes to performance – you're invited to run your own benchmarks and share what you've found.)
 
@@ -189,9 +189,9 @@ Arguably, this example is a bit "overkill" if you only want to stream a few reco
 
 ### NDJSON for IPC
 
-By now you should have an understanding that NDJSON is a very versatile format that can be very useful for a number of use cases. Instead of only using this to access local files, we may also use NDJSON as a very simple inter-process communication (IPC) protocol to pass any kind of structured messages between processes and build our own custom remote procedure call (RPC) mechanism. The following example is heavily inspired by [JSON-RPC](https://en.wikipedia.org/wiki/JSON-RPC). With a few more lines this could actually be adapted to implement its full specification, however we're trying to focus on the main idea of a simple RPC mechanism here fore the sake of brevity.
+By now you should have an understanding that NDJSON is a very versatile format that can be very useful for a number of use cases. Instead of only using this to access local files, we may also use NDJSON as a very simple inter-process communication (IPC) protocol to pass any kind of structured messages between processes and build our own custom remote procedure call (RPC) mechanism. The following example is heavily inspired by [JSON-RPC](https://en.wikipedia.org/wiki/JSON-RPC). With a few more lines this could actually be adapted to implement its full specification, however we're trying to focus on the main idea of a simple RPC mechanism here for the sake of brevity.
 
-The full code to use NDJSON for as an IPC/RPC mechanism for process input and output could look something like this:
+The full code to use NDJSON as an IPC/RPC mechanism for process input and output could look something like this:
 
 ```php
 $loop = React\EventLoop\Factory::create();
@@ -231,11 +231,11 @@ $ php example.php
 <-- { "result": 10 }
 ```
 
-While this example requires you to manually launch this script, it should show you everything you need to know to process structured JSON messages over STDIN/STDOUT streams. If you want to integrate this into an async application, you may also use ReactPHP'S [ChildProcess](https://reactphp.org/child-process/) component to programmatically spawn this process. For example, this allows you to offload CPU-intensive or blocking code to a separate process so that your main process can continue its non-blocking operation.
+While this example requires you to manually launch this script, it should show you everything you need to know to process structured JSON messages over STDIN/STDOUT streams. If you want to integrate this into an async application, you may also use ReactPHP's [ChildProcess](https://reactphp.org/child-process/) component to programmatically spawn this process. For example, this allows you to offload CPU-intensive or blocking code to a separate process so that your main process can continue its non-blocking operation.
 
 ## Conclusions
 
-Streaming JSON-based records or messages is a really powerful approach for a large number of use cases and by now I hope I could show you how newline-delimited JSON (NDJSON) is really simple, yet powerful, addition to this toolset.
+Streaming JSON-based records or messages is a really powerful approach for a large number of use cases and by now I hope I could show you how newline-delimited JSON (NDJSON) is a really simple, yet powerful, addition to this toolset.
 
 [NDJSON](http://ndjson.org/) can be used to store multiple JSON records in a file to store any kind of (uniform) structured data, such as a list of user objects or log entries. It uses a simple newline character between each individual record and as such can be both used for efficient persistence and simple append-style operations. This also allows it to be used in a streaming context, such as a simple inter-process communication (IPC) protocol or for a remote procedure call (RPC) mechanism.
 
@@ -243,4 +243,4 @@ There are some valid criticisms against JSON and if human readability is not an 
 
 If you want to learn more about this project, make sure to check out [clue/reactphp-ndjson](https://github.com/clue/reactphp-ndjson). If you like this project, spreading the word is much appreciated! If you have any feedback or just want to reach out and say hello, I'm happy to hear back and appreciate feedback! Use the contact options in the section below and let's get in touch.
 
-<blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">Introducing streaming newline-delimited JSON (NDJSON) parser and encoder v1.0.0 for <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a>! Efficient persistence for JSON-based log messages and streaming for simple IPC and RPC protocols 💪 <a href="https://twitter.com/hashtag/streaming?src=hash&amp;ref_src=twsrc%5Etfw">#streaming</a> <a href="https://twitter.com/hashtag/json?src=hash&amp;ref_src=twsrc%5Etfw">#json</a> <a href="https://twitter.com/hashtag/ndjson?src=hash&amp;ref_src=twsrc%5Etfw">#ndjson</a> <a href="https://t.co/B9FT3VPvQ2">https://t.co/B9FT3VPvQ2</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/997142697067601920?ref_src=twsrc%5Etfw">17. Mai 2018</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Introducing streaming newline-delimited JSON (NDJSON) parser and encoder v1.0.0 for <a href="https://twitter.com/reactphp?ref_src=twsrc%5Etfw">@ReactPHP</a>! Efficient persistence for JSON-based log messages and streaming for simple IPC and RPC protocols 💪 <a href="https://twitter.com/hashtag/streaming?src=hash&amp;ref_src=twsrc%5Etfw">#streaming</a> <a href="https://twitter.com/hashtag/json?src=hash&amp;ref_src=twsrc%5Etfw">#json</a> <a href="https://twitter.com/hashtag/ndjson?src=hash&amp;ref_src=twsrc%5Etfw">#ndjson</a> <a href="https://t.co/B9FT3VPvQ2">https://t.co/B9FT3VPvQ2</a></p>&mdash; Christian Lück (@another_clue) <a href="https://twitter.com/another_clue/status/997142697067601920?ref_src=twsrc%5Etfw">May 17, 2018</a></blockquote>

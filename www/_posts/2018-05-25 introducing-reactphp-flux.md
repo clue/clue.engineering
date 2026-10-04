@@ -18,7 +18,7 @@ Now that v1.0.0 has been tagged and released today, let's look into why streamin
 
 ## Concurrency with ReactPHP
 
-In one of the previous posts, we've looked into [doing many (but not too many) things concurrently with ReactPHP](https://clue.engineering/2018/introducing-reactphp-mq). If you're new to the concept of concurrently processing multipe things at once with ReactPHP, go check out that post, I'll wait.
+In one of the previous posts, we've looked into [doing many (but not too many) things concurrently with ReactPHP](https://clue.engineering/2018/introducing-reactphp-mq). If you're new to the concept of concurrently processing multiple things at once with ReactPHP, go check out that post, I'll wait.
 
 The gist of this previous post is that [ReactPHP](https://reactphp.org/) allows you to do multiple things concurrently. For instance, if you want to process a list of 100 (RESTful) HTTP API requests, you no longer have to wait for them to be completed sequentially, but can start multiple operations at once. By using [clue/reactphp-mq](https://github.com/clue/reactphp-mq), you can control this process to use for example 10 requests concurrently and thus make this process around 10 times faster.
 
@@ -28,9 +28,9 @@ So what if you have more than a few dozens or hundreds of operations (think thou
 
 ## Streaming with ReactPHP
 
-We've established the idea that we need to process some list of operations. This example uses an array of user objects where each user has a some arbitrary properties. This can easily be adjusted for many different use cases, such as storing for example products instead of users, assigning additional properties or having a significantly larger number of records.
+We've established the idea that we need to process some list of operations. This example uses an array of user objects where each user has some arbitrary properties. This can easily be adjusted for many different use cases, such as storing for example products instead of users, assigning additional properties or having a significantly larger number of records.
 
-Let's look at how this list of user objects could look like, for example, let's call this our `users.ndjson`:
+Let's look at what this list of user objects could look like, for example, let's call this our `users.ndjson`:
 
 ```JSON
 { "name": "alice", "birthday": "2017-01-01", "ip": "1.1.1.1" }
@@ -43,7 +43,7 @@ Let's look at how this list of user objects could look like, for example, let's 
 
 This example uses the NDJSON format to store a list of user objects in a file, but you may use any streaming format you prefer. If you want to learn more about NDJSON and how this compares to CSV and other formats, see also the previous post [introducing streaming newline-delimited JSON (NDJSON)](https://clue.engineering/2018/introducing-reactphp-ndjson).
 
-To recap, [ReactPHP](https://reactphp.org) is a low-level library for event-driven programming in PHP. In a nutshell, it allows you to run multiple I/O operations concurrently and "react" to incoming events. Applying this to our above example, this means that we can use it to process our NDJSON file as a stream we can read from and then "react" to each record. For this to work, we'll install the streaming NDJSON parser [clue/ndjson-reactphp](https://github.com/clue/reactphp-ndjson) like this:
+To recap, [ReactPHP](https://reactphp.org) is a low-level library for event-driven programming in PHP. In a nutshell, it allows you to run multiple I/O operations concurrently and "react" to incoming events. Applying this to our above example, this means that we can use it to process our NDJSON file as a stream we can read from and then "react" to each record. For this to work, we'll install the streaming NDJSON parser [clue/reactphp-ndjson](https://github.com/clue/reactphp-ndjson) like this:
 
 ```bash
 $ composer require clue/ndjson-react:^1.0
@@ -105,11 +105,11 @@ This should be pretty self-explanatory; it simply prints the country name for a 
 
 ## Managing flux
 
-Now comes the tricky part: We want to run multiple of these operations, one for each user. How do we run many (but not too many) of these operations while at the same time ensuring we properly manage flow of the input stream without reading too much into memory at once? This is where [clue/reactphp-flux](https://github.com/clue/reactphp-flux) comes into play: You can use this library to run multiple operations while managing the throughput of the stream (flux). This allows you to effectively rate limit your operations and queue excessives ones so that not too many operations are processed at once. You can control the concurrency limit, so that by allowing it to process 10 operations at the same time, you can thus process this large input list around 10 times faster and at the same time you're no longer limited how many records this list may contain (think processing millions of records).
+Now comes the tricky part: We want to run multiple of these operations, one for each user. How do we run many (but not too many) of these operations while at the same time ensuring we properly manage flow of the input stream without reading too much into memory at once? This is where [clue/reactphp-flux](https://github.com/clue/reactphp-flux) comes into play: You can use this library to run multiple operations while managing the throughput of the stream (flux). This allows you to effectively rate limit your operations and queue excessive ones so that not too many operations are processed at once. You can control the concurrency limit, so that by allowing it to process 10 operations at the same time, you can thus process this large input list around 10 times faster and at the same time you're no longer limited in how many records this list may contain (think processing millions of records).
 
 This library provides a simple API that is easy to use in order to manage any kind of async operation without having to mess with most of the low-level details. You can use this to easily throttle multiple HTTP requests as in this example, database queries or pretty much any API that already uses Promises.
 
-For this to work, we'll install the [clue/reactphp-flux](https://github.com/clue/reactphp-flux) like this:
+For this to work, we'll install [clue/reactphp-flux](https://github.com/clue/reactphp-flux) like this:
 
 ```bash
 $ composer require clue/reactphp-flux
@@ -163,13 +163,13 @@ You'll notice that this code includes both previous examples and combines them i
 
 The major difference to the previous example is that the `$browser->get()` method is now wrapped in a `Transformer` instance and this instance is responsible for managing its async processing. Other than that, this code still uses the same streaming logic and a [Promise](https://github.com/reactphp/promise) which is *fulfilled* with the user's country name.
 
-This means that from the consumer's perspective is still tries to pipe the whole NDJSON stream into the `Transformer `and then process its results as soon as they arrive. It uses the same streaming interfaces as the previous example which makes it easy to react to when an operation is completed.
+This means that from the consumer's perspective it still tries to pipe the whole NDJSON stream into the `Transformer` and then process its results as soon as they arrive. It uses the same streaming interfaces as the previous example which makes it easy to react to when an operation is completed.
 
-However, the `Transformer` instance is now responsible for managing your operations and ensuring not too many operations are executed at once. It's a very simple and lightweight in-memory implementation of the [leaky bucket](https://en.wikipedia.org/wiki/Leaky_bucket#As_a_queue) algorithm. Without going into too much detail here, this means that you control how many operations can be executed concurrently. If you add a job to the queue and it still below the limit, it will be executed immediately. If you keep adding new jobs to the queue and its concurrency limit is reached, it will not start a new operation and instead queue this for future execution. Once one of the pending operations complete, it will pick the next job from the queue and execute this operation. This queueing mechanism automatically notifies the pipe source so that it will actually `pause()` reading from the NDJSON input stream when its limit is reached and will automatically `resume()` reading from the NDJSON input stream when it is below the limit again. This back-pressure thus avoids taking up all memory for outstanding jobs. This means that this is handled entirely transparently and you do not need to worry about this concurrency limit yourself.
+However, the `Transformer` instance is now responsible for managing your operations and ensuring not too many operations are executed at once. It's a very simple and lightweight in-memory implementation of the [leaky bucket](https://en.wikipedia.org/wiki/Leaky_bucket#As_a_queue) algorithm. Without going into too much detail here, this means that you control how many operations can be executed concurrently. If you add a job to the queue and it is still below the limit, it will be executed immediately. If you keep adding new jobs to the queue and its concurrency limit is reached, it will not start a new operation and instead queue this for future execution. Once one of the pending operations completes, it will pick the next job from the queue and execute this operation. This queueing mechanism automatically notifies the pipe source so that it will actually `pause()` reading from the NDJSON input stream when its limit is reached and will automatically `resume()` reading from the NDJSON input stream when it is below the limit again. This back-pressure thus avoids taking up all memory for outstanding jobs. This means that this is handled entirely transparently and you do not need to worry about this concurrency limit yourself.
 
 The `new Transformer(int $concurrency, callable $handler)` call can be used to create a new transformer instance. You can create any number of transformation streams, for example when you want to apply different transformations to different kinds of streams.
 
-The `$concurrency` parameter sets a new soft limit for the maximum number of jobs to handle concurrently. Finding a good concurrency limit depends on your particular use case. It's common to limit concurrency to a rather small value, as doing more than a dozen of things at once may easily overwhelm the receiving side. Using a `1` value will ensure that all jobs are processed one after another, effectively creating a "waterfall" of jobs.
+The `$concurrency` parameter sets a new soft limit for the maximum number of jobs to handle concurrently. Finding a good concurrency limit depends on your particular use case. It's common to limit concurrency to a rather small value, as doing more than a dozen things at once may easily overwhelm the receiving side. Using a `1` value will ensure that all jobs are processed one after another, effectively creating a "waterfall" of jobs.
 
 The `$handler` parameter must be a valid callable that accepts your job parameter (the data from its writable side), invokes the appropriate operation and returns a Promise as a placeholder for its future result (which will be made available on its readable side).
 
@@ -183,7 +183,7 @@ Stream processing is a really powerful approach when it comes to processing a la
 
 In one of the previous posts, we've looked into using an in-memory queue to [do many (but not too many) things concurrently with ReactPHP](https://clue.engineering/2018/introducing-reactphp-mq). Arguably, this may be simpler to integrate if you want to handle a few dozens or hundreds of operations. However, unlike that project, stream processing does not require you to keep the whole list in memory and thus does not limit you in how many entries you can process.
 
-It goes without saying that this project does not aim to replace RabbitMQ or other projects that offers a large number of features that are not provided by this library. If you *need* a message queue with strict guarantees about message delivery, persistence and high availability, RabbitMQ is a very good choice! However, I've been involved in a number of projects where these features may be *overkill* when all your really need is a lightweight way to do *many* (but not *too many*) things at once.
+It goes without saying that this project does not aim to replace RabbitMQ or other projects that offer a large number of features that are not provided by this library. If you *need* a message queue with strict guarantees about message delivery, persistence and high availability, RabbitMQ is a very good choice! However, I've been involved in a number of projects where these features may be *overkill* when all you really need is a lightweight way to do *many* (but not *too many*) things at once.
 
 In case you're wondering: The name "flux" refers to its formal definition of "[…] the quantity which passes through a surface or substance". Any resemblance to other projects using similar names is purely coincidental...
 

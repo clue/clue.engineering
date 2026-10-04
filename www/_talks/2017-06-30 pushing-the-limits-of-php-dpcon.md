@@ -11,4 +11,4 @@ tags:
   - reactphp
   - conference
 ---
-Conference talk hosted by [Dutch PHP conference ](https://www.phpconference.nl/) ([@dpcon](https://twitter.com/dpcon))
+Conference talk hosted by [Dutch PHP Conference](https://www.phpconference.nl/) ([@dpcon](https://twitter.com/dpcon))

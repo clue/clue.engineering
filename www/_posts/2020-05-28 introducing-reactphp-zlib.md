@@ -18,17 +18,17 @@ It provides a streaming zlib compressor and decompressor for [ReactPHP](https://
 
 ## The beta is done - release!
 
-The project has been started almost 5 years ago and has been used in production ever since.
+The project was started almost 5 years ago and has been used in production ever since.
 During this beta phase, extensive optimizations and bug fixes were made, so today we are pleased to announce the first stable release version `v1.0.0` of [clue/reactphp-zlib](https://github.com/clue/reactphp-zlib).
 You can check out the [release history](https://github.com/clue/reactphp-zlib/releases) for all the nifty details or keep reading for a quick overview.
 
 Most importantly, it now operates at a faster speed and fixes a number of inconsistencies.
 This results from the elimination of the project's legacy and taking advantage of PHP 7's [deflate contexts](https://www.php.net/manual/en/function.deflate-init.php).
-As as consequence, this version now requires PHP 7 or newer (*was about time*).
+As a consequence, this version now requires PHP 7 or newer (*was about time*).
 
 ![](../src/2020-zlib-benchmark-new.png)
 
-You will find that new version is more than 25% faster!
+You will find that the new version is more than 25% faster!
 This isn't just some arbitrary benchmarking number, this is a significant improvement in real-world applications when compressing or decompressing large files.
 
 PHP isn't exactly known for being the *fastest* language and *faster* doesn't necessarily mean *fast*, so let's put this into perspective.
@@ -55,7 +55,7 @@ The recommended way to install this project is via Composer.
 $ composer require clue/zlib-react:^1.0
 ```
 
-Once installed, you can use the following code read a gzipped log file and print each decompressed log file chunk:
+Once installed, you can use the following code to read a gzipped log file and print each decompressed log file chunk:
 
 ```php
 $loop = React\EventLoop\Factory::create();
@@ -107,7 +107,7 @@ Among others, our [HTTP client](https://clue.engineering/2018/introducing-reactp
 Additionally, we're going to show how this project can be used to work with compressed TAR archives (`.tar.gz` or `.tgz` tarball files) in our next blog.
 
 We invest a lot of time to develop, maintain and update [our awesome open-source projects](https://github.com/clue?tab=repositories). 
-If you are interested in [sustainable open source](https://clue.engineering/2020/2019-sustainability-report) *(note: you should)*, you can help us sustain this high-quality of our work by [becoming a sponsor on GitHub](https://github.com/sponsors/clue). Sponsors allow us to keep making progress and get numerous benefits in return, see our [sponsoring page](https://github.com/sponsors/clue) for details.
+If you are interested in [sustainable open source](https://clue.engineering/2020/2019-sustainability-report) *(note: you should)*, you can help us sustain this high quality of our work by [becoming a sponsor on GitHub](https://github.com/sponsors/clue). Sponsors allow us to keep making progress and get numerous benefits in return, see our [sponsoring page](https://github.com/sponsors/clue) for details.
 
 Let's take these projects to the next level together! 🚀
 

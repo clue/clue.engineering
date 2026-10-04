@@ -22,10 +22,10 @@ Here you will find why we designed this concept, what it looks like in detail, h
 **We ❤️ open-source**! That's why we've published more than 100 projects on our GitHub ([@clue](https://github.com/clue)).
 
 On top of this, we're constantly working on new projects. 
-With **clue·access**, we want you to get early access to our new projects before they made available to the general public.
+With **clue·access**, we want you to get early access to our new projects before they are made available to the general public.
 Supporters of our open-source work and people sponsoring us can now receive early access to our new projects.
 
-​​[**clue·access**](https://github.com/clue-access/clue-access) is represented as an organization on Github. In this organization we have created a team to which the already supporting sponsors have been invited and some of them are already members. Each qualified sponsor will receive an invitation to the organization via e-mail and, once activated, will have full access to all included projects before they are made available to the general public. 
+[**clue·access**](https://github.com/clue-access/clue-access) is represented as an organization on GitHub. In this organization we have created a team to which the already supporting sponsors have been invited and some of them are already members. Each qualified sponsor will receive an invitation to the organization via e-mail and, once activated, will have full access to all included projects before they are made available to the general public. 
 
 If you're not a member of this team, you will only be able to see the project overview, but will not be able to see and access [all the awesome projects](https://github.com/clue-access/clue-access#projects).
 To allow a brief insight into each project, we have created public placeholder repositories. 
@@ -34,7 +34,7 @@ Oh, and it definitely helps with whetting the appetite for more. 😉
 
 We believe in the power of open-source.
 That's why we plan to publish these projects step by step for everyone eventually.
-If you're patient, you can lean back. If you want to get the best out of our new projects and support open-source at the same time, you may want to check out [our sponsorship page]((https://github.com/sponsors/clue)).
+If you're patient, you can lean back. If you want to get the best out of our new projects and support open-source at the same time, you may want to check out [our sponsorship page](https://github.com/sponsors/clue).
 
 We already have a number of ideas for further additions and concepts for **clue·access**.
 For example, each member receives **exclusive access to our support channel**.
@@ -72,7 +72,7 @@ Let's not forget the financial aspect of working on open-source full-time. More 
 
 If you are interested in joining **clue·access** (*tip: you should*), then consider supporting our work. The easiest way to join would be [to sponsor us on GitHub](https://github.com/sponsors/clue) if you want us to continue creating even more awesome projects.
 
-We invest a lot of time developing, maintaining and updating our awesome open-source projects. You can help us sustain this high-quality of our work by becoming a sponsor on GitHub. As you can see, sponsoring is a win-win situation. On top of this, our sponsors receive additional numerous benefits in return, details can be found on our [sponsorship page](https://github.com/sponsors/clue).
+We invest a lot of time developing, maintaining and updating our awesome open-source projects. You can help us sustain this high quality of our work by becoming a sponsor on GitHub. As you can see, sponsoring is a win-win situation. On top of this, our sponsors receive additional numerous benefits in return, details can be found on our [sponsorship page](https://github.com/sponsors/clue).
 
 Let's take these projects to the next level together. 🚀
 
