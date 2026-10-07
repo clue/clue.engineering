@@ -16,18 +16,10 @@ To ease development, we use Docker containers that include all development
 requirements, so you don't have to install any tools other than Docker Compose
 on your local system.
 
-### Build
-
-You can build the website like this:
-
-```bash
-make
-```
-
 ### Run
 
-Once built, you can manually browse the `build/` directory or run the web server
-container (Apache) in the foreground like this:
+This project is usually executed in Docker containers. You can build and run the
+project in a production-like container in the foreground like this:
 
 ```bash
 docker compose up --build --watch
@@ -70,13 +62,20 @@ Once done, you can clean up like this:
 make clean
 ```
 
-## Deploy
+## Deployment
 
-Once built (see previous "Build" section), you can simply deploy the `build/`
+This project is usually deployed by serving the static website from the `build/`
 directory behind your favorite web server (Apache + PHP-FPM etc.).
 
 Additionally, this should be deployed behind a reverse proxy (nginx) or CDN (Bunny CDN)
 that is responsible for HTTPS certificate handling and forcing HTTPS redirects.
+
+Instead of directly running the project as above, you may build the static
+website into the `build/` directory and manually browse any files like this:
+
+```bash
+make
+```
 
 The live website is deployed by pushing the contents of the `build/` directory to
 the `live` branch like this:
