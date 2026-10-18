@@ -7,6 +7,15 @@ Source code for the https://clue.engineering/ website.
 
 ## Development
 
+### Install
+
+This project has a number of specific system requirements, including PHP 8.1+,
+Composer, Docker Compose, and others.
+
+To ease development, we use Docker containers that include all development
+requirements, so you don't have to install any tools other than Docker Compose
+on your local system.
+
 ### Build
 
 You can build the website like this:

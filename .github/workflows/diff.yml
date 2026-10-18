@@ -7,19 +7,11 @@ on:
 jobs:
   diff:
     runs-on: ubuntu-26.04
-    strategy:
-      matrix:
-        php:
-          - 8.1
     steps:
       # check out base ref and build site into old/
       - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.base.sha }}
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          coverage: none
       - run: make && mv build/ old/
 
       # check out head ref and build site into new/

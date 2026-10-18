@@ -1,9 +1,6 @@
-build: vendor www/src/tailwind.min.css
-	vendor/bin/sculpin generate
-
-vendor: composer.json composer.lock
-	composer install
-	touch $@
+build: www/src/tailwind.min.css
+	mkdir -p build/
+	docker build --target build --output build/ .
 
 www/src/tailwind.min.css: www/_layouts/* www/_posts/* www/_talks/* www/*.html www/*.html.twig tailwind.css
 	docker compose run --rm --build tailwind -o $@ --minify
