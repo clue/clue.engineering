@@ -9,7 +9,7 @@ Source code for the https://clue.engineering/ website.
 
 ### Install
 
-This project has a number of specific system requirements, including PHP 8.1+,
+This project has a number of specific system requirements, including PHP 8.5+,
 Composer, Docker Compose, and others.
 
 To ease development, we use Docker containers that include all development
