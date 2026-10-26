@@ -63,11 +63,15 @@ use:
 {%         set year = talk.date | date("Y") %}
 {%         set talks = 0 %} {# count number of talks in this year #}
 {%         set tags = [] %} {# filter all unique tags mentioned in this year #}
-{%         for talk in data.talks if talk.date | date("Y") == year %}
-{%             set talks = talks + 1 %}
-{%             for tag in talk.tags if tag not in tags %}
-{%                 set tags = tags|merge([tag]) %}
-{%             endfor %}
+{%         for talk in data.talks %}
+{%             if talk.date | date("Y") == year %}
+{%                 set talks = talks + 1 %}
+{%                 for tag in talk.tags %}
+{%                     if tag not in tags %}
+{%                         set tags = tags|merge([tag]) %}
+{%                     endif %}
+{%                 endfor %}
+{%             endif %}
 {%         endfor %}
 
         <h2 id="{{ year }}" class="tagged tagged-{{ tags|join(" tagged-") }}"><a href="#{{ year }}"></a>{{ year }} <small>({{ talks }} {{ talks == 1 ? "talk" : "talks" }})</small></h2>
