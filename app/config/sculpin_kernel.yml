@@ -3,6 +3,9 @@ sculpin:
     output_dir: build/
     permalink: none # no pretty permalink (keep talks.html instead of talks/index.html)
 
+sculpin_markdown:
+    parser_class: App\MarkdownParser # highlight code blocks at build time
+
 sculpin_content_types:
     posts:
         permalink: :year/:slug_filename.html

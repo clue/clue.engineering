@@ -3,6 +3,7 @@
         "php": ">=8.5"
     },
     "require-dev": {
+        "phiki/phiki": "^2.2.1",
         "sculpin/sculpin": "^3.3.2"
     },
     "autoload-dev": {
