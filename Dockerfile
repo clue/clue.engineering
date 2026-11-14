@@ -10,8 +10,8 @@ RUN composer install --ignore-platform-reqs --optimize-autoloader
 FROM alpine:3 AS tailwind
 RUN apk --no-cache add libstdc++
 WORKDIR /app/
-ADD --checksum=sha256:a04d34ceacc8f52cbe8920ad846cdeb61d3d0021dba32db0d1f77c9d9fad7a6c --chmod=0755 \
-    https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-x64-musl /usr/local/bin/tailwindcss
+ADD --checksum=sha256:bb050edd13f15006d872a9bb1772b908618a8df6806d30bf095cba26a09e640b --chmod=0755 \
+    https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.5/tailwindcss-linux-x64-musl /usr/local/bin/tailwindcss
 ENTRYPOINT ["tailwindcss", "-i", "tailwind.css"]
 
 # base sculpin stage to generate the static website
